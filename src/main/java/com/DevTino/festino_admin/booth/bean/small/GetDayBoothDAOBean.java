@@ -16,6 +16,7 @@ public class GetDayBoothDAOBean {
         this.dayBoothRepository = dayBoothRepository;
     }
 
+    // 부스아이디로 DAO 찾아서 반환
     public DayBoothDAO exec(UUID boothId) {
         return dayBoothRepository.findById(boothId).orElse(null);
     }

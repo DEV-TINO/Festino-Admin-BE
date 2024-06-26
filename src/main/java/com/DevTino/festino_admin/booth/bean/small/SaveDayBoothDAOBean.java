@@ -15,8 +15,8 @@ public class SaveDayBoothDAOBean {
         this.dayBoothRepository = dayBoothRepository;
     }
 
+    //주간부스 DAO를 DB에 저장
     public void exec(DayBoothDAO dayBoothDAO) {
-        //주간부스 DAO를 DB에 저장
         dayBoothRepository.save(dayBoothDAO);
     }
 }
