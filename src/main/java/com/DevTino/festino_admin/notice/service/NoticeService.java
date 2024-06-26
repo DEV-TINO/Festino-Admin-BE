@@ -4,6 +4,7 @@ import com.DevTino.festino_admin.notice.bean.DeleteNoticeBean;
 import com.DevTino.festino_admin.notice.bean.SaveNoticeBean;
 import com.DevTino.festino_admin.notice.bean.UpdateNoticeBean;
 import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeDeleteDTO;
+import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticePinUpdateDTO;
 import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeSaveDTO;
 import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,13 @@ public class NoticeService {
     public UUID updateNotice(RequestNoticeUpdateDTO requestNoticeUpdateDTO){
 
         return updateNoticeBean.exec(requestNoticeUpdateDTO);
+
+    }
+
+    // 공지사항 pin 수정
+    public UUID updateNoticePin(RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
+
+        return updateNoticeBean.exec(requestNoticePinUpdateDTO);
 
     }
 
