@@ -1,6 +1,7 @@
 package com.DevTino.festino_admin.notice.controller;
 
 
+import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeDeleteDTO;
 import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeSaveDTO;
 import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeUpdateDTO;
 import com.DevTino.festino_admin.notice.service.NoticeService;
@@ -67,6 +68,25 @@ public class NoticeController {
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+
+
+    // 공지사항 삭제
+    @DeleteMapping("/notice")
+    public ResponseEntity<Map<String, Object>> deleteNotice(@RequestBody RequestNoticeDeleteDTO requestNoticeDeleteDTO){
+
+        // 공지사항 삭제 service 실행 & 삭제 성공 여부 설정
+        boolean success = noticeService.deleteNotice(requestNoticeDeleteDTO);
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "공지사항 삭제 성공" : "공지사항 삭제 시 DAO 검색 실패");
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
     }
 
 }
