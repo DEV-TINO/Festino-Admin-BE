@@ -1,12 +1,10 @@
 package com.DevTino.festino_admin.notice.service;
 
 import com.DevTino.festino_admin.notice.bean.DeleteNoticeBean;
+import com.DevTino.festino_admin.notice.bean.GetNoticeBean;
 import com.DevTino.festino_admin.notice.bean.SaveNoticeBean;
 import com.DevTino.festino_admin.notice.bean.UpdateNoticeBean;
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeDeleteDTO;
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticePinUpdateDTO;
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeSaveDTO;
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeUpdateDTO;
+import com.DevTino.festino_admin.notice.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +13,27 @@ import java.util.UUID;
 @Service
 public class NoticeService {
 
+    GetNoticeBean getNoticeBean;
     SaveNoticeBean saveNoticeBean;
     UpdateNoticeBean updateNoticeBean;
     DeleteNoticeBean deleteNoticeBean;
 
     @Autowired
-    public NoticeService(SaveNoticeBean saveNoticeBean, UpdateNoticeBean updateNoticeBean, DeleteNoticeBean deleteNoticeBean){
+    public NoticeService(GetNoticeBean getNoticeBean, SaveNoticeBean saveNoticeBean, UpdateNoticeBean updateNoticeBean, DeleteNoticeBean deleteNoticeBean){
+        this.getNoticeBean = getNoticeBean;
         this.saveNoticeBean = saveNoticeBean;
         this.updateNoticeBean = updateNoticeBean;
         this.deleteNoticeBean = deleteNoticeBean;
     }
 
 
+
+    // 공지사항 조회
+    public ResponseNoticeGetDTO getNotice(UUID noticeId){
+
+        return getNoticeBean.exec(noticeId);
+
+    }
 
     // 공지사항 저장
     public UUID saveNotice(RequestNoticeSaveDTO requestNoticeSaveDTO){

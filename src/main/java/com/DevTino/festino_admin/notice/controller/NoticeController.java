@@ -1,10 +1,7 @@
 package com.DevTino.festino_admin.notice.controller;
 
 
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeDeleteDTO;
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticePinUpdateDTO;
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeSaveDTO;
-import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeUpdateDTO;
+import com.DevTino.festino_admin.notice.domain.DTO.*;
 import com.DevTino.festino_admin.notice.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +21,29 @@ public class NoticeController {
     @Autowired
     public NoticeController(NoticeService noticeService){
         this.noticeService = noticeService;
+    }
+
+
+
+    // 공지사항 조회
+    @GetMapping("/notice/{noticeId}")
+    public ResponseEntity<Map<String, Object>> getNotice(@PathVariable UUID noticeId){
+
+        // 공지사항 조회 service 실행
+        ResponseNoticeGetDTO responseNoticeGetDTO = noticeService.getNotice(noticeId);
+
+        // 공지사항 조회 성공 여부 설정
+        boolean success = (responseNoticeGetDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "공지사항 조회 성공" : "공지사항 조회 시 DAO 검색 실패");
+        requestMap.put("noticeInfo", responseNoticeGetDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
     }
 
 
