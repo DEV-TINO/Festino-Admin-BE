@@ -2,14 +2,12 @@ package com.DevTino.festino_admin.notice.controller;
 
 
 import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeSaveDTO;
+import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeUpdateDTO;
 import com.DevTino.festino_admin.notice.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +45,28 @@ public class NoticeController {
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
 
+    }
+
+
+
+    // 공지사항 수정
+    @PutMapping("/notice")
+    public ResponseEntity<Map<String, Object>> updateNotice(@RequestBody RequestNoticeUpdateDTO requestNoticeUpdateDTO){
+        
+        // 공지사항 수정 service 실행
+        UUID noticeId = noticeService.updateNotice(requestNoticeUpdateDTO);
+        
+        // 공지사항 수정 성공 여부 설정
+        boolean success = (noticeId == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "공지사항 수정 성공" : "공지사항 수정 시 DAO 검색 실패");
+        requestMap.put("noticeId", noticeId);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
 }
