@@ -18,7 +18,7 @@ public class DayBoothDAO {
     UUID boothId;
 
     String boothName;
-    String adminCategory;
+    String adminName;
     String openTime;
     String closeTime;
     String boothIntro;

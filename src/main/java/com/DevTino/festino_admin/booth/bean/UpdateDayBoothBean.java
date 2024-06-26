@@ -35,7 +35,7 @@ public class UpdateDayBoothBean {
         dayBoothDAO.setDescription(requestDayBoothUpdateDTO.getDescription());
         dayBoothDAO.setDescriptImage(requestDayBoothUpdateDTO.getDescriptImage());
         dayBoothDAO.setLocation(requestDayBoothUpdateDTO.getLocation());
-        dayBoothDAO.setAdminCategory(requestDayBoothUpdateDTO.getAdminName());
+        dayBoothDAO.setAdminName(requestDayBoothUpdateDTO.getAdminName());
 
         dayBoothDAO.setUpdateAt(LocalDateTime.now());
 

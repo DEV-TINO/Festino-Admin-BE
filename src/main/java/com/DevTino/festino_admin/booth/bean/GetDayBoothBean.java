@@ -33,7 +33,7 @@ public class GetDayBoothBean {
                 .location(dayBoothDAO.getLocation())
                 .openTime(dayBoothDAO.getOpenTime())
                 .closeTime(dayBoothDAO.getCloseTime())
-                .adminName(dayBoothDAO.getAdminCategory())
+                .adminName(dayBoothDAO.getAdminName())
                 .isRun(dayBoothDAO.getIsOpen())
                 .build();
     }

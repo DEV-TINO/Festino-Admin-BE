@@ -23,7 +23,7 @@ public class CreateDayBoothDAOBean {
                 .location(requestDayBoothSaveDTO.getLocation())
                 .description(requestDayBoothSaveDTO.getDescription())
                 .descriptImage(requestDayBoothSaveDTO.getDescriptImage())
-                .adminCategory(requestDayBoothSaveDTO.getAdminName())
+                .adminName(requestDayBoothSaveDTO.getAdminName())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
                 .isOpen(false)
