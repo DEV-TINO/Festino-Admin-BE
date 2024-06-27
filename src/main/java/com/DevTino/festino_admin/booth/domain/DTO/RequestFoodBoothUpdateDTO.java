@@ -14,4 +14,5 @@ public class RequestFoodBoothUpdateDTO {
     String boothImage;
     String location;
     String descriptImage;
+    Boolean isOpen;
 }

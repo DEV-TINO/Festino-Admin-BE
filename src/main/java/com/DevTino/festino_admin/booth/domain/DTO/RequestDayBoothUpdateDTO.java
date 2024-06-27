@@ -16,4 +16,5 @@ public class RequestDayBoothUpdateDTO {
     String location;
     String description;
     String descriptImage;
+    Boolean isOpen;
 }

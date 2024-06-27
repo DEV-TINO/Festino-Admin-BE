@@ -35,6 +35,7 @@ public class UpdateFoodBoothBean {
         foodBoothDAO.setCloseTime(requestFoodBoothUpdateDTO.getCloseTime());
         foodBoothDAO.setDescriptImage(requestFoodBoothUpdateDTO.getDescriptImage());
         foodBoothDAO.setLocation(requestFoodBoothUpdateDTO.getLocation());
+        foodBoothDAO.setIsOpen(requestFoodBoothUpdateDTO.getIsOpen());
 
         foodBoothDAO.setUpdateAt(LocalDateTime.now());
 
