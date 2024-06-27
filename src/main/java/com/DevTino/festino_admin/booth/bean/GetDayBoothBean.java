@@ -34,7 +34,7 @@ public class GetDayBoothBean {
                 .openTime(dayBoothDAO.getOpenTime())
                 .closeTime(dayBoothDAO.getCloseTime())
                 .adminName(dayBoothDAO.getAdminName())
-                .isRun(dayBoothDAO.getIsOpen())
+                .isOpen(dayBoothDAO.getIsOpen())
                 .build();
     }
 }

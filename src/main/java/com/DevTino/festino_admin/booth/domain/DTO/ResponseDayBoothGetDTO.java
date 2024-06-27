@@ -18,5 +18,5 @@ public class ResponseDayBoothGetDTO {
     String location;
     String description;
     String descriptImage;
-    Boolean isRun;
+    Boolean isOpen;
 }
