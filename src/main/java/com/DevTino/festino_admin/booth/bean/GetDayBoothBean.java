@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean;
 
+import com.DevTino.festino_admin.booth.bean.small.CreateDayBoothDTOBean;
 import com.DevTino.festino_admin.booth.bean.small.GetDayBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.ResponseDayBoothGetDTO;
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
@@ -11,10 +12,12 @@ import java.util.UUID;
 @Component
 public class GetDayBoothBean {
     GetDayBoothDAOBean getDayBoothDAOBean;
+    CreateDayBoothDTOBean createDayBoothDTOBean;
 
     @Autowired
-    public GetDayBoothBean(GetDayBoothDAOBean getDayBoothDAOBean) {
+    public GetDayBoothBean(GetDayBoothDAOBean getDayBoothDAOBean, CreateDayBoothDTOBean createDayBoothDTOBean) {
         this.getDayBoothDAOBean = getDayBoothDAOBean;
+        this.createDayBoothDTOBean = createDayBoothDTOBean;
     }
 
     public ResponseDayBoothGetDTO exec(UUID boothId) {
@@ -23,18 +26,6 @@ public class GetDayBoothBean {
         if(dayBoothDAO == null) return null;
 
         // DTO 생성해서 반환
-        return ResponseDayBoothGetDTO.builder()
-                .boothId(dayBoothDAO.getBoothId())
-                .boothIntro(dayBoothDAO.getBoothIntro())
-                .boothImage(dayBoothDAO.getBoothImage())
-                .boothName(dayBoothDAO.getBoothName())
-                .description(dayBoothDAO.getDescription())
-                .descriptImage(dayBoothDAO.getDescriptImage())
-                .location(dayBoothDAO.getLocation())
-                .openTime(dayBoothDAO.getOpenTime())
-                .closeTime(dayBoothDAO.getCloseTime())
-                .adminName(dayBoothDAO.getAdminName())
-                .isOpen(dayBoothDAO.getIsOpen())
-                .build();
+        return createDayBoothDTOBean.exec(dayBoothDAO);
     }
 }
