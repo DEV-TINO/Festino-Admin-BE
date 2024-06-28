@@ -15,7 +15,8 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/admin")
+@CrossOrigin("*")
+@RequestMapping("/admin/booth/day")
 public class DayBoothController {
     DayBoothService dayBoothService;
 
@@ -25,7 +26,7 @@ public class DayBoothController {
     }
 
     // 주간부스 등록
-    @PostMapping("/booth/day")
+    @PostMapping
     public ResponseEntity<Map<String, Object>> saveDayBooth(@RequestBody RequestDayBoothSaveDTO requestDayBoothSaveDTO) {
 
         // 주간부스 등록 service
@@ -45,7 +46,7 @@ public class DayBoothController {
     }
 
     // 주간부스 수정
-    @PutMapping("/booth/day")
+    @PutMapping
     public ResponseEntity<Map<String, Object>> updateDayBooth(@RequestBody RequestDayBoothUpdateDTO requestDayBoothUpdateDTO) {
 
         // 주간부스 수정 service
@@ -65,7 +66,7 @@ public class DayBoothController {
     }
 
     // 주간부스 조회
-    @GetMapping("/booth/day/{boothId}")
+    @GetMapping("/{boothId}")
     public ResponseEntity<Map<String, Object>> getDayBooth(@PathVariable("boothId") UUID boothId) {
 
         // 주간부스 조회 service

@@ -14,7 +14,8 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/admin")
+@CrossOrigin("*")
+@RequestMapping("/admin/booth/food")
 public class FoodBoothController {
     FoodBoothService foodBoothService;
 
@@ -24,7 +25,7 @@ public class FoodBoothController {
     }
 
     // 푸드트럭 등록
-    @PostMapping("/booth/food")
+    @PostMapping
     public ResponseEntity<Map<String, Object>> saveFoodBooth(@RequestBody RequestFoodBoothSaveDTO requestFoodBoothSaveDTO) {
 
         // 푸드트럭 등록 service
@@ -44,7 +45,7 @@ public class FoodBoothController {
     }
 
     // 푸드트럭 수정
-    @PutMapping("/booth/food")
+    @PutMapping
     public ResponseEntity<Map<String, Object>> updateFoodBooth(@RequestBody RequestFoodBoothUpdateDTO requestFoodBoothUpdateDTO) {
 
         // 푸드트럭 수정 service
@@ -64,7 +65,7 @@ public class FoodBoothController {
     }
 
     // 푸드트럭 조회
-    @GetMapping("/booth/food/{boothId}")
+    @GetMapping("/{boothId}")
     public ResponseEntity<Map<String, Object>> getFoodBooth(@PathVariable("boothId") UUID boothId) {
 
         // 푸드트럭 조회 service

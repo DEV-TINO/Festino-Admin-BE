@@ -14,7 +14,8 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/admin")
+@CrossOrigin("*")
+@RequestMapping("/admin/booth/night")
 public class NightBoothController {
     NightBoothService nightBoothService;
 
@@ -24,7 +25,7 @@ public class NightBoothController {
     }
 
     // 야간부스 등록
-    @PostMapping("/booth/night")
+    @PostMapping
     public ResponseEntity<Map<String, Object>> saveNightBooth(@RequestBody RequestNightBoothSaveDTO requestNightBoothSaveDTO) {
 
         // 야간부스 등록 service
@@ -44,7 +45,7 @@ public class NightBoothController {
     }
 
     // 야간부스 수정
-    @PutMapping("/booth/night")
+    @PutMapping
     public ResponseEntity<Map<String, Object>> updateNightBooth(@RequestBody RequestNightBoothUpdateDTO requestNightBoothUpdateDTO) {
 
         // 야간부스 수정 service
@@ -64,7 +65,7 @@ public class NightBoothController {
     }
 
     // 야간부스 조회
-    @GetMapping("/booth/night/{boothId}")
+    @GetMapping("/{boothId}")
     public ResponseEntity<Map<String, Object>> getNightBooth(@PathVariable("boothId") UUID boothId) {
 
         // 야간부스 조회 service
