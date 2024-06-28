@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean;
 
+import com.DevTino.festino_admin.booth.bean.small.CreateNightBoothDTOBean;
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.ResponseNightBoothGetDTO;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
@@ -11,10 +12,12 @@ import java.util.UUID;
 @Component
 public class GetNightBoothBean {
     GetNightBoothDAOBean getNightBoothDAOBean;
+    CreateNightBoothDTOBean createNightBoothDTOBean;
 
     @Autowired
-    public GetNightBoothBean(GetNightBoothDAOBean getNightBoothDAOBean) {
+    public GetNightBoothBean(GetNightBoothDAOBean getNightBoothDAOBean, CreateNightBoothDTOBean createNightBoothDTOBean) {
         this.getNightBoothDAOBean = getNightBoothDAOBean;
+        this.createNightBoothDTOBean = createNightBoothDTOBean;
     }
 
     public ResponseNightBoothGetDTO exec(UUID boothId) {
@@ -24,20 +27,6 @@ public class GetNightBoothBean {
         if(nightBoothDAO == null) return null;
 
         // DTO 생성해서 반환
-        return ResponseNightBoothGetDTO.builder()
-                .boothId(nightBoothDAO.getBoothId())
-                .boothName(nightBoothDAO.getBoothName())
-                .boothIntro(nightBoothDAO.getBoothIntro())
-                .boothImage(nightBoothDAO.getBoothImage())
-                .adminName(nightBoothDAO.getAdminName())
-                .descriptImage(nightBoothDAO.getDescriptImage())
-                .description(nightBoothDAO.getDescription())
-                .location(nightBoothDAO.getLocation())
-                .openTime(nightBoothDAO.getOpenTime())
-                .closeTime(nightBoothDAO.getCloseTime())
-                .isOpen(nightBoothDAO.getIsOpen())
-                .isOrder(nightBoothDAO.getIsOrder())
-                .totalReservationNum(nightBoothDAO.getTotalReservationNum())
-                .build();
+        return createNightBoothDTOBean.exec(nightBoothDAO);
     }
 }
