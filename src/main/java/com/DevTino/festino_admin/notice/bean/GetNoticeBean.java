@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.notice.bean;
 
+import com.DevTino.festino_admin.notice.bean.small.CreateNoticeDTOBean;
 import com.DevTino.festino_admin.notice.bean.small.GetNoticeDAOBean;
 import com.DevTino.festino_admin.notice.domain.DTO.ResponseNoticeGetDTO;
 import com.DevTino.festino_admin.notice.domain.NoticeDAO;
@@ -12,10 +13,12 @@ import java.util.UUID;
 public class GetNoticeBean {
 
     GetNoticeDAOBean getNoticeDAOBean;
+    CreateNoticeDTOBean createNoticeDTOBean;
 
     @Autowired
-    public GetNoticeBean(GetNoticeDAOBean getNoticeDAOBean){
+    public GetNoticeBean(GetNoticeDAOBean getNoticeDAOBean, CreateNoticeDTOBean createNoticeDTOBean){
         this.getNoticeDAOBean = getNoticeDAOBean;
+        this.createNoticeDTOBean = createNoticeDTOBean;
     }
 
 
@@ -28,16 +31,7 @@ public class GetNoticeBean {
         if (noticeDAO == null) return null;
 
         // DTO 생성해서 반환
-        return ResponseNoticeGetDTO.builder()
-                    .noticeId(noticeDAO.getNoticeId())
-                    .title(noticeDAO.getTitle())
-                    .writerName(noticeDAO.getWriterName())
-                    .imageUrl(noticeDAO.getImageUrl())
-                    .content(noticeDAO.getContent())
-                    .isPin(noticeDAO.getIsPin())
-                    .createAt(noticeDAO.getCreateAt())
-                    .updateAt(noticeDAO.getUpdateAt())
-                    .build();
+        return createNoticeDTOBean.exec(noticeDAO);
 
     }
 
