@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class RequestDayBoothSaveDTO {
-    //UUID boothId;
     String boothName;
     String adminName;
     String openTime;
