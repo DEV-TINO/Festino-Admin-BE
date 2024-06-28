@@ -23,7 +23,7 @@ public class GetNoticeDAOBean {
     // noticeId로 DAO 찾아서 반환
     public NoticeDAO exec(UUID noticeId){
 
-        return noticeRepositoryJPA.findById(noticeId).get();
+        return noticeRepositoryJPA.findById(noticeId).orElse(null);
 
     }
 

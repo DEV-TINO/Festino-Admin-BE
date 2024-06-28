@@ -24,15 +24,15 @@ public class GetNoticesBean {
     // 공지사항 전체 조회
     public List<ResponseNoticeGetDTO> exec(){
 
-        // 공지사항 DAO 전체 검색 -> daoList
-        List<NoticeDAO> daoList = getNoticeDAOBean.exec();
-        if (daoList == null) return null;
+        // 공지사항 DAO 전체 검색 -> noticeDAOList
+        List<NoticeDAO> noticeDAOList = getNoticeDAOBean.exec();
+        if (noticeDAOList == null) return null;
 
         // dtoList 생성
         List<ResponseNoticeGetDTO> dtoList = new ArrayList<>();
 
         // daoList에서 DAO 하나씩 꺼내서
-        for (NoticeDAO noticeDAO : daoList){
+        for (NoticeDAO noticeDAO : noticeDAOList){
 
             // DTO 생성 -> DAO 값으로 설정
             ResponseNoticeGetDTO dto = ResponseNoticeGetDTO.builder()

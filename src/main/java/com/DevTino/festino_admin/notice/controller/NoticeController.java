@@ -14,7 +14,8 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/admin")
+@CrossOrigin(origins = "*")
+@RequestMapping("/admin/notice")
 public class NoticeController {
 
     NoticeService noticeService;
@@ -27,7 +28,7 @@ public class NoticeController {
 
 
     // 공지사항 조회
-    @GetMapping("/notice/{noticeId}")
+    @GetMapping("/{noticeId}")
     public ResponseEntity<Map<String, Object>> getNotice(@PathVariable UUID noticeId){
 
         // 공지사항 조회 service 실행
@@ -49,7 +50,7 @@ public class NoticeController {
 
 
 
-    @GetMapping("/notice/all")
+    @GetMapping("/all")
     public ResponseEntity<Map<String, Object>> getNoticeAll(){
 
         // 공지사항 전체 조회 service 실행
@@ -70,7 +71,7 @@ public class NoticeController {
 
 
     // 공지사항 저장
-    @PostMapping("/notice")
+    @PostMapping("")
     public ResponseEntity<Map<String, Object>> saveNotice(@RequestBody RequestNoticeSaveDTO requestNoticeSaveDTO){
 
         // 공지사항 저장 service 실행
@@ -93,7 +94,7 @@ public class NoticeController {
 
 
     // 공지사항 수정
-    @PutMapping("/notice")
+    @PutMapping("")
     public ResponseEntity<Map<String, Object>> updateNotice(@RequestBody RequestNoticeUpdateDTO requestNoticeUpdateDTO){
         
         // 공지사항 수정 service 실행
@@ -115,7 +116,7 @@ public class NoticeController {
 
 
     // 공지사항 pin 수정
-    @PutMapping("/notice/pin")
+    @PutMapping("/pin")
     public ResponseEntity<Map<String, Object>> updateNoticePin(@RequestBody RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
 
         // 공지사항 pin 수정 service 실행
@@ -137,7 +138,7 @@ public class NoticeController {
 
 
     // 공지사항 삭제
-    @DeleteMapping("/notice")
+    @DeleteMapping("")
     public ResponseEntity<Map<String, Object>> deleteNotice(@RequestBody RequestNoticeDeleteDTO requestNoticeDeleteDTO){
 
         // 공지사항 삭제 service 실행 & 삭제 성공 여부 설정

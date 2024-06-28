@@ -7,8 +7,7 @@ import java.util.UUID;
 
 @Data
 public class RequestNoticeSaveDTO {
-
-    //UUID noticeId;
+    
     String title;
     String writerName;
     String imageUrl;
