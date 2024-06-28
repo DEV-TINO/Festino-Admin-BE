@@ -1,22 +1,24 @@
 package com.DevTino.festino_admin.notice.bean;
 
+import com.DevTino.festino_admin.notice.bean.small.CreateNoticesDTOBean;
 import com.DevTino.festino_admin.notice.bean.small.GetNoticeDAOBean;
 import com.DevTino.festino_admin.notice.domain.DTO.ResponseNoticeGetDTO;
 import com.DevTino.festino_admin.notice.domain.NoticeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class GetNoticesBean {
 
     GetNoticeDAOBean getNoticeDAOBean;
+    CreateNoticesDTOBean createNoticesDTOBean;
 
     @Autowired
-    public GetNoticesBean(GetNoticeDAOBean getNoticeDAOBean){
+    public GetNoticesBean(GetNoticeDAOBean getNoticeDAOBean, CreateNoticesDTOBean createNoticesDTOBean){
         this.getNoticeDAOBean = getNoticeDAOBean;
+        this.createNoticesDTOBean = createNoticesDTOBean;
     }
 
 
@@ -28,31 +30,9 @@ public class GetNoticesBean {
         List<NoticeDAO> noticeDAOList = getNoticeDAOBean.exec();
         if (noticeDAOList == null) return null;
 
-        // dtoList 생성
-        List<ResponseNoticeGetDTO> dtoList = new ArrayList<>();
+        // DAO 리스트를 DTO 리스트로 변환해서 리턴
+        return createNoticesDTOBean.exec(noticeDAOList);
 
-        // daoList에서 DAO 하나씩 꺼내서
-        for (NoticeDAO noticeDAO : noticeDAOList){
-
-            // DTO 생성 -> DAO 값으로 설정
-            ResponseNoticeGetDTO dto = ResponseNoticeGetDTO.builder()
-                    .noticeId(noticeDAO.getNoticeId())
-                    .title(noticeDAO.getTitle())
-                    .writerName(noticeDAO.getWriterName())
-                    .imageUrl(noticeDAO.getImageUrl())
-                    .content(noticeDAO.getContent())
-                    .isPin(noticeDAO.getIsPin())
-                    .createAt(noticeDAO.getCreateAt())
-                    .updateAt(noticeDAO.getUpdateAt())
-                    .build();
-
-            // 생성한 DTO를 dtoList에 삽입
-            dtoList.add(dto);
-
-        }
-
-        // 생성된 dtoList 반환
-        return dtoList;
     }
 
 }
