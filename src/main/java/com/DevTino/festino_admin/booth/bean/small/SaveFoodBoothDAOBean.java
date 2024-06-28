@@ -1,16 +1,16 @@
 package com.DevTino.festino_admin.booth.bean.small;
 
 import com.DevTino.festino_admin.booth.domain.FoodBoothDAO;
-import com.DevTino.festino_admin.booth.repository.FoodBoothRepository;
+import com.DevTino.festino_admin.booth.repository.FoodBoothRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SaveFoodBoothDAOBean {
-    FoodBoothRepository foodBoothRepository;
+    FoodBoothRepositoryJPA foodBoothRepository;
 
     @Autowired
-    public SaveFoodBoothDAOBean(FoodBoothRepository foodBoothRepository) {
+    public SaveFoodBoothDAOBean(FoodBoothRepositoryJPA foodBoothRepository) {
         this.foodBoothRepository = foodBoothRepository;
     }
 

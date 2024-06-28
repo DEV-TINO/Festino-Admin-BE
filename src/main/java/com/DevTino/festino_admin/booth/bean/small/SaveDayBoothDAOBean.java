@@ -1,17 +1,17 @@
 package com.DevTino.festino_admin.booth.bean.small;
 
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
-import com.DevTino.festino_admin.booth.repository.DayBoothRepository;
+import com.DevTino.festino_admin.booth.repository.DayBoothRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class SaveDayBoothDAOBean {
-    DayBoothRepository dayBoothRepository;
+    DayBoothRepositoryJPA dayBoothRepository;
 
     @Autowired
-    public SaveDayBoothDAOBean(DayBoothRepository dayBoothRepository) {
+    public SaveDayBoothDAOBean(DayBoothRepositoryJPA dayBoothRepository) {
         this.dayBoothRepository = dayBoothRepository;
     }
 

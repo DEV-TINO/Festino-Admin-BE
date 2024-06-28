@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface FoodBoothRepository extends JpaRepository<FoodBoothDAO, UUID> {
+public interface FoodBoothRepositoryJPA extends JpaRepository<FoodBoothDAO, UUID> {
 }

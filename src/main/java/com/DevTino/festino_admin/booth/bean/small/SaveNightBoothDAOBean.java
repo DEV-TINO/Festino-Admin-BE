@@ -1,16 +1,16 @@
 package com.DevTino.festino_admin.booth.bean.small;
 
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
-import com.DevTino.festino_admin.booth.repository.NightBoothRepository;
+import com.DevTino.festino_admin.booth.repository.NightBoothRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SaveNightBoothDAOBean {
-    NightBoothRepository nightBoothRepository;
+    NightBoothRepositoryJPA nightBoothRepository;
 
     @Autowired
-    public SaveNightBoothDAOBean(NightBoothRepository nightBoothRepository) {
+    public SaveNightBoothDAOBean(NightBoothRepositoryJPA nightBoothRepository) {
         this.nightBoothRepository = nightBoothRepository;
     }
 

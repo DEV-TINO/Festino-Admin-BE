@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface DayBoothRepository extends JpaRepository<DayBoothDAO, UUID> {
+public interface DayBoothRepositoryJPA extends JpaRepository<DayBoothDAO, UUID> {
 }
