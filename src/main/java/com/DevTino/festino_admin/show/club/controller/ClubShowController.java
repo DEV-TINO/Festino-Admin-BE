@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.show.club.controller;
 
-import com.DevTino.festino_admin.notice.domain.DTO.ResponseNoticeGetDTO;
 import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowDeleteDTO;
 import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowSaveDTO;
 import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowUpdateDTO;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -47,6 +47,28 @@ public class ClubShowController {
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
 
+    }
+
+
+
+    // 동아리 공연 전체 조회
+    @GetMapping("/all")
+    public ResponseEntity<Map<String, Object>> getClubShowAll(){
+
+        // 동아리 공연 전체 조회 service 실행
+        List<ResponseClubShowGetDTO> clubShowDTOList = clubShowService.getClubShowAll();
+
+        // 동아리 공연 전체 조회 성공 여부 설정
+        boolean success = (clubShowDTOList == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "동아리 공연 전체 조회 성공" : "동아리 공연 전체 조회 시 DAO 검색 실패");
+        requestMap.put("clubList", clubShowDTOList);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
 
