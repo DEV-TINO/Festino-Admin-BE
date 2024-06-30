@@ -5,24 +5,23 @@ import com.DevTino.festino_admin.show.club.repository.ClubShowRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
-public class GetClubShowDAOBean {
+public class DeleteClubShowDAOBean {
 
     ClubShowRepositoryJPA clubShowRepositoryJPA;
 
     @Autowired
-    public GetClubShowDAOBean(ClubShowRepositoryJPA clubShowRepositoryJPA){
+    public DeleteClubShowDAOBean(ClubShowRepositoryJPA clubShowRepositoryJPA){
         this.clubShowRepositoryJPA = clubShowRepositoryJPA;
+
     }
 
 
 
-    // clubId로 DAO 찾아서 반환
-    public ClubShowDAO exec(UUID clubId){
+    // DB에서 DAO 삭제
+    public void exec(ClubShowDAO clubShowDAO){
 
-        return clubShowRepositoryJPA.findById(clubId).orElse(null);
+        clubShowRepositoryJPA.delete(clubShowDAO);
 
     }
 
