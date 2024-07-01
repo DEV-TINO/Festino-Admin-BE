@@ -31,9 +31,10 @@ public class UpdateFoodBoothBean {
         foodBoothDAO.setBoothName(requestFoodBoothUpdateDTO.getBoothName());
         foodBoothDAO.setBoothIntro(requestFoodBoothUpdateDTO.getBoothIntro());
         foodBoothDAO.setBoothImage(requestFoodBoothUpdateDTO.getBoothImage());
+        foodBoothDAO.setAdminName(requestFoodBoothUpdateDTO.getAdminName());
+        foodBoothDAO.setAdminCategory(requestFoodBoothUpdateDTO.getAdminCategory());
         foodBoothDAO.setOpenTime(requestFoodBoothUpdateDTO.getOpenTime());
         foodBoothDAO.setCloseTime(requestFoodBoothUpdateDTO.getCloseTime());
-        foodBoothDAO.setDescriptImage(requestFoodBoothUpdateDTO.getDescriptImage());
         foodBoothDAO.setLocation(requestFoodBoothUpdateDTO.getLocation());
         foodBoothDAO.setIsOpen(requestFoodBoothUpdateDTO.getIsOpen());
 
