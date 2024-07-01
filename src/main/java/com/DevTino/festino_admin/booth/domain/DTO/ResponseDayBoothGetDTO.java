@@ -11,12 +11,11 @@ public class ResponseDayBoothGetDTO {
     UUID boothId;
     String boothName;
     String adminName;
+    String adminCategory;
     String openTime;
     String closeTime;
     String boothIntro;
     String boothImage;
     String location;
-    String description;
-    String descriptImage;
     Boolean isOpen;
 }
