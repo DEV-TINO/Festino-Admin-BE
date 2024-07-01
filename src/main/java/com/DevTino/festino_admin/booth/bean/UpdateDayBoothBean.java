@@ -2,6 +2,7 @@ package com.DevTino.festino_admin.booth.bean;
 
 import com.DevTino.festino_admin.booth.bean.small.GetDayBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveDayBoothDAOBean;
+import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class UpdateDayBoothBean {
         this.saveDayBoothDAOBean = saveDayBoothDAOBean;
     }
 
+    // 주간부스 수정
     public UUID exec(RequestDayBoothUpdateDTO requestDayBoothUpdateDTO) {
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         DayBoothDAO dayBoothDAO = getDayBoothDAOBean.exec(requestDayBoothUpdateDTO.getBoothId());
@@ -40,6 +42,21 @@ public class UpdateDayBoothBean {
         dayBoothDAO.setUpdateAt(LocalDateTime.now());
 
         // 수정된 DAO 저장
+        saveDayBoothDAOBean.exec(dayBoothDAO);
+
+        // 키값 반환
+        return dayBoothDAO.getBoothId();
+    }
+
+    // 주간부스 운영 중 여부 수정
+    public UUID exec(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
+        // 부스 아이디를 통해 원하는 객체(DAO) 찾기
+        DayBoothDAO dayBoothDAO = getDayBoothDAOBean.exec(requestDayBoothOpenUpdateDTO.getBoothId());
+
+        // DAO의 운영 중 여부 수정
+        dayBoothDAO.setIsOpen(!dayBoothDAO.getIsOpen());
+
+        // DAO 저장
         saveDayBoothDAOBean.exec(dayBoothDAO);
 
         // 키값 반환
