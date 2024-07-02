@@ -14,10 +14,11 @@ public class CreateFoodBoothDTOBean {
                 .boothName(foodBoothDAO.getBoothName())
                 .boothImage(foodBoothDAO.getBoothImage())
                 .boothIntro(foodBoothDAO.getBoothIntro())
+                .adminName(foodBoothDAO.getAdminName())
+                .adminCategory(foodBoothDAO.getAdminCategory())
                 .openTime(foodBoothDAO.getOpenTime())
                 .closeTime(foodBoothDAO.getCloseTime())
                 .location(foodBoothDAO.getLocation())
-                .descriptImage(foodBoothDAO.getDescriptImage())
                 .isOpen(foodBoothDAO.getIsOpen())
                 .build();
     }

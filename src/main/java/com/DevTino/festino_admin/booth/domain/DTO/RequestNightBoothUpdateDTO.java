@@ -9,13 +9,12 @@ public class RequestNightBoothUpdateDTO {
     UUID boothId;
     String boothName;
     String adminName;
+    String adminCategory;
     String boothIntro;
     String boothImage;
     String openTime;
     String closeTime;
     String location;
-    String description;
-    String descriptImage;
     Boolean isOrder;
     Boolean isOpen;
 }

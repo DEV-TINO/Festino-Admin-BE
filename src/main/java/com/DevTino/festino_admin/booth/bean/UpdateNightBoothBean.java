@@ -33,10 +33,9 @@ public class UpdateNightBoothBean {
         nightBoothDAO.setBoothImage(requestNightBoothUpdateDTO.getBoothImage());
         nightBoothDAO.setBoothIntro(requestNightBoothUpdateDTO.getBoothIntro());
         nightBoothDAO.setAdminName(requestNightBoothUpdateDTO.getAdminName());
+        nightBoothDAO.setAdminCategory(requestNightBoothUpdateDTO.getAdminCategory());
         nightBoothDAO.setOpenTime(requestNightBoothUpdateDTO.getOpenTime());
         nightBoothDAO.setCloseTime(requestNightBoothUpdateDTO.getCloseTime());
-        nightBoothDAO.setDescriptImage(requestNightBoothUpdateDTO.getDescriptImage());
-        nightBoothDAO.setDescription(requestNightBoothUpdateDTO.getDescription());
         nightBoothDAO.setLocation(requestNightBoothUpdateDTO.getLocation());
         nightBoothDAO.setIsOpen(requestNightBoothUpdateDTO.getIsOpen());
         nightBoothDAO.setIsOrder(requestNightBoothUpdateDTO.getIsOrder());

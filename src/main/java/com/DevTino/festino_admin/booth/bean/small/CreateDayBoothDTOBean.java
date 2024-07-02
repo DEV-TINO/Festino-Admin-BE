@@ -14,12 +14,11 @@ public class CreateDayBoothDTOBean {
                 .boothIntro(dayBoothDAO.getBoothIntro())
                 .boothImage(dayBoothDAO.getBoothImage())
                 .boothName(dayBoothDAO.getBoothName())
-                .description(dayBoothDAO.getDescription())
-                .descriptImage(dayBoothDAO.getDescriptImage())
                 .location(dayBoothDAO.getLocation())
                 .openTime(dayBoothDAO.getOpenTime())
                 .closeTime(dayBoothDAO.getCloseTime())
                 .adminName(dayBoothDAO.getAdminName())
+                .adminCategory(dayBoothDAO.getAdminCategory())
                 .isOpen(dayBoothDAO.getIsOpen())
                 .build();
     }

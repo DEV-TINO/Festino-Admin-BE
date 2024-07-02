@@ -10,11 +10,12 @@ import java.util.UUID;
 public class ResponseFoodBoothGetDTO {
     UUID boothId;
     String boothName;
+    String adminCategory;
+    String adminName;
     String openTime;
     String closeTime;
     String boothIntro;
     String boothImage;
     String location;
-    String descriptImage;
     Boolean isOpen;
 }

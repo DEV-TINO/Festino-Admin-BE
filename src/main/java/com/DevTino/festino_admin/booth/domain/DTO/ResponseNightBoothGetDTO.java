@@ -11,13 +11,12 @@ public class ResponseNightBoothGetDTO {
     UUID boothId;
     String boothName;
     String adminName;
+    String adminCategory;
     String openTime;
     String closeTime;
     String boothIntro;
     String boothImage;
     String location;
-    String description;
-    String descriptImage;
     Boolean isOpen;
     Boolean isOrder;
     Integer totalReservationNum;
