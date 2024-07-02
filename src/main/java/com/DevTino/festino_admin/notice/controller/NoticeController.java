@@ -50,6 +50,7 @@ public class NoticeController {
 
 
 
+    // 공지사항 전체 조회
     @GetMapping("/all")
     public ResponseEntity<Map<String, Object>> getNoticeAll(){
 

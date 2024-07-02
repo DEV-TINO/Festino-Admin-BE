@@ -17,7 +17,6 @@ public class CreateNoticeDTOBean {
                 .imageUrl(noticeDAO.getImageUrl())
                 .content(noticeDAO.getContent())
                 .isPin(noticeDAO.getIsPin())
-                .createAt(noticeDAO.getCreateAt())
                 .updateAt(noticeDAO.getUpdateAt())
                 .build();
     }
