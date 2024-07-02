@@ -21,8 +21,6 @@ public class CreateClubShowDTOBean {
                 .showStartTime(clubShowDAO.getShowStartTime())
                 .showEndTime(clubShowDAO.getShowEndTime())
                 .clubImage(clubShowDAO.getClubImage())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
                 .build();
 
     }

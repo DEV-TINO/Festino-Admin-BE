@@ -27,8 +27,6 @@ public class CreateClubShowsDTOBean {
                     .showStartTime(clubShowDAO.getShowStartTime())
                     .showEndTime(clubShowDAO.getShowEndTime())
                     .clubImage(clubShowDAO.getClubImage())
-                    .createAt(clubShowDAO.getCreateAt())
-                    .updateAt(clubShowDAO.getUpdateAt())
                     .build();
 
             // 생성한 DTO를 DTO 리스트에 삽입

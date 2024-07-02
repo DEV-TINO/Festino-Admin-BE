@@ -16,7 +16,5 @@ public class ResponseClubShowGetDTO {
     String showStartTime;
     String showEndTime;
     String clubImage;
-    LocalDateTime createAt;
-    LocalDateTime updateAt;
 
 }
