@@ -25,7 +25,7 @@ public class CreateDayBoothDAOBean {
                 .adminCategory(requestDayBoothSaveDTO.getAdminCategory())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
-                .isOpen(false)
+                .isOpen(requestDayBoothSaveDTO.getIsOpen())
                 .build();
     }
 }
