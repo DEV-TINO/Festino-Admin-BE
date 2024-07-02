@@ -42,6 +42,11 @@ public class NightBoothService {
         return updateNightBoothBean.exec(requestNightBoothOrderUpdateDTO);
     }
 
+    // 야간부스 예약가능 여부 수정
+    public ResponseNightBoothReservationGetDTO updateNightBoothReservation(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
+        return updateNightBoothBean.exec(requestNightBoothReservationUpdateDTO);
+    }
+
     // 야간부스 조회
     public ResponseNightBoothGetDTO getNightBooth(UUID boothId) {
         return getNightBoothBean.exec(boothId);
