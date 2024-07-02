@@ -45,6 +45,7 @@ public class UpdateNightBoothBean {
         nightBoothDAO.setLocation(requestNightBoothUpdateDTO.getLocation());
         nightBoothDAO.setIsOpen(requestNightBoothUpdateDTO.getIsOpen());
         nightBoothDAO.setIsOrder(requestNightBoothUpdateDTO.getIsOrder());
+        nightBoothDAO.setIsReservation(requestNightBoothUpdateDTO.getIsReservation());
 
         nightBoothDAO.setUpdateAt(LocalDateTime.now());
 

@@ -17,4 +17,5 @@ public class RequestNightBoothUpdateDTO {
     String location;
     Boolean isOrder;
     Boolean isOpen;
+    Boolean isReservation;
 }
