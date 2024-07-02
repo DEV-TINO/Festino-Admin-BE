@@ -12,5 +12,7 @@ public class RequestNightBoothSaveDTO {
     String openTime;
     String closeTime;
     String location;
+    Boolean isOpen;
     Boolean isOrder;
+    Boolean isReservation;
 }

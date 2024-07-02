@@ -24,8 +24,9 @@ public class CreateNightBoothDAOBean {
                 .location(requestNightBoothSaveDTO.getLocation())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
-                .isOpen(false)
+                .isOpen(requestNightBoothSaveDTO.getIsOpen())
                 .isOrder(requestNightBoothSaveDTO.getIsOrder())
+                .isReservation(requestNightBoothSaveDTO.getIsReservation())
                 .totalReservationNum(0)
                 .build();
     }
