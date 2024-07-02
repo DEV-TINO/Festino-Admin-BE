@@ -37,6 +37,7 @@ public class UpdateNoticeBean {
         noticeDAO.setWriterName(requestNoticeUpdateDTO.getWriterName());
         noticeDAO.setImageUrl(requestNoticeUpdateDTO.getImageUrl());
         noticeDAO.setContent(requestNoticeUpdateDTO.getContent());
+        noticeDAO.setIsPin(requestNoticeUpdateDTO.getIsPin());
 
         // DAO 수정 : 수정 시간 저장
         noticeDAO.setUpdateAt(LocalDateTime.now());

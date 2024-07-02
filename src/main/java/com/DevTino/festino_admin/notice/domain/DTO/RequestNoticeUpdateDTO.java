@@ -11,5 +11,6 @@ public class RequestNoticeUpdateDTO {
     String writerName;
     String imageUrl;
     String content;
+    Boolean isPin;
 
 }
