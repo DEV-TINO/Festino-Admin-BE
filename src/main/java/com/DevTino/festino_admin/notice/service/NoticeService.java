@@ -57,7 +57,7 @@ public class NoticeService {
     }
 
     // 공지사항 pin 수정
-    public UUID updateNoticePin(RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
+    public ResponseNoticePinUpdateDTO updateNoticePin(RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
 
         return updateNoticeBean.exec(requestNoticePinUpdateDTO);
 
