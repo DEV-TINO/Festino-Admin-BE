@@ -3,9 +3,7 @@ package com.DevTino.festino_admin.booth.service;
 import com.DevTino.festino_admin.booth.bean.GetNightBoothBean;
 import com.DevTino.festino_admin.booth.bean.SaveNightBoothBean;
 import com.DevTino.festino_admin.booth.bean.UpdateNightBoothBean;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothSaveDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseNightBoothGetDTO;
+import com.DevTino.festino_admin.booth.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +30,11 @@ public class NightBoothService {
     // 야간부스 수정
     public UUID updateNightBooth(RequestNightBoothUpdateDTO requestNightBoothUpdateDTO) {
         return updateNightBoothBean.exec(requestNightBoothUpdateDTO);
+    }
+
+    // 야간부스 운영 중 여부 수정
+    public ResponseNightBoothOpenGetGTO updateNightBoothOpen(RequestNightBoothOpenUpdateDTO requestNightBoothOpenUpdateDTO) {
+        return updateNightBoothBean.exec(requestNightBoothOpenUpdateDTO);
     }
 
     // 야간부스 조회
