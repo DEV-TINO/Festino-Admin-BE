@@ -1,11 +1,10 @@
 package com.DevTino.festino_admin.booth.bean;
 
 import com.DevTino.festino_admin.booth.bean.small.CreateNightBoothOpenDTOBean;
+import com.DevTino.festino_admin.booth.bean.small.CreateNightBoothOrderDTOBean;
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothOpenUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseNightBoothOpenGetGTO;
+import com.DevTino.festino_admin.booth.domain.DTO.*;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,12 +17,14 @@ public class UpdateNightBoothBean {
     GetNightBoothDAOBean getNightBoothDAOBean;
     SaveNightBoothDAOBean saveNightBoothDAOBean;
     CreateNightBoothOpenDTOBean createNightBoothOpenDTOBean;
+    CreateNightBoothOrderDTOBean createNightBoothOrderDTOBean;
 
     @Autowired
-    public UpdateNightBoothBean(GetNightBoothDAOBean getNightBoothDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateNightBoothOpenDTOBean createNightBoothOpenDTOBean) {
+    public UpdateNightBoothBean(GetNightBoothDAOBean getNightBoothDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateNightBoothOpenDTOBean createNightBoothOpenDTOBean, CreateNightBoothOrderDTOBean createNightBoothOrderDTOBean) {
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.saveNightBoothDAOBean = saveNightBoothDAOBean;
         this.createNightBoothOpenDTOBean = createNightBoothOpenDTOBean;
+        this.createNightBoothOrderDTOBean = createNightBoothOrderDTOBean;
     }
 
     // 야간부스 수정
@@ -69,5 +70,22 @@ public class UpdateNightBoothBean {
 
         // DTO 생성해서 반환
         return createNightBoothOpenDTOBean.exec(nightBoothDAO);
+    }
+
+    // 야간부스 주문가능 여부 수정
+    public ResponseNightBoothOrderGetDTO exec(RequestNightBoothOrderUpdateDTO requestNightBoothOrderUpdateDTO) {
+
+        // 부스 아이디를 통해 원하는 객체(DAO) 찾기
+        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothOrderUpdateDTO.getBoothId());
+        if(nightBoothDAO == null) return null;
+
+        // DAO 주문가능 여부 수정
+        nightBoothDAO.setIsOrder(!nightBoothDAO.getIsOrder());
+
+        // 수정된 DAO 저장
+        saveNightBoothDAOBean.exec(nightBoothDAO);
+
+        // DTO 생성해서 반환
+        return createNightBoothOrderDTOBean.exec(nightBoothDAO);
     }
 }
