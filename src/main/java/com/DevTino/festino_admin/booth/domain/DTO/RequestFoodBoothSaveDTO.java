@@ -12,4 +12,5 @@ public class RequestFoodBoothSaveDTO {
     String boothIntro;
     String boothImage;
     String location;
+    Boolean isOpen;
 }
