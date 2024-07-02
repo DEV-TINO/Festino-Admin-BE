@@ -3,9 +3,7 @@ package com.DevTino.festino_admin.booth.service;
 import com.DevTino.festino_admin.booth.bean.GetFoodBoothBean;
 import com.DevTino.festino_admin.booth.bean.SaveFoodBoothBean;
 import com.DevTino.festino_admin.booth.bean.UpdateFoodBoothBean;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothSaveDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseFoodBoothGetDTO;
+import com.DevTino.festino_admin.booth.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +30,11 @@ public class FoodBoothService {
     // 푸드트럭 수정
     public UUID updateFoodBooth(RequestFoodBoothUpdateDTO requestFoodBoothUpdateDTO) {
         return updateFoodBoothBean.exec(requestFoodBoothUpdateDTO);
+    }
+
+    // 푸드트럭 운영 중 여부 수정
+    public ResponseFoodBoothOpenGetDTO updateFoodBoothOpen(RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
+        return updateFoodBoothBean.exec(requestFoodBoothOpenUpdateDTO);
     }
 
     // 푸드트럭 조회
