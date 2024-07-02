@@ -3,9 +3,7 @@ package com.DevTino.festino_admin.booth.service;
 import com.DevTino.festino_admin.booth.bean.GetDayBoothBean;
 import com.DevTino.festino_admin.booth.bean.SaveDayBoothBean;
 import com.DevTino.festino_admin.booth.bean.UpdateDayBoothBean;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothSaveDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseDayBoothGetDTO;
+import com.DevTino.festino_admin.booth.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +30,11 @@ public class DayBoothService {
     // 주간부스 수정
     public UUID updateDayBooth(RequestDayBoothUpdateDTO requestDayBoothUpdateDTO) {
         return updateDayBoothBean.exec(requestDayBoothUpdateDTO);
+    }
+
+    // 주간부스 운영 중 여부 수정
+    public ResponseDayBoothOpenGetDTO updateDayBoothOpen(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
+        return updateDayBoothBean.exec(requestDayBoothOpenUpdateDTO);
     }
 
     // 주간부스 조회
