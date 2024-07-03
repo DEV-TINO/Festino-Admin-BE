@@ -3,6 +3,7 @@ package com.DevTino.festino_admin.menu.controller;
 import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuDeleteDTO;
 import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuSaveDTO;
 import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuUpdateDTO;
+import com.DevTino.festino_admin.menu.domain.DTO.ResponseMenuGetDTO;
 import com.DevTino.festino_admin.menu.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,6 +72,25 @@ public class MenuController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "메뉴 삭제 성공" : "메뉴 삭제 시 DAO 검색 실패");
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 메뉴 조회
+    @GetMapping("/{menuId}")
+    public ResponseEntity<Map<String, Object>> updateMenu(@PathVariable("menuId") UUID menuId) {
+        // 메뉴 조회 service
+        ResponseMenuGetDTO responseMenuGetDTO = menuService.getMenu(menuId);
+
+        // 메뉴 조회 성공 여부
+        boolean success = responseMenuGetDTO != null;
+
+        // Map을 통해 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "메뉴 조회 성공" : "메뉴 조회 시 DAO 검색 실패");
+        requestMap.put("menuInfo", responseMenuGetDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
