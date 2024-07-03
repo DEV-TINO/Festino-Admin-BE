@@ -6,7 +6,6 @@ import java.util.UUID;
 
 @Data
 public class RequestMenuSaveDTO {
-    UUID menuId;
     UUID boothId;
     String menuName;
     Integer menuPrice;
