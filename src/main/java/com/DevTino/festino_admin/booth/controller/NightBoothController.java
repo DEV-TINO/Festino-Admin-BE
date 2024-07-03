@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -137,6 +138,25 @@ public class NightBoothController {
         requestMap.put("success", success);
         requestMap.put("message", success ? "야간부스 조회 성공" : "야간부스 조회 시 DAO 검색 실패");
         requestMap.put("boothInfo", responseNightBoothGetDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<Map<String, Object>> getNightBoothAll() {
+
+        // 야간부스 전체조회 service
+        List<ResponseNightBoothsGetDTO> responseNightBoothsGetDTO = nightBoothService.getNightBoothAll();
+
+        // 야간부스 전체조회 성공 여부
+        boolean success = responseNightBoothsGetDTO != null;
+
+        // Map을 통해 메시지와 id값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "야간부스 전체조회 성공" : "야간부스 전체조회 시 DAO 검색 실패");
+        requestMap.put("boothList", responseNightBoothsGetDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
