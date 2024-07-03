@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.show.club.bean;
 
-import com.DevTino.festino_admin.notice.domain.NoticeDAO;
 import com.DevTino.festino_admin.show.club.bean.small.DeleteClubShowDAOBean;
 import com.DevTino.festino_admin.show.club.bean.small.GetClubShowDAOBean;
 import com.DevTino.festino_admin.show.club.damain.ClubShowDAO;
@@ -25,7 +24,7 @@ public class DeleteClubShowBean {
     // 동아리 공연 삭제
     public boolean exec(RequestClubShowDeleteDTO requestClubShowDeleteDTO){
 
-        // noticeId로 해당 Notice DAO 찾기
+        // clubId로 해당 ClubShow DAO 찾기
         ClubShowDAO clubShowDAO = getClubShowDAOBean.exec(requestClubShowDeleteDTO.getClubId());
         if (clubShowDAO == null) return false;
 
