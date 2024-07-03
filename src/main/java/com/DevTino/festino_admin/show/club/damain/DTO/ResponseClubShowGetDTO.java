@@ -3,7 +3,6 @@ package com.DevTino.festino_admin.show.club.damain.DTO;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -15,6 +14,7 @@ public class ResponseClubShowGetDTO {
     String showDate;
     String showStartTime;
     String showEndTime;
+    Boolean isShowing;
     String clubImage;
 
 }
