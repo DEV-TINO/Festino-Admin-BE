@@ -24,7 +24,7 @@ public class UpdateMenuBean {
     // 메뉴 수정
     public UUID exec(RequestMenuUpdateDTO requestMenuUpdateDTO) {
         // menuId를 통해 원하는 객체(DAO) 찾기
-        MenuDAO menuDAO = getMenuDAOBean.exec(requestMenuUpdateDTO.getMenuId());
+        MenuDAO menuDAO = getMenuDAOBean.exec(requestMenuUpdateDTO.getMenuId(), requestMenuUpdateDTO.getBoothId());
         if(menuDAO == null) return null;
 
         // 찾은 DAO 수정
