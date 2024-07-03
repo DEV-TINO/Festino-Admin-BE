@@ -25,6 +25,7 @@ public class GetNightBoothsBean {
 
         // 야간부스 전체 DAO 찾기
         List<NightBoothDAO> nightBoothDAOList = getNightBoothDAOBean.exec();
+        if(nightBoothDAOList.isEmpty()) return null;
 
         // DAO 리스트를 DTO로 바꿔서 반환
         return createNightBoothsDTOBean.exec(nightBoothDAOList);
