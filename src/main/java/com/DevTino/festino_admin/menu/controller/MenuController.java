@@ -77,7 +77,7 @@ public class MenuController {
 
     // 메뉴 조회
     @GetMapping("/{menuId}")
-    public ResponseEntity<Map<String, Object>> updateMenu(@PathVariable("menuId") UUID menuId) {
+    public ResponseEntity<Map<String, Object>> getMenu(@PathVariable("menuId") UUID menuId) {
         // 메뉴 조회 service
         ResponseMenuGetDTO responseMenuGetDTO = menuService.getMenu(menuId);
 
