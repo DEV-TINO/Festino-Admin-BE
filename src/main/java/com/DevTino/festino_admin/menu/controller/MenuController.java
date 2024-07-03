@@ -61,12 +61,13 @@ public class MenuController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
+    // 메뉴 삭제
     @DeleteMapping
     public ResponseEntity<Map<String, Object>> deleteMenu(@RequestBody RequestMenuDeleteDTO requestMenuDeleteDTO) {
         // 메뉴 삭제 service 성공 여부
         boolean success = menuService.deleteMenu(requestMenuDeleteDTO);
 
-        // Map을 통해 메시지와 id 값 json 데이터로 변환
+        // Map을 통해 메시지와 info 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "메뉴 삭제 성공" : "메뉴 삭제 시 DAO 검색 실패");
