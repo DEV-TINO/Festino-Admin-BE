@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.menu.controller;
 
+import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuDeleteDTO;
 import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuSaveDTO;
 import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuUpdateDTO;
 import com.DevTino.festino_admin.menu.service.MenuService;
@@ -56,6 +57,20 @@ public class MenuController {
         requestMap.put("success", success);
         requestMap.put("message", success ? "메뉴 수정 성공" : "메뉴 수정 시 DAO 등록 실패");
         requestMap.put("menuId", menuId);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Map<String, Object>> deleteMenu(@RequestBody RequestMenuDeleteDTO requestMenuDeleteDTO) {
+        // 메뉴 삭제 service 성공 여부
+        boolean success = menuService.deleteMenu(requestMenuDeleteDTO);
+
+        // Map을 통해 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "메뉴 삭제 성공" : "메뉴 삭제 시 DAO 검색 실패");
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

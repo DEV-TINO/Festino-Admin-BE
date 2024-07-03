@@ -20,4 +20,9 @@ public class GetMenuDAOBean {
     public MenuDAO exec(UUID menuId) {
         return menuRepository.findById(menuId).orElse(null);
     }
+
+    // menuId와 boothId를 통해 원하는 DAO 찾아서 반환
+    public MenuDAO exec(UUID menuId, UUID boothId) {
+        return menuRepository.findByMenuIdAndBoothId(menuId, boothId);
+    }
 }
