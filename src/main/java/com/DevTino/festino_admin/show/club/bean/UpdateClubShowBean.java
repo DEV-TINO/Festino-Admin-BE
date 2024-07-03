@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.show.club.bean;
 
-import com.DevTino.festino_admin.notice.domain.NoticeDAO;
 import com.DevTino.festino_admin.show.club.bean.small.GetClubShowDAOBean;
 import com.DevTino.festino_admin.show.club.bean.small.SaveClubShowDAOBean;
 import com.DevTino.festino_admin.show.club.damain.ClubShowDAO;
@@ -28,7 +27,7 @@ public class UpdateClubShowBean {
     // 동아리 공연 수정
     public UUID exec(RequestClubShowUpdateDTO requestClubShowUpdateDTO){
 
-        // noticeId로 해당 Notice DAO 찾기
+        // clubId로 해당 ClubShow DAO 찾기
         ClubShowDAO clubShowDAO = getClubShowDAOBean.exec(requestClubShowUpdateDTO.getClubId());
         if (clubShowDAO == null) return null;
 
@@ -45,7 +44,7 @@ public class UpdateClubShowBean {
         // 수정된 DAO 저장
         saveClubShowDAOBean.exec(clubShowDAO);
 
-        // 수정된 DAO의 noticeId 반환
+        // 수정된 DAO의 clubId 반환
         return clubShowDAO.getClubId();
 
     }
