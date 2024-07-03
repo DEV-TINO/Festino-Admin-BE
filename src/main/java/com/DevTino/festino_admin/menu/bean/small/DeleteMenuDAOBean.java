@@ -1,21 +1,21 @@
 package com.DevTino.festino_admin.menu.bean.small;
 
 import com.DevTino.festino_admin.menu.domain.MenuDAO;
-import com.DevTino.festino_admin.menu.repository.MenuRepository;
+import com.DevTino.festino_admin.menu.repository.MenuRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DeleteMenuDAOBean {
-    MenuRepository menuRepository;
+    MenuRepositoryJPA menuRepositoryJPA;
 
     @Autowired
-    public DeleteMenuDAOBean(MenuRepository menuRepository) {
-        this.menuRepository = menuRepository;
+    public DeleteMenuDAOBean(MenuRepositoryJPA menuRepositoryJPA) {
+        this.menuRepositoryJPA = menuRepositoryJPA;
     }
 
     // DAO 삭제
     public void exec(MenuDAO menuDAO) {
-        menuRepository.delete(menuDAO);
+        menuRepositoryJPA.delete(menuDAO);
     }
 }

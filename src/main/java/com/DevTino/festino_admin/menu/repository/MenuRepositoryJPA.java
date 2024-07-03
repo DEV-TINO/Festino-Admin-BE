@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface MenuRepository extends JpaRepository<MenuDAO, UUID> {
+public interface MenuRepositoryJPA extends JpaRepository<MenuDAO, UUID> {
     MenuDAO findByMenuIdAndBoothId(UUID menuId, UUID boothId);
 }
