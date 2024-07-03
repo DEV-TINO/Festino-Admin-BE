@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.menu.controller;
 
-import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuDeleteDTO;
-import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuSaveDTO;
-import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuUpdateDTO;
-import com.DevTino.festino_admin.menu.domain.DTO.ResponseMenuGetDTO;
+import com.DevTino.festino_admin.menu.domain.DTO.*;
 import com.DevTino.festino_admin.menu.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -91,6 +89,25 @@ public class MenuController {
         requestMap.put("success", success);
         requestMap.put("message", success ? "메뉴 조회 성공" : "메뉴 조회 시 DAO 검색 실패");
         requestMap.put("menuInfo", responseMenuGetDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 메뉴 전체조회
+    @GetMapping("/all/booth/{boothId}")
+    public ResponseEntity<Map<String, Object>> getMenuAll(@PathVariable("boothId") UUID boothId) {
+        // 메뉴 전체조회 service
+        List<ResponseMenusGetDTO> responseMenusGetDTOList = menuService.getMenuAll(boothId);
+
+        // 메뉴 전체조회 성공 여부
+        boolean success = responseMenusGetDTOList != null;
+
+        // Map을 통해 메시지와 List 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "메뉴 전체조회 성공" : "메뉴 전체조회 DAO 검색 실패");
+        requestMap.put("menus", responseMenusGetDTOList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

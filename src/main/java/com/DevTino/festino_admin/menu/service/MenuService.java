@@ -1,16 +1,11 @@
 package com.DevTino.festino_admin.menu.service;
 
-import com.DevTino.festino_admin.menu.bean.DeleteMenuBean;
-import com.DevTino.festino_admin.menu.bean.GetMenuBean;
-import com.DevTino.festino_admin.menu.bean.SaveMenuBean;
-import com.DevTino.festino_admin.menu.bean.UpdateMenuBean;
-import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuDeleteDTO;
-import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuSaveDTO;
-import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuUpdateDTO;
-import com.DevTino.festino_admin.menu.domain.DTO.ResponseMenuGetDTO;
+import com.DevTino.festino_admin.menu.bean.*;
+import com.DevTino.festino_admin.menu.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,13 +14,15 @@ public class MenuService {
     UpdateMenuBean updateMenuBean;
     DeleteMenuBean deleteMenuBean;
     GetMenuBean getMenuBean;
+    GetMenusBean getMenusBean;
 
     @Autowired
-    public MenuService(SaveMenuBean saveMenuBean, UpdateMenuBean updateMenuBean, DeleteMenuBean deleteMenuBean, GetMenuBean getMenuBean) {
+    public MenuService(SaveMenuBean saveMenuBean, UpdateMenuBean updateMenuBean, DeleteMenuBean deleteMenuBean, GetMenuBean getMenuBean, GetMenusBean getMenusBean) {
         this.saveMenuBean = saveMenuBean;
         this.updateMenuBean = updateMenuBean;
         this.deleteMenuBean = deleteMenuBean;
         this.getMenuBean = getMenuBean;
+        this.getMenusBean = getMenusBean;
     }
 
     // 메뉴 저장
@@ -46,5 +43,10 @@ public class MenuService {
     // 메뉴 조회
     public ResponseMenuGetDTO getMenu(UUID menuId) {
         return getMenuBean.exec(menuId);
+    }
+
+    // 메뉴 전체조회
+    public List<ResponseMenusGetDTO> getMenuAll(UUID boothId) {
+        return getMenusBean.exec(boothId);
     }
 }

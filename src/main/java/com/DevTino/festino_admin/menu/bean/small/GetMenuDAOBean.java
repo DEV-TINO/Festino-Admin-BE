@@ -5,6 +5,7 @@ import com.DevTino.festino_admin.menu.repository.MenuRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -24,5 +25,10 @@ public class GetMenuDAOBean {
     // menuId와 boothId를 통해 원하는 DAO 찾아서 반환
     public MenuDAO exec(UUID menuId, UUID boothId) {
         return menuRepositoryJPA.findByMenuIdAndBoothId(menuId, boothId);
+    }
+
+    // boothId를 통해 원하는 부스 전체 DAO 찾아서 반환
+    public List<MenuDAO> exec(UUID boothId, Integer num) {
+        return menuRepositoryJPA.findAllByBoothId(boothId);
     }
 }
