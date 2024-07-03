@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.show.talent.service;
 
-import com.DevTino.festino_admin.show.talent.bean.DeleteTalentShowBean;
-import com.DevTino.festino_admin.show.talent.bean.GetTalentShowBean;
-import com.DevTino.festino_admin.show.talent.bean.SaveTalentShowBean;
-import com.DevTino.festino_admin.show.talent.bean.UpdateTalentShowBean;
+import com.DevTino.festino_admin.show.talent.bean.*;
 import com.DevTino.festino_admin.show.talent.domain.DTO.RequestTalentShowDeleteDTO;
 import com.DevTino.festino_admin.show.talent.domain.DTO.RequestTalentShowSaveDTO;
 import com.DevTino.festino_admin.show.talent.domain.DTO.RequestTalentShowUpdateDTO;
@@ -11,19 +8,22 @@ import com.DevTino.festino_admin.show.talent.domain.DTO.ResponseTalentShowGetDTO
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class TalentShowService {
 
     GetTalentShowBean getTalentShowBean;
+    GetTalentShowsBean getTalentShowsBean;
     SaveTalentShowBean saveTalentShowBean;
     UpdateTalentShowBean updateTalentShowBean;
     DeleteTalentShowBean deleteTalentShowBean;
 
     @Autowired
-    public TalentShowService(GetTalentShowBean getTalentShowBean, SaveTalentShowBean saveTalentShowBean, UpdateTalentShowBean updateTalentShowBean, DeleteTalentShowBean deleteTalentShowBean){
+    public TalentShowService(GetTalentShowBean getTalentShowBean, GetTalentShowsBean getTalentShowsBean, SaveTalentShowBean saveTalentShowBean, UpdateTalentShowBean updateTalentShowBean, DeleteTalentShowBean deleteTalentShowBean){
         this.getTalentShowBean = getTalentShowBean;
+        this.getTalentShowsBean = getTalentShowsBean;
         this.saveTalentShowBean = saveTalentShowBean;
         this.updateTalentShowBean = updateTalentShowBean;
         this.deleteTalentShowBean = deleteTalentShowBean;
@@ -35,6 +35,13 @@ public class TalentShowService {
     public ResponseTalentShowGetDTO getTalentShow(UUID talentId){
 
         return getTalentShowBean.exec(talentId);
+
+    }
+
+    // 연예인 공연 전체 조회
+    public List<ResponseTalentShowGetDTO> getTalentShowAll(){
+
+        return getTalentShowsBean.exec();
 
     }
 
