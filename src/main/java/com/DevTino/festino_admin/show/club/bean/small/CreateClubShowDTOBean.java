@@ -11,19 +11,19 @@ import java.util.UUID;
 @Component
 public class CreateClubShowDTOBean {
 
-    static String zero_sec = ":00";
+    static String zeroSec = ":00";
 
     // 동아리 공연 DTO 생성
     public ResponseClubShowGetDTO exec(ClubShowDAO clubShowDAO){
 
         // 공연 시작 날짜+시간을 LocalDateTime으로 변경
         LocalDateTime showStart = LocalDateTime
-                .parse(clubShowDAO.getShowDate() + clubShowDAO.getShowStartTime() + zero_sec,
+                .parse(clubShowDAO.getShowDate() + clubShowDAO.getShowStartTime() + zeroSec,
                         DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm:ss"));
 
         // 공연 종료 날짜+시간을 LocalDateTime으로 변경
         LocalDateTime showEnd = LocalDateTime
-                .parse(clubShowDAO.getShowDate() + clubShowDAO.getShowEndTime() + zero_sec,
+                .parse(clubShowDAO.getShowDate() + clubShowDAO.getShowEndTime() + zeroSec,
                         DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm:ss"));
 
         // 공연이 현재 진행 중인지 판단해서 isShowing 설정

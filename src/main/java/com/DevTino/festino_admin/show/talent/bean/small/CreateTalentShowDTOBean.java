@@ -10,19 +10,19 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class CreateTalentShowDTOBean {
 
-    static String zero_sec = ":00";
+    static String zeroSec = ":00";
 
     // 연예인 공연 DTO 생성
     public ResponseTalentShowGetDTO exec(TalentShowDAO talentShowDAO){
 
         // 공연 시작 날짜+시간을 LocalDateTime으로 변경
         LocalDateTime showStart = LocalDateTime
-                .parse(talentShowDAO.getShowDate() + talentShowDAO.getShowStartTime() + zero_sec,
+                .parse(talentShowDAO.getShowDate() + talentShowDAO.getShowStartTime() + zeroSec,
                         DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm:ss"));
 
         // 공연 종료 날짜+시간을 LocalDateTime으로 변경
         LocalDateTime showEnd = LocalDateTime
-                .parse(talentShowDAO.getShowDate() + talentShowDAO.getShowEndTime() + zero_sec,
+                .parse(talentShowDAO.getShowDate() + talentShowDAO.getShowEndTime() + zeroSec,
                         DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm:ss"));
 
         // 공연이 현재 진행 중인지 판단해서 isShowing 설정
