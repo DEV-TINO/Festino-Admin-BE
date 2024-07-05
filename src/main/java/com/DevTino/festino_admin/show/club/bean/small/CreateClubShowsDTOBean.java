@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.show.club.bean.small;
 
-import com.DevTino.festino_admin.show.club.damain.ClubShowDAO;
-import com.DevTino.festino_admin.show.club.damain.DTO.ResponseClubShowGetDTO;
+import com.DevTino.festino_admin.show.club.domain.ClubShowDAO;
+import com.DevTino.festino_admin.show.club.domain.DTO.ResponseClubShowGetDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

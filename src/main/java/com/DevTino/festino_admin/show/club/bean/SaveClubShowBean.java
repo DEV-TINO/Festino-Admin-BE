@@ -1,10 +1,9 @@
 package com.DevTino.festino_admin.show.club.bean;
 
-import com.DevTino.festino_admin.notice.domain.NoticeDAO;
 import com.DevTino.festino_admin.show.club.bean.small.CreateClubShowDAOBean;
 import com.DevTino.festino_admin.show.club.bean.small.SaveClubShowDAOBean;
-import com.DevTino.festino_admin.show.club.damain.ClubShowDAO;
-import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowSaveDTO;
+import com.DevTino.festino_admin.show.club.domain.ClubShowDAO;
+import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,9 +1,9 @@
 package com.DevTino.festino_admin.show.club.controller;
 
-import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowDeleteDTO;
-import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowSaveDTO;
-import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowUpdateDTO;
-import com.DevTino.festino_admin.show.club.damain.DTO.ResponseClubShowGetDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowDeleteDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowSaveDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowUpdateDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.ResponseClubShowGetDTO;
 import com.DevTino.festino_admin.show.club.service.ClubShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

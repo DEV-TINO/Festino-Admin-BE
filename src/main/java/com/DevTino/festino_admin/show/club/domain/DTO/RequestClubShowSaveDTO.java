@@ -1,4 +1,4 @@
-package com.DevTino.festino_admin.show.club.damain.DTO;
+package com.DevTino.festino_admin.show.club.domain.DTO;
 
 import lombok.Data;
 

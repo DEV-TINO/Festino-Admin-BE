@@ -1,4 +1,4 @@
-package com.DevTino.festino_admin.show.club.damain;
+package com.DevTino.festino_admin.show.club.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

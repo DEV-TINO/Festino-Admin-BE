@@ -1,10 +1,10 @@
 package com.DevTino.festino_admin.show.club.service;
 
 import com.DevTino.festino_admin.show.club.bean.*;
-import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowDeleteDTO;
-import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowSaveDTO;
-import com.DevTino.festino_admin.show.club.damain.DTO.RequestClubShowUpdateDTO;
-import com.DevTino.festino_admin.show.club.damain.DTO.ResponseClubShowGetDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowDeleteDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowSaveDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowUpdateDTO;
+import com.DevTino.festino_admin.show.club.domain.DTO.ResponseClubShowGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

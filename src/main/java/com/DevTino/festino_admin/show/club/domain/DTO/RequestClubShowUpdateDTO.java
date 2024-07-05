@@ -1,20 +1,17 @@
-package com.DevTino.festino_admin.show.club.damain.DTO;
+package com.DevTino.festino_admin.show.club.domain.DTO;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-@Builder
-public class ResponseClubShowGetDTO {
+public class RequestClubShowUpdateDTO {
 
     UUID clubId;
     String clubName;
     String showDate;
     String showStartTime;
     String showEndTime;
-    Boolean isShowing;
     String clubImage;
 
 }
