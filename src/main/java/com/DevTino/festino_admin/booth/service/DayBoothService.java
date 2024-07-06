@@ -33,7 +33,7 @@ public class DayBoothService {
     }
 
     // 주간부스 운영 중 여부 수정
-    public ResponseDayBoothOpenGetDTO updateDayBoothOpen(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
+    public ResponseDayBoothOpenUpdateDTO updateDayBoothOpen(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
         return updateDayBoothBean.exec(requestDayBoothOpenUpdateDTO);
     }
 

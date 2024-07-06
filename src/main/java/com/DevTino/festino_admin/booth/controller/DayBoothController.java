@@ -88,16 +88,16 @@ public class DayBoothController {
     public ResponseEntity<Map<String, Object>> updateDayBoothOpen(@RequestBody RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
 
         // 주간부스 운영 중 여부 수정 service
-        ResponseDayBoothOpenGetDTO responseDayBoothOpenGetDTO = dayBoothService.updateDayBoothOpen(requestDayBoothOpenUpdateDTO);
+        ResponseDayBoothOpenUpdateDTO responseDayBoothOpenUpdateDTO = dayBoothService.updateDayBoothOpen(requestDayBoothOpenUpdateDTO);
 
         // 주간부스 운영 중 여부 수정 성공 여부
-        boolean success = responseDayBoothOpenGetDTO != null;
+        boolean success = responseDayBoothOpenUpdateDTO != null;
 
         // Map을 통해 메시지와 id값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "주간부스 운영 중 여부 수정 성공" : "주간부스 운영 중 여부 수정 시 DAO 저장 실패");
-        requestMap.put("openInfo", responseDayBoothOpenGetDTO);
+        requestMap.put("openInfo", responseDayBoothOpenUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

@@ -5,7 +5,7 @@ import com.DevTino.festino_admin.booth.bean.small.GetDayBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveDayBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseDayBoothOpenGetDTO;
+import com.DevTino.festino_admin.booth.domain.DTO.ResponseDayBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,7 +52,7 @@ public class UpdateDayBoothBean {
     }
 
     // 주간부스 운영 중 여부 수정
-    public ResponseDayBoothOpenGetDTO exec(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
+    public ResponseDayBoothOpenUpdateDTO exec(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         DayBoothDAO dayBoothDAO = getDayBoothDAOBean.exec(requestDayBoothOpenUpdateDTO.getBoothId());
 
