@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseNightBoothOpenGetDTO {
+public class ResponseNightBoothOpenUpdateDTO {
     UUID boothId;
     Boolean isOpen;
 }

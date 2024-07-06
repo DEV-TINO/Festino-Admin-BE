@@ -68,16 +68,16 @@ public class NightBoothController {
     public ResponseEntity<Map<String, Object>> updateNightBoothOpen(@RequestBody RequestNightBoothOpenUpdateDTO requestNightBoothOpenUpdateDTO) {
 
         // 야간부스 운영 중 여부 service
-        ResponseNightBoothOpenGetDTO responseNightBoothOpenGetDTO = nightBoothService.updateNightBoothOpen(requestNightBoothOpenUpdateDTO);
+        ResponseNightBoothOpenUpdateDTO responseNightBoothOpenUpdateDTO = nightBoothService.updateNightBoothOpen(requestNightBoothOpenUpdateDTO);
 
         // 야간부스 운영 중 여부 수정 성공 여부
-        boolean success = responseNightBoothOpenGetDTO != null;
+        boolean success = responseNightBoothOpenUpdateDTO != null;
 
         // Map을 통해 메시지와 info 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "야간부스 운영 중 여부 수정 성공" : "야간부스 운영 중 여부 수정 시 DAO 저장 실패");
-        requestMap.put("openInfo", responseNightBoothOpenGetDTO);
+        requestMap.put("openInfo", responseNightBoothOpenUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

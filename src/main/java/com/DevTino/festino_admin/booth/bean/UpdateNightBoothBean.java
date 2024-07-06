@@ -56,7 +56,7 @@ public class UpdateNightBoothBean {
     }
 
     // 야간부스 운영 중 여부 수정
-    public ResponseNightBoothOpenGetDTO exec(RequestNightBoothOpenUpdateDTO requestNightBoothOpenUpdateDTO) {
+    public ResponseNightBoothOpenUpdateDTO exec(RequestNightBoothOpenUpdateDTO requestNightBoothOpenUpdateDTO) {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothOpenUpdateDTO.getBoothId());

@@ -37,7 +37,7 @@ public class NightBoothService {
     }
 
     // 야간부스 운영 중 여부 수정
-    public ResponseNightBoothOpenGetDTO updateNightBoothOpen(RequestNightBoothOpenUpdateDTO requestNightBoothOpenUpdateDTO) {
+    public ResponseNightBoothOpenUpdateDTO updateNightBoothOpen(RequestNightBoothOpenUpdateDTO requestNightBoothOpenUpdateDTO) {
         return updateNightBoothBean.exec(requestNightBoothOpenUpdateDTO);
     }
 
