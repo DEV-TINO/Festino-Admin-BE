@@ -90,7 +90,7 @@ public class UpdateNightBoothBean {
     }
 
     // 야간부스 예약가능 여부 수정
-    public ResponseNightBoothReservationGetDTO exec(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
+    public ResponseNightBoothReservationUpdateDTO exec(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothReservationUpdateDTO.getBoothId());

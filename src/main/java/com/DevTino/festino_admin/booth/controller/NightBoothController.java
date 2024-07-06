@@ -108,7 +108,7 @@ public class NightBoothController {
     public ResponseEntity<Map<String, Object>> updateNightBoothReservation(@RequestBody RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
 
         // 야간부스 예약가능 여부 수정 service
-        ResponseNightBoothReservationGetDTO responseNightBoothOrderGetDTO = nightBoothService.updateNightBoothReservation(requestNightBoothReservationUpdateDTO);
+        ResponseNightBoothReservationUpdateDTO responseNightBoothOrderGetDTO = nightBoothService.updateNightBoothReservation(requestNightBoothReservationUpdateDTO);
 
         // 야간부스 예약가능 여부 수정 성공 여부
         boolean success = requestNightBoothReservationUpdateDTO != null;

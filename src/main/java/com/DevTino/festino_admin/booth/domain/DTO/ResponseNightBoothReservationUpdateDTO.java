@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseNightBoothReservationGetDTO {
+public class ResponseNightBoothReservationUpdateDTO {
     UUID boothId;
     Boolean isReservation;
 }

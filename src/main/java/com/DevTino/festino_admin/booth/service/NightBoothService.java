@@ -47,7 +47,7 @@ public class NightBoothService {
     }
 
     // 야간부스 예약가능 여부 수정
-    public ResponseNightBoothReservationGetDTO updateNightBoothReservation(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
+    public ResponseNightBoothReservationUpdateDTO updateNightBoothReservation(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
         return updateNightBoothBean.exec(requestNightBoothReservationUpdateDTO);
     }
 
