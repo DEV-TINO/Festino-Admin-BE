@@ -73,7 +73,7 @@ public class UpdateNightBoothBean {
     }
 
     // 야간부스 주문가능 여부 수정
-    public ResponseNightBoothOrderGetDTO exec(RequestNightBoothOrderUpdateDTO requestNightBoothOrderUpdateDTO) {
+    public ResponseNightBoothOrderUpdateDTO exec(RequestNightBoothOrderUpdateDTO requestNightBoothOrderUpdateDTO) {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothOrderUpdateDTO.getBoothId());

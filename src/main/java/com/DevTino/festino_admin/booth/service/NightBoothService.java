@@ -42,7 +42,7 @@ public class NightBoothService {
     }
 
     // 야간부스 주문가능 여부 수정
-    public ResponseNightBoothOrderGetDTO updateNightBoothOrder(RequestNightBoothOrderUpdateDTO requestNightBoothOrderUpdateDTO) {
+    public ResponseNightBoothOrderUpdateDTO updateNightBoothOrder(RequestNightBoothOrderUpdateDTO requestNightBoothOrderUpdateDTO) {
         return updateNightBoothBean.exec(requestNightBoothOrderUpdateDTO);
     }
 

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseNightBoothOrderGetDTO {
+public class ResponseNightBoothOrderUpdateDTO {
     UUID boothId;
     Boolean isOrder;
 }
