@@ -5,7 +5,7 @@ import com.DevTino.festino_admin.booth.bean.small.GetFoodBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveFoodBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseFoodBoothOpenGetDTO;
+import com.DevTino.festino_admin.booth.domain.DTO.ResponseFoodBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.FoodBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -54,7 +54,7 @@ public class UpdateFoodBoothBean {
     }
 
     // 푸드트럭 운영 중 여부 수정
-    public ResponseFoodBoothOpenGetDTO exec(RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
+    public ResponseFoodBoothOpenUpdateDTO exec(RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         FoodBoothDAO foodBoothDAO = getFoodBoothDAOBean.exec(requestFoodBoothOpenUpdateDTO.getBoothId());

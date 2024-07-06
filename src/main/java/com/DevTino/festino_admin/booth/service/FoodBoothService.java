@@ -33,7 +33,7 @@ public class FoodBoothService {
     }
 
     // 푸드트럭 운영 중 여부 수정
-    public ResponseFoodBoothOpenGetDTO updateFoodBoothOpen(RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
+    public ResponseFoodBoothOpenUpdateDTO updateFoodBoothOpen(RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
         return updateFoodBoothBean.exec(requestFoodBoothOpenUpdateDTO);
     }
 

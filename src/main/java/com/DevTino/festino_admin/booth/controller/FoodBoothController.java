@@ -67,16 +67,16 @@ public class FoodBoothController {
     public ResponseEntity<Map<String, Object>> updateFoodBoothOpen(@RequestBody RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
 
         // 푸드트럭 운영 중 여부 수정 service
-        ResponseFoodBoothOpenGetDTO responseFoodBoothOpenGetDTO = foodBoothService.updateFoodBoothOpen(requestFoodBoothOpenUpdateDTO);
+        ResponseFoodBoothOpenUpdateDTO responseFoodBoothOpenUpdateDTO = foodBoothService.updateFoodBoothOpen(requestFoodBoothOpenUpdateDTO);
 
         // 푸드트럭 운영 중 여부 수정 성공 여부
-        boolean success = responseFoodBoothOpenGetDTO != null;
+        boolean success = responseFoodBoothOpenUpdateDTO != null;
 
         // Map을 통해 메시지와 info값 json 데이터로 변환
         Map<String , Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "푸드트럭 운영 중 여부 수정 성공" : "푸드트럭 운영 중 여부 수정 시 DAO 저장 실패");
-        requestMap.put("openInfo", responseFoodBoothOpenGetDTO);
+        requestMap.put("openInfo", responseFoodBoothOpenUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

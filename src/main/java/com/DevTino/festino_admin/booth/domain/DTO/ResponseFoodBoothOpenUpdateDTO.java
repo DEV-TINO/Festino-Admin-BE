@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseFoodBoothOpenGetDTO {
+public class ResponseFoodBoothOpenUpdateDTO {
     UUID boothId;
     Boolean isOpen;
 }
