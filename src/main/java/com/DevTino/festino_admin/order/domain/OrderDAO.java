@@ -25,11 +25,11 @@ public class OrderDAO {
     UUID orderId;
     OrderType orderType;
     Integer tableNum;
-    String name;
+    String userName;
     String phoneNum;
 
     @Convert(converter = StringListConverter.class)
-    List<Map<String, Object>> cookInfo;
+    List<Map<String, Object>> menuInfo;
 
     Integer totalPrice;
     Boolean isDeposit;
