@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.booth.service;
 
-import com.DevTino.festino_admin.booth.bean.GetNightBoothBean;
-import com.DevTino.festino_admin.booth.bean.GetNightBoothsBean;
-import com.DevTino.festino_admin.booth.bean.SaveNightBoothBean;
-import com.DevTino.festino_admin.booth.bean.UpdateNightBoothBean;
+import com.DevTino.festino_admin.booth.bean.*;
 import com.DevTino.festino_admin.booth.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +12,15 @@ import java.util.UUID;
 public class NightBoothService {
     SaveNightBoothBean saveNightBoothBean;
     UpdateNightBoothBean updateNightBoothBean;
+    UpdateNightBoothOpenBean updateNightBoothOpenBean;
     GetNightBoothBean getNightBoothBean;
     GetNightBoothsBean getNightBoothsBean;
 
     @Autowired
-    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
+    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
         this.saveNightBoothBean = saveNightBoothBean;
         this.updateNightBoothBean = updateNightBoothBean;
+        this.updateNightBoothOpenBean = updateNightBoothOpenBean;
         this.getNightBoothBean = getNightBoothBean;
         this.getNightBoothsBean = getNightBoothsBean;
     }
@@ -38,7 +37,7 @@ public class NightBoothService {
 
     // 야간부스 운영 중 여부 수정
     public ResponseNightBoothOpenUpdateDTO updateNightBoothOpen(RequestNightBoothOpenUpdateDTO requestNightBoothOpenUpdateDTO) {
-        return updateNightBoothBean.exec(requestNightBoothOpenUpdateDTO);
+        return updateNightBoothOpenBean.exec(requestNightBoothOpenUpdateDTO);
     }
 
     // 야간부스 주문가능 여부 수정
