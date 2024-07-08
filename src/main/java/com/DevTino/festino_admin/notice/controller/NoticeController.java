@@ -50,6 +50,7 @@ public class NoticeController {
 
 
 
+    // 공지사항 전체 조회
     @GetMapping("/all")
     public ResponseEntity<Map<String, Object>> getNoticeAll(){
 
@@ -117,19 +118,19 @@ public class NoticeController {
 
     // 공지사항 pin 수정
     @PutMapping("/pin")
-    public ResponseEntity<Map<String, Object>> updateNoticePin(@RequestBody RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateNoticePin(@RequestBody List<RequestNoticePinUpdateDTO> requestNoticePinUpdateDTOList){
 
         // 공지사항 pin 수정 service 실행
-        UUID noticeId = noticeService.updateNoticePin(requestNoticePinUpdateDTO);
+        List<ResponseNoticePinUpdateDTO> responseNoticePinUpdateDTOList = noticeService.updateNoticePin(requestNoticePinUpdateDTOList);
 
         // 공지사항 pin 수정 성공 여부 설정
-        boolean success = (noticeId == null) ? false : true;
+        boolean success = (responseNoticePinUpdateDTOList == null) ? false : true;
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "공지사항 pin 수정 성공" : "공지사항 pin 수정 시 DAO 검색 실패");
-        requestMap.put("noticeId", noticeId);
+        requestMap.put("pinInfo", responseNoticePinUpdateDTOList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

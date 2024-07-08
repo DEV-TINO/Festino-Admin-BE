@@ -8,5 +8,6 @@ import java.util.UUID;
 public class RequestNoticePinUpdateDTO {
 
     UUID noticeId;
+    Boolean isPin;
 
 }

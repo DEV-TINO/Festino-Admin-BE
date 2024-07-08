@@ -1,16 +1,15 @@
 package com.DevTino.festino_admin.notice.domain.DTO;
 
+import lombok.Builder;
 import lombok.Data;
+
 import java.util.UUID;
 
 @Data
-public class RequestNoticeUpdateDTO {
+@Builder
+public class ResponseNoticePinUpdateDTO {
 
     UUID noticeId;
-    String title;
-    String writerName;
-    String imageUrl;
-    String content;
     Boolean isPin;
 
 }

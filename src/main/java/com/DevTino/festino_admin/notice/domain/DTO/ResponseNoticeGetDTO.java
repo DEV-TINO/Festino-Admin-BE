@@ -16,7 +16,6 @@ public class ResponseNoticeGetDTO {
     String imageUrl;
     String content;
     Boolean isPin;
-    LocalDateTime createAt;
     LocalDateTime updateAt;
 
 }

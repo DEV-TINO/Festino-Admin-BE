@@ -15,14 +15,16 @@ public class NoticeService {
     GetNoticesBean getNoticesBean;
     SaveNoticeBean saveNoticeBean;
     UpdateNoticeBean updateNoticeBean;
+    UpdateNoticePinBean updateNoticePinBean;
     DeleteNoticeBean deleteNoticeBean;
 
     @Autowired
-    public NoticeService(GetNoticeBean getNoticeBean, GetNoticesBean getNoticesBean, SaveNoticeBean saveNoticeBean, UpdateNoticeBean updateNoticeBean, DeleteNoticeBean deleteNoticeBean){
+    public NoticeService(GetNoticeBean getNoticeBean, GetNoticesBean getNoticesBean, SaveNoticeBean saveNoticeBean, UpdateNoticeBean updateNoticeBean, UpdateNoticePinBean updateNoticePinBean, DeleteNoticeBean deleteNoticeBean){
         this.getNoticeBean = getNoticeBean;
         this.getNoticesBean = getNoticesBean;
         this.saveNoticeBean = saveNoticeBean;
         this.updateNoticeBean = updateNoticeBean;
+        this.updateNoticePinBean = updateNoticePinBean;
         this.deleteNoticeBean = deleteNoticeBean;
     }
 
@@ -57,9 +59,9 @@ public class NoticeService {
     }
 
     // 공지사항 pin 수정
-    public UUID updateNoticePin(RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
+    public List<ResponseNoticePinUpdateDTO> updateNoticePin(List<RequestNoticePinUpdateDTO> requestNoticePinUpdateDTOList){
 
-        return updateNoticeBean.exec(requestNoticePinUpdateDTO);
+        return updateNoticePinBean.exec(requestNoticePinUpdateDTOList);
 
     }
 
