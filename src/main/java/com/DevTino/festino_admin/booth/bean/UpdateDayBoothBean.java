@@ -55,6 +55,7 @@ public class UpdateDayBoothBean {
     public ResponseDayBoothOpenUpdateDTO exec(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         DayBoothDAO dayBoothDAO = getDayBoothDAOBean.exec(requestDayBoothOpenUpdateDTO.getBoothId());
+        if(dayBoothDAO == null) return null;
 
         // DAO의 운영 중 여부 확인 후 수정
         if(dayBoothDAO.getIsOpen() == requestDayBoothOpenUpdateDTO.getIsOpen())
