@@ -13,14 +13,16 @@ public class NightBoothService {
     SaveNightBoothBean saveNightBoothBean;
     UpdateNightBoothBean updateNightBoothBean;
     UpdateNightBoothOpenBean updateNightBoothOpenBean;
+    UpdateNightBoothOrderBean updateNightBoothOrderBean;
     GetNightBoothBean getNightBoothBean;
     GetNightBoothsBean getNightBoothsBean;
 
     @Autowired
-    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
+    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, UpdateNightBoothOrderBean updateNightBoothOrderBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
         this.saveNightBoothBean = saveNightBoothBean;
         this.updateNightBoothBean = updateNightBoothBean;
         this.updateNightBoothOpenBean = updateNightBoothOpenBean;
+        this.updateNightBoothOrderBean = updateNightBoothOrderBean;
         this.getNightBoothBean = getNightBoothBean;
         this.getNightBoothsBean = getNightBoothsBean;
     }
@@ -42,7 +44,7 @@ public class NightBoothService {
 
     // 야간부스 주문가능 여부 수정
     public ResponseNightBoothOrderUpdateDTO updateNightBoothOrder(RequestNightBoothOrderUpdateDTO requestNightBoothOrderUpdateDTO) {
-        return updateNightBoothBean.exec(requestNightBoothOrderUpdateDTO);
+        return updateNightBoothOrderBean.exec(requestNightBoothOrderUpdateDTO);
     }
 
     // 야간부스 예약가능 여부 수정
