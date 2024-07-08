@@ -61,7 +61,10 @@ public class UpdateFoodBoothBean {
         if(foodBoothDAO == null) return null;
 
         // DAO 운영 중 여부 수정
-        foodBoothDAO.setIsOpen(!foodBoothDAO.getIsOpen());
+        if(requestFoodBoothOpenUpdateDTO.getIsOpen() == foodBoothDAO.getIsOpen())
+            foodBoothDAO.setIsOpen(!foodBoothDAO.getIsOpen());
+        else
+            return null;
 
         // 수정된 DAO 저장
         saveFoodBoothDAOBean.exec(foodBoothDAO);
