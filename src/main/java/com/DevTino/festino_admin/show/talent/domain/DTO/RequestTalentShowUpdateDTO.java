@@ -17,8 +17,6 @@ public class RequestTalentShowUpdateDTO {
     String showDate;
     String showStartTime;
     String showEndTime;
-
-    @Convert(converter = StringListConverter.class)
     List<Map<String, Object>> musicList;
 
 }

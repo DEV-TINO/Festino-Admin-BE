@@ -21,8 +21,6 @@ public class ResponseTalentShowGetDTO {
     String showStartTime;
     String showEndTime;
     Boolean isShowing;
-
-    @Convert(converter = StringListConverter.class)
     List<Map<String, Object>> musicList;
 
 
