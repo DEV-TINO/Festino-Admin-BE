@@ -7,4 +7,5 @@ import java.util.UUID;
 @Data
 public class RequestNightBoothOrderUpdateDTO {
     UUID boothId;
+    Boolean isOrder;
 }

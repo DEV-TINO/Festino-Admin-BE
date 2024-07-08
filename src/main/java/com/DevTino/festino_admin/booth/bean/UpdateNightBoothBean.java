@@ -83,7 +83,10 @@ public class UpdateNightBoothBean {
         if(nightBoothDAO == null) return null;
 
         // DAO 주문가능 여부 수정
-        nightBoothDAO.setIsOrder(!nightBoothDAO.getIsOrder());
+        if(requestNightBoothOrderUpdateDTO.getIsOrder() == nightBoothDAO.getIsOrder())
+            nightBoothDAO.setIsOrder(!nightBoothDAO.getIsOrder());
+        else
+            return null;
 
         // 수정된 DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);
