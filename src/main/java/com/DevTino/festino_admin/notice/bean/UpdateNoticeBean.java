@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -57,20 +59,37 @@ public class UpdateNoticeBean {
 
 
     // 공지사항 pin 수정
-    public ResponseNoticePinUpdateDTO exec(RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
+    public List<ResponseNoticePinUpdateDTO> exec(List<RequestNoticePinUpdateDTO> requestNoticePinUpdateDTOList){
 
-        // noticeId로 해당 Notice DAO 찾기
-        NoticeDAO noticeDAO = getNoticeDAOBean.exec(requestNoticePinUpdateDTO.getNoticeId());
-        if (noticeDAO == null) return null;
+        // 반환할 Response DTO List 생성
+        List<ResponseNoticePinUpdateDTO> responseNoticePinUpdateDTOList = new ArrayList<>();
 
-        // DAO의 pin 수정
-        noticeDAO.setIsPin(!noticeDAO.getIsPin());
+        // Request DTO List에서 하나씩 꺼내서 작업
+        for (RequestNoticePinUpdateDTO requestNoticePinUpdateDTO : requestNoticePinUpdateDTOList){
 
-        // 수정된 DAO 저장
-        saveNoticeDAOBean.exec(noticeDAO);
+            // noticeId로 해당 Notice DAO 찾기
+            NoticeDAO noticeDAO = getNoticeDAOBean.exec(requestNoticePinUpdateDTO.getNoticeId());
+            if (noticeDAO == null) return null;
 
-        // DTO 생성해 반환
-        return createNoticePinDTOBean.exec(noticeDAO);
+            // DTO pin 값과 DAO pin 값 비교해서 같을 경우만 DAO pin 수정
+            if (requestNoticePinUpdateDTO.getIsPin() == noticeDAO.getIsPin()) {
+
+                // DAO의 pin 수정
+                noticeDAO.setIsPin(!noticeDAO.getIsPin());
+
+                // 수정된 DAO 저장
+                saveNoticeDAOBean.exec(noticeDAO);
+
+            }
+
+            // DTO 생성해 DTO List에 추가
+            responseNoticePinUpdateDTOList.add(createNoticePinDTOBean.exec(noticeDAO));
+
+        }
+
+        // 생성된 DTO List 반환
+        return responseNoticePinUpdateDTOList;
+
     }
 
 }

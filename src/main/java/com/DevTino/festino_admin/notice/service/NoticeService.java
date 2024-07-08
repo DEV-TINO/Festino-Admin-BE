@@ -57,9 +57,9 @@ public class NoticeService {
     }
 
     // 공지사항 pin 수정
-    public ResponseNoticePinUpdateDTO updateNoticePin(RequestNoticePinUpdateDTO requestNoticePinUpdateDTO){
+    public List<ResponseNoticePinUpdateDTO> updateNoticePin(List<RequestNoticePinUpdateDTO> requestNoticePinUpdateDTOList){
 
-        return updateNoticeBean.exec(requestNoticePinUpdateDTO);
+        return updateNoticeBean.exec(requestNoticePinUpdateDTOList);
 
     }
 
