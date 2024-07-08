@@ -3,7 +3,7 @@ package com.DevTino.festino_admin.menu.bean;
 import com.DevTino.festino_admin.menu.bean.small.CreateMenusDTOBean;
 import com.DevTino.festino_admin.menu.bean.small.GetMenuDAOBean;
 import com.DevTino.festino_admin.menu.bean.small.GetMenusDAOBean;
-import com.DevTino.festino_admin.menu.domain.DTO.ResponseMenusGetDTO;
+import com.DevTino.festino_admin.menu.domain.DTO.ResponseMenuGetDTO;
 import com.DevTino.festino_admin.menu.domain.MenuDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ public class GetMenusBean {
     }
 
     // 메뉴 전체 조회
-    public List<ResponseMenusGetDTO> exec(UUID boothId) {
+    public List<ResponseMenuGetDTO> exec(UUID boothId) {
         // boothId를 통해 원하는 부스 메뉴 전체 DAO 찾기
         List<MenuDAO> menuDAOList = getMenusDAOBean.exec(boothId);
         if(menuDAOList.isEmpty()) return null;

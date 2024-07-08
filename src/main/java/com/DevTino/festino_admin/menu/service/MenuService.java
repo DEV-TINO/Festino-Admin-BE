@@ -46,7 +46,7 @@ public class MenuService {
     }
 
     // 메뉴 전체조회
-    public List<ResponseMenusGetDTO> getMenuAll(UUID boothId) {
+    public List<ResponseMenuGetDTO> getMenuAll(UUID boothId) {
         return getMenusBean.exec(boothId);
     }
 }
