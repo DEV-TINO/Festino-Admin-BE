@@ -32,7 +32,7 @@ public class CreateClubShowDTOBean {
 
         // DAO 값으로 설정한 DTO 생성해 반환
         return ResponseClubShowGetDTO.builder()
-                .clubId(UUID.randomUUID())
+                .clubId(clubShowDAO.getClubId())
                 .clubName(clubShowDAO.getClubName())
                 .showDate(clubShowDAO.getShowDate())
                 .showStartTime(clubShowDAO.getShowStartTime())
