@@ -15,6 +15,7 @@ import java.util.List;
 public class CreateClubShowsDTOBean {
 
     CreateClubShowDTOBean createClubShowDTOBean;
+
     @Autowired
     public CreateClubShowsDTOBean(CreateClubShowDTOBean createClubShowDTOBean){
         this.createClubShowDTOBean = createClubShowDTOBean;
