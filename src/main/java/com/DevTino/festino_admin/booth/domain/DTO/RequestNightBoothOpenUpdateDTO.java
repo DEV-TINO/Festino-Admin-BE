@@ -7,4 +7,5 @@ import java.util.UUID;
 @Data
 public class RequestNightBoothOpenUpdateDTO {
     UUID boothId;
+    Boolean isOpen;
 }

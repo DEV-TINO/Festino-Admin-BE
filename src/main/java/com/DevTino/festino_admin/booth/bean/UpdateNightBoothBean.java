@@ -63,7 +63,10 @@ public class UpdateNightBoothBean {
         if(nightBoothDAO == null) return null;
 
         // DAO 운영 중 여부 수정
-        nightBoothDAO.setIsOpen(!nightBoothDAO.getIsOpen());
+        if(requestNightBoothOpenUpdateDTO.getIsOpen() == nightBoothDAO.getIsOpen())
+            nightBoothDAO.setIsOpen(!nightBoothDAO.getIsOpen());
+        else
+            return null;
 
         // 수정된 DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);
