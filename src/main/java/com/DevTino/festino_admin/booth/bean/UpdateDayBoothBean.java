@@ -1,11 +1,8 @@
 package com.DevTino.festino_admin.booth.bean;
 
-import com.DevTino.festino_admin.booth.bean.small.CreateDayBoothOpenDTOBean;
 import com.DevTino.festino_admin.booth.bean.small.GetDayBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveDayBoothDAOBean;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseDayBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,13 +14,11 @@ import java.util.UUID;
 public class UpdateDayBoothBean {
     GetDayBoothDAOBean getDayBoothDAOBean;
     SaveDayBoothDAOBean saveDayBoothDAOBean;
-    CreateDayBoothOpenDTOBean createDayBoothOpenDTOBean;
 
     @Autowired
-    public UpdateDayBoothBean(GetDayBoothDAOBean getDayBoothDAOBean, SaveDayBoothDAOBean saveDayBoothDAOBean, CreateDayBoothOpenDTOBean createDayBoothOpenDTOBean) {
+    public UpdateDayBoothBean(GetDayBoothDAOBean getDayBoothDAOBean, SaveDayBoothDAOBean saveDayBoothDAOBean) {
         this.getDayBoothDAOBean = getDayBoothDAOBean;
         this.saveDayBoothDAOBean = saveDayBoothDAOBean;
-        this.createDayBoothOpenDTOBean = createDayBoothOpenDTOBean;
     }
 
     public UUID exec(RequestDayBoothUpdateDTO requestDayBoothUpdateDTO) {
@@ -49,24 +44,5 @@ public class UpdateDayBoothBean {
 
         // 키값 반환
         return dayBoothDAO.getBoothId();
-    }
-
-    // 주간부스 운영 중 여부 수정
-    public ResponseDayBoothOpenUpdateDTO exec(RequestDayBoothOpenUpdateDTO requestDayBoothOpenUpdateDTO) {
-        // 부스 아이디를 통해 원하는 객체(DAO) 찾기
-        DayBoothDAO dayBoothDAO = getDayBoothDAOBean.exec(requestDayBoothOpenUpdateDTO.getBoothId());
-        if(dayBoothDAO == null) return null;
-
-        // DAO의 운영 중 여부 확인 후 수정
-        if(dayBoothDAO.getIsOpen() == requestDayBoothOpenUpdateDTO.getIsOpen())
-            dayBoothDAO.setIsOpen(!dayBoothDAO.getIsOpen());
-        else
-            return null;
-
-        // DAO 저장
-        saveDayBoothDAOBean.exec(dayBoothDAO);
-
-        // DTO 생성해서 반환
-        return createDayBoothOpenDTOBean.exec(dayBoothDAO);
     }
 }

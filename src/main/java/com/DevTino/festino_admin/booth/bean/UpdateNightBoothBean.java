@@ -107,7 +107,7 @@ public class UpdateNightBoothBean {
             nightBoothDAO.setIsReservation(!nightBoothDAO.getIsReservation());
         else
             return null;
-        
+
         // 수정된 DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);
 
