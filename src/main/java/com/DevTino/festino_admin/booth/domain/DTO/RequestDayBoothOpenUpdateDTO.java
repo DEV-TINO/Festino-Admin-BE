@@ -7,4 +7,5 @@ import java.util.UUID;
 @Data
 public class RequestDayBoothOpenUpdateDTO {
     UUID boothId;
+    Boolean isOpen;
 }
