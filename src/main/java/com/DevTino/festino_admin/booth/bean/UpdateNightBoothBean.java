@@ -103,8 +103,11 @@ public class UpdateNightBoothBean {
         if(nightBoothDAO == null) return null;
 
         // DAO 예약가능 여부 수정
-        nightBoothDAO.setIsReservation(!nightBoothDAO.getIsReservation());
-
+        if(requestNightBoothReservationUpdateDTO.getIsReservation() == nightBoothDAO.getIsReservation())
+            nightBoothDAO.setIsReservation(!nightBoothDAO.getIsReservation());
+        else
+            return null;
+        
         // 수정된 DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);
 
