@@ -14,15 +14,17 @@ public class NightBoothService {
     UpdateNightBoothBean updateNightBoothBean;
     UpdateNightBoothOpenBean updateNightBoothOpenBean;
     UpdateNightBoothOrderBean updateNightBoothOrderBean;
+    UpdateNightBoothReservationBean updateNightBoothReservationBean;
     GetNightBoothBean getNightBoothBean;
     GetNightBoothsBean getNightBoothsBean;
 
     @Autowired
-    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, UpdateNightBoothOrderBean updateNightBoothOrderBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
+    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, UpdateNightBoothOrderBean updateNightBoothOrderBean, UpdateNightBoothReservationBean updateNightBoothReservationBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
         this.saveNightBoothBean = saveNightBoothBean;
         this.updateNightBoothBean = updateNightBoothBean;
         this.updateNightBoothOpenBean = updateNightBoothOpenBean;
         this.updateNightBoothOrderBean = updateNightBoothOrderBean;
+        this.updateNightBoothReservationBean = updateNightBoothReservationBean;
         this.getNightBoothBean = getNightBoothBean;
         this.getNightBoothsBean = getNightBoothsBean;
     }
@@ -49,7 +51,7 @@ public class NightBoothService {
 
     // 야간부스 예약가능 여부 수정
     public ResponseNightBoothReservationUpdateDTO updateNightBoothReservation(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
-        return updateNightBoothBean.exec(requestNightBoothReservationUpdateDTO);
+        return updateNightBoothReservationBean.exec(requestNightBoothReservationUpdateDTO);
     }
 
     // 야간부스 조회

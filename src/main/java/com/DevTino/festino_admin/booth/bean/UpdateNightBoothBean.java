@@ -13,13 +13,11 @@ import java.util.UUID;
 public class UpdateNightBoothBean {
     GetNightBoothDAOBean getNightBoothDAOBean;
     SaveNightBoothDAOBean saveNightBoothDAOBean;
-    CreateNightBoothReservationDTOBean createNightBoothReservationDTOBean;
 
     @Autowired
     public UpdateNightBoothBean(GetNightBoothDAOBean getNightBoothDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateNightBoothOpenDTOBean createNightBoothOpenDTOBean, CreateNightBoothOrderDTOBean createNightBoothOrderDTOBean, CreateNightBoothReservationDTOBean createNightBoothReservationDTOBean) {
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.saveNightBoothDAOBean = saveNightBoothDAOBean;
-        this.createNightBoothReservationDTOBean = createNightBoothReservationDTOBean;
     }
 
     // 야간부스 수정
@@ -49,25 +47,5 @@ public class UpdateNightBoothBean {
 
         // 키값 반환
         return nightBoothDAO.getBoothId();
-    }
-
-    // 야간부스 예약가능 여부 수정
-    public ResponseNightBoothReservationUpdateDTO exec(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
-
-        // 부스 아이디를 통해 원하는 객체(DAO) 찾기
-        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothReservationUpdateDTO.getBoothId());
-        if(nightBoothDAO == null) return null;
-
-        // DAO 예약가능 여부 수정
-        if(requestNightBoothReservationUpdateDTO.getIsReservation() == nightBoothDAO.getIsReservation())
-            nightBoothDAO.setIsReservation(!nightBoothDAO.getIsReservation());
-        else
-            return null;
-
-        // 수정된 DAO 저장
-        saveNightBoothDAOBean.exec(nightBoothDAO);
-
-        // DTO 생성해서 반환
-        return createNightBoothReservationDTOBean.exec(nightBoothDAO);
     }
 }
