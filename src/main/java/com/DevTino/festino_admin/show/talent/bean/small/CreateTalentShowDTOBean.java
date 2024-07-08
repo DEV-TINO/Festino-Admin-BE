@@ -26,6 +26,7 @@ public class CreateTalentShowDTOBean {
                         DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm:ss"));
 
         // 공연이 현재 진행 중인지 판단해서 isShowing 설정
+        // 추후 [ 공연 전 / 공연 중 / 공연 후 ] 를 구분해 나타내도록 변경될 수 있음
         Boolean isShowing =
                 LocalDateTime.now().isAfter(showStart) && LocalDateTime.now().isBefore(showEnd);
 
