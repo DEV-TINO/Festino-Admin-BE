@@ -3,6 +3,7 @@ package com.DevTino.festino_admin.booth.service;
 import com.DevTino.festino_admin.booth.bean.GetFoodBoothBean;
 import com.DevTino.festino_admin.booth.bean.SaveFoodBoothBean;
 import com.DevTino.festino_admin.booth.bean.UpdateFoodBoothBean;
+import com.DevTino.festino_admin.booth.bean.UpdateFoodBoothOpenBean;
 import com.DevTino.festino_admin.booth.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,14 @@ import java.util.UUID;
 public class FoodBoothService {
     SaveFoodBoothBean saveFoodBoothBean;
     UpdateFoodBoothBean updateFoodBoothBean;
+    UpdateFoodBoothOpenBean updateFoodBoothOpenBean;
     GetFoodBoothBean getFoodBoothBean;
 
     @Autowired
-    public FoodBoothService(SaveFoodBoothBean saveFoodBoothBean, UpdateFoodBoothBean updateFoodBoothBean, GetFoodBoothBean getFoodBoothBean) {
+    public FoodBoothService(SaveFoodBoothBean saveFoodBoothBean, UpdateFoodBoothBean updateFoodBoothBean, UpdateFoodBoothOpenBean updateFoodBoothOpenBean, GetFoodBoothBean getFoodBoothBean) {
         this.saveFoodBoothBean = saveFoodBoothBean;
         this.updateFoodBoothBean = updateFoodBoothBean;
+        this.updateFoodBoothOpenBean = updateFoodBoothOpenBean;
         this.getFoodBoothBean = getFoodBoothBean;
     }
 
@@ -34,7 +37,7 @@ public class FoodBoothService {
 
     // 푸드트럭 운영 중 여부 수정
     public ResponseFoodBoothOpenUpdateDTO updateFoodBoothOpen(RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
-        return updateFoodBoothBean.exec(requestFoodBoothOpenUpdateDTO);
+        return updateFoodBoothOpenBean.exec(requestFoodBoothOpenUpdateDTO);
     }
 
     // 푸드트럭 조회
