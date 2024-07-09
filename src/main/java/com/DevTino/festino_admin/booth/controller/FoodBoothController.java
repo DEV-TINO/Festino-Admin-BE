@@ -1,8 +1,6 @@
 package com.DevTino.festino_admin.booth.controller;
 
-import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothSaveDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothUpdateDTO;
-import com.DevTino.festino_admin.booth.domain.DTO.ResponseFoodBoothGetDTO;
+import com.DevTino.festino_admin.booth.domain.DTO.*;
 import com.DevTino.festino_admin.booth.service.FoodBoothService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,6 +57,26 @@ public class FoodBoothController {
         requestMap.put("success", success);
         requestMap.put("message", success ? "푸드트럭 수정 성공" : "푸드트럭 수정 시 DAO 저장 실패");
         requestMap.put("boothId", boothId);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 푸드트럭 운영 중 여부 수정
+    @PutMapping("/open")
+    public ResponseEntity<Map<String, Object>> updateFoodBoothOpen(@RequestBody RequestFoodBoothOpenUpdateDTO requestFoodBoothOpenUpdateDTO) {
+
+        // 푸드트럭 운영 중 여부 수정 service
+        ResponseFoodBoothOpenUpdateDTO responseFoodBoothOpenUpdateDTO = foodBoothService.updateFoodBoothOpen(requestFoodBoothOpenUpdateDTO);
+
+        // 푸드트럭 운영 중 여부 수정 성공 여부
+        boolean success = responseFoodBoothOpenUpdateDTO != null;
+
+        // Map을 통해 메시지와 info값 json 데이터로 변환
+        Map<String , Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "푸드트럭 운영 중 여부 수정 성공" : "푸드트럭 운영 중 여부 수정 시 DAO 저장 실패");
+        requestMap.put("openInfo", responseFoodBoothOpenUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

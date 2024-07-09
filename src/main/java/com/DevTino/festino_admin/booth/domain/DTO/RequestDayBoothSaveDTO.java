@@ -12,4 +12,5 @@ public class RequestDayBoothSaveDTO {
     String boothIntro;
     String boothImage;
     String location;
+    Boolean isOpen;
 }

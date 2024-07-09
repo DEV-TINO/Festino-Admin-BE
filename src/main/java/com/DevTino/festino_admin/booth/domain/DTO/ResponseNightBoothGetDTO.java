@@ -19,5 +19,6 @@ public class ResponseNightBoothGetDTO {
     String location;
     Boolean isOpen;
     Boolean isOrder;
+    Boolean isReservation;
     Integer totalReservationNum;
 }

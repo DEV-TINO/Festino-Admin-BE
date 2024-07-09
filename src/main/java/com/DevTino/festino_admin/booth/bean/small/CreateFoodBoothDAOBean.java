@@ -24,7 +24,7 @@ public class CreateFoodBoothDAOBean {
                 .location(requestFoodBoothSaveDTO.getLocation())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
-                .isOpen(false)
+                .isOpen(requestFoodBoothSaveDTO.getIsOpen())
                 .build();
     }
 }

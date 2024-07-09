@@ -1,8 +1,7 @@
 package com.DevTino.festino_admin.booth.bean;
 
-import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
-import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
-import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothUpdateDTO;
+import com.DevTino.festino_admin.booth.bean.small.*;
+import com.DevTino.festino_admin.booth.domain.DTO.*;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,7 @@ public class UpdateNightBoothBean {
     SaveNightBoothDAOBean saveNightBoothDAOBean;
 
     @Autowired
-    public UpdateNightBoothBean(GetNightBoothDAOBean getNightBoothDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean) {
+    public UpdateNightBoothBean(GetNightBoothDAOBean getNightBoothDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateNightBoothOpenDTOBean createNightBoothOpenDTOBean, CreateNightBoothOrderDTOBean createNightBoothOrderDTOBean, CreateNightBoothReservationDTOBean createNightBoothReservationDTOBean) {
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.saveNightBoothDAOBean = saveNightBoothDAOBean;
     }
@@ -39,6 +38,7 @@ public class UpdateNightBoothBean {
         nightBoothDAO.setLocation(requestNightBoothUpdateDTO.getLocation());
         nightBoothDAO.setIsOpen(requestNightBoothUpdateDTO.getIsOpen());
         nightBoothDAO.setIsOrder(requestNightBoothUpdateDTO.getIsOrder());
+        nightBoothDAO.setIsReservation(requestNightBoothUpdateDTO.getIsReservation());
 
         nightBoothDAO.setUpdateAt(LocalDateTime.now());
 

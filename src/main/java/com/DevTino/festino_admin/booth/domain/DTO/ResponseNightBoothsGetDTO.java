@@ -1,21 +1,20 @@
 package com.DevTino.festino_admin.booth.domain.DTO;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class RequestNightBoothUpdateDTO {
+@Builder
+public class ResponseNightBoothsGetDTO {
     UUID boothId;
-    String boothName;
-    String adminName;
     String adminCategory;
-    String boothIntro;
-    String boothImage;
+    String adminName;
+    String boothName;
     String openTime;
     String closeTime;
-    String location;
-    Boolean isOrder;
     Boolean isOpen;
+    Boolean isOrder;
     Boolean isReservation;
 }
