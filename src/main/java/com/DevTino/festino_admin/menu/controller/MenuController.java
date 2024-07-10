@@ -62,7 +62,7 @@ public class MenuController {
     }
 
     // 메뉴 수정
-    @PutMapping("/soldOut")
+    @PutMapping("/sold-out")
     public ResponseEntity<Map<String, Object>> updateMenuSoldOut(@RequestBody RequestMenuSoldOutUpdateDTO requestMenuSoldOutUpdateDTO) {
         // 메뉴 수정 service
         ResponseMenuSoldOutUpdateDTO responseMenuSoldOutUpdateDTO = menuService.updateMenuSoldOut(requestMenuSoldOutUpdateDTO);
