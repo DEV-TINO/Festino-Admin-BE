@@ -12,14 +12,16 @@ import java.util.UUID;
 public class MenuService {
     SaveMenuBean saveMenuBean;
     UpdateMenuBean updateMenuBean;
+    UpdateMenuSoldOutBean updateMenuSoldOutBean;
     DeleteMenuBean deleteMenuBean;
     GetMenuBean getMenuBean;
     GetMenusBean getMenusBean;
 
     @Autowired
-    public MenuService(SaveMenuBean saveMenuBean, UpdateMenuBean updateMenuBean, DeleteMenuBean deleteMenuBean, GetMenuBean getMenuBean, GetMenusBean getMenusBean) {
+    public MenuService(SaveMenuBean saveMenuBean, UpdateMenuBean updateMenuBean, UpdateMenuSoldOutBean updateMenuSoldOutBean, DeleteMenuBean deleteMenuBean, GetMenuBean getMenuBean, GetMenusBean getMenusBean) {
         this.saveMenuBean = saveMenuBean;
         this.updateMenuBean = updateMenuBean;
+        this.updateMenuSoldOutBean = updateMenuSoldOutBean;
         this.deleteMenuBean = deleteMenuBean;
         this.getMenuBean = getMenuBean;
         this.getMenusBean = getMenusBean;
@@ -33,6 +35,11 @@ public class MenuService {
     // 메뉴 수정
     public UUID updateMenu(RequestMenuUpdateDTO requestMenuUpdateDTO) {
         return updateMenuBean.exec(requestMenuUpdateDTO);
+    }
+
+    // 메뉴 품절여부 수정
+    public ResponseMenuSoldOutUpdateDTO updateMenuSoldOut(RequestMenuSoldOutUpdateDTO requestMenuSoldOutUpdateDTO) {
+        return updateMenuSoldOutBean.exec(requestMenuSoldOutUpdateDTO);
     }
 
     // 메뉴 삭제
