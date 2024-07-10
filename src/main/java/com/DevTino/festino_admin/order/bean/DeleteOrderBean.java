@@ -4,6 +4,7 @@ import com.DevTino.festino_admin.order.bean.small.GetOrderDAOBean;
 import com.DevTino.festino_admin.order.bean.small.SaveOrderDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.RequestOrderDeleteDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
+import com.DevTino.festino_admin.order.domain.OrderType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +30,8 @@ public class DeleteOrderBean {
         OrderDAO orderDAO = getOrderDAOBean.exec(requestOrderDeleteDTO.getOrderId());
         if (orderDAO == null) return false;
 
-        // isDeleted 값을 true로 변경
-        orderDAO.setIsDeleted(true);
+        // orderType 값을 IS_DELETED 로 변경
+        orderDAO.setOrderType(OrderType.IS_DELETED);
 
         // 변경된 DAO 저장
         saveOrderDAOBean.exec(orderDAO);
