@@ -1,13 +1,11 @@
 package com.DevTino.festino_admin.booth.service;
 
-import com.DevTino.festino_admin.booth.bean.GetFoodBoothBean;
-import com.DevTino.festino_admin.booth.bean.SaveFoodBoothBean;
-import com.DevTino.festino_admin.booth.bean.UpdateFoodBoothBean;
-import com.DevTino.festino_admin.booth.bean.UpdateFoodBoothOpenBean;
+import com.DevTino.festino_admin.booth.bean.*;
 import com.DevTino.festino_admin.booth.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,13 +14,15 @@ public class FoodBoothService {
     UpdateFoodBoothBean updateFoodBoothBean;
     UpdateFoodBoothOpenBean updateFoodBoothOpenBean;
     GetFoodBoothBean getFoodBoothBean;
+    GetFoodBoothsBean getFoodBoothsBean;
 
     @Autowired
-    public FoodBoothService(SaveFoodBoothBean saveFoodBoothBean, UpdateFoodBoothBean updateFoodBoothBean, UpdateFoodBoothOpenBean updateFoodBoothOpenBean, GetFoodBoothBean getFoodBoothBean) {
+    public FoodBoothService(SaveFoodBoothBean saveFoodBoothBean, UpdateFoodBoothBean updateFoodBoothBean, UpdateFoodBoothOpenBean updateFoodBoothOpenBean, GetFoodBoothBean getFoodBoothBean, GetFoodBoothsBean getFoodBoothsBean) {
         this.saveFoodBoothBean = saveFoodBoothBean;
         this.updateFoodBoothBean = updateFoodBoothBean;
         this.updateFoodBoothOpenBean = updateFoodBoothOpenBean;
         this.getFoodBoothBean = getFoodBoothBean;
+        this.getFoodBoothsBean = getFoodBoothsBean;
     }
 
     // 푸드트럭 등록
@@ -43,5 +43,10 @@ public class FoodBoothService {
     // 푸드트럭 조회
     public ResponseFoodBoothGetDTO getFoodBooth(UUID boothId) {
         return getFoodBoothBean.exec(boothId);
+    }
+
+    // 푸드트럭 전체조회
+    public List<ResponseFoodBoothsGetDTO> getFoodBoothAll() {
+        return getFoodBoothsBean.exec();
     }
 }
