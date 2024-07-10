@@ -23,7 +23,9 @@ public class OrderDAO {
 
     @Id
     UUID orderId;
+    UUID boothId;
     OrderType orderType;
+    Integer orderNum;
     Integer tableNum;
     String userName;
     String phoneNum;
@@ -34,7 +36,6 @@ public class OrderDAO {
     Integer totalPrice;
     Boolean isDeposit;
     Boolean isCoupon;
-    Boolean isDeleted;
     LocalDateTime createAt;
 
 
