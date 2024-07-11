@@ -31,7 +31,7 @@ public class DeleteOrderBean {
         if (orderDAO == null) return false;
 
         // orderType 값을 IS_DELETED 로 변경
-        orderDAO.setOrderType(OrderType.IS_DELETED);
+        orderDAO.setOrderType(OrderType.CANCEL);
 
         // 변경된 DAO 저장
         saveOrderDAOBean.exec(orderDAO);
