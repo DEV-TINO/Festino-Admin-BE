@@ -1,10 +1,9 @@
 package com.DevTino.festino_admin.order.service;
 
 import com.DevTino.festino_admin.order.bean.DeleteOrderBean;
+import com.DevTino.festino_admin.order.bean.UpdateCookEndBean;
 import com.DevTino.festino_admin.order.bean.UpdateOrderDepositBean;
-import com.DevTino.festino_admin.order.domain.DTO.RequestOrderDeleteDTO;
-import com.DevTino.festino_admin.order.domain.DTO.RequestOrderDepositUpdateDTO;
-import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderDepositUpdateDTO;
+import com.DevTino.festino_admin.order.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +13,13 @@ public class OrderService {
 
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDepositBean updateOrderDepositBean;
+    UpdateCookEndBean updateCookEndBean;
 
     @Autowired
-    public OrderService(DeleteOrderBean deleteOrderBean, UpdateOrderDepositBean updateOrderDepositBean){
+    public OrderService(DeleteOrderBean deleteOrderBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean){
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
+        this.updateCookEndBean = updateCookEndBean;
     }
 
 
@@ -38,4 +39,14 @@ public class OrderService {
         return updateOrderDepositBean.exec(requestOrderDepositUpdateDTO);
 
     }
+
+
+
+    // Cook 조리 완료
+    public ResponseCookEndUpdateDTO updateCookIsEnd(RequestCookEndUpdateDTO requestCookEndUpdateDTO){
+
+        return updateCookEndBean.exec(requestCookEndUpdateDTO);
+
+    }
+
 }
