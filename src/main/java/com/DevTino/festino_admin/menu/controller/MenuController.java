@@ -61,6 +61,25 @@ public class MenuController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
+    // 메뉴 수정
+    @PutMapping("/sold-out")
+    public ResponseEntity<Map<String, Object>> updateMenuSoldOut(@RequestBody RequestMenuSoldOutUpdateDTO requestMenuSoldOutUpdateDTO) {
+        // 메뉴 수정 service
+        ResponseMenuSoldOutUpdateDTO responseMenuSoldOutUpdateDTO = menuService.updateMenuSoldOut(requestMenuSoldOutUpdateDTO);
+
+        // 메뉴 수정 성공 여부
+        boolean success = responseMenuSoldOutUpdateDTO != null;
+
+        // Map을 통해 메시지와 info 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "메뉴 품절여부 수정 성공" : "메뉴 품절여부 수정 시 DAO 등록 실패");
+        requestMap.put("soldOutInfo", responseMenuSoldOutUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
     // 메뉴 삭제
     @DeleteMapping
     public ResponseEntity<Map<String, Object>> deleteMenu(@RequestBody RequestMenuDeleteDTO requestMenuDeleteDTO) {
