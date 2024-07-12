@@ -25,5 +25,5 @@ public class ReservationDAO {
     String phoneNum;
     LocalDateTime createAt;
     LocalDateTime updateAt;
-    Boolean isDeleted;
+    Boolean isCancel;
 }

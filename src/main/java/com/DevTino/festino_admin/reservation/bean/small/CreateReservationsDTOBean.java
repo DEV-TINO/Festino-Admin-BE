@@ -36,7 +36,7 @@ public class CreateReservationsDTOBean {
                     .personCount(reservationDAO.getPersonCount())
                     .phoneNum(reservationDAO.getPhoneNum())
                     .updateAt(reservationDAO.getUpdateAt())
-                    .isDeleted(reservationDAO.getIsDeleted())
+                    .isCancel(reservationDAO.getIsCancel())
                     .build();
 
             // 예약 DTO 리스트에 각 DTO 추가
