@@ -16,6 +16,7 @@ public class GetUserDAOBean {
         this.userRepositoryJPA = userRepositoryJPA;
     }
 
+    // id로 특정 유저 조회
     public UserDAO exec(UUID userId) {
         return userRepositoryJPA.findById(userId).orElse(null);
     }

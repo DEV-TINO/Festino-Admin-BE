@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.user.controller;
 
+import com.DevTino.festino_admin.user.domain.DTO.RequestUserDeleteDTO;
 import com.DevTino.festino_admin.user.domain.DTO.RequestUserSaveDTO;
 import com.DevTino.festino_admin.user.domain.DTO.RequestUserUpdateDTO;
 import com.DevTino.festino_admin.user.service.UserService;
@@ -28,7 +29,7 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO){
         UUID userId = userService.saveUser(requestUserSaveDTO);
 
-        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", userId != null);
         requestMap.put("message", userId == null ? "user save failure" : "user save success");
@@ -43,7 +44,7 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO){
         UUID userId = userService.updateUser(requestUserUpdateDTO);
 
-        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", userId != null);
         requestMap.put("message", userId == null ? "user update failure" : "user update success");
@@ -51,5 +52,20 @@ public class UserController {
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 유저 삭제
+    @DeleteMapping
+    public ResponseEntity<Map<String, Object>> deleteUser(@RequestBody RequestUserDeleteDTO requestUserDeleteDTO){
+        boolean success = userService.deleteUser(requestUserDeleteDTO);
+
+        // Map 이용해서 success, 메시지 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "user delete success" : "user delete failure");
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
     }
 }

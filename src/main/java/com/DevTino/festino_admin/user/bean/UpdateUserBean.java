@@ -1,10 +1,8 @@
 package com.DevTino.festino_admin.user.bean;
 
-import com.DevTino.festino_admin.user.bean.small.CreateUserDAOBean;
 import com.DevTino.festino_admin.user.bean.small.GetUserDAOBean;
 import com.DevTino.festino_admin.user.bean.small.SaveUserDAOBean;
 import com.DevTino.festino_admin.user.bean.small.UpdateUserDAOBean;
-import com.DevTino.festino_admin.user.domain.DTO.RequestUserSaveDTO;
 import com.DevTino.festino_admin.user.domain.DTO.RequestUserUpdateDTO;
 import com.DevTino.festino_admin.user.domain.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,7 @@ public class UpdateUserBean {
         this.getUserDAOBean = getUserDAOBean;
     }
 
-    // 유저 저장
+    // 유저 수정
     public UUID exec(RequestUserUpdateDTO requestUserUpdateDTO) {
         UserDAO userDAO = getUserDAOBean.exec(requestUserUpdateDTO.getUserId());
 

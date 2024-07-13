@@ -8,6 +8,8 @@ import java.util.UUID;
 
 @Component
 public class CreateUserDAOBean {
+
+    // RequestUserSaveDTO -> UserDAO
     public UserDAO exec(RequestUserSaveDTO requestUserSaveDTO) {
         return UserDAO.builder()
                 .userId(UUID.randomUUID())

@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SaveUserDAOBean {
+public class DeleteUserDAOBean {
     UserRepositoryJPA userRepositoryJPA;
 
     @Autowired
-    public SaveUserDAOBean(UserRepositoryJPA userRepositoryJPA) {
+    public DeleteUserDAOBean(UserRepositoryJPA userRepositoryJPA) {
         this.userRepositoryJPA = userRepositoryJPA;
     }
 
-    // 유저 저장
+    // 유저 삭제
     public void exec(UserDAO userDAO) {
-        userRepositoryJPA.save(userDAO);
+        userRepositoryJPA.delete(userDAO);
     }
 }
