@@ -7,14 +7,18 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class UserDAO {
-    
     @Id
     UUID userId;
 
+    String adminId;
+    String passWord;
+    String adminName;
+    RoleType role;
+    CategoryType adminCategory;
 }
