@@ -81,4 +81,23 @@ public class ReservationController {
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
+
+    @PutMapping
+    public ResponseEntity<Map<String, Object>> updateReservation(@RequestBody RequestReservationUpdateDTO requestReservationUpdateDTO) {
+
+        // 예약 가능여부 수정 service
+        ResponseReservationUpdateDTO responseReservationUpdateDTO = reservationService.updateReservation(requestReservationUpdateDTO);
+
+        // 예약 가능여부 수정 성공 여부
+        boolean success = responseReservationUpdateDTO != null;
+
+        // Map을 통해 메시지와 id값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "예약 가능여부 수정 성공" : "예약 가능여부 수정 시 DAO 저장 실패");
+        requestMap.put("reservationInfo", responseReservationUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
 }
