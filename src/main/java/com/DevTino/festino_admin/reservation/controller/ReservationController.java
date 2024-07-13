@@ -1,8 +1,6 @@
 package com.DevTino.festino_admin.reservation.controller;
 
-import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationDeleteUpdateDTO;
-import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationDeleteUpdateDTO;
-import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationsGetDTO;
+import com.DevTino.festino_admin.reservation.domain.DTO.*;
 import com.DevTino.festino_admin.reservation.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,6 +57,26 @@ public class ReservationController {
         requestMap.put("success", success);
         requestMap.put("message", success ? "예약 삭제 성공" : "예약 삭제 시 DAO 저장 실패");
         requestMap.put("deleteInfo", responseReservationDeleteUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 예약 복구
+    @PutMapping("/restore")
+    public ResponseEntity<Map<String, Object>> updateReservationRestore(@RequestBody RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
+
+        // 예약 복구 service
+        ResponseReservationRestoreUpdateDTO responseReservationRestoreUpdateDTO = reservationService.updateReservationRestore(requestReservationRestoreUpdateDTO);
+
+        // 예약 복구 성공 여부
+        boolean success = responseReservationRestoreUpdateDTO != null;
+
+        // Map을 통해 메시지와 id값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "예약 복구 성공" : "예약 복구 시 DAO 저장 실패");
+        requestMap.put("restoreInfo", responseReservationRestoreUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
