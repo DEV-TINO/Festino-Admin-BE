@@ -29,7 +29,7 @@ public class UpdateReservationDeleteBean {
         if(reservationDAO == null) return null;
 
         // 예약 삭제여부 isCancel 값 수정
-        if(!reservationDAO.getIsCancel())
+        if(!reservationDAO.getIsCancel() && !requestReservationDeleteUpdateDTO.getIsCancel())
             reservationDAO.setIsCancel(true);
         else
             return null;
