@@ -3,6 +3,8 @@ package com.DevTino.festino_admin.user.controller;
 import com.DevTino.festino_admin.user.domain.DTO.RequestUserDeleteDTO;
 import com.DevTino.festino_admin.user.domain.DTO.RequestUserSaveDTO;
 import com.DevTino.festino_admin.user.domain.DTO.RequestUserUpdateDTO;
+import com.DevTino.festino_admin.user.domain.DTO.ResponseUsersGetDTO;
+import com.DevTino.festino_admin.user.domain.UserDAO;
 import com.DevTino.festino_admin.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -67,5 +70,35 @@ public class UserController {
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
 
+    }
+
+    // 특정 유저 조회
+    @GetMapping("/{userId}")
+    public ResponseEntity<Map<String, Object>> getUser(@PathVariable UUID userId) {
+        UserDAO userDAO = userService.getUser(userId);
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", userDAO != null);
+        requestMap.put("message", userDAO == null ? "doesn't exist user" : "success get user");
+        requestMap.put("user", userDAO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 유저 전체 조회
+    @GetMapping("/all")
+    public ResponseEntity<Map<String, Object>> getUserAll() {
+        List<ResponseUsersGetDTO> userList = userService.getUserAll();
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", !userList.isEmpty());
+        requestMap.put("message", userList.isEmpty() ? "doesn't exist user" : "success get users");
+        requestMap.put("noticeList", userList.isEmpty() ? null : userList);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 }
