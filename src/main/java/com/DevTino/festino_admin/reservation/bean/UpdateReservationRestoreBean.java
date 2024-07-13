@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean;
 
 import com.DevTino.festino_admin.reservation.bean.small.CreateReservationRestoreDTOBean;
-import com.DevTino.festino_admin.reservation.bean.small.GetReservationDTOBean;
+import com.DevTino.festino_admin.reservation.bean.small.GetReservationDAOBean;
 import com.DevTino.festino_admin.reservation.bean.small.SaveReservationDAOBean;
 import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationRestoreUpdateDTO;
 import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationRestoreUpdateDTO;
@@ -11,20 +11,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UpdateReservationRestoreBean {
-    GetReservationDTOBean getReservationDTOBean;
+    GetReservationDAOBean getReservationDAOBean;
     SaveReservationDAOBean saveReservationDAOBean;
     CreateReservationRestoreDTOBean createReservationRestoreDTOBean;
 
     @Autowired
-    public UpdateReservationRestoreBean(GetReservationDTOBean getReservationDTOBean, SaveReservationDAOBean saveReservationDAOBean, CreateReservationRestoreDTOBean createReservationRestoreDTOBean) {
-        this.getReservationDTOBean = getReservationDTOBean;
+    public UpdateReservationRestoreBean(GetReservationDAOBean getReservationDAOBean, SaveReservationDAOBean saveReservationDAOBean, CreateReservationRestoreDTOBean createReservationRestoreDTOBean) {
+        this.getReservationDAOBean = getReservationDAOBean;
         this.saveReservationDAOBean = saveReservationDAOBean;
         this.createReservationRestoreDTOBean = createReservationRestoreDTOBean;
     }
 
     public ResponseReservationRestoreUpdateDTO exec(RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
         // reservationId와 boothId를 통해 원하는 객체(DAO) 찾기
-        ReservationDAO reservationDAO = getReservationDTOBean.exec(requestReservationRestoreUpdateDTO.getReservationId(), requestReservationRestoreUpdateDTO.getBoothId());
+        ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationRestoreUpdateDTO.getReservationId(), requestReservationRestoreUpdateDTO.getBoothId());
         if(reservationDAO == null) return null;
 
         // 예약 복구여부 isCancel 값 수정
