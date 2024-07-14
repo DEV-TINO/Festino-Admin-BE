@@ -23,11 +23,11 @@ public class ReservationController {
     }
 
     // 예약 전체조회
-    @GetMapping("/all/booth/{boothId}")
-    public ResponseEntity<Map<String, Object>> getReservationAll(@PathVariable("boothId") UUID boothId) {
+    @GetMapping("/{type}/booth/{boothId}")
+    public ResponseEntity<Map<String, Object>> getReservationAll(@PathVariable("boothId") UUID boothId, @PathVariable("type") String type) {
 
         // 예약 전체조회 service
-        ResponseReservationsGetDTO responseReservationsGetDTOList = reservationService.getReservationAll(boothId);
+        ResponseReservationsGetDTO responseReservationsGetDTOList = reservationService.getReservationAll(boothId, type);
 
         // 예약 전체조회 성공 여부
         boolean success = responseReservationsGetDTOList != null;
@@ -82,6 +82,7 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
+    // 예약 가능여부 수정
     @PutMapping
     public ResponseEntity<Map<String, Object>> updateReservation(@RequestBody RequestReservationUpdateDTO requestReservationUpdateDTO) {
 

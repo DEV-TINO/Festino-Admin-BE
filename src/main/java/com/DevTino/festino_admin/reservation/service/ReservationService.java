@@ -26,8 +26,8 @@ public class ReservationService {
     }
 
     // 예약 전체조회
-    public ResponseReservationsGetDTO getReservationAll(UUID boothId) {
-        return getReservationsBean.exec(boothId);
+    public ResponseReservationsGetDTO getReservationAll(UUID boothId, String type) {
+        return getReservationsBean.exec(boothId, type);
     }
 
     // 예약 삭제

@@ -20,7 +20,20 @@ public class GetReservationsDAOBean {
 
     // boothId를 통해 원하는 부스 전체 DAO 오래된 순으로 반환
     @Transactional(readOnly = true)
-    public List<ReservationDAO> exec(UUID boothId) {
-        return reservationRepositoryJPA.findAllByBoothIdOrderByUpdateAtAsc(boothId);
+    public List<ReservationDAO> exec(UUID boothId, String type) {
+        List<ReservationDAO> reservationDAOList;
+
+        // 예약 목록일 때
+        if (type.equals("all"))
+            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndIsCancelOrderByUpdateAtAsc(boothId, false);
+
+        // 삭제 목록일 때
+        else if(type.equals("cancel"))
+            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndIsCancelOrderByUpdateAtAsc(boothId, true);
+
+        else
+            reservationDAOList = null;
+
+        return reservationDAOList;
     }
 }
