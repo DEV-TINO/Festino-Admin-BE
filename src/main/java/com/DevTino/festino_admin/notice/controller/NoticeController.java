@@ -52,10 +52,10 @@ public class NoticeController {
 
     // 공지사항 전체 조회
     @GetMapping("/all")
-    public ResponseEntity<Map<String, Object>> getNoticeAll(){
+    public ResponseEntity<Map<String, Object>> getNoticeAll(@RequestParam(required = false, defaultValue = "0", value = "page") int pageNo){
 
         // 공지사항 전체 조회 service 실행
-        List<ResponseNoticeGetDTO> dtoList = noticeService.getNoticeAll();
+        List<ResponseNoticeGetDTO> dtoList = noticeService.getNoticeAll(pageNo);
 
         // 공지사항 전체 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -69,6 +69,7 @@ public class NoticeController {
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
+
 
 
     // 공지사항 저장

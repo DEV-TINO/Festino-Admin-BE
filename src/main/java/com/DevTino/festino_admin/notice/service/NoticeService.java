@@ -38,9 +38,9 @@ public class NoticeService {
     }
 
     // 공지사항 전체 조회
-    public List<ResponseNoticeGetDTO> getNoticeAll(){
+    public List<ResponseNoticeGetDTO> getNoticeAll(int pageNo){
 
-        return getNoticesBean.exec();
+        return getNoticesBean.exec(pageNo);
 
     }
 
