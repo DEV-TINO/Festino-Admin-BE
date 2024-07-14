@@ -108,16 +108,16 @@ public class NightBoothController {
     public ResponseEntity<Map<String, Object>> updateNightBoothReservation(@RequestBody RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
 
         // 야간부스 예약가능 여부 수정 service
-        ResponseNightBoothReservationUpdateDTO responseNightBoothOrderGetDTO = nightBoothService.updateNightBoothReservation(requestNightBoothReservationUpdateDTO);
+        ResponseNightBoothReservationUpdateDTO responseNightBoothReservationUpdateDTO = nightBoothService.updateNightBoothReservation(requestNightBoothReservationUpdateDTO);
 
         // 야간부스 예약가능 여부 수정 성공 여부
-        boolean success = requestNightBoothReservationUpdateDTO != null;
+        boolean success = responseNightBoothReservationUpdateDTO != null;
 
         // Map을 통해 메시지와 info 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "야간부스 예약가능 여부 수정 성공" : "야간부스 예약가능 여부 수정 시 DAO 저장 실패");
-        requestMap.put("reservationInfo", responseNightBoothOrderGetDTO);
+        requestMap.put("reservationInfo", responseNightBoothReservationUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
