@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -39,6 +40,15 @@ public class GetNoticeDAOBean {
 
         // pin 우선, 최신순 정렬 검색해서 반환
         return noticeRepositoryJPA.findAllByOrderByIsPinDescCreateAtDesc(pageable);
+
+    }
+
+
+
+    // 공지사항 전체 검색
+    public List<NoticeDAO> exec(){
+
+        return noticeRepositoryJPA.findAll();
 
     }
 
