@@ -15,6 +15,7 @@ public class CreateMenuDTOBean {
                 .menuPrice(menuDAO.getMenuPrice())
                 .menuImage(menuDAO.getMenuImage())
                 .isSoldOut(menuDAO.getIsSoldOut())
+                .menuType(menuDAO.getMenuType().name())
                 .build();
     }
 }

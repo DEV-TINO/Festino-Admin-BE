@@ -35,6 +35,8 @@ public class UpdateMenuBean {
         menuDAO.setMenuPrice(requestMenuUpdateDTO.getMenuPrice());
         menuDAO.setIsSoldOut(requestMenuUpdateDTO.getIsSoldOut());
 
+        menuDAO.setMenuType(requestMenuUpdateDTO.getMenuType());
+
         menuDAO.setUpdateAt(LocalDateTime.now());
 
         // 수정한 DAO 저장
