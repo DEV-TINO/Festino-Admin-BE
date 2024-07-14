@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.menu.domain.DTO;
 
+import com.DevTino.festino_admin.menu.domain.MenuType;
 import lombok.Data;
 
 import java.util.UUID;
@@ -11,5 +12,6 @@ public class RequestMenuSaveDTO {
     Integer menuPrice;
     String menuDescription;
     String menuImage;
+    MenuType menuType;
     Boolean isSoldOut;
 }
