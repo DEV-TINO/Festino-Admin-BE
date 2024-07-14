@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.order.service;
 
-import com.DevTino.festino_admin.order.bean.DeleteOrderBean;
-import com.DevTino.festino_admin.order.bean.UpdateCookEndBean;
-import com.DevTino.festino_admin.order.bean.UpdateOrderDepositBean;
-import com.DevTino.festino_admin.order.bean.UpdateOrderFinishBean;
+import com.DevTino.festino_admin.order.bean.*;
 import com.DevTino.festino_admin.order.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +13,15 @@ public class OrderService {
     UpdateOrderDepositBean updateOrderDepositBean;
     UpdateCookEndBean updateCookEndBean;
     UpdateOrderFinishBean updateOrderFinishBean;
+    UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(DeleteOrderBean deleteOrderBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean, UpdateOrderFinishBean updateOrderFinishBean){
+    public OrderService(DeleteOrderBean deleteOrderBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
         this.updateCookEndBean = updateCookEndBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
+        this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
     }
 
 
@@ -58,6 +57,15 @@ public class OrderService {
     public ResponseOrderFinishUpdateDTO updateOrderFinish(RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
 
         return updateOrderFinishBean.exec(requestOrderFinishUpdateDTO);
+
+    }
+
+
+
+    // Order 조리 완료 복구
+    public ResponseOrderFinishRestoreUpdateDTO updateOrderFinishRestore(RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
+
+        return updateOrderFinishRestoreBean.exec(requestOrderFinishRestoreUpdateDTO);
 
     }
 
