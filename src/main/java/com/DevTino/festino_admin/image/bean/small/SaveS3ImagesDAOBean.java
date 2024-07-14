@@ -25,6 +25,9 @@ public class SaveS3ImagesDAOBean {
 
         // 하나씩 확인해가면서 저장 후 url 반환
         for (MultipartFile file : fileList) {
+            if (file == null || file.isEmpty()) {
+                return null;
+            }
             imageUrls.add(saveS3ImageDAOBean.exec(file));
         }
         return imageUrls;
