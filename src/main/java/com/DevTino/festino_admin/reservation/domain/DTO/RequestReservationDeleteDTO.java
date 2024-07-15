@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class RequestReservationDeleteUpdateDTO {
+public class RequestReservationDeleteDTO {
     UUID boothId;
     UUID reservationId;
     Boolean isCancel;

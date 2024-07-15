@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseReservationDeleteUpdateDTO {
+public class ResponseReservationDeleteDTO {
     UUID reservationId;
     Boolean isCancel;
 }

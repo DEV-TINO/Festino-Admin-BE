@@ -3,33 +3,33 @@ package com.DevTino.festino_admin.reservation.bean;
 import com.DevTino.festino_admin.reservation.bean.small.CreateReservationDeleteDTOBean;
 import com.DevTino.festino_admin.reservation.bean.small.GetReservationDAOBean;
 import com.DevTino.festino_admin.reservation.bean.small.SaveReservationDAOBean;
-import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationDeleteUpdateDTO;
-import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationDeleteUpdateDTO;
+import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationDeleteDTO;
+import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationDeleteDTO;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UpdateReservationDeleteBean {
+public class DeleteReservationBean {
     GetReservationDAOBean getReservationDAOBean;
     SaveReservationDAOBean saveReservationDAOBean;
     CreateReservationDeleteDTOBean createReservationDeleteDTOBean;
 
     @Autowired
-    public UpdateReservationDeleteBean(GetReservationDAOBean getReservationDAOBean, SaveReservationDAOBean saveReservationDAOBean, CreateReservationDeleteDTOBean createReservationDeleteDTOBean) {
+    public DeleteReservationBean(GetReservationDAOBean getReservationDAOBean, SaveReservationDAOBean saveReservationDAOBean, CreateReservationDeleteDTOBean createReservationDeleteDTOBean) {
         this.getReservationDAOBean = getReservationDAOBean;
         this.saveReservationDAOBean = saveReservationDAOBean;
         this.createReservationDeleteDTOBean = createReservationDeleteDTOBean;
     }
 
     // 예약 삭제
-    public ResponseReservationDeleteUpdateDTO exec(RequestReservationDeleteUpdateDTO requestReservationDeleteUpdateDTO) {
+    public ResponseReservationDeleteDTO exec(RequestReservationDeleteDTO requestReservationDeleteDTO) {
         // reservationId와 boothId를 통해 원하는 객체(DAO) 찾기
-        ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationDeleteUpdateDTO.getReservationId(), requestReservationDeleteUpdateDTO.getBoothId());
+        ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationDeleteDTO.getReservationId(), requestReservationDeleteDTO.getBoothId());
         if(reservationDAO == null) return null;
 
         // 예약 삭제여부 isCancel 값 수정
-        if(!reservationDAO.getIsCancel() && !requestReservationDeleteUpdateDTO.getIsCancel())
+        if(!reservationDAO.getIsCancel() && !requestReservationDeleteDTO.getIsCancel())
             reservationDAO.setIsCancel(true);
         else
             return null;
