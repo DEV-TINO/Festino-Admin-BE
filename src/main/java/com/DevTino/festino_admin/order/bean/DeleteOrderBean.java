@@ -23,14 +23,14 @@ public class DeleteOrderBean {
 
 
 
-    // 주문 삭제
+    // 주문 취소
     public Boolean exec(RequestOrderDeleteDTO requestOrderDeleteDTO){
 
         // orderId로 해당 Order DAO 찾기
         OrderDAO orderDAO = getOrderDAOBean.exec(requestOrderDeleteDTO.getOrderId());
         if (orderDAO == null) return false;
 
-        // orderType 값을 IS_DELETED 로 변경
+        // orderType 값을 CANCEL 로 변경
         orderDAO.setOrderType(OrderType.CANCEL);
 
         // 변경된 DAO 저장
