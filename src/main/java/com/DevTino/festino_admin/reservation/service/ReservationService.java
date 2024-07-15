@@ -3,7 +3,7 @@ package com.DevTino.festino_admin.reservation.service;
 import com.DevTino.festino_admin.reservation.bean.GetReservationsBean;
 import com.DevTino.festino_admin.reservation.bean.UpdateReservationBean;
 import com.DevTino.festino_admin.reservation.bean.DeleteReservationBean;
-import com.DevTino.festino_admin.reservation.bean.UpdateReservationRestoreBean;
+import com.DevTino.festino_admin.reservation.bean.SaveReservationRestoreBean;
 import com.DevTino.festino_admin.reservation.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +14,14 @@ import java.util.UUID;
 public class ReservationService {
     GetReservationsBean getReservationsBean;
     DeleteReservationBean deleteReservationBean;
-    UpdateReservationRestoreBean updateReservationRestoreBean;
+    SaveReservationRestoreBean saveReservationRestoreBean;
     UpdateReservationBean updateReservationBean;
 
     @Autowired
-    public ReservationService(GetReservationsBean getReservationsBean, DeleteReservationBean deleteReservationBean, UpdateReservationRestoreBean updateReservationRestoreBean, UpdateReservationBean updateReservationBean) {
+    public ReservationService(GetReservationsBean getReservationsBean, DeleteReservationBean deleteReservationBean, SaveReservationRestoreBean saveReservationRestoreBean, UpdateReservationBean updateReservationBean) {
         this.getReservationsBean = getReservationsBean;
         this.deleteReservationBean = deleteReservationBean;
-        this.updateReservationRestoreBean = updateReservationRestoreBean;
+        this.saveReservationRestoreBean = saveReservationRestoreBean;
         this.updateReservationBean = updateReservationBean;
     }
 
@@ -36,8 +36,8 @@ public class ReservationService {
     }
 
     // 예약 복구
-    public ResponseReservationRestoreUpdateDTO updateReservationRestore(RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
-        return updateReservationRestoreBean.exec(requestReservationRestoreUpdateDTO);
+    public ResponseReservationRestoreDTO restoreReservation(RequestReservationRestoreDTO requestReservationRestoreDTO) {
+        return saveReservationRestoreBean.exec(requestReservationRestoreDTO);
     }
 
     // 예약 가능여부 수정

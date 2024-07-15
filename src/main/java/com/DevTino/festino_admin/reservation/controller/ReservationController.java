@@ -63,20 +63,20 @@ public class ReservationController {
     }
 
     // 예약 복구
-    @PutMapping("/restore")
-    public ResponseEntity<Map<String, Object>> updateReservationRestore(@RequestBody RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
+    @PostMapping("/restore")
+    public ResponseEntity<Map<String, Object>> restoreReservation(@RequestBody RequestReservationRestoreDTO requestReservationRestoreDTO) {
 
         // 예약 복구 service
-        ResponseReservationRestoreUpdateDTO responseReservationRestoreUpdateDTO = reservationService.updateReservationRestore(requestReservationRestoreUpdateDTO);
+        ResponseReservationRestoreDTO responseReservationRestoreDTO = reservationService.restoreReservation(requestReservationRestoreDTO);
 
         // 예약 복구 성공 여부
-        boolean success = responseReservationRestoreUpdateDTO != null;
+        boolean success = responseReservationRestoreDTO != null;
 
         // Map을 통해 메시지와 id값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "예약 복구 성공" : "예약 복구 시 DAO 저장 실패");
-        requestMap.put("restoreInfo", responseReservationRestoreUpdateDTO);
+        requestMap.put("restoreInfo", responseReservationRestoreDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
