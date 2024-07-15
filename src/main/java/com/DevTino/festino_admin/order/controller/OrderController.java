@@ -74,7 +74,7 @@ public class OrderController {
         ResponseOrderDepositUpdateDTO responseOrderDepositUpdateDTO = orderService.updateOrderDeposit(requestOrderDepositUpdateDTO);
 
         // 입금 확인 성공 여부 설정
-        boolean success = (requestOrderDepositUpdateDTO == null) ? false : true;
+        boolean success = (responseOrderDepositUpdateDTO == null) ? false : true;
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
