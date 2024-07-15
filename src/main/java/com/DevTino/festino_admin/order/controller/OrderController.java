@@ -155,4 +155,28 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
 
     }
+
+
+
+    // 서빙 수량 변경
+    @PutMapping("/cook/count")
+    public ResponseEntity<Map<String, Object>> updateCookCount(@RequestBody RequestCookCountUpdateDTO requestCookCountUpdateDTO){
+
+        // 서빙 수량 변경 service 실행
+        ResponseCookCountUpdateDTO responseCookCountUpdateDTO = orderService.updateCookCount(requestCookCountUpdateDTO);
+
+        // 서빙 수량 변경 성공 여부 설정
+        boolean success = (responseCookCountUpdateDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "서빙 수량 변경 성공" : "서빙 수량 변경 시 DAO 검색 실패 또는 부적절한 servedCount 값");
+        requestMap.put("restoreInfo", responseCookCountUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
 }
