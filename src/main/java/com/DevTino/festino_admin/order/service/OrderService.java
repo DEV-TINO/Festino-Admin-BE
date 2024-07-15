@@ -10,14 +10,16 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
     DeleteOrderBean deleteOrderBean;
+    UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
     UpdateCookEndBean updateCookEndBean;
     UpdateOrderFinishBean updateOrderFinishBean;
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(DeleteOrderBean deleteOrderBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.deleteOrderBean = deleteOrderBean;
+        this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
         this.updateCookEndBean = updateCookEndBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
@@ -30,6 +32,15 @@ public class OrderService {
     public Boolean deleteOrder(RequestOrderDeleteDTO requestOrderDeleteDTO){
 
         return deleteOrderBean.exec(requestOrderDeleteDTO);
+
+    }
+
+
+
+    // 주문 취소 복구
+    public ResponseOrderDeleteRestoreDTO updateOrderDeleteRestore(RequestOrderDeleteRestoreDTO requestOrderDeleteRestoreDTO){
+
+        return updateOrderDeleteRestoreBean.exec(requestOrderDeleteRestoreDTO);
 
     }
 
