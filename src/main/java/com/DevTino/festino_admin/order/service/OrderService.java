@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class OrderService {
 
+    GetDetailOrderBean getDetailOrderBean;
     GetWaitDepositOrdersBean getWaitDepositOrdersBean;
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
@@ -19,13 +20,23 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(GetDetailOrderBean getDetailOrderBean, GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+        this.getDetailOrderBean = getDetailOrderBean;
         this.getWaitDepositOrdersBean = getWaitDepositOrdersBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
         this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
+    }
+
+
+
+    // 주문 상세 조회
+    public ResponseDetailOrderGetDTO getDetailOrder(RequestDetailOrderGetDTO requestDetailOrderGetDTO){
+
+        return getDetailOrderBean.exec(requestDetailOrderGetDTO);
+
     }
 
 

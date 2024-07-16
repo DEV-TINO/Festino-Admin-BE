@@ -25,6 +25,29 @@ public class OrderController {
 
 
 
+    // 주문 상세 조회
+    @GetMapping("/detail")
+    public ResponseEntity<Map<String, Object>> getDetailOrder(@RequestBody RequestDetailOrderGetDTO requestDetailOrderGetDTO){
+
+        // 주문 상세 조회 service 실행
+        ResponseDetailOrderGetDTO responseDetailOrderGetDTO = orderService.getDetailOrder(requestDetailOrderGetDTO);
+
+        // 주문 상세 조회 성공 여부 설정
+        boolean success = (responseDetailOrderGetDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "주문 상세 조회 성공" : "주문 상세 조회 시 DAO 검색 실패");
+        requestMap.put("orderInfo", responseDetailOrderGetDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
     // 입금대기 주문 조회
     @GetMapping("/wait-deposit")
     public ResponseEntity<Map<String, Object>> getWaitDepositOrderAll(){
