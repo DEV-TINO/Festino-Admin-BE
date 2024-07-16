@@ -23,7 +23,7 @@ public class CookDAO {
     Integer totalCount;
     Integer servedCount;
     LocalDateTime createAt;
-    Boolean isEnd;
+    Boolean isFinish;
 
 
 }

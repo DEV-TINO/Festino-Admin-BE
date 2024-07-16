@@ -15,18 +15,18 @@ public class OrderService {
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
-    UpdateCookEndBean updateCookEndBean;
+    UpdateCookFinishBean updateCookFinishBean;
     UpdateOrderFinishBean updateOrderFinishBean;
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
     UpdateCookCountBean updateCookCountBean;
 
     @Autowired
-    public OrderService(GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean, UpdateCookCountBean updateCookCountBean){
+    public OrderService(GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookFinishBean updateCookFinishBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean, UpdateCookCountBean updateCookCountBean){
         this.getWaitDepositOrdersBean = getWaitDepositOrdersBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
-        this.updateCookEndBean = updateCookEndBean;
+        this.updateCookFinishBean = updateCookFinishBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
         this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
         this.updateCookCountBean = updateCookCountBean;
@@ -71,9 +71,9 @@ public class OrderService {
 
 
     // Cook 조리 완료
-    public ResponseCookEndUpdateDTO updateCookIsEnd(RequestCookEndUpdateDTO requestCookEndUpdateDTO){
+    public ResponseCookFinishUpdateDTO updateCookFinish(RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
 
-        return updateCookEndBean.exec(requestCookEndUpdateDTO);
+        return updateCookFinishBean.exec(requestCookFinishUpdateDTO);
 
     }
 

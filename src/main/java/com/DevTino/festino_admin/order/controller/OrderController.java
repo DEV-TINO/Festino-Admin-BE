@@ -115,19 +115,19 @@ public class OrderController {
 
     // Cook 조리 완료
     @PutMapping("/cook/finish")
-    public ResponseEntity<Map<String, Object>> updateCookIsEnd(@RequestBody RequestCookEndUpdateDTO requestCookEndUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateCookFinish(@RequestBody RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
 
         // Cook 조리 완료 service 실행
-        ResponseCookEndUpdateDTO responseCookEndUpdateDTO = orderService.updateCookIsEnd(requestCookEndUpdateDTO);
+        ResponseCookFinishUpdateDTO responseCookFinishUpdateDTO = orderService.updateCookFinish(requestCookFinishUpdateDTO);
 
         // Cook 조리 완료 성공 여부 설정
-        boolean success = (responseCookEndUpdateDTO == null) ? false : true;
+        boolean success = (responseCookFinishUpdateDTO == null) ? false : true;
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "Cook 조리 완료 성공" : "Cook 조리 완료 시 DAO 검색 실패");
-        requestMap.put("endInfo", responseCookEndUpdateDTO);
+        requestMap.put("finishInfo", responseCookFinishUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

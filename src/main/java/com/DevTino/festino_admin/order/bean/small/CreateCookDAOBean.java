@@ -19,7 +19,7 @@ public class CreateCookDAOBean {
                 .totalCount((Integer) menu.get("menuCount"))
                 .servedCount(0)
                 .createAt(LocalDateTime.now())
-                .isEnd(false)
+                .isFinish(false)
                 .build();
 
     }

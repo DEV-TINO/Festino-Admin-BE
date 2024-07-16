@@ -42,9 +42,9 @@ public class UpdateOrderFinishBean {
         // DTO / DAO의 OrderType 비교, 다르다면 null 리턴
         if (!orderDAO.getOrderType().name().equals(requestOrderFinishUpdateDTO.getOrderType())) return null;
 
-        // orderId에 해당하는 Cook DAO 모두 찾아서 isEnd를 true로 설정
+        // orderId에 해당하는 Cook DAO 모두 찾아서 isFinish를 true로 설정
         List<CookDAO> cookDAOList = getCooksDAOBean.exec(orderDAO.getOrderId());
-        for (CookDAO cookDAO : cookDAOList){ cookDAO.setIsEnd(true); }
+        for (CookDAO cookDAO : cookDAOList){ cookDAO.setIsFinish(true); }
 
         // DAO 수정
         orderDAO.setOrderType(OrderType.FINISH);
