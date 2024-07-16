@@ -5,10 +5,13 @@ import com.DevTino.festino_admin.order.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class OrderService {
 
+    GetWaitDepositOrdersBean getWaitDepositOrdersBean;
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
@@ -18,7 +21,8 @@ public class OrderService {
     UpdateCookCountBean updateCookCountBean;
 
     @Autowired
-    public OrderService(DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean, UpdateCookCountBean updateCookCountBean){
+    public OrderService(GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookEndBean updateCookEndBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean, UpdateCookCountBean updateCookCountBean){
+        this.getWaitDepositOrdersBean = getWaitDepositOrdersBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
@@ -26,6 +30,15 @@ public class OrderService {
         this.updateOrderFinishBean = updateOrderFinishBean;
         this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
         this.updateCookCountBean = updateCookCountBean;
+    }
+
+
+
+    // 입금대기 주문 조회
+    public List<ResponseWaitDepositOrderGetDTO> getWaitDepositOrderAll(){
+
+        return getWaitDepositOrdersBean.exec();
+
     }
 
 

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -20,6 +21,29 @@ public class OrderController {
     @Autowired
     public OrderController(OrderService orderService){
         this.orderService = orderService;
+    }
+
+
+
+    // 입금대기 주문 조회
+    @GetMapping("/wait-deposit")
+    public ResponseEntity<Map<String, Object>> getWaitDepositOrderAll(){
+
+        // 입금대기 주문 조회 service 실행
+        List<ResponseWaitDepositOrderGetDTO> dtoList = orderService.getWaitDepositOrderAll();
+
+        // 입금대기 주문 조회 성공 여부 설정
+        boolean success = (dtoList == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "입금대기 주문 조회 성공" : "입금대기 주문 조회 시 DAO 검색 실패");
+        requestMap.put("orders", dtoList);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
     }
 
 
