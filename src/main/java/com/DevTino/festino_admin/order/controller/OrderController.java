@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/admin/order")
+@RequestMapping("/admin/booth/{boothId}/order")
 public class OrderController {
 
     OrderService orderService;
@@ -91,7 +91,7 @@ public class OrderController {
 
 
     // 입금 확인
-    @PutMapping("")
+    @PutMapping("/deposit")
     public ResponseEntity<Map<String, Object>> updateIsDeposit(@RequestBody RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
 
         // 입금 확인 service 실행
@@ -114,7 +114,7 @@ public class OrderController {
 
 
     // Cook 조리 완료
-    @PutMapping("/cook/end")
+    @PutMapping("/cook/finish")
     public ResponseEntity<Map<String, Object>> updateCookIsEnd(@RequestBody RequestCookEndUpdateDTO requestCookEndUpdateDTO){
 
         // Cook 조리 완료 service 실행
