@@ -13,6 +13,7 @@ public class OrderService {
 
     GetDetailOrderBean getDetailOrderBean;
     GetWaitDepositOrdersBean getWaitDepositOrdersBean;
+    GetFinishOrdersBean getFinishOrdersBean;
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
@@ -20,9 +21,10 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetDetailOrderBean getDetailOrderBean, GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(GetDetailOrderBean getDetailOrderBean, GetWaitDepositOrdersBean getWaitDepositOrdersBean, GetFinishOrdersBean getFinishOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.getDetailOrderBean = getDetailOrderBean;
         this.getWaitDepositOrdersBean = getWaitDepositOrdersBean;
+        this.getFinishOrdersBean = getFinishOrdersBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
@@ -45,6 +47,15 @@ public class OrderService {
     public List<ResponseWaitDepositOrderGetDTO> getWaitDepositOrderAll(){
 
         return getWaitDepositOrdersBean.exec();
+
+    }
+
+
+
+    // 조리완료 주문 조회
+    public List<ResponseFinishOrderGetDTO> getFinishOrderAll(){
+
+        return getFinishOrdersBean.exec();
 
     }
 
