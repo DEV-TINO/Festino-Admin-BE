@@ -15,21 +15,17 @@ public class OrderService {
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
-    UpdateCookFinishBean updateCookFinishBean;
     UpdateOrderFinishBean updateOrderFinishBean;
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
-    UpdateCookCountBean updateCookCountBean;
 
     @Autowired
-    public OrderService(GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateCookFinishBean updateCookFinishBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean, UpdateCookCountBean updateCookCountBean){
+    public OrderService(GetWaitDepositOrdersBean getWaitDepositOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.getWaitDepositOrdersBean = getWaitDepositOrdersBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
-        this.updateCookFinishBean = updateCookFinishBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
         this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
-        this.updateCookCountBean = updateCookCountBean;
     }
 
 
@@ -70,15 +66,6 @@ public class OrderService {
 
 
 
-    // Cook 조리 완료
-    public ResponseCookFinishUpdateDTO updateCookFinish(RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
-
-        return updateCookFinishBean.exec(requestCookFinishUpdateDTO);
-
-    }
-
-
-
     // Order 조리 완료
     public ResponseOrderFinishUpdateDTO updateOrderFinish(RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
 
@@ -92,15 +79,6 @@ public class OrderService {
     public ResponseOrderFinishRestoreUpdateDTO updateOrderFinishRestore(RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
 
         return updateOrderFinishRestoreBean.exec(requestOrderFinishRestoreUpdateDTO);
-
-    }
-
-
-
-    // 서빙 수량 변경
-    public ResponseCookCountUpdateDTO updateCookCount(RequestCookCountUpdateDTO requestCookCountUpdateDTO){
-
-        return updateCookCountBean.exec(requestCookCountUpdateDTO);
 
     }
 
