@@ -7,13 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class UpdateUserDAOBean {
     // 유저 수정
-    public UserDAO exec(UserDAO userDAO, RequestUserUpdateDTO requestUserUpdateDTO) {
+    public void exec(UserDAO userDAO, RequestUserUpdateDTO requestUserUpdateDTO) {
         userDAO.setAdminId(requestUserUpdateDTO.getAdminId());
         userDAO.setAdminName(requestUserUpdateDTO.getAdminName());
         userDAO.setPassWord(requestUserUpdateDTO.getPassWord());
         userDAO.setRole(requestUserUpdateDTO.getRole());
         userDAO.setAdminCategory(requestUserUpdateDTO.getCategory());
-
-        return userDAO;
     }
 }

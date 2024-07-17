@@ -29,7 +29,7 @@ public class UpdateUserBean {
 
         if(userDAO == null) return null;
 
-        userDAO = updateUserDAOBean.exec(userDAO, requestUserUpdateDTO);
+        updateUserDAOBean.exec(userDAO, requestUserUpdateDTO);
         saveUserDAOBean.exec(userDAO);
 
         return userDAO.getUserId();
