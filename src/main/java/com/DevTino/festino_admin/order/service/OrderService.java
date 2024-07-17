@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    GetDetailOrderBean getDetailOrderBean;
-    GetWaitDepositOrdersBean getWaitDepositOrdersBean;
-    GetFinishOrdersBean getFinishOrdersBean;
-    GetCancelOrdersBean getCancelOrdersBean;
+    GetOrderDetailBean getOrderDetailBean;
+    GetOrderWaitDepositBean getOrderWaitDepositBean;
+    GetOrderFinishBean getOrderFinishBean;
+    GetOrderCancelBean getOrderCancelBean;
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
@@ -22,11 +22,11 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetDetailOrderBean getDetailOrderBean, GetWaitDepositOrdersBean getWaitDepositOrdersBean, GetFinishOrdersBean getFinishOrdersBean, GetCancelOrdersBean getCancelOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
-        this.getDetailOrderBean = getDetailOrderBean;
-        this.getWaitDepositOrdersBean = getWaitDepositOrdersBean;
-        this.getFinishOrdersBean = getFinishOrdersBean;
-        this.getCancelOrdersBean = getCancelOrdersBean;
+    public OrderService(GetOrderDetailBean getOrderDetailBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+        this.getOrderDetailBean = getOrderDetailBean;
+        this.getOrderWaitDepositBean = getOrderWaitDepositBean;
+        this.getOrderFinishBean = getOrderFinishBean;
+        this.getOrderCancelBean = getOrderCancelBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
@@ -37,36 +37,36 @@ public class OrderService {
 
 
     // 주문 상세 조회
-    public ResponseOrderDetailGetDTO getDetailOrder(RequestOrderDetailGetDTO requestOrderDetailGetDTO){
+    public ResponseOrderDetailGetDTO getOrderDetail(RequestOrderDetailGetDTO requestOrderDetailGetDTO){
 
-        return getDetailOrderBean.exec(requestOrderDetailGetDTO);
+        return getOrderDetailBean.exec(requestOrderDetailGetDTO);
 
     }
 
 
 
     // 입금대기 주문 조회
-    public List<ResponseOrderWaitDepositGetDTO> getWaitDepositOrderAll(){
+    public List<ResponseOrderWaitDepositGetDTO> getOrderWaitDepositAll(){
 
-        return getWaitDepositOrdersBean.exec();
+        return getOrderWaitDepositBean.exec();
 
     }
 
 
 
     // 조리완료 주문 조회
-    public List<ResponseOrderFinishGetDTO> getFinishOrderAll(){
+    public List<ResponseOrderFinishGetDTO> getOrderFinishAll(){
 
-        return getFinishOrdersBean.exec();
+        return getOrderFinishBean.exec();
 
     }
 
 
 
     // 취소 주문 조회
-    public List<ResponseOrderCancelGetDTO> getCancelOrderAll(){
+    public List<ResponseOrderCancelGetDTO> getOrderCancelAll(){
 
-        return getCancelOrdersBean.exec();
+        return getOrderCancelBean.exec();
 
     }
 

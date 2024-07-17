@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.order.bean.small.CreateOrderFinishGetDTOBean;
-import com.DevTino.festino_admin.order.bean.small.GetFinishOrderDAOBean;
+import com.DevTino.festino_admin.order.bean.small.GetOrderFinishDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderFinishGetDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class GetFinishOrdersBean {
+public class GetOrderFinishBean {
 
-    GetFinishOrderDAOBean getFinishOrderDAOBean;
+    GetOrderFinishDAOBean getOrderFinishDAOBean;
     CreateOrderFinishGetDTOBean createOrderFinishGetDTOBean;
 
     @Autowired
-    public GetFinishOrdersBean(GetFinishOrderDAOBean getFinishOrderDAOBean, CreateOrderFinishGetDTOBean createOrderFinishGetDTOBean){
-        this.getFinishOrderDAOBean = getFinishOrderDAOBean;
+    public GetOrderFinishBean(GetOrderFinishDAOBean getOrderFinishDAOBean, CreateOrderFinishGetDTOBean createOrderFinishGetDTOBean){
+        this.getOrderFinishDAOBean = getOrderFinishDAOBean;
         this.createOrderFinishGetDTOBean = createOrderFinishGetDTOBean;
     }
 
@@ -28,7 +28,7 @@ public class GetFinishOrdersBean {
     public List<ResponseOrderFinishGetDTO> exec(){
 
         // 입금 대기 중인 Order 전체 조회 -> DAO 리스트
-        List<OrderDAO> daoList = getFinishOrderDAOBean.exec();
+        List<OrderDAO> daoList = getOrderFinishDAOBean.exec();
         if (daoList == null) return null;
 
         // 반환할 DTO 리스트 생성

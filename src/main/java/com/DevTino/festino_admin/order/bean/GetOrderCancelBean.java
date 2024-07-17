@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class GetCancelOrdersBean {
+public class GetOrderCancelBean {
 
     GetOrderCancelDAOBean getOrderCancelDAOBean;
     CreateOrderCancelGetDTOBean createOrderCancelGetDTOBean;
 
     @Autowired
-    public GetCancelOrdersBean(GetOrderCancelDAOBean getOrderCancelDAOBean, CreateOrderCancelGetDTOBean createOrderCancelGetDTOBean){
+    public GetOrderCancelBean(GetOrderCancelDAOBean getOrderCancelDAOBean, CreateOrderCancelGetDTOBean createOrderCancelGetDTOBean){
         this.getOrderCancelDAOBean = getOrderCancelDAOBean;
         this.createOrderCancelGetDTOBean = createOrderCancelGetDTOBean;
     }

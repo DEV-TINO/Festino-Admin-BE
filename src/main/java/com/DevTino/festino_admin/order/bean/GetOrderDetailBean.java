@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetDetailOrderBean {
+public class GetOrderDetailBean {
 
     GetOrderDAOBean getOrderDAOBean;
     CreateOrderDetailGetDTOBean createOrderDetailGetDTOBean;
 
     @Autowired
-    public GetDetailOrderBean(GetOrderDAOBean getOrderDAOBean, CreateOrderDetailGetDTOBean createOrderDetailGetDTOBean){
+    public GetOrderDetailBean(GetOrderDAOBean getOrderDAOBean, CreateOrderDetailGetDTOBean createOrderDetailGetDTOBean){
         this.getOrderDAOBean = getOrderDAOBean;
         this.createOrderDetailGetDTOBean = createOrderDetailGetDTOBean;
     }

@@ -27,10 +27,10 @@ public class OrderController {
 
     // 주문 상세 조회
     @GetMapping("/detail")
-    public ResponseEntity<Map<String, Object>> getDetailOrder(@RequestBody RequestOrderDetailGetDTO requestOrderDetailGetDTO){
+    public ResponseEntity<Map<String, Object>> getOrderDetail(@RequestBody RequestOrderDetailGetDTO requestOrderDetailGetDTO){
 
         // 주문 상세 조회 service 실행
-        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getDetailOrder(requestOrderDetailGetDTO);
+        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(requestOrderDetailGetDTO);
 
         // 주문 상세 조회 성공 여부 설정
         boolean success = (responseOrderDetailGetDTO == null) ? false : true;
@@ -50,10 +50,10 @@ public class OrderController {
 
     // 입금대기 주문 조회
     @GetMapping("/wait-deposit")
-    public ResponseEntity<Map<String, Object>> getWaitDepositOrderAll(){
+    public ResponseEntity<Map<String, Object>> getOrderWaitDepositAll(){
 
         // 입금대기 주문 조회 service 실행
-        List<ResponseOrderWaitDepositGetDTO> dtoList = orderService.getWaitDepositOrderAll();
+        List<ResponseOrderWaitDepositGetDTO> dtoList = orderService.getOrderWaitDepositAll();
 
         // 입금대기 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -73,10 +73,10 @@ public class OrderController {
 
     // 조리완료 주문 조회
     @GetMapping("/finish")
-    public ResponseEntity<Map<String, Object>> getFinishOrderAll(){
+    public ResponseEntity<Map<String, Object>> getOrderFinishAll(){
 
         // 조리완료 주문 조회 service 실행
-        List<ResponseOrderFinishGetDTO> dtoList = orderService.getFinishOrderAll();
+        List<ResponseOrderFinishGetDTO> dtoList = orderService.getOrderFinishAll();
 
         // 조리완료 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -96,10 +96,10 @@ public class OrderController {
 
     // 취소 주문 조회
     @GetMapping("/cancel")
-    public ResponseEntity<Map<String, Object>> getCancelOrderAll(){
+    public ResponseEntity<Map<String, Object>> getOrderCancelAll(){
 
         // 취소 주문 조회 service 실행
-        List<ResponseOrderCancelGetDTO> dtoList = orderService.getCancelOrderAll();
+        List<ResponseOrderCancelGetDTO> dtoList = orderService.getOrderCancelAll();
 
         // 취소 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;

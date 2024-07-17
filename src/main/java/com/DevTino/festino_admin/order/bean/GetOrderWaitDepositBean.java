@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.order.bean.small.CreateOrderWaitDepositGetDTOBean;
-import com.DevTino.festino_admin.order.bean.small.GetWaitDepositOrderDAOBean;
+import com.DevTino.festino_admin.order.bean.small.GetOrderWaitDepositDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderWaitDepositGetDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class GetWaitDepositOrdersBean {
+public class GetOrderWaitDepositBean {
 
-    GetWaitDepositOrderDAOBean getWaitDepositOrderDAOBean;
+    GetOrderWaitDepositDAOBean getOrderWaitDepositDAOBean;
     CreateOrderWaitDepositGetDTOBean createOrderWaitDepositGetDTOBean;
 
     @Autowired
-    public GetWaitDepositOrdersBean(GetWaitDepositOrderDAOBean getWaitDepositOrderDAOBean, CreateOrderWaitDepositGetDTOBean createOrderWaitDepositGetDTOBean){
-        this.getWaitDepositOrderDAOBean = getWaitDepositOrderDAOBean;
+    public GetOrderWaitDepositBean(GetOrderWaitDepositDAOBean getOrderWaitDepositDAOBean, CreateOrderWaitDepositGetDTOBean createOrderWaitDepositGetDTOBean){
+        this.getOrderWaitDepositDAOBean = getOrderWaitDepositDAOBean;
         this.createOrderWaitDepositGetDTOBean = createOrderWaitDepositGetDTOBean;
     }
 
@@ -28,7 +28,7 @@ public class GetWaitDepositOrdersBean {
     public List<ResponseOrderWaitDepositGetDTO> exec(){
 
         // 입금 대기 중인 Order 전체 조회 -> DAO 리스트
-        List<OrderDAO> daoList = getWaitDepositOrderDAOBean.exec();
+        List<OrderDAO> daoList = getOrderWaitDepositDAOBean.exec();
         if (daoList == null) return null;
 
         // 반환할 DTO 리스트 생성
