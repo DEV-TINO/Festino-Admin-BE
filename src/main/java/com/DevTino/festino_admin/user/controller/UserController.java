@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.user.controller;
 
-import com.DevTino.festino_admin.user.domain.DTO.RequestUserDeleteDTO;
-import com.DevTino.festino_admin.user.domain.DTO.RequestUserSaveDTO;
-import com.DevTino.festino_admin.user.domain.DTO.RequestUserUpdateDTO;
-import com.DevTino.festino_admin.user.domain.DTO.ResponseUsersGetDTO;
+import com.DevTino.festino_admin.user.domain.DTO.*;
 import com.DevTino.festino_admin.user.domain.UserDAO;
 import com.DevTino.festino_admin.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,7 @@ public class UserController {
     }
 
     // 유저 저장
-    @PostMapping
+    @PostMapping("/join")
     public ResponseEntity<Map<String, Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO){
         UUID userId = userService.saveUser(requestUserSaveDTO);
 
@@ -73,8 +70,8 @@ public class UserController {
     }
 
     // 특정 유저 조회
-    @GetMapping("/{userId}")
-    public ResponseEntity<Map<String, Object>> getUser(@PathVariable UUID userId) {
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> getUser(@RequestParam("userId") UUID userId) {
         UserDAO userDAO = userService.getUser(userId);
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
