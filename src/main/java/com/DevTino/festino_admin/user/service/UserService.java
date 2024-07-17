@@ -1,11 +1,7 @@
 package com.DevTino.festino_admin.user.service;
 
 import com.DevTino.festino_admin.user.bean.*;
-import com.DevTino.festino_admin.user.bean.small.GetUserDAOBean;
-import com.DevTino.festino_admin.user.domain.DTO.RequestUserDeleteDTO;
-import com.DevTino.festino_admin.user.domain.DTO.RequestUserSaveDTO;
-import com.DevTino.festino_admin.user.domain.DTO.RequestUserUpdateDTO;
-import com.DevTino.festino_admin.user.domain.DTO.ResponseUsersGetDTO;
+import com.DevTino.festino_admin.user.domain.DTO.*;
 import com.DevTino.festino_admin.user.domain.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,19 +16,26 @@ public class UserService {
     DeleteUserBean deleteUserBean;
     GetUserBean getUserBean;
     GetUsersBean getUsersBean;
+    CheckUserBean checkUserBean;
 
     @Autowired
-    public UserService(SaveUserBean saveUserBean, UpdateUserBean updateUserBean, DeleteUserBean deleteUserBean, GetUserBean getUserBean, GetUsersBean getUsersBean) {
+    public UserService(SaveUserBean saveUserBean, UpdateUserBean updateUserBean, DeleteUserBean deleteUserBean, GetUserBean getUserBean, GetUsersBean getUsersBean, CheckUserBean checkUserBean) {
         this.saveUserBean = saveUserBean;
         this.updateUserBean = updateUserBean;
         this.deleteUserBean = deleteUserBean;
         this.getUserBean = getUserBean;
         this.getUsersBean = getUsersBean;
+        this.checkUserBean = checkUserBean;
     }
 
     // 유저 저장
     public UUID saveUser(RequestUserSaveDTO requestUserSaveDTO) {
         return saveUserBean.exec(requestUserSaveDTO);
+    }
+
+    // 유저 로그인
+    public Boolean login(RequestUserLoginDTO requestUserLoginDTO) {
+        return checkUserBean.exec(requestUserLoginDTO);
     }
 
     // 유저 수정

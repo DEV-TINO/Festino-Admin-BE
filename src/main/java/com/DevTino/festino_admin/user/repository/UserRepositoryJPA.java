@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface UserRepositoryJPA extends JpaRepository<UserDAO, UUID> {
+    UserDAO findByAdminIdAndPassWord(String adminId, String passWord);
 }
