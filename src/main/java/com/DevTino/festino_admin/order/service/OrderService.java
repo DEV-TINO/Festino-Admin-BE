@@ -14,6 +14,7 @@ public class OrderService {
     GetDetailOrderBean getDetailOrderBean;
     GetWaitDepositOrdersBean getWaitDepositOrdersBean;
     GetFinishOrdersBean getFinishOrdersBean;
+    GetCancelOrdersBean getCancelOrdersBean;
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
@@ -21,10 +22,11 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetDetailOrderBean getDetailOrderBean, GetWaitDepositOrdersBean getWaitDepositOrdersBean, GetFinishOrdersBean getFinishOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(GetDetailOrderBean getDetailOrderBean, GetWaitDepositOrdersBean getWaitDepositOrdersBean, GetFinishOrdersBean getFinishOrdersBean, GetCancelOrdersBean getCancelOrdersBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.getDetailOrderBean = getDetailOrderBean;
         this.getWaitDepositOrdersBean = getWaitDepositOrdersBean;
         this.getFinishOrdersBean = getFinishOrdersBean;
+        this.getCancelOrdersBean = getCancelOrdersBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
@@ -56,6 +58,15 @@ public class OrderService {
     public List<ResponseOrderFinishGetDTO> getFinishOrderAll(){
 
         return getFinishOrdersBean.exec();
+
+    }
+
+
+
+    // 취소 주문 조회
+    public List<ResponseOrderCancelGetDTO> getCancelOrderAll(){
+
+        return getCancelOrdersBean.exec();
 
     }
 
