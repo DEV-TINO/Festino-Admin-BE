@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -31,10 +33,15 @@ public class UpdateFoodBoothBean {
         FoodBoothDAO foodBoothDAO = getFoodBoothDAOBean.exec(requestFoodBoothUpdateDTO.getBoothId());
         if(foodBoothDAO == null) return null;
 
+        // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
+        List<String> boothImage = new ArrayList<>();
+        if (requestFoodBoothUpdateDTO.getBoothImage() != null)
+            boothImage = requestFoodBoothUpdateDTO.getBoothImage();
+
         // DAO 수정
         foodBoothDAO.setBoothName(requestFoodBoothUpdateDTO.getBoothName());
         foodBoothDAO.setBoothIntro(requestFoodBoothUpdateDTO.getBoothIntro());
-        foodBoothDAO.setBoothImage(requestFoodBoothUpdateDTO.getBoothImage());
+        foodBoothDAO.setBoothImage(boothImage);
         foodBoothDAO.setAdminName(requestFoodBoothUpdateDTO.getAdminName());
         foodBoothDAO.setAdminCategory(requestFoodBoothUpdateDTO.getAdminCategory());
         foodBoothDAO.setOpenTime(requestFoodBoothUpdateDTO.getOpenTime());

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -27,9 +29,14 @@ public class UpdateNightBoothBean {
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothUpdateDTO.getBoothId());
         if(nightBoothDAO == null) return null;
 
+        // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
+        List<String> boothImage = new ArrayList<>();
+        if (requestNightBoothUpdateDTO.getBoothImage() != null)
+            boothImage = requestNightBoothUpdateDTO.getBoothImage();
+
         // DAO 수정
         nightBoothDAO.setBoothName(requestNightBoothUpdateDTO.getBoothName());
-        nightBoothDAO.setBoothImage(requestNightBoothUpdateDTO.getBoothImage());
+        nightBoothDAO.setBoothImage(boothImage);
         nightBoothDAO.setBoothIntro(requestNightBoothUpdateDTO.getBoothIntro());
         nightBoothDAO.setAdminName(requestNightBoothUpdateDTO.getAdminName());
         nightBoothDAO.setAdminCategory(requestNightBoothUpdateDTO.getAdminCategory());
