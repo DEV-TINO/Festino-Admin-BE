@@ -1,6 +1,6 @@
 package com.DevTino.festino_admin.order.bean.small;
 
-import com.DevTino.festino_admin.order.domain.DTO.ResponseWaitDepositOrderGetDTO;
+import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderWaitDepositGetDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 public class CreateOrderWaitDepositGetDTOBean {
 
     // DTO 생성해 반환
-    public ResponseWaitDepositOrderGetDTO exec(OrderDAO orderDAO){
+    public ResponseOrderWaitDepositGetDTO exec(OrderDAO orderDAO){
 
-        return ResponseWaitDepositOrderGetDTO.builder()
+        return ResponseOrderWaitDepositGetDTO.builder()
                 .orderId(orderDAO.getOrderId())
                 .orderNum(orderDAO.getOrderNum())
                 .tableNum(orderDAO.getTableNum())

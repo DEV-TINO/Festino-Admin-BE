@@ -35,16 +35,16 @@ public class OrderService {
 
 
     // 주문 상세 조회
-    public ResponseDetailOrderGetDTO getDetailOrder(RequestDetailOrderGetDTO requestDetailOrderGetDTO){
+    public ResponseOrderDetailGetDTO getDetailOrder(RequestOrderDetailGetDTO requestOrderDetailGetDTO){
 
-        return getDetailOrderBean.exec(requestDetailOrderGetDTO);
+        return getDetailOrderBean.exec(requestOrderDetailGetDTO);
 
     }
 
 
 
     // 입금대기 주문 조회
-    public List<ResponseWaitDepositOrderGetDTO> getWaitDepositOrderAll(){
+    public List<ResponseOrderWaitDepositGetDTO> getWaitDepositOrderAll(){
 
         return getWaitDepositOrdersBean.exec();
 
@@ -53,7 +53,7 @@ public class OrderService {
 
 
     // 조리완료 주문 조회
-    public List<ResponseFinishOrderGetDTO> getFinishOrderAll(){
+    public List<ResponseOrderFinishGetDTO> getFinishOrderAll(){
 
         return getFinishOrdersBean.exec();
 

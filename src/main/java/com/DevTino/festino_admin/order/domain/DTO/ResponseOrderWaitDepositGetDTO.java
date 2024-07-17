@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseDetailOrderGetDTO {
+public class ResponseOrderWaitDepositGetDTO {
 
     UUID orderId;
     Integer orderNum;
