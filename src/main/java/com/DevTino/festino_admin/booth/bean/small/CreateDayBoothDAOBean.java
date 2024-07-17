@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +19,9 @@ public class CreateDayBoothDAOBean {
 
         // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
         List<String> boothImage = new ArrayList<>();
-        if (requestDayBoothSaveDTO.getBoothImage() != null)
+        if (requestDayBoothSaveDTO.getBoothImage() == null)
+            boothImage = Collections.singletonList("");
+        else
             boothImage = requestDayBoothSaveDTO.getBoothImage();
 
         return DayBoothDAO.builder()
