@@ -96,7 +96,7 @@ public class OrderController {
 
 
     // 입금대기 주문 조회
-    @GetMapping("/wait-deposit")
+    @GetMapping("/deposit/all")
     public ResponseEntity<Map<String, Object>> getOrderWaitDepositAll(){
 
         // 입금대기 주문 조회 service 실행
@@ -119,7 +119,7 @@ public class OrderController {
 
 
     // 조리완료 주문 조회
-    @GetMapping("/finish")
+    @GetMapping("/finish/all")
     public ResponseEntity<Map<String, Object>> getOrderFinishAll(){
 
         // 조리완료 주문 조회 service 실행
@@ -142,7 +142,7 @@ public class OrderController {
 
 
     // 취소 주문 조회
-    @GetMapping("/cancel")
+    @GetMapping("/cancel/all")
     public ResponseEntity<Map<String, Object>> getOrderCancelAll(){
 
         // 취소 주문 조회 service 실행
