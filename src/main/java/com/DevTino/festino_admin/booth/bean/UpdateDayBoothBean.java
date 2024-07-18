@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -26,8 +29,15 @@ public class UpdateDayBoothBean {
         DayBoothDAO dayBoothDAO = getDayBoothDAOBean.exec(requestDayBoothUpdateDTO.getBoothId());
         if(dayBoothDAO == null) return null;
 
+        // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
+        List<String> boothImage = new ArrayList<>();
+        if (requestDayBoothUpdateDTO.getBoothImage() == null)
+            boothImage = Collections.singletonList("");
+        else
+            boothImage = requestDayBoothUpdateDTO.getBoothImage();
+
         // DAO 수정
-        dayBoothDAO.setBoothImage(requestDayBoothUpdateDTO.getBoothImage());
+        dayBoothDAO.setBoothImage(boothImage);
         dayBoothDAO.setBoothIntro(requestDayBoothUpdateDTO.getBoothIntro());
         dayBoothDAO.setBoothName(requestDayBoothUpdateDTO.getBoothName());
         dayBoothDAO.setOpenTime(requestDayBoothUpdateDTO.getOpenTime());
