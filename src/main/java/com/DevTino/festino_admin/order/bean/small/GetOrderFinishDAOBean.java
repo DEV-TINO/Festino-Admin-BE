@@ -20,10 +20,10 @@ public class GetOrderFinishDAOBean {
 
 
 
-    // 조리완료 상태인 Order 전체 검색
+    // 조리완료 상태인 Order 최신순 전체 조회
     public List<OrderDAO> exec(){
 
-        return orderRepositoryJPA.findByOrderType(OrderType.FINISH);
+        return orderRepositoryJPA.findByOrderTypeOrderByCreateAtDesc(OrderType.FINISH);
 
     }
 

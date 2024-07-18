@@ -20,10 +20,10 @@ public class GetOrderCancelDAOBean {
 
 
 
-    // 취소 상태인 Order 전체 검색
+    // 취소 상태인 Order 최신순 전체 조회
     public List<OrderDAO> exec(){
 
-        return orderRepositoryJPA.findByOrderType(OrderType.CANCEL);
+        return orderRepositoryJPA.findByOrderTypeOrderByCreateAtDesc(OrderType.CANCEL);
 
     }
 
