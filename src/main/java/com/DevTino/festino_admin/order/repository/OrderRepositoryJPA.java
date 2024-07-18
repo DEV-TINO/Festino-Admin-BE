@@ -9,6 +9,9 @@ import java.util.UUID;
 
 public interface OrderRepositoryJPA extends JpaRepository<OrderDAO, UUID> {
 
+    // 전체 주문 최신순 검색
+    public List<OrderDAO> findByOrderByCreateAtDesc();
+
     // 입금대기 중인 주문 검색
     public List<OrderDAO> findByIsDeposit(Boolean isDeposit);
 
