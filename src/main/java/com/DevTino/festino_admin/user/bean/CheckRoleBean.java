@@ -19,7 +19,6 @@ public class CheckRoleBean {
 
     public UserDAO exec() {
         String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(userId);
         return getUserDAOBean.exec(UUID.fromString(userId));
     }
 }
