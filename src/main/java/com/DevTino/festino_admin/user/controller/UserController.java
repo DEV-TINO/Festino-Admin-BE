@@ -53,7 +53,7 @@ public class UserController {
         requestMap.put("message", accessToken == null ? "user login failure" : "user login success");
 
         Cookie cookie = new Cookie("access_token", accessToken);
-        cookie.setMaxAge(60*60*24*7);
+        cookie.setMaxAge(60*60*24);
         cookie.setHttpOnly(true);
         cookie.setPath("/");
 
