@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin("*")
+// @CrossOrigin("*")
 @RequestMapping("/admin/booth/food")
 public class FoodBoothController {
     FoodBoothService foodBoothService;

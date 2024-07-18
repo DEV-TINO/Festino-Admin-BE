@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "*")
+// @CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/admin/club/show")
 public class ClubShowController {
 
