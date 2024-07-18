@@ -26,7 +26,7 @@ public class GetOrderFinishBean {
     // 조리완료 주문 조회
     public List<ResponseOrderFinishGetDTO> exec(){
 
-        // 입금 대기 중인 Order 최신순 전체 조회 -> DAO 리스트
+        // 조리완료 상태인 Order 최신순 전체 조회 -> DAO 리스트
         List<OrderDAO> daoList = getOrderFinishDAOBean.exec();
         if (daoList == null) return null;
 
