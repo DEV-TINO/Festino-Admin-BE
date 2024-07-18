@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseOrderDeleteRestoreDTO {
+public class ResponseOrderDeleteRestoreUpdateDTO {
 
     UUID orderId;
     String orderType;

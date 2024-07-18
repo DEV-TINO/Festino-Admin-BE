@@ -1,6 +1,6 @@
 package com.DevTino.festino_admin.order.bean.small;
 
-import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderDeleteRestoreDTO;
+import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderDeleteRestoreUpdateDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 public class CreateOrderDeleteRestoreUpdateDTOBean {
 
     // 주문 취소 복구 DTO 생성해 반환
-    public ResponseOrderDeleteRestoreDTO exec(OrderDAO orderDAO){
+    public ResponseOrderDeleteRestoreUpdateDTO exec(OrderDAO orderDAO){
 
-        return ResponseOrderDeleteRestoreDTO.builder()
+        return ResponseOrderDeleteRestoreUpdateDTO.builder()
                 .orderId(orderDAO.getOrderId())
                 .orderType(orderDAO.getOrderType().name())
                 .build();

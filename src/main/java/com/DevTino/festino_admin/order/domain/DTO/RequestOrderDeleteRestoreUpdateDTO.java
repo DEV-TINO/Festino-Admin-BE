@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class RequestOrderDeleteRestoreDTO {
+public class RequestOrderDeleteRestoreUpdateDTO {
 
     UUID orderId;
     String orderType;

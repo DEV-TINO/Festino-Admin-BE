@@ -185,19 +185,19 @@ public class OrderController {
 
     // 주문 취소 복구
     @PutMapping("/cancel/restore")
-    public ResponseEntity<Map<String, Object>> updateOrderDeleteRestore(@RequestBody RequestOrderDeleteRestoreDTO requestOrderDeleteRestoreDTO){
+    public ResponseEntity<Map<String, Object>> updateOrderDeleteRestore(@RequestBody RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
 
         // 주문 취소 복구 service 실행
-        ResponseOrderDeleteRestoreDTO responseOrderDeleteRestoreDTO = orderService.updateOrderDeleteRestore(requestOrderDeleteRestoreDTO);
+        ResponseOrderDeleteRestoreUpdateDTO responseOrderDeleteRestoreUpdateDTO = orderService.updateOrderDeleteRestore(requestOrderDeleteRestoreUpdateDTO);
 
         // 주문 취소 복구 성공 여부 설정
-        boolean success = (responseOrderDeleteRestoreDTO == null) ? false : true;
+        boolean success = (responseOrderDeleteRestoreUpdateDTO == null) ? false : true;
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "주문 취소 복구 성공" : "주문 취소 시 DAO 검색 실패 또는 OrderType 불일치");
-        requestMap.put("restoreInfo", responseOrderDeleteRestoreDTO);
+        requestMap.put("restoreInfo", responseOrderDeleteRestoreUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
