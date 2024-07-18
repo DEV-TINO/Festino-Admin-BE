@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -49,11 +50,11 @@ public class OrderController {
 
 
     // 주문 상세 조회
-    @GetMapping("/detail")
-    public ResponseEntity<Map<String, Object>> getOrderDetail(@RequestBody RequestOrderDetailGetDTO requestOrderDetailGetDTO){
+    @GetMapping("/{orderId}")
+    public ResponseEntity<Map<String, Object>> getOrderDetail(@PathVariable UUID orderId){
 
         // 주문 상세 조회 service 실행
-        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(requestOrderDetailGetDTO);
+        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(orderId);
 
         // 주문 상세 조회 성공 여부 설정
         boolean success = (responseOrderDetailGetDTO == null) ? false : true;

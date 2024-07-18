@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -50,9 +51,9 @@ public class OrderService {
 
 
     // 주문 상세 조회
-    public ResponseOrderDetailGetDTO getOrderDetail(RequestOrderDetailGetDTO requestOrderDetailGetDTO){
+    public ResponseOrderDetailGetDTO getOrderDetail(UUID orderId){
 
-        return getOrderDetailBean.exec(requestOrderDetailGetDTO);
+        return getOrderDetailBean.exec(orderId);
 
     }
 
