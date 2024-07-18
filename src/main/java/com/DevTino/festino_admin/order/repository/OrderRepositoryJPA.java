@@ -17,5 +17,8 @@ public interface OrderRepositoryJPA extends JpaRepository<OrderDAO, UUID> {
 
     // OrderType으로 주문 최신순 검색
     public List<OrderDAO> findByOrderTypeOrderByCreateAtDesc(OrderType orderType);
+
+    // isDeposit, OrderType으로 주문 최신순 검색
+    public List<OrderDAO> findByIsDepositAndOrderTypeOrderByCreateAtDesc(Boolean isDeposit, OrderType orderType);
     
 }

@@ -25,6 +25,29 @@ public class OrderController {
 
 
 
+    // 테이블 주문 현황 조회
+    @GetMapping("/table")
+    public ResponseEntity<Map<String, Object>> getOrderTable(){
+
+        // 테이블 주문 현황 조회 service 실행
+        List<ResponseOrderTableGetDTO> responseOrderTableGetDTO = orderService.getOrderTable();
+
+        // 테이블 주문 현황 조회 성공 여부 설정
+        boolean success = (responseOrderTableGetDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "테이블 주문 현황 조회 성공" : "테이블 주문 현황 조회 시 DAO 검색 실패");
+        requestMap.put("orders", responseOrderTableGetDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
     // 주문 상세 조회
     @GetMapping("/detail")
     public ResponseEntity<Map<String, Object>> getOrderDetail(@RequestBody RequestOrderDetailGetDTO requestOrderDetailGetDTO){

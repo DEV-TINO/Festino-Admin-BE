@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class OrderService {
 
+    GetOrderTableBean getOrderTableBean;
     GetOrderDetailBean getOrderDetailBean;
     GetOrderAllBean getOrderAllBean;
     GetOrderWaitDepositBean getOrderWaitDepositBean;
@@ -23,7 +24,8 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+        this.getOrderTableBean = getOrderTableBean;
         this.getOrderDetailBean = getOrderDetailBean;
         this.getOrderAllBean = getOrderAllBean;
         this.getOrderWaitDepositBean = getOrderWaitDepositBean;
@@ -34,6 +36,15 @@ public class OrderService {
         this.updateOrderDepositBean = updateOrderDepositBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
         this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
+    }
+
+
+
+    // 테이블 주문 현황 조회
+    public List<ResponseOrderTableGetDTO> getOrderTable(){
+
+        return getOrderTableBean.exec();
+
     }
 
 
