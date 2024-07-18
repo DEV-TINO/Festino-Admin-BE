@@ -2,6 +2,7 @@ package com.DevTino.festino_admin.booth.domain.DTO;
 
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -11,7 +12,7 @@ public class RequestNightBoothUpdateDTO {
     String adminName;
     String adminCategory;
     String boothIntro;
-    String boothImage;
+    List<String> boothImage;
     String openTime;
     String closeTime;
     String location;

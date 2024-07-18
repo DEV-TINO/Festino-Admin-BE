@@ -27,13 +27,20 @@ public class UpdateMenuBean {
         MenuDAO menuDAO = getMenuDAOBean.exec(requestMenuUpdateDTO.getMenuId(), requestMenuUpdateDTO.getBoothId());
         if(menuDAO == null) return null;
 
+        // 메뉴 이미지 넣지 않았을때 빈값으로 넣어주는 예외처리
+        String image = "";
+        if (requestMenuUpdateDTO.getMenuImage() != null)
+            image = requestMenuUpdateDTO.getMenuImage();
+
         // 찾은 DAO 수정
         menuDAO.setBoothId(requestMenuUpdateDTO.getBoothId());
-        menuDAO.setMenuImage(requestMenuUpdateDTO.getMenuImage());
+        menuDAO.setMenuImage(image);
         menuDAO.setMenuDescription(requestMenuUpdateDTO.getMenuDescription());
         menuDAO.setMenuName(requestMenuUpdateDTO.getMenuName());
         menuDAO.setMenuPrice(requestMenuUpdateDTO.getMenuPrice());
         menuDAO.setIsSoldOut(requestMenuUpdateDTO.getIsSoldOut());
+
+        menuDAO.setMenuType(requestMenuUpdateDTO.getMenuType());
 
         menuDAO.setUpdateAt(LocalDateTime.now());
 

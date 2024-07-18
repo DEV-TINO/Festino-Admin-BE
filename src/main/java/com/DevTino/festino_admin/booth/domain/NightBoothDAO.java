@@ -1,10 +1,13 @@
 package com.DevTino.festino_admin.booth.domain;
 
+import com.DevTino.festino_admin.booth.others.StringConverter;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,7 +24,9 @@ public class NightBoothDAO {
     String adminName;
     String adminCategory;
     String boothIntro;
-    String boothImage;
+
+    @Convert(converter = StringConverter.class)
+    List<String> boothImage;
     String openTime;
     String closeTime;
     String location;

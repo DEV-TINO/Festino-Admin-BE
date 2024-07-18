@@ -1,13 +1,11 @@
 package com.DevTino.festino_admin.booth.service;
 
-import com.DevTino.festino_admin.booth.bean.GetDayBoothBean;
-import com.DevTino.festino_admin.booth.bean.SaveDayBoothBean;
-import com.DevTino.festino_admin.booth.bean.UpdateDayBoothBean;
-import com.DevTino.festino_admin.booth.bean.UpdateDayBoothOpenBean;
+import com.DevTino.festino_admin.booth.bean.*;
 import com.DevTino.festino_admin.booth.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,13 +14,15 @@ public class DayBoothService {
     UpdateDayBoothBean updateDayBoothBean;
     UpdateDayBoothOpenBean updateDayBoothOpenBean;
     GetDayBoothBean getDayBoothBean;
+    GetDayBoothsBean getDayBoothsBean;
 
     @Autowired
-    public DayBoothService(SaveDayBoothBean saveDayBoothBean, UpdateDayBoothBean updateDayBoothBean, UpdateDayBoothOpenBean updateDayBoothOpenBean, GetDayBoothBean getDayBoothBean) {
+    public DayBoothService(SaveDayBoothBean saveDayBoothBean, UpdateDayBoothBean updateDayBoothBean, UpdateDayBoothOpenBean updateDayBoothOpenBean, GetDayBoothBean getDayBoothBean, GetDayBoothsBean getDayBoothsBean) {
         this.saveDayBoothBean = saveDayBoothBean;
         this.updateDayBoothBean = updateDayBoothBean;
         this.updateDayBoothOpenBean = updateDayBoothOpenBean;
         this.getDayBoothBean = getDayBoothBean;
+        this.getDayBoothsBean = getDayBoothsBean;
     }
 
     // 주간부스 등록
@@ -43,5 +43,10 @@ public class DayBoothService {
     // 주간부스 조회
     public ResponseDayBoothGetDTO getDayBooth(UUID boothId) {
         return getDayBoothBean.exec(boothId);
+    }
+
+    // 주간부스 전체조회
+    public List<ResponseDayBoothsGetDTO> getDayBoothAll() {
+        return getDayBoothsBean.exec();
     }
 }

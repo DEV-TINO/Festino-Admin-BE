@@ -25,4 +25,5 @@ public class MenuDAO {
     Boolean isSoldOut;
     LocalDateTime createAt;
     LocalDateTime updateAt;
+    MenuType menuType;
 }

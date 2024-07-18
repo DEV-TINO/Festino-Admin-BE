@@ -36,10 +36,15 @@ public class UpdateNoticeBean {
         NoticeDAO noticeDAO = getNoticeDAOBean.exec(requestNoticeUpdateDTO.getNoticeId());
         if (noticeDAO == null) return null;
 
+        // 공지 이미지를 넣지 않았을 때 빈값으로 저장
+        String imageUrl = "";
+        if (requestNoticeUpdateDTO.getImageUrl() != null)
+            imageUrl = requestNoticeUpdateDTO.getImageUrl();
+
         // DAO 수정
         noticeDAO.setTitle(requestNoticeUpdateDTO.getTitle());
         noticeDAO.setWriterName(requestNoticeUpdateDTO.getWriterName());
-        noticeDAO.setImageUrl(requestNoticeUpdateDTO.getImageUrl());
+        noticeDAO.setImageUrl(imageUrl);
         noticeDAO.setContent(requestNoticeUpdateDTO.getContent());
         noticeDAO.setIsPin(requestNoticeUpdateDTO.getIsPin());
 
