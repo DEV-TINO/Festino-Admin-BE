@@ -1,25 +1,24 @@
 package com.DevTino.festino_admin.order.bean;
 
-import com.DevTino.festino_admin.order.bean.small.CreateOrderAllGetDTOBean;
+import com.DevTino.festino_admin.order.bean.small.CreateOrderAllGetDTOsBean;
 import com.DevTino.festino_admin.order.bean.small.GetOrdersDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderAllGetDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class GetOrderAllBean {
 
     GetOrdersDAOBean getOrdersDAOBean;
-    CreateOrderAllGetDTOBean createOrderAllGetDTOBean;
+    CreateOrderAllGetDTOsBean createOrderAllGetDTOsBean;
 
     @Autowired
-    public GetOrderAllBean(GetOrdersDAOBean getOrdersDAOBean, CreateOrderAllGetDTOBean createOrderAllGetDTOBean){
+    public GetOrderAllBean(GetOrdersDAOBean getOrdersDAOBean, CreateOrderAllGetDTOsBean createOrderAllGetDTOsBean){
         this.getOrdersDAOBean = getOrdersDAOBean;
-        this.createOrderAllGetDTOBean = createOrderAllGetDTOBean;
+        this.createOrderAllGetDTOsBean = createOrderAllGetDTOsBean;
     }
 
 
@@ -31,18 +30,8 @@ public class GetOrderAllBean {
         List<OrderDAO> daoList = getOrdersDAOBean.exec();
         if (daoList == null) return null;
 
-        // 반환할 DTO 리스트 생성
-        List<ResponseOrderAllGetDTO> dtoList = new ArrayList<>();
-
-        // DAO 리스트를 DTO 리스트로 변환
-        for (OrderDAO orderDAO : daoList){
-
-            dtoList.add(createOrderAllGetDTOBean.exec(orderDAO));
-
-        }
-
-        // 생성된 DTO 리스트 반환
-        return dtoList;
+        // DAO 리스트를 DTO 리스트로 변환해 리턴
+        return createOrderAllGetDTOsBean.exec(daoList);
 
     }
 
