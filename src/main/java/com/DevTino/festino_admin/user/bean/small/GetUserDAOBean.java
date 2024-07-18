@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.user.bean.small;
 
+import com.DevTino.festino_admin.user.domain.DTO.RequestUserLoginDTO;
 import com.DevTino.festino_admin.user.domain.UserDAO;
 import com.DevTino.festino_admin.user.repository.UserRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,10 @@ public class GetUserDAOBean {
     // id로 특정 유저 조회
     public UserDAO exec(UUID userId) {
         return userRepositoryJPA.findById(userId).orElse(null);
+    }
+
+    // adminId와 passWord로 특정 유저 조회
+    public UserDAO exec(RequestUserLoginDTO requestUserLoginDTO) {
+        return userRepositoryJPA.findByAdminIdAndPassWord(requestUserLoginDTO.getAdminId(), requestUserLoginDTO.getPassWord());
     }
 }

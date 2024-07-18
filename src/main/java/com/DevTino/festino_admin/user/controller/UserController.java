@@ -1,8 +1,13 @@
 package com.DevTino.festino_admin.user.controller;
 
 import com.DevTino.festino_admin.user.domain.DTO.*;
+import com.DevTino.festino_admin.user.domain.RoleType;
 import com.DevTino.festino_admin.user.domain.UserDAO;
+import com.DevTino.festino_admin.user.jwt.JwtFilter;
 import com.DevTino.festino_admin.user.service.UserService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +31,7 @@ public class UserController {
 
     // 유저 저장
     @PostMapping("/join")
-    public ResponseEntity<Map<String, Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO){
+    public ResponseEntity<Map<String, Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO) {
         UUID userId = userService.saveUser(requestUserSaveDTO);
 
         // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
@@ -39,9 +44,30 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
+    // 유저 로그인
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody RequestUserLoginDTO requestUserLoginDTO, HttpServletResponse response) {
+        String accessToken = userService.login(requestUserLoginDTO);
+
+        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", accessToken != null);
+        requestMap.put("message", accessToken == null ? "user login failure" : "user login success");
+
+        Cookie cookie = new Cookie("access_token", accessToken);
+        cookie.setMaxAge(60*60*24*7);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+
+        response.addCookie(cookie);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
     // 유저 수정
     @PutMapping
-    public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO) {
         UUID userId = userService.updateUser(requestUserUpdateDTO);
 
         // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
@@ -56,7 +82,7 @@ public class UserController {
 
     // 유저 삭제
     @DeleteMapping
-    public ResponseEntity<Map<String, Object>> deleteUser(@RequestBody RequestUserDeleteDTO requestUserDeleteDTO){
+    public ResponseEntity<Map<String, Object>> deleteUser(@RequestBody RequestUserDeleteDTO requestUserDeleteDTO) {
         boolean success = userService.deleteUser(requestUserDeleteDTO);
 
         // Map 이용해서 success, 메시지 값 json 데이터로 변환
@@ -94,6 +120,21 @@ public class UserController {
         requestMap.put("success", !userList.isEmpty());
         requestMap.put("message", userList.isEmpty() ? "doesn't exist user" : "success get users");
         requestMap.put("noticeList", userList.isEmpty() ? null : userList);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // role 확인
+    @PostMapping("/role")
+    public ResponseEntity<Map<String, Object>> checkRole() {
+        UserDAO userDAO = userService.checkRole();
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", userDAO != null);
+        requestMap.put("message", userDAO == null ? "doesn't exist user" : "user exist");
+        requestMap.put("role", userDAO == null ? null : userDAO.getRole() == RoleType.ADMIN);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
