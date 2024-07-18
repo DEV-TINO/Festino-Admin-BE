@@ -27,7 +27,7 @@ public class GetOrderWaitDepositBean {
     // 입금대기 주문 조회
     public List<ResponseOrderWaitDepositGetDTO> exec(){
 
-        // 입금 대기 중인 Order 전체 조회 -> DAO 리스트
+        // 입금 대기 중인 Order 최신순 전체 조회 -> DAO 리스트
         List<OrderDAO> daoList = getOrderWaitDepositDAOBean.exec();
         if (daoList == null) return null;
 

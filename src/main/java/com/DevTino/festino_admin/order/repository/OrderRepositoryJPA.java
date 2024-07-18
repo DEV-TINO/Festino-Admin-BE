@@ -13,7 +13,7 @@ public interface OrderRepositoryJPA extends JpaRepository<OrderDAO, UUID> {
     public List<OrderDAO> findByOrderByCreateAtDesc();
 
     // 입금대기 중인 주문 검색
-    public List<OrderDAO> findByIsDeposit(Boolean isDeposit);
+    public List<OrderDAO> findByIsDepositOrderByCreateAtDesc(Boolean isDeposit);
 
     // 조리완료 주문 검색
     public List<OrderDAO> findByOrderType(OrderType orderType);
