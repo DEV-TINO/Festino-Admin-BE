@@ -9,6 +9,6 @@ import java.util.List;
 @Builder
 public class ResponseReservationsGetDTO {
     List<ResponseReservationGetDTO> ReservationList;
-    Integer reserveNum;
+    Integer totalReservationNum;
     Boolean isReservation;
 }

@@ -52,7 +52,7 @@ public class CreateReservationsDTOBean {
                 .isReservation(getNightBoothDAOBean.exec(boothId).getIsReservation())
 
                 // 총 예약수
-                .reserveNum(responseReservationGetDTOList.size())
+                .totalReservationNum(getNightBoothDAOBean.exec(boothId).getTotalReservationNum())
                 .build();
     }
 }
