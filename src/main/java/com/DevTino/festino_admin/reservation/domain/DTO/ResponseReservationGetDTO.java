@@ -15,4 +15,5 @@ public class ResponseReservationGetDTO {
     String phoneNum;
     LocalDateTime updateAt;
     Boolean isCancel;
+    Integer reservationNum;
 }

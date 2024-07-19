@@ -37,12 +37,13 @@ public class CreateReservationsDTOBean {
                     .phoneNum(reservationDAO.getPhoneNum())
                     .updateAt(reservationDAO.getUpdateAt())
                     .isCancel(reservationDAO.getIsCancel())
+                    .reservationNum(reservationDAO.getReservationNum())
                     .build();
 
             // 예약 DTO 리스트에 각 DTO 추가
             responseReservationGetDTOList.add(responseReservationGetDTO);
         }
-        
+
         // 예약 리스트, 예약가능 여부, 총 예약수를 묶은 DTO 생성 후 반환
         return ResponseReservationsGetDTO.builder()
                 // 예약 리스트
