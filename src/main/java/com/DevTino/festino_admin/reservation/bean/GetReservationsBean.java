@@ -23,7 +23,9 @@ public class GetReservationsBean {
 
     // 예약 전체 조회
     public ResponseReservationsGetDTO exec(UUID boothId, String type) {
-        // boothId를 통해 원하는 부스의 전체 예약 DAO 오래된 순서로 찾기(삭제된 예약인지 아닌지 type(all/cancel) 으로 구별하여 찾기)
+        // boothId를 통해 원하는 부스의 전체 예약 DAO 오래된 순서로 찾기
+        // 삭제된 예약인지 아닌지 type(all/cancel) 으로 구별하여 찾기
+        // date를 통해 날짜를 구분해 조회
         List<ReservationDAO> reservationDAOList = getReservationsDAOBean.exec(boothId, type);
         if(reservationDAOList.isEmpty()) return null;
 

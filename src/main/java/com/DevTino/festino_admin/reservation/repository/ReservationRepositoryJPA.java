@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ReservationRepositoryJPA extends JpaRepository<ReservationDAO, UUID> {
     // boothId를 통해 오래된 순으로 전체 예약 찾기
-    List<ReservationDAO> findAllByBoothIdAndIsCancelOrderByUpdateAtAsc(UUID boothId ,Boolean isCancel);
+    List<ReservationDAO> findAllByBoothIdAndIsCancelAndDateOrderByUpdateAtAsc(UUID boothId ,Boolean isCancel, Integer date);
 
     // reservationId와 boothId를 통해 원하는 객체 찾기
     ReservationDAO findByReservationIdAndBoothId(UUID reservationId, UUID boothId);
