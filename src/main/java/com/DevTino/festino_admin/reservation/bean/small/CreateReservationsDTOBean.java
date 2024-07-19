@@ -36,7 +36,6 @@ public class CreateReservationsDTOBean {
                     .personCount(reservationDAO.getPersonCount())
                     .phoneNum(reservationDAO.getPhoneNum())
                     .updateAt(reservationDAO.getUpdateAt())
-                    .isCancel(reservationDAO.getIsCancel())
                     .reservationNum(reservationDAO.getReservationNum())
                     .build();
 
