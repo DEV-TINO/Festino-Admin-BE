@@ -27,4 +27,13 @@ public class GetCooksDAOBean {
 
     }
 
+
+
+    // menuName, isFinish로 Cook 최신순 전체 조회
+    public List<CookDAO> exec(String menuName, Boolean isFinish){
+
+        return cookRepositoryJPA.findByMenuNameAndIsFinishOrderByCreateAtDesc(menuName, isFinish);
+
+    }
+
 }
