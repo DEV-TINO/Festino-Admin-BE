@@ -27,6 +27,7 @@ public class OrderDAO {
     OrderType orderType;
     Integer orderNum;
     Integer tableNum;
+    Integer date;
     String userName;
     String phoneNum;
 
