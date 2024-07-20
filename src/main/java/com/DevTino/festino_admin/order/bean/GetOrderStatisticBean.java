@@ -29,7 +29,7 @@ public class GetOrderStatisticBean {
 
         // boothId로 해당 부스의 메뉴 검색
         List<MenuDAO> menuDAOList = getMenusDAOBean.exec(boothId);
-        if (menuDAOList.size() == 0) return null;
+        if (menuDAOList.isEmpty()) return null;
 
         // 메뉴별 통계와 총매출 계산 -> DTO 생성해 반환
         return createOrderStatisticGetDTOBean.exec(date, menuDAOList);
