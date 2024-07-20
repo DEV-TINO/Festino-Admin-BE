@@ -95,6 +95,29 @@ public class OrderController {
 
 
 
+    // 실시간 주문 조회
+    @GetMapping("/now/all")
+    public ResponseEntity<Map<String, Object>> getOrderNowAll(@PathVariable UUID boothId){
+
+        // 실시간 주문 조회 service 실행
+        ResponseOrderNowGetDTO responseOrderNowGetDTO = orderService.getOrderNowAll(boothId);
+
+        // 실시간 주문 조회 성공 여부 설정
+        boolean success = (responseOrderNowGetDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "실시간 주문 조회 성공" : "실시간 주문 조회 시 DAO 검색 실패");
+        requestMap.put("orders", responseOrderNowGetDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
     // 입금대기 주문 조회
     @GetMapping("/deposit/all")
     public ResponseEntity<Map<String, Object>> getOrderWaitDepositAll(){

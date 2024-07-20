@@ -15,6 +15,7 @@ public class OrderService {
     GetOrderTableBean getOrderTableBean;
     GetOrderDetailBean getOrderDetailBean;
     GetOrderAllBean getOrderAllBean;
+    GetOrderNowBean getOrderNowBean;
     GetOrderWaitDepositBean getOrderWaitDepositBean;
     GetOrderCookingBean getOrderCookingBean;
     GetOrderFinishBean getOrderFinishBean;
@@ -26,10 +27,11 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderCookingBean getOrderCookingBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderNowBean getOrderNowBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderCookingBean getOrderCookingBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.getOrderTableBean = getOrderTableBean;
         this.getOrderDetailBean = getOrderDetailBean;
         this.getOrderAllBean = getOrderAllBean;
+        this.getOrderNowBean = getOrderNowBean;
         this.getOrderWaitDepositBean = getOrderWaitDepositBean;
         this.getOrderCookingBean = getOrderCookingBean;
         this.getOrderFinishBean = getOrderFinishBean;
@@ -65,6 +67,15 @@ public class OrderService {
     public List<ResponseOrderAllGetDTO> getOrderAll(){
 
         return getOrderAllBean.exec();
+
+    }
+
+
+
+    // 실시간 주문 조회
+    public ResponseOrderNowGetDTO getOrderNowAll(UUID boothId){
+
+        return getOrderNowBean.exec(boothId);
 
     }
 
