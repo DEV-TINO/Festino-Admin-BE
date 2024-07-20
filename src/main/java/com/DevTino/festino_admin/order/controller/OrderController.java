@@ -210,6 +210,29 @@ public class OrderController {
 
 
 
+    // 주문 통계 조회
+    @GetMapping("/statistic/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderStatistic(@PathVariable UUID boothId, @PathVariable Integer date){
+
+        // 통계 조회 service 실행
+        ResponseOrderStatisticGetDTO responseOrderStatisticGetDTO = orderService.getOrderStatistic(boothId, date);
+
+        // 통계 조회 성공 여부 설정
+        boolean success = (responseOrderStatisticGetDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "통계 조회 성공" : "통계 조회 시 DAO 검색 실패");
+        requestMap.put("statistics", responseOrderStatisticGetDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
     // 주문 취소
     @DeleteMapping("/cancel")
     public ResponseEntity<Map<String, Object>> deleteOrder(@RequestBody RequestOrderDeleteDTO requestOrderDeleteDTO){

@@ -36,4 +36,13 @@ public class GetCooksDAOBean {
 
     }
 
+
+
+    // menuName, date로 Cook 전체 조회
+    public List<CookDAO> exec(String menuName, Integer date){
+
+        return cookRepositoryJPA.findByMenuNameAndDate(menuName, date);
+
+    }
+
 }
