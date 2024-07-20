@@ -15,6 +15,6 @@ public class ResponseOrderCookingGetDTO {
     String menuName;
     Integer tableCount;
     Integer totalRemainCount;
-    List<Map<String, Object>> cooks;
+    List<Map<String, Object>> cookList;
 
 }

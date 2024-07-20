@@ -17,7 +17,7 @@ public class CreateOrderCancelGetDTOBean {
                 .userName(orderDAO.getUserName())
                 .phoneNum(orderDAO.getPhoneNum())
                 .totalPrice(orderDAO.getTotalPrice())
-                .menuInfo(orderDAO.getMenuInfo())
+                .menuList(orderDAO.getMenuInfo())
                 .build();
 
     }

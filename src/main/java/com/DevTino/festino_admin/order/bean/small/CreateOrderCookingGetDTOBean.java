@@ -63,7 +63,7 @@ public class CreateOrderCookingGetDTOBean {
                 .menuName(menuDAO.getMenuName())
                 .tableCount(tableCount)
                 .totalRemainCount(totalRemainCount)
-                .cooks(cooks)
+                .cookList(cooks)
                 .build();
 
     }
