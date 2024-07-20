@@ -36,7 +36,7 @@ public class CreateOrderStatisticGetDTOBean {
             // 메뉴의 총판매수량
             Integer menuCount = 0;
 
-            // 메뉴 이름과 날짜(date)로 Cook 조회
+            // 메뉴 이름과 날짜(date)로 Cook 조회 : Cook은 입금 확인과 동시에 생성되므로 완료여부와 관계 없이 모두 통계 반영
             List<CookDAO> cookDAOList = getCooksDAOBean.exec(menuDAO.getMenuName(), date);
 
             // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
