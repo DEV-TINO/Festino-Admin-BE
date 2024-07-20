@@ -1,6 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean;
 
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
+import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import com.DevTino.festino_admin.reservation.bean.small.CreateReservationRestoreDTOBean;
 import com.DevTino.festino_admin.reservation.bean.small.GetReservationDAOBean;
@@ -16,13 +17,15 @@ public class SaveReservationRestoreBean {
     GetReservationDAOBean getReservationDAOBean;
     GetNightBoothDAOBean getNightBoothDAOBean;
     SaveReservationDAOBean saveReservationDAOBean;
+    SaveNightBoothDAOBean saveNightBoothDAOBean;
     CreateReservationRestoreDTOBean createReservationRestoreDTOBean;
 
     @Autowired
-    public SaveReservationRestoreBean(GetReservationDAOBean getReservationDAOBean, GetNightBoothDAOBean getNightBoothDAOBean, SaveReservationDAOBean saveReservationDAOBean, CreateReservationRestoreDTOBean createReservationRestoreDTOBean) {
+    public SaveReservationRestoreBean(GetReservationDAOBean getReservationDAOBean, GetNightBoothDAOBean getNightBoothDAOBean, SaveReservationDAOBean saveReservationDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateReservationRestoreDTOBean createReservationRestoreDTOBean) {
         this.getReservationDAOBean = getReservationDAOBean;
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.saveReservationDAOBean = saveReservationDAOBean;
+        this.saveNightBoothDAOBean = saveNightBoothDAOBean;
         this.createReservationRestoreDTOBean = createReservationRestoreDTOBean;
     }
 
@@ -47,6 +50,7 @@ public class SaveReservationRestoreBean {
 
         // 수정된 DAO 값 저장
         saveReservationDAOBean.exec(reservationDAO);
+        saveNightBoothDAOBean.exec(nightBoothDAO);
 
         // DTO 생성해서 반환
         return createReservationRestoreDTOBean.exec(reservationDAO);
