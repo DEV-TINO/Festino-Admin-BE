@@ -1,6 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean.small;
 
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
+import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationGetDTO;
 import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationsGetDTO;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
@@ -25,7 +26,6 @@ public class CreateReservationsDTOBean {
         // DTO 리스트 생성
         List<ResponseReservationGetDTO> responseReservationGetDTOList = new ArrayList<>();
 
-
         // for문을 이용해서 객체(DAO)를 하나씩 꺼내 DTO 삽입
         for(ReservationDAO reservationDAO : reservationDAOList) {
 
@@ -36,7 +36,7 @@ public class CreateReservationsDTOBean {
                     .personCount(reservationDAO.getPersonCount())
                     .phoneNum(reservationDAO.getPhoneNum())
                     .updateAt(reservationDAO.getUpdateAt())
-                    .isCancel(reservationDAO.getIsCancel())
+                    .reservationNum(reservationDAO.getReservationNum())
                     .build();
 
             // 예약 DTO 리스트에 각 DTO 추가
@@ -52,7 +52,7 @@ public class CreateReservationsDTOBean {
                 .isReservation(getNightBoothDAOBean.exec(boothId).getIsReservation())
 
                 // 총 예약수
-                .reserveNum(responseReservationGetDTOList.size())
+                .totalNum(reservationDAOList.size())
                 .build();
     }
 }
