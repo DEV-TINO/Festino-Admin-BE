@@ -149,7 +149,7 @@ public class UserController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", !userList.isEmpty());
         requestMap.put("message", userList.isEmpty() ? "doesn't exist user" : "success get users");
-        requestMap.put("noticeList", userList.isEmpty() ? null : userList);
+        requestMap.put("userList", userList.isEmpty() ? null : userList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
