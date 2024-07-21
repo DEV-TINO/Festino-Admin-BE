@@ -32,7 +32,6 @@ public class CreateNightBoothDAOBean {
                 .adminCategory(requestNightBoothSaveDTO.getAdminCategory())
                 .openTime(requestNightBoothSaveDTO.getOpenTime())
                 .closeTime(requestNightBoothSaveDTO.getCloseTime())
-                .location(requestNightBoothSaveDTO.getLocation())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
                 .isOpen(requestNightBoothSaveDTO.getIsOpen())

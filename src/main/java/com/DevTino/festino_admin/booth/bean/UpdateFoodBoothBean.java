@@ -49,7 +49,6 @@ public class UpdateFoodBoothBean {
         foodBoothDAO.setAdminCategory(requestFoodBoothUpdateDTO.getAdminCategory());
         foodBoothDAO.setOpenTime(requestFoodBoothUpdateDTO.getOpenTime());
         foodBoothDAO.setCloseTime(requestFoodBoothUpdateDTO.getCloseTime());
-        foodBoothDAO.setLocation(requestFoodBoothUpdateDTO.getLocation());
         foodBoothDAO.setIsOpen(requestFoodBoothUpdateDTO.getIsOpen());
 
         foodBoothDAO.setUpdateAt(LocalDateTime.now());

@@ -15,7 +15,6 @@ public class RequestNightBoothUpdateDTO {
     List<String> boothImage;
     String openTime;
     String closeTime;
-    String location;
     Boolean isOrder;
     Boolean isOpen;
     Boolean isReservation;

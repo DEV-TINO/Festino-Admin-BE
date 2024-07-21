@@ -32,7 +32,6 @@ public class CreateFoodBoothDAOBean {
                 .adminCategory(requestFoodBoothSaveDTO.getAdminCategory())
                 .openTime(requestFoodBoothSaveDTO.getOpenTime())
                 .closeTime(requestFoodBoothSaveDTO.getCloseTime())
-                .location(requestFoodBoothSaveDTO.getLocation())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
                 .isOpen(requestFoodBoothSaveDTO.getIsOpen())

@@ -42,7 +42,6 @@ public class UpdateDayBoothBean {
         dayBoothDAO.setBoothName(requestDayBoothUpdateDTO.getBoothName());
         dayBoothDAO.setOpenTime(requestDayBoothUpdateDTO.getOpenTime());
         dayBoothDAO.setCloseTime(requestDayBoothUpdateDTO.getCloseTime());
-        dayBoothDAO.setLocation(requestDayBoothUpdateDTO.getLocation());
         dayBoothDAO.setAdminName(requestDayBoothUpdateDTO.getAdminName());
         dayBoothDAO.setAdminCategory(requestDayBoothUpdateDTO.getAdminCategory());
         dayBoothDAO.setIsOpen(requestDayBoothUpdateDTO.getIsOpen());
