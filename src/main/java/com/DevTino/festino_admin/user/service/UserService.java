@@ -53,8 +53,8 @@ public class UserService {
     }
 
     // 유저 수정
-    public UUID updateUser(RequestUserUpdateDTO requestUserUpdateDTO) {
-        return updateUserBean.exec(requestUserUpdateDTO);
+    public UUID updateUser(RequestUserUpdateDTO requestUserUpdateDTO, HttpServletRequest request) {
+        return updateUserBean.exec(requestUserUpdateDTO, request, secretKey);
     }
 
     // 유저 삭제

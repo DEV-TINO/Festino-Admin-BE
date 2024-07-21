@@ -2,11 +2,13 @@ package com.DevTino.festino_admin.user.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 import java.util.UUID;
 
+@Component
 public class JwtUtil {
-
 
     public static String createJwt(UUID userId, String secretKey, Long expiredMs, String role) {
 

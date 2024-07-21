@@ -17,9 +17,6 @@ public class GetCookieBean {
         if(cookies != null) {
             for(Cookie c : cookies) {
                 if(cookieName.equals(c.getName())) {
-                    c.setValue("");
-                    c.setPath("/");
-                    c.setMaxAge(0);
                     cookie = c;
                     break;
                 }
