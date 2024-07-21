@@ -29,7 +29,7 @@ public class NoticeController {
 
     // 공지사항 조회
     @GetMapping("/{noticeId}")
-    public ResponseEntity<Map<String, Object>> getNotice(@PathVariable UUID noticeId){
+    public ResponseEntity<Map<String, Object>> getNotice(@PathVariable("noticeId") UUID noticeId){
 
         // 공지사항 조회 service 실행
         ResponseNoticeGetDTO responseNoticeGetDTO = noticeService.getNotice(noticeId);
