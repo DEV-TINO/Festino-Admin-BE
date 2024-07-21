@@ -13,7 +13,6 @@ public class RequestNightBoothSaveDTO {
     List<String> boothImage;
     String openTime;
     String closeTime;
-    String location;
     Boolean isOpen;
     Boolean isOrder;
     Boolean isReservation;

@@ -31,7 +31,6 @@ public class CreateDayBoothDAOBean {
                 .boothName(requestDayBoothSaveDTO.getBoothName())
                 .openTime(requestDayBoothSaveDTO.getOpenTime())
                 .closeTime(requestDayBoothSaveDTO.getCloseTime())
-                .location(requestDayBoothSaveDTO.getLocation())
                 .adminName(requestDayBoothSaveDTO.getAdminName())
                 .adminCategory(requestDayBoothSaveDTO.getAdminCategory())
                 .createAt(LocalDateTime.now())
