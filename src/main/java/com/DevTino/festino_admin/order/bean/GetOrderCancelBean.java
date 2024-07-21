@@ -24,10 +24,10 @@ public class GetOrderCancelBean {
 
 
     // 취소 주문 조회
-    public List<ResponseOrderCancelGetDTO> exec(){
+    public List<ResponseOrderCancelGetDTO> exec(Integer date){
 
-        // 취소된 Order 최신순 전체 조회 -> DAO 리스트
-        List<OrderDAO> daoList = getOrderCancelDAOBean.exec();
+        // 해당 날짜의 취소된 Order 최신순 전체 조회 -> DAO 리스트
+        List<OrderDAO> daoList = getOrderCancelDAOBean.exec(date);
         if (daoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴

@@ -21,9 +21,9 @@ public class GetOrderWaitDepositDAOBean {
 
 
     // 입금대기 중인 Order 최신순 전체 조회
-    public List<OrderDAO> exec(){
+    public List<OrderDAO> exec(Integer date){
 
-        return orderRepositoryJPA.findByIsDepositAndOrderTypeOrderByCreateAtDesc(false, OrderType.COOKING);
+        return orderRepositoryJPA.findByIsDepositAndOrderTypeAndDateOrderByCreateAtDesc(false, OrderType.COOKING, date);
 
     }
 

@@ -9,13 +9,13 @@ import java.util.UUID;
 
 public interface OrderRepositoryJPA extends JpaRepository<OrderDAO, UUID> {
 
-    // 전체 주문 최신순 검색
-    public List<OrderDAO> findByOrderByCreateAtDesc();
+    // 해당 날짜의 전체 주문 최신순 검색
+    public List<OrderDAO> findByDateOrderByCreateAtDesc(Integer date);
 
     // OrderType으로 주문 최신순 검색
-    public List<OrderDAO> findByOrderTypeOrderByCreateAtDesc(OrderType orderType);
+    public List<OrderDAO> findByOrderTypeAndDateOrderByCreateAtDesc(OrderType orderType, Integer date);
 
-    // isDeposit, OrderType으로 주문 최신순 검색
-    public List<OrderDAO> findByIsDepositAndOrderTypeOrderByCreateAtDesc(Boolean isDeposit, OrderType orderType);
+    // isDeposit, OrderType, date로 주문 최신순 검색
+    public List<OrderDAO> findByIsDepositAndOrderTypeAndDateOrderByCreateAtDesc(Boolean isDeposit, OrderType orderType, Integer date);
     
 }

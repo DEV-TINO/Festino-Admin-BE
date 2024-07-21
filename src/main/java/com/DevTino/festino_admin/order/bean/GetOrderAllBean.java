@@ -24,10 +24,10 @@ public class GetOrderAllBean {
 
 
     // 주문 전체 조회
-    public List<ResponseOrderAllGetDTO> exec(){
+    public List<ResponseOrderAllGetDTO> exec(Integer date){
 
-        // Order 최신순 전체 조회 -> DAO 리스트
-        List<OrderDAO> daoList = getOrdersDAOBean.exec();
+        // 해당 날짜의 Order 최신순 전체 조회 -> DAO 리스트
+        List<OrderDAO> daoList = getOrdersDAOBean.exec(date);
         if (daoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴

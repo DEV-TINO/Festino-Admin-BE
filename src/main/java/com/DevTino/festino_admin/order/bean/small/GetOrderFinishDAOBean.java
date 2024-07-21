@@ -20,10 +20,10 @@ public class GetOrderFinishDAOBean {
 
 
 
-    // 조리완료 상태인 Order 최신순 전체 조회
-    public List<OrderDAO> exec(){
+    // 해당 날짜의 조리완료 상태인 Order 최신순 전체 조회
+    public List<OrderDAO> exec(Integer date){
 
-        return orderRepositoryJPA.findByOrderTypeOrderByCreateAtDesc(OrderType.FINISH);
+        return orderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtDesc(OrderType.FINISH, date);
 
     }
 

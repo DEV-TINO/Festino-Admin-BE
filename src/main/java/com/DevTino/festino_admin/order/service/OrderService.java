@@ -48,9 +48,9 @@ public class OrderService {
 
 
     // 테이블 주문 현황 조회
-    public List<ResponseOrderTableGetDTO> getOrderTable(){
+    public List<ResponseOrderTableGetDTO> getOrderTable(Integer date){
 
-        return getOrderTableBean.exec();
+        return getOrderTableBean.exec(date);
 
     }
 
@@ -66,54 +66,54 @@ public class OrderService {
 
 
     // 전체 주문 조회
-    public List<ResponseOrderAllGetDTO> getOrderAll(){
+    public List<ResponseOrderAllGetDTO> getOrderAll(Integer date){
 
-        return getOrderAllBean.exec();
+        return getOrderAllBean.exec(date);
 
     }
 
 
 
     // 실시간 주문 조회
-    public ResponseOrderNowGetDTO getOrderNowAll(UUID boothId){
+    public ResponseOrderNowGetDTO getOrderNowAll(UUID boothId, Integer date){
 
-        return getOrderNowBean.exec(boothId);
+        return getOrderNowBean.exec(boothId, date);
 
     }
 
 
 
     // 입금대기 주문 조회
-    public List<ResponseOrderWaitDepositGetDTO> getOrderWaitDepositAll(){
+    public List<ResponseOrderWaitDepositGetDTO> getOrderWaitDepositAll(Integer date){
 
-        return getOrderWaitDepositBean.exec();
+        return getOrderWaitDepositBean.exec(date);
 
     }
 
 
 
     // 조리중 주문 조회
-    public List<ResponseOrderCookingGetDTO> getOrderCookingAll(UUID boothId){
+    public List<ResponseOrderCookingGetDTO> getOrderCookingAll(UUID boothId, Integer date){
 
-        return getOrderCookingBean.exec(boothId);
+        return getOrderCookingBean.exec(boothId, date);
 
     }
 
 
 
     // 조리완료 주문 조회
-    public List<ResponseOrderFinishGetDTO> getOrderFinishAll(){
+    public List<ResponseOrderFinishGetDTO> getOrderFinishAll(Integer date){
 
-        return getOrderFinishBean.exec();
+        return getOrderFinishBean.exec(date);
 
     }
 
 
 
     // 취소 주문 조회
-    public List<ResponseOrderCancelGetDTO> getOrderCancelAll(){
+    public List<ResponseOrderCancelGetDTO> getOrderCancelAll(Integer date){
 
-        return getOrderCancelBean.exec();
+        return getOrderCancelBean.exec(date);
 
     }
 

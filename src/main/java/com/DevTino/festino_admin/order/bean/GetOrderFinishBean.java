@@ -24,10 +24,10 @@ public class GetOrderFinishBean {
 
 
     // 조리완료 주문 조회
-    public List<ResponseOrderFinishGetDTO> exec(){
+    public List<ResponseOrderFinishGetDTO> exec(Integer date){
 
-        // 조리완료 상태인 Order 최신순 전체 조회 -> DAO 리스트
-        List<OrderDAO> daoList = getOrderFinishDAOBean.exec();
+        // 해당 날짜의 조리완료 상태인 Order 최신순 전체 조회 -> DAO 리스트
+        List<OrderDAO> daoList = getOrderFinishDAOBean.exec(date);
         if (daoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴
