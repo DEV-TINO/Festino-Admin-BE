@@ -26,4 +26,7 @@ public class GetNightBoothDAOBean {
     public List<NightBoothDAO> exec() {
         return nightBoothRepository.findAll();
     }
+
+    // adminName으로 DAO 찾아서 반환
+    public NightBoothDAO exec(String adminName) { return nightBoothRepository.findByAdminName(adminName); }
 }

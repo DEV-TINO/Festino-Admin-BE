@@ -29,17 +29,7 @@ public class UpdateUserBean {
     }
 
     // 유저 수정
-    public UUID exec(RequestUserUpdateDTO requestUserUpdateDTO, HttpServletRequest request, String secretKey) {
-        Cookie cookie = getCookieBean.exec(request);
-
-        if(cookie == null) return null;
-
-        String token = cookie.getValue();
-        String userId = JwtUtil.getUserId(token, secretKey);
-        String role = JwtUtil.getUserRole(token, secretKey);
-
-        if(role.equals("MEMBER") && !userId.equals(requestUserUpdateDTO.getUserId().toString())) return null;
-
+    public UUID exec(RequestUserUpdateDTO requestUserUpdateDTO) {
         UserDAO userDAO = getUserDAOBean.exec(requestUserUpdateDTO.getUserId());
 
         if(userDAO == null) return null;

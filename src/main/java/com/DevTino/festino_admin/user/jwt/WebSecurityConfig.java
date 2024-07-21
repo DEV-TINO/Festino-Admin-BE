@@ -44,8 +44,6 @@ public class WebSecurityConfig {
                                 .requestMatchers("/admin/user/role").permitAll()
                                 .requestMatchers("/admin/user/logout").permitAll()
                                 .requestMatchers("/admin/user/all").hasAuthority(RoleType.MEMBER.name())
-                                .requestMatchers(HttpMethod.GET, "/admin/user").hasAuthority(RoleType.MEMBER.name())
-                                .requestMatchers(HttpMethod.PUT, "/admin/user").hasAuthority(RoleType.MEMBER.name())
                                 .requestMatchers("/admin/user/**").hasAuthority(RoleType.ADMIN.name())
                                 // .requestMatchers("/admin/user/**").authenticated()
                                 // .requestMatchers("/admin/user/**").authenticated().hasRole("ADMIN") 

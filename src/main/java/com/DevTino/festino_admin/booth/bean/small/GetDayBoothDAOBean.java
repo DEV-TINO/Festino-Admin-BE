@@ -25,4 +25,7 @@ public class GetDayBoothDAOBean {
     public List<DayBoothDAO> exec() {
         return dayBoothRepository.findAll();
     }
+
+    // adminName으로 DAO 찾아서 반환
+    public DayBoothDAO exec(String adminName) { return dayBoothRepository.findByAdminName(adminName); }
 }
