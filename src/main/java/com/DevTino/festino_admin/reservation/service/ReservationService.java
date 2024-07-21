@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.reservation.service;
 
-import com.DevTino.festino_admin.reservation.bean.GetReservationsBean;
-import com.DevTino.festino_admin.reservation.bean.UpdateReservationBean;
-import com.DevTino.festino_admin.reservation.bean.DeleteReservationCancelBean;
-import com.DevTino.festino_admin.reservation.bean.SaveReservationRestoreBean;
+import com.DevTino.festino_admin.reservation.bean.*;
 import com.DevTino.festino_admin.reservation.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +11,15 @@ import java.util.UUID;
 public class ReservationService {
     GetReservationsBean getReservationsBean;
     DeleteReservationCancelBean deleteReservationCancelBean;
+    DeleteReservationCompleteBean deleteReservationCompleteBean;
     SaveReservationRestoreBean saveReservationRestoreBean;
     UpdateReservationBean updateReservationBean;
 
     @Autowired
-    public ReservationService(GetReservationsBean getReservationsBean, DeleteReservationCancelBean deleteReservationCancelBean, SaveReservationRestoreBean saveReservationRestoreBean, UpdateReservationBean updateReservationBean) {
+    public ReservationService(GetReservationsBean getReservationsBean, DeleteReservationCancelBean deleteReservationCancelBean, DeleteReservationCompleteBean deleteReservationCompleteBean, SaveReservationRestoreBean saveReservationRestoreBean, UpdateReservationBean updateReservationBean) {
         this.getReservationsBean = getReservationsBean;
         this.deleteReservationCancelBean = deleteReservationCancelBean;
+        this.deleteReservationCompleteBean = deleteReservationCompleteBean;
         this.saveReservationRestoreBean = saveReservationRestoreBean;
         this.updateReservationBean = updateReservationBean;
     }
@@ -33,6 +32,11 @@ public class ReservationService {
     // 예약 삭제
     public ResponseReservationDeleteDTO deleteReservation(RequestReservationDeleteDTO requestReservationDeleteDTO) {
         return deleteReservationCancelBean.exec(requestReservationDeleteDTO);
+    }
+
+    // 예약 완료
+    public ResponseReservationCompleteDTO completeReservation(RequestReservationCompleteDTO requestReservationCompleteDTO) {
+        return deleteReservationCompleteBean.exec(requestReservationCompleteDTO);
     }
 
     // 예약 복구
