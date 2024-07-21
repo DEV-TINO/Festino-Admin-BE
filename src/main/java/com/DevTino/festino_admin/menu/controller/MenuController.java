@@ -121,7 +121,7 @@ public class MenuController {
         List<ResponseMenuGetDTO> responseMenuGetDTOList = menuService.getMenuAll(boothId);
 
         // 메뉴 전체조회 성공 여부
-        boolean success = responseMenuGetDTOList != null;
+        boolean success = !responseMenuGetDTOList.isEmpty();
 
         // Map을 통해 메시지와 List 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
