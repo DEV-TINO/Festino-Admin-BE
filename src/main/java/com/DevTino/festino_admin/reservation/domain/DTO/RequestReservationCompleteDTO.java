@@ -9,5 +9,4 @@ import java.util.UUID;
 public class RequestReservationCompleteDTO {
     UUID boothId;
     UUID reservationId;
-    ReservationEnum reservationType;
 }

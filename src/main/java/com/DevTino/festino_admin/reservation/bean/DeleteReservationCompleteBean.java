@@ -40,16 +40,11 @@ public class DeleteReservationCompleteBean {
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationCompleteDTO.getBoothId());
         if(nightBoothDAO == null) return null;
 
-        // 예약 완료여부 변경
-        if(reservationDAO.getReservationType().equals(requestReservationCompleteDTO.getReservationType()) && requestReservationCompleteDTO.getReservationType().equals(ReservationEnum.RESERVE)) {
-            // 예약 완료여부 isCancel 값 수정
-            reservationDAO.setReservationType(ReservationEnum.COMPLETE);
+        // 예약 완료여부 isCancel 값 수정
+        reservationDAO.setReservationType(ReservationEnum.COMPLETE);
 
-            // 야간부스 총 예약수 -1
-            nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);
-        }
-        else
-            return null;
+        // 야간부스 총 예약수 -1
+        nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);
 
         // 수정된 DAO 값 저장
         saveReservationDAOBean.exec(reservationDAO);
