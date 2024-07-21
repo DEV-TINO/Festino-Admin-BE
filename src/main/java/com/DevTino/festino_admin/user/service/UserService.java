@@ -4,6 +4,8 @@ import com.DevTino.festino_admin.user.bean.*;
 import com.DevTino.festino_admin.user.domain.DTO.*;
 import com.DevTino.festino_admin.user.domain.UserDAO;
 import com.DevTino.festino_admin.user.jwt.JwtUtil;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class UserService {
     GetUsersBean getUsersBean;
     CheckUserBean checkUserBean;
     CheckRoleBean checkRoleBean;
+    GetCookieBean getCookieBean;
 
     @Value("${JWT_SECRET_KEY}")
     private String secretKey;
@@ -27,7 +30,7 @@ public class UserService {
     private Long expiredMs = 1000 * 60 * 60L;
 
     @Autowired
-    public UserService(SaveUserBean saveUserBean, UpdateUserBean updateUserBean, DeleteUserBean deleteUserBean, GetUserBean getUserBean, GetUsersBean getUsersBean, CheckUserBean checkUserBean, CheckRoleBean checkRoleBean) {
+    public UserService(SaveUserBean saveUserBean, UpdateUserBean updateUserBean, DeleteUserBean deleteUserBean, GetUserBean getUserBean, GetUsersBean getUsersBean, CheckUserBean checkUserBean, CheckRoleBean checkRoleBean, GetCookieBean getCookieBean) {
         this.saveUserBean = saveUserBean;
         this.updateUserBean = updateUserBean;
         this.deleteUserBean = deleteUserBean;
@@ -35,22 +38,23 @@ public class UserService {
         this.getUsersBean = getUsersBean;
         this.checkUserBean = checkUserBean;
         this.checkRoleBean = checkRoleBean;
+        this.getCookieBean = getCookieBean;
     }
 
     // 유저 저장
-    public UUID saveUser(RequestUserSaveDTO requestUserSaveDTO) {
+    public Boolean saveUser(RequestUserSaveDTO requestUserSaveDTO) {
         return saveUserBean.exec(requestUserSaveDTO);
     }
 
     // 유저 로그인
     public String login(RequestUserLoginDTO requestUserLoginDTO) {
         UserDAO userDAO = checkUserBean.exec(requestUserLoginDTO);
-        return userDAO == null ? null : JwtUtil.createJwt(userDAO.getUserId(), secretKey, expiredMs);
+        return userDAO == null ? null : JwtUtil.createJwt(userDAO.getUserId(), secretKey, expiredMs, userDAO.getRole().name());
     }
 
     // 유저 수정
-    public UUID updateUser(RequestUserUpdateDTO requestUserUpdateDTO) {
-        return updateUserBean.exec(requestUserUpdateDTO);
+    public UUID updateUser(RequestUserUpdateDTO requestUserUpdateDTO, HttpServletRequest request) {
+        return updateUserBean.exec(requestUserUpdateDTO, request, secretKey);
     }
 
     // 유저 삭제
@@ -71,5 +75,9 @@ public class UserService {
     // role 확인
     public UserDAO checkRole() {
         return checkRoleBean.exec();
+    }
+
+    public Cookie getCookie(HttpServletRequest request) {
+        return getCookieBean.exec(request);
     }
 }

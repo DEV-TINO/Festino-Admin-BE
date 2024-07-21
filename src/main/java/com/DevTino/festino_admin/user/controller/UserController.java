@@ -31,13 +31,12 @@ public class UserController {
     // 유저 저장
     @PostMapping("/join")
     public ResponseEntity<Map<String, Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO) {
-        UUID userId = userService.saveUser(requestUserSaveDTO);
+        Boolean success = userService.saveUser(requestUserSaveDTO);
 
         // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", userId != null);
-        requestMap.put("message", userId == null ? "user save failure" : "user save success");
-        requestMap.put("userId", userId == null ? "00000000-0000-0000-0000-000000000000" : userId);
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "user save success" : "user save failure");
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -67,29 +66,19 @@ public class UserController {
     // 유저 로그아웃
     @PostMapping("/logout")
     public ResponseEntity<Map<String, Object>> logoutUser(HttpServletRequest request, HttpServletResponse response) {
-        String cookieName = "access_token";
-
-        Cookie[] cookies = request.getCookies();
-
-        boolean success = false;
-
-        if(cookies != null) {
-            for(Cookie cookie : cookies) {
-                if(cookieName.equals(cookie.getName())) {
-                    cookie.setValue(null);
-                    cookie.setPath("/");
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                    success = true;
-                    break;
-                }
-            }
-        }
+        Cookie cookie = userService.getCookie(request);
 
         // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", success);
-        requestMap.put("message", success ? "logout success" : "logout failure");
+        requestMap.put("success", cookie != null);
+        requestMap.put("message", cookie != null ? "logout success" : "logout failure");
+
+        if(cookie != null) {
+            Cookie c = new Cookie("access_token", "");
+            c.setMaxAge(0);
+            c.setPath("/");
+            response.addCookie(c);
+        }
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -97,8 +86,8 @@ public class UserController {
 
     // 유저 수정
     @PutMapping
-    public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO) {
-        UUID userId = userService.updateUser(requestUserUpdateDTO);
+    public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO, HttpServletRequest request) {
+        UUID userId = userService.updateUser(requestUserUpdateDTO, request);
 
         // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
@@ -122,7 +111,6 @@ public class UserController {
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
-
     }
 
     // 특정 유저 조회

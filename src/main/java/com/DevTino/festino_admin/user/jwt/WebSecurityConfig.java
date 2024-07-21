@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -42,7 +43,10 @@ public class WebSecurityConfig {
                                 .requestMatchers("/admin/user/login").permitAll()
                                 .requestMatchers("/admin/user/role").permitAll()
                                 .requestMatchers("/admin/user/logout").permitAll()
-                                .requestMatchers("/admin/user/**").hasRole(RoleType.ADMIN.name())
+                                .requestMatchers("/admin/user/all").hasAuthority(RoleType.MEMBER.name())
+                                .requestMatchers(HttpMethod.GET, "/admin/user").hasAuthority(RoleType.MEMBER.name())
+                                .requestMatchers(HttpMethod.PUT, "/admin/user").hasAuthority(RoleType.MEMBER.name())
+                                .requestMatchers("/admin/user/**").hasAuthority(RoleType.ADMIN.name())
                                 // .requestMatchers("/admin/user/**").authenticated()
                                 // .requestMatchers("/admin/user/**").authenticated().hasRole("ADMIN") 
                                 .anyRequest().authenticated()
@@ -54,6 +58,7 @@ public class WebSecurityConfig {
 
         return httpSecurity.build();
     }
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

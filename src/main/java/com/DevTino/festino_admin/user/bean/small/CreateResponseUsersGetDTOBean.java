@@ -16,6 +16,7 @@ public class CreateResponseUsersGetDTOBean {
 
         for(UserDAO user : userDAOList) {
             ResponseUsersGetDTO responseUsersGetDTO = ResponseUsersGetDTO.builder()
+                    .userId(user.getUserId())
                     .adminId(user.getAdminId())
                     .adminName(user.getAdminName())
                     .passWord(user.getPassWord())
