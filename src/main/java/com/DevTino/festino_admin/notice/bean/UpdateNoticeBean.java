@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,8 +38,10 @@ public class UpdateNoticeBean {
         if (noticeDAO == null) return null;
 
         // 공지 이미지를 넣지 않았을 때 빈값으로 저장
-        String imageUrl = "";
-        if (requestNoticeUpdateDTO.getImageUrl() != null)
+        List<String> imageUrl;
+        if (requestNoticeUpdateDTO.getImageUrl() == null)
+            imageUrl = Collections.singletonList("");
+        else
             imageUrl = requestNoticeUpdateDTO.getImageUrl();
 
         // DAO 수정
