@@ -33,7 +33,7 @@ public class CreateCookDAOsBean {
         for (Map<String, Object> menu : menuList){
 
             // 메뉴 정보로 Cook DAO 생성
-            CookDAO cookDAO = createCookDAOBean.exec(menu, orderDAO.getOrderId());
+            CookDAO cookDAO = createCookDAOBean.exec(menu, orderDAO);
 
             // 생성한 Cook DAO 저장
             saveCookDAOBean.exec(cookDAO);
