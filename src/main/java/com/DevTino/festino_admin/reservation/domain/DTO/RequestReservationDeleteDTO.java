@@ -8,5 +8,4 @@ import java.util.UUID;
 public class RequestReservationDeleteDTO {
     UUID boothId;
     UUID reservationId;
-    Boolean isCancel;
 }

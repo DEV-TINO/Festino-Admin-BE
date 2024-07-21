@@ -1,6 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean.small;
 
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
+import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import com.DevTino.festino_admin.reservation.repository.ReservationRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,16 @@ public class GetReservationsDAOBean {
         List<ReservationDAO> reservationDAOList;
 
         // 예약 목록일 때
-        if (type.equals("all"))
-            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndIsCancelAndDateOrderByUpdateAtAsc(boothId, false, date);
+        if (type.equals("reserve"))
+            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndReservationTypeAndDateOrderByUpdateAtAsc(boothId, ReservationEnum.RESERVE, date);
 
         // 삭제 목록일 때
         else if(type.equals("cancel"))
-            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndIsCancelAndDateOrderByUpdateAtAsc(boothId, true, date);
+            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndReservationTypeAndDateOrderByUpdateAtAsc(boothId, ReservationEnum.CANCEL, date);
+
+        // 완료 목록일 때
+        else if(type.equals("complete"))
+            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndReservationTypeAndDateOrderByUpdateAtAsc(boothId, ReservationEnum.COMPLETE, date);
 
         else
             reservationDAOList = null;

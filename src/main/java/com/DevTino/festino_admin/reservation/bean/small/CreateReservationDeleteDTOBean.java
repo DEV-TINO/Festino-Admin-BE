@@ -9,7 +9,7 @@ public class CreateReservationDeleteDTOBean {
     public ResponseReservationDeleteDTO exec(ReservationDAO reservationDAO) {
         return ResponseReservationDeleteDTO.builder()
                 .reservationId(reservationDAO.getReservationId())
-                .isCancel(reservationDAO.getIsCancel())
+                .reservationType(reservationDAO.getReservationType())
                 .build();
     }
 }

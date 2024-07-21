@@ -6,9 +6,10 @@ import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import com.DevTino.festino_admin.reservation.bean.small.CreateReservationRestoreDTOBean;
 import com.DevTino.festino_admin.reservation.bean.small.GetReservationDAOBean;
 import com.DevTino.festino_admin.reservation.bean.small.SaveReservationDAOBean;
-import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationRestoreDTO;
-import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationRestoreDTO;
+import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationRestoreUpdateDTO;
+import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationRestoreUpdateDTO;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
+import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,18 +30,19 @@ public class SaveReservationRestoreBean {
         this.createReservationRestoreDTOBean = createReservationRestoreDTOBean;
     }
 
-    public ResponseReservationRestoreDTO exec(RequestReservationRestoreDTO requestReservationRestoreDTO) {
+    public ResponseReservationRestoreUpdateDTO exec(RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
         // reservationId와 boothId를 통해 원하는 객체(DAO) 찾기
-        ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationRestoreDTO.getReservationId(), requestReservationRestoreDTO.getBoothId());
+        ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationRestoreUpdateDTO.getReservationId(), requestReservationRestoreUpdateDTO.getBoothId());
         if(reservationDAO == null) return null;
 
         // boothId를 통해 원하는 부스객체 찾기
-        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationRestoreDTO.getBoothId());
+        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationRestoreUpdateDTO.getBoothId());
         if(nightBoothDAO == null) return null;
 
-        if(reservationDAO.getIsCancel() && requestReservationRestoreDTO.getIsCancel()) {
+        // 예약 복구여부 변경
+        if(reservationDAO.getReservationType().equals(requestReservationRestoreUpdateDTO.getReservationType())) {
             // 예약 복구여부 isCancel 값 수정
-            reservationDAO.setIsCancel(false);
+            reservationDAO.setReservationType(ReservationEnum.RESERVE);
 
             // 야간부스 총 예약수 +1
             nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()+1);

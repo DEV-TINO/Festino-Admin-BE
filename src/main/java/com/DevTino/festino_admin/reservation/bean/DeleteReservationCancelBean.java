@@ -9,11 +9,12 @@ import com.DevTino.festino_admin.reservation.bean.small.SaveReservationDAOBean;
 import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationDeleteDTO;
 import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationDeleteDTO;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
+import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DeleteReservationBean {
+public class DeleteReservationCancelBean {
     GetReservationDAOBean getReservationDAOBean;
     GetNightBoothDAOBean getNightBoothDAOBean;
     SaveReservationDAOBean saveReservationDAOBean;
@@ -21,7 +22,7 @@ public class DeleteReservationBean {
     CreateReservationDeleteDTOBean createReservationDeleteDTOBean;
 
     @Autowired
-    public DeleteReservationBean(GetReservationDAOBean getReservationDAOBean, GetNightBoothDAOBean getNightBoothDAOBean, SaveReservationDAOBean saveReservationDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateReservationDeleteDTOBean createReservationDeleteDTOBean) {
+    public DeleteReservationCancelBean(GetReservationDAOBean getReservationDAOBean, GetNightBoothDAOBean getNightBoothDAOBean, SaveReservationDAOBean saveReservationDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateReservationDeleteDTOBean createReservationDeleteDTOBean) {
         this.getReservationDAOBean = getReservationDAOBean;
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.saveReservationDAOBean = saveReservationDAOBean;
@@ -40,15 +41,10 @@ public class DeleteReservationBean {
         if(nightBoothDAO == null) return null;
 
         // 예약 삭제여부 isCancel 값 수정
-        if(!reservationDAO.getIsCancel() && !requestReservationDeleteDTO.getIsCancel()) {
-            // 예약 삭제여부 isCancel 값 수정
-            reservationDAO.setIsCancel(true);
+        reservationDAO.setReservationType(ReservationEnum.CANCEL);
 
-            // 야간부스 총 예약수 -1
-            nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);
-        }
-        else
-            return null;
+        // 야간부스 총 예약수 -1
+        nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);
 
         // 수정된 DAO 값 저장
         saveReservationDAOBean.exec(reservationDAO);
