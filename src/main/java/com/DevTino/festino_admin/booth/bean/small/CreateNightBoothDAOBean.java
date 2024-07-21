@@ -18,7 +18,7 @@ public class CreateNightBoothDAOBean {
 
         // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
         List<String> boothImage = new ArrayList<>();
-        if (requestNightBoothSaveDTO.getBoothImage() == null)
+        if (requestNightBoothSaveDTO.getBoothImage().isEmpty())
             boothImage = Collections.singletonList("");
         else
             boothImage = requestNightBoothSaveDTO.getBoothImage();
