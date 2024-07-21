@@ -28,7 +28,7 @@ public class OrderController {
 
     // 테이블 주문 현황 조회
     @GetMapping("/table/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderTable(@PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderTable(@PathVariable("date") Integer date){
 
         // 테이블 주문 현황 조회 service 실행
         List<ResponseOrderTableGetDTO> dtoList = orderService.getOrderTable(date);
@@ -51,7 +51,7 @@ public class OrderController {
 
     // 주문 상세 조회
     @GetMapping("/{orderId}")
-    public ResponseEntity<Map<String, Object>> getOrderDetail(@PathVariable UUID orderId){
+    public ResponseEntity<Map<String, Object>> getOrderDetail(@PathVariable("orderId") UUID orderId){
 
         // 주문 상세 조회 service 실행
         ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(orderId);
@@ -74,7 +74,7 @@ public class OrderController {
 
     // 전체 주문 조회
     @GetMapping("/all/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderAll(@PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderAll(@PathVariable("date") Integer date){
 
         // 전체 주문 조회 service 실행
         List<ResponseOrderAllGetDTO> dtoList = orderService.getOrderAll(date);
@@ -97,7 +97,7 @@ public class OrderController {
 
     // 실시간 주문 조회
     @GetMapping("/now/all/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderNowAll(@PathVariable UUID boothId,@PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderNowAll(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date){
 
         // 실시간 주문 조회 service 실행
         ResponseOrderNowGetDTO responseOrderNowGetDTO = orderService.getOrderNowAll(boothId, date);
@@ -120,7 +120,7 @@ public class OrderController {
 
     // 입금대기 주문 조회
     @GetMapping("/deposit/all/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderWaitDepositAll(@PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderWaitDepositAll(@PathVariable("date") Integer date){
 
         // 입금대기 주문 조회 service 실행
         List<ResponseOrderWaitDepositGetDTO> dtoList = orderService.getOrderWaitDepositAll(date);
@@ -143,7 +143,7 @@ public class OrderController {
 
     // 조리중 주문 조회
     @GetMapping("/cooking/all/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderCookingAll(@PathVariable UUID boothId, @PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderCookingAll(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date){
 
         // 조리중 주문 조회 service 실행
         List<ResponseOrderCookingGetDTO> dtoList = orderService.getOrderCookingAll(boothId, date);
@@ -166,7 +166,7 @@ public class OrderController {
 
     // 조리완료 주문 조회
     @GetMapping("/finish/all/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderFinishAll(@PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderFinishAll(@PathVariable("date") Integer date){
 
         // 조리완료 주문 조회 service 실행
         List<ResponseOrderFinishGetDTO> dtoList = orderService.getOrderFinishAll(date);
@@ -189,7 +189,7 @@ public class OrderController {
 
     // 취소 주문 조회
     @GetMapping("/cancel/all/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderCancelAll(@PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderCancelAll(@PathVariable("date") Integer date){
 
         // 취소 주문 조회 service 실행
         List<ResponseOrderCancelGetDTO> dtoList = orderService.getOrderCancelAll(date);
@@ -212,7 +212,7 @@ public class OrderController {
 
     // 주문 통계 조회
     @GetMapping("/statistic/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderStatistic(@PathVariable UUID boothId, @PathVariable Integer date){
+    public ResponseEntity<Map<String, Object>> getOrderStatistic(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date){
 
         // 통계 조회 service 실행
         ResponseOrderStatisticGetDTO responseOrderStatisticGetDTO = orderService.getOrderStatistic(boothId, date);
