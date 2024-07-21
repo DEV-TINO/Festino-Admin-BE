@@ -67,16 +67,16 @@ public class ReservationController {
     public ResponseEntity<Map<String, Object>> completeReservation(@RequestBody RequestReservationCompleteUpdateDTO requestReservationCompleteUpdateDTO) {
 
         // 예약 삭제 service
-        ResponseReservationCompleteDTO responseReservationCompleteDTO = reservationService.completeReservation(requestReservationCompleteUpdateDTO);
+        ResponseReservationCompleteUpdateDTO responseReservationCompleteUpdateDTO = reservationService.completeReservation(requestReservationCompleteUpdateDTO);
 
         // 예약 삭제 성공 여부
-        boolean success = responseReservationCompleteDTO != null;
+        boolean success = responseReservationCompleteUpdateDTO != null;
 
         // Map을 통해 메시지와 id값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "예약 완료 성공" : "예약 완료 시 DAO 저장 실패");
-        requestMap.put("deleteInfo", responseReservationCompleteDTO);
+        requestMap.put("deleteInfo", responseReservationCompleteUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -84,19 +84,19 @@ public class ReservationController {
 
     // 예약 복구
     @PutMapping("/restore")
-    public ResponseEntity<Map<String, Object>> restoreReservation(@RequestBody RequestReservationRestoreDTO requestReservationRestoreDTO) {
+    public ResponseEntity<Map<String, Object>> restoreReservation(@RequestBody RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
 
         // 예약 복구 service
-        ResponseReservationRestoreDTO responseReservationRestoreDTO = reservationService.restoreReservation(requestReservationRestoreDTO);
+        ResponseReservationRestoreUpdateDTO responseReservationRestoreUpdateDTO = reservationService.restoreReservation(requestReservationRestoreUpdateDTO);
 
         // 예약 복구 성공 여부
-        boolean success = responseReservationRestoreDTO != null;
+        boolean success = responseReservationRestoreUpdateDTO != null;
 
         // Map을 통해 메시지와 id값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "예약 복구 성공" : "예약 복구 시 DAO 저장 실패");
-        requestMap.put("restoreInfo", responseReservationRestoreDTO);
+        requestMap.put("restoreInfo", responseReservationRestoreUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

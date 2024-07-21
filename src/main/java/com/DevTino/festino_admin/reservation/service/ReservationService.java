@@ -35,13 +35,13 @@ public class ReservationService {
     }
 
     // 예약 완료
-    public ResponseReservationCompleteDTO completeReservation(RequestReservationCompleteDTO requestReservationCompleteDTO) {
-        return deleteReservationCompleteBean.exec(requestReservationCompleteDTO);
+    public ResponseReservationCompleteUpdateDTO completeReservation(RequestReservationCompleteUpdateDTO requestReservationCompleteUpdateDTO) {
+        return deleteReservationCompleteBean.exec(requestReservationCompleteUpdateDTO);
     }
 
     // 예약 복구
-    public ResponseReservationRestoreDTO restoreReservation(RequestReservationRestoreDTO requestReservationRestoreDTO) {
-        return saveReservationRestoreBean.exec(requestReservationRestoreDTO);
+    public ResponseReservationRestoreUpdateDTO restoreReservation(RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
+        return saveReservationRestoreBean.exec(requestReservationRestoreUpdateDTO);
     }
 
     // 예약 가능여부 수정

@@ -6,8 +6,8 @@ import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import com.DevTino.festino_admin.reservation.bean.small.CreateReservationCompleteDTOBean;
 import com.DevTino.festino_admin.reservation.bean.small.GetReservationDAOBean;
 import com.DevTino.festino_admin.reservation.bean.small.SaveReservationDAOBean;
-import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationCompleteDTO;
-import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationCompleteDTO;
+import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationCompleteUpdateDTO;
+import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationCompleteUpdateDTO;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
 import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,13 @@ public class DeleteReservationCompleteBean {
     }
 
     // 예약 완료
-    public ResponseReservationCompleteDTO exec(RequestReservationCompleteDTO requestReservationCompleteDTO) {
+    public ResponseReservationCompleteUpdateDTO exec(RequestReservationCompleteUpdateDTO requestReservationCompleteUpdateDTO) {
         // reservationId와 boothId를 통해 원하는 객체(DAO) 찾기
-        ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationCompleteDTO.getReservationId(), requestReservationCompleteDTO.getBoothId());
+        ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationCompleteUpdateDTO.getReservationId(), requestReservationCompleteUpdateDTO.getBoothId());
         if(reservationDAO == null) return null;
 
         // boothId를 통해 원하는 부스객체 찾기
-        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationCompleteDTO.getBoothId());
+        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationCompleteUpdateDTO.getBoothId());
         if(nightBoothDAO == null) return null;
 
         // 예약 완료여부 isCancel 값 수정

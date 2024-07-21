@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class ResponseReservationRestoreDTO {
+public class ResponseReservationCompleteUpdateDTO {
     UUID reservationId;
     ReservationEnum reservationType;
 }
