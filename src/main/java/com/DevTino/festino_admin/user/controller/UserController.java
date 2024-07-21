@@ -5,6 +5,7 @@ import com.DevTino.festino_admin.user.domain.RoleType;
 import com.DevTino.festino_admin.user.domain.UserDAO;
 import com.DevTino.festino_admin.user.service.UserService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,6 +59,37 @@ public class UserController {
         cookie.setPath("/");
 
         response.addCookie(cookie);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 유저 로그아웃
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logoutUser(HttpServletRequest request, HttpServletResponse response) {
+        String cookieName = "access_token";
+
+        Cookie[] cookies = request.getCookies();
+
+        boolean success = false;
+
+        if(cookies != null) {
+            for(Cookie cookie : cookies) {
+                if(cookieName.equals(cookie.getName())) {
+                    cookie.setValue(null);
+                    cookie.setPath("/");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                    success = true;
+                    break;
+                }
+            }
+        }
+
+        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "logout success" : "logout failure");
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -117,7 +149,7 @@ public class UserController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", !userList.isEmpty());
         requestMap.put("message", userList.isEmpty() ? "doesn't exist user" : "success get users");
-        requestMap.put("noticeList", userList.isEmpty() ? null : userList);
+        requestMap.put("userList", userList.isEmpty() ? null : userList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
