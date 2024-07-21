@@ -43,7 +43,7 @@ public class ReservationController {
     }
 
     // 예약 삭제
-    @DeleteMapping("/cancel")
+    @DeleteMapping
     public ResponseEntity<Map<String, Object>> deleteReservation(@RequestBody RequestReservationDeleteDTO requestReservationDeleteDTO) {
 
         // 예약 삭제 service
