@@ -127,7 +127,7 @@ public class MenuController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "메뉴 전체조회 성공" : "메뉴 전체조회 DAO 검색 실패");
-        requestMap.put("menus", responseMenuGetDTOList);
+        requestMap.put("menuList", responseMenuGetDTOList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
