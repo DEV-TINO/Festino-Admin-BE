@@ -27,11 +27,11 @@ public class OrderController {
 
 
     // 테이블 주문 현황 조회
-    @GetMapping("/table")
-    public ResponseEntity<Map<String, Object>> getOrderTable(){
+    @GetMapping("/table/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderTable(@PathVariable Integer date){
 
         // 테이블 주문 현황 조회 service 실행
-        List<ResponseOrderTableGetDTO> dtoList = orderService.getOrderTable();
+        List<ResponseOrderTableGetDTO> dtoList = orderService.getOrderTable(date);
 
         // 테이블 주문 현황 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -73,11 +73,11 @@ public class OrderController {
 
 
     // 전체 주문 조회
-    @GetMapping("/all")
-    public ResponseEntity<Map<String, Object>> getOrderAll(){
+    @GetMapping("/all/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderAll(@PathVariable Integer date){
 
         // 전체 주문 조회 service 실행
-        List<ResponseOrderAllGetDTO> dtoList = orderService.getOrderAll();
+        List<ResponseOrderAllGetDTO> dtoList = orderService.getOrderAll(date);
 
         // 전체 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -96,11 +96,11 @@ public class OrderController {
 
 
     // 실시간 주문 조회
-    @GetMapping("/now/all")
-    public ResponseEntity<Map<String, Object>> getOrderNowAll(@PathVariable UUID boothId){
+    @GetMapping("/now/all/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderNowAll(@PathVariable UUID boothId,@PathVariable Integer date){
 
         // 실시간 주문 조회 service 실행
-        ResponseOrderNowGetDTO responseOrderNowGetDTO = orderService.getOrderNowAll(boothId);
+        ResponseOrderNowGetDTO responseOrderNowGetDTO = orderService.getOrderNowAll(boothId, date);
 
         // 실시간 주문 조회 성공 여부 설정
         boolean success = (responseOrderNowGetDTO == null) ? false : true;
@@ -119,11 +119,11 @@ public class OrderController {
 
 
     // 입금대기 주문 조회
-    @GetMapping("/deposit/all")
-    public ResponseEntity<Map<String, Object>> getOrderWaitDepositAll(){
+    @GetMapping("/deposit/all/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderWaitDepositAll(@PathVariable Integer date){
 
         // 입금대기 주문 조회 service 실행
-        List<ResponseOrderWaitDepositGetDTO> dtoList = orderService.getOrderWaitDepositAll();
+        List<ResponseOrderWaitDepositGetDTO> dtoList = orderService.getOrderWaitDepositAll(date);
 
         // 입금대기 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -142,11 +142,11 @@ public class OrderController {
 
 
     // 조리중 주문 조회
-    @GetMapping("/cooking/all")
-    public ResponseEntity<Map<String, Object>> getOrderCookingAll(@PathVariable UUID boothId){
+    @GetMapping("/cooking/all/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderCookingAll(@PathVariable UUID boothId, @PathVariable Integer date){
 
         // 조리중 주문 조회 service 실행
-        List<ResponseOrderCookingGetDTO> dtoList = orderService.getOrderCookingAll(boothId);
+        List<ResponseOrderCookingGetDTO> dtoList = orderService.getOrderCookingAll(boothId, date);
 
         // 조리중 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -165,11 +165,11 @@ public class OrderController {
 
 
     // 조리완료 주문 조회
-    @GetMapping("/finish/all")
-    public ResponseEntity<Map<String, Object>> getOrderFinishAll(){
+    @GetMapping("/finish/all/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderFinishAll(@PathVariable Integer date){
 
         // 조리완료 주문 조회 service 실행
-        List<ResponseOrderFinishGetDTO> dtoList = orderService.getOrderFinishAll();
+        List<ResponseOrderFinishGetDTO> dtoList = orderService.getOrderFinishAll(date);
 
         // 조리완료 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;
@@ -188,11 +188,11 @@ public class OrderController {
 
 
     // 취소 주문 조회
-    @GetMapping("/cancel/all")
-    public ResponseEntity<Map<String, Object>> getOrderCancelAll(){
+    @GetMapping("/cancel/all/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderCancelAll(@PathVariable Integer date){
 
         // 취소 주문 조회 service 실행
-        List<ResponseOrderCancelGetDTO> dtoList = orderService.getOrderCancelAll();
+        List<ResponseOrderCancelGetDTO> dtoList = orderService.getOrderCancelAll(date);
 
         // 취소 주문 조회 성공 여부 설정
         boolean success = (dtoList == null) ? false : true;

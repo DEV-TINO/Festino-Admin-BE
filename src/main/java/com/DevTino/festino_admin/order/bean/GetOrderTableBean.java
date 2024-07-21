@@ -24,10 +24,10 @@ public class GetOrderTableBean {
 
 
     // 테이블 주문 현황 조회
-    public List<ResponseOrderTableGetDTO> exec(){
+    public List<ResponseOrderTableGetDTO> exec(Integer date){
 
-        // 조리중인 Order 최신순 전체 조회
-        List<OrderDAO> orderDAOList = getOrderCookingDAOBean.exec();
+        // 해당 날짜의 조리중인 Order 최신순 전체 조회
+        List<OrderDAO> orderDAOList = getOrderCookingDAOBean.exec(date);
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴
         return createOrderTableGetDTOsBean.exec(orderDAOList);

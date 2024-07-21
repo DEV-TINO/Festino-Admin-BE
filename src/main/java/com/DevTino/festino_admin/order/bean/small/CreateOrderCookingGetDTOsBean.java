@@ -21,7 +21,7 @@ public class CreateOrderCookingGetDTOsBean {
 
 
     // 메뉴 한 개당 하나의 DTO를 생성, DTO 리스트를 만들어 반환
-    public List<ResponseOrderCookingGetDTO> exec(List<MenuDAO> menuDAOList){
+    public List<ResponseOrderCookingGetDTO> exec(List<MenuDAO> menuDAOList, Integer date){
 
         // DTO 리스트 생성
         List<ResponseOrderCookingGetDTO> orderCookingGetDTOList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class CreateOrderCookingGetDTOsBean {
         for (MenuDAO menuDAO : menuDAOList){
             
             // 메뉴 한 개당 하나의 DTO 생성, DTO 리스트에 삽입
-            orderCookingGetDTOList.add(createOrderCookingGetDTOBean.exec(menuDAO));
+            orderCookingGetDTOList.add(createOrderCookingGetDTOBean.exec(menuDAO, date));
 
         }
 

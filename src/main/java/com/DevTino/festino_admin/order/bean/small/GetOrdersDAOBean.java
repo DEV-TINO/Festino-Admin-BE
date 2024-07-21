@@ -19,10 +19,10 @@ public class GetOrdersDAOBean {
 
 
 
-    // 전체 주문 최신순 조회
-    public List<OrderDAO> exec(){
+    // 해당 날짜의 전체 주문 최신순 조회
+    public List<OrderDAO> exec(Integer date){
 
-        return orderRepositoryJPA.findByOrderByCreateAtDesc();
+        return orderRepositoryJPA.findByDateOrderByCreateAtDesc(date);
 
     }
 
