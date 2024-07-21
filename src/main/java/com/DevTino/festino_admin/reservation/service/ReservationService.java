@@ -2,7 +2,7 @@ package com.DevTino.festino_admin.reservation.service;
 
 import com.DevTino.festino_admin.reservation.bean.GetReservationsBean;
 import com.DevTino.festino_admin.reservation.bean.UpdateReservationBean;
-import com.DevTino.festino_admin.reservation.bean.DeleteReservationBean;
+import com.DevTino.festino_admin.reservation.bean.DeleteReservationCancelBean;
 import com.DevTino.festino_admin.reservation.bean.SaveReservationRestoreBean;
 import com.DevTino.festino_admin.reservation.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,14 @@ import java.util.UUID;
 @Service
 public class ReservationService {
     GetReservationsBean getReservationsBean;
-    DeleteReservationBean deleteReservationBean;
+    DeleteReservationCancelBean deleteReservationCancelBean;
     SaveReservationRestoreBean saveReservationRestoreBean;
     UpdateReservationBean updateReservationBean;
 
     @Autowired
-    public ReservationService(GetReservationsBean getReservationsBean, DeleteReservationBean deleteReservationBean, SaveReservationRestoreBean saveReservationRestoreBean, UpdateReservationBean updateReservationBean) {
+    public ReservationService(GetReservationsBean getReservationsBean, DeleteReservationCancelBean deleteReservationCancelBean, SaveReservationRestoreBean saveReservationRestoreBean, UpdateReservationBean updateReservationBean) {
         this.getReservationsBean = getReservationsBean;
-        this.deleteReservationBean = deleteReservationBean;
+        this.deleteReservationCancelBean = deleteReservationCancelBean;
         this.saveReservationRestoreBean = saveReservationRestoreBean;
         this.updateReservationBean = updateReservationBean;
     }
@@ -32,7 +32,7 @@ public class ReservationService {
 
     // 예약 삭제
     public ResponseReservationDeleteDTO deleteReservation(RequestReservationDeleteDTO requestReservationDeleteDTO) {
-        return deleteReservationBean.exec(requestReservationDeleteDTO);
+        return deleteReservationCancelBean.exec(requestReservationDeleteDTO);
     }
 
     // 예약 복구
