@@ -76,7 +76,7 @@ public class ReservationController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "예약 완료 성공" : "예약 완료 시 DAO 저장 실패");
-        requestMap.put("complete", responseReservationCompleteUpdateDTO);
+        requestMap.put("completeInfo", responseReservationCompleteUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
