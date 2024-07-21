@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.user.jwt;
 
-import com.DevTino.festino_admin.user.domain.RoleType;
 import com.DevTino.festino_admin.user.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -17,6 +16,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -65,9 +65,14 @@ public class JwtFilter extends OncePerRequestFilter {
         String userId = JwtUtil.getUserId(accessToken, secretKey);
         log.info("userId : {}", userId);
 
-        RoleType roleType = RoleType.ADMIN;
-        // RoleType에서 이름을 가져와서 SimpleGrantedAuthority를 생성
-        List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(roleType.name()));
+        String role = JwtUtil.getUserRole(accessToken, secretKey);
+        log.info("role : {}", role);
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("MEMBER"));
+        if(role.equals("ADMIN")) {
+            authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        }
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null, authorities);
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
