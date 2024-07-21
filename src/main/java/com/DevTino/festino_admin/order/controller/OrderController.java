@@ -31,16 +31,16 @@ public class OrderController {
     public ResponseEntity<Map<String, Object>> getOrderTable(){
 
         // 테이블 주문 현황 조회 service 실행
-        List<ResponseOrderTableGetDTO> responseOrderTableGetDTO = orderService.getOrderTable();
+        List<ResponseOrderTableGetDTO> dtoList = orderService.getOrderTable();
 
         // 테이블 주문 현황 조회 성공 여부 설정
-        boolean success = (responseOrderTableGetDTO == null) ? false : true;
+        boolean success = (dtoList == null) ? false : true;
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "테이블 주문 현황 조회 성공" : "테이블 주문 현황 조회 시 DAO 검색 실패");
-        requestMap.put("orders", responseOrderTableGetDTO);
+        requestMap.put("orderList", dtoList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -86,7 +86,30 @@ public class OrderController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "전체 주문 조회 성공" : "전체 주문 조회 시 DAO 검색 실패");
-        requestMap.put("orders", dtoList);
+        requestMap.put("orderList", dtoList);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
+    // 실시간 주문 조회
+    @GetMapping("/now/all")
+    public ResponseEntity<Map<String, Object>> getOrderNowAll(@PathVariable UUID boothId){
+
+        // 실시간 주문 조회 service 실행
+        ResponseOrderNowGetDTO responseOrderNowGetDTO = orderService.getOrderNowAll(boothId);
+
+        // 실시간 주문 조회 성공 여부 설정
+        boolean success = (responseOrderNowGetDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "실시간 주문 조회 성공" : "실시간 주문 조회 시 DAO 검색 실패");
+        requestMap.put("nowInfo", responseOrderNowGetDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -109,7 +132,30 @@ public class OrderController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "입금대기 주문 조회 성공" : "입금대기 주문 조회 시 DAO 검색 실패");
-        requestMap.put("orders", dtoList);
+        requestMap.put("waitDepositList", dtoList);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
+    // 조리중 주문 조회
+    @GetMapping("/cooking/all")
+    public ResponseEntity<Map<String, Object>> getOrderCookingAll(@PathVariable UUID boothId){
+
+        // 조리중 주문 조회 service 실행
+        List<ResponseOrderCookingGetDTO> dtoList = orderService.getOrderCookingAll(boothId);
+
+        // 조리중 주문 조회 성공 여부 설정
+        boolean success = (dtoList == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "조리중 주문 조회 성공" : "조리중 주문 조회 시 DAO 검색 실패");
+        requestMap.put("cookingList", dtoList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -132,7 +178,7 @@ public class OrderController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "조리완료 주문 조회 성공" : "조리완료 주문 조회 시 DAO 검색 실패");
-        requestMap.put("orders", dtoList);
+        requestMap.put("finishList", dtoList);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
@@ -155,7 +201,30 @@ public class OrderController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "취소 주문 조회 성공" : "취소 주문 조회 시 DAO 검색 실패");
-        requestMap.put("orders", dtoList);
+        requestMap.put("cancelList", dtoList);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
+    // 주문 통계 조회
+    @GetMapping("/statistic/{date}")
+    public ResponseEntity<Map<String, Object>> getOrderStatistic(@PathVariable UUID boothId, @PathVariable Integer date){
+
+        // 통계 조회 service 실행
+        ResponseOrderStatisticGetDTO responseOrderStatisticGetDTO = orderService.getOrderStatistic(boothId, date);
+
+        // 통계 조회 성공 여부 설정
+        boolean success = (responseOrderStatisticGetDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "통계 조회 성공" : "통계 조회 시 DAO 검색 실패");
+        requestMap.put("statistic", responseOrderStatisticGetDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

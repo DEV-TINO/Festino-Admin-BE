@@ -17,6 +17,6 @@ public class ResponseOrderCancelGetDTO {
     String userName;
     String phoneNum;
     Integer totalPrice;
-    List<Map<String, Object>> menuInfo;
+    List<Map<String, Object>> menuList;
 
 }

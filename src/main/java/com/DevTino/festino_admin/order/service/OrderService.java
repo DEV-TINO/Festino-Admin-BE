@@ -15,9 +15,12 @@ public class OrderService {
     GetOrderTableBean getOrderTableBean;
     GetOrderDetailBean getOrderDetailBean;
     GetOrderAllBean getOrderAllBean;
+    GetOrderNowBean getOrderNowBean;
     GetOrderWaitDepositBean getOrderWaitDepositBean;
+    GetOrderCookingBean getOrderCookingBean;
     GetOrderFinishBean getOrderFinishBean;
     GetOrderCancelBean getOrderCancelBean;
+    GetOrderStatisticBean getOrderStatisticBean;
     DeleteOrderBean deleteOrderBean;
     UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean;
     UpdateOrderDepositBean updateOrderDepositBean;
@@ -25,13 +28,16 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderNowBean getOrderNowBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderCookingBean getOrderCookingBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, GetOrderStatisticBean getOrderStatisticBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.getOrderTableBean = getOrderTableBean;
         this.getOrderDetailBean = getOrderDetailBean;
         this.getOrderAllBean = getOrderAllBean;
+        this.getOrderNowBean = getOrderNowBean;
         this.getOrderWaitDepositBean = getOrderWaitDepositBean;
+        this.getOrderCookingBean = getOrderCookingBean;
         this.getOrderFinishBean = getOrderFinishBean;
         this.getOrderCancelBean = getOrderCancelBean;
+        this.getOrderStatisticBean = getOrderStatisticBean;
         this.deleteOrderBean = deleteOrderBean;
         this.updateOrderDeleteRestoreBean = updateOrderDeleteRestoreBean;
         this.updateOrderDepositBean = updateOrderDepositBean;
@@ -68,10 +74,28 @@ public class OrderService {
 
 
 
+    // 실시간 주문 조회
+    public ResponseOrderNowGetDTO getOrderNowAll(UUID boothId){
+
+        return getOrderNowBean.exec(boothId);
+
+    }
+
+
+
     // 입금대기 주문 조회
     public List<ResponseOrderWaitDepositGetDTO> getOrderWaitDepositAll(){
 
         return getOrderWaitDepositBean.exec();
+
+    }
+
+
+
+    // 조리중 주문 조회
+    public List<ResponseOrderCookingGetDTO> getOrderCookingAll(UUID boothId){
+
+        return getOrderCookingBean.exec(boothId);
 
     }
 
@@ -90,6 +114,15 @@ public class OrderService {
     public List<ResponseOrderCancelGetDTO> getOrderCancelAll(){
 
         return getOrderCancelBean.exec();
+
+    }
+
+
+
+    // 주문 통계 조회
+    public ResponseOrderStatisticGetDTO getOrderStatistic(UUID boothId, Integer date){
+
+        return getOrderStatisticBean.exec(boothId, date);
 
     }
 
