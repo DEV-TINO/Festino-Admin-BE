@@ -9,6 +9,7 @@ import com.DevTino.festino_admin.reservation.bean.small.SaveReservationDAOBean;
 import com.DevTino.festino_admin.reservation.domain.DTO.RequestReservationRestoreDTO;
 import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationRestoreDTO;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
+import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,9 +39,10 @@ public class SaveReservationRestoreBean {
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationRestoreDTO.getBoothId());
         if(nightBoothDAO == null) return null;
 
-        if(reservationDAO.getIsCancel() && requestReservationRestoreDTO.getIsCancel()) {
+        // 예약 복구여부 변경
+        if(reservationDAO.getReservationType().equals(requestReservationRestoreDTO.getReservationType())) {
             // 예약 복구여부 isCancel 값 수정
-            reservationDAO.setIsCancel(false);
+            reservationDAO.setReservationType(ReservationEnum.RESERVE);
 
             // 야간부스 총 예약수 +1
             nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()+1);

@@ -11,7 +11,7 @@ public class CreateReservationRestoreDTOBean {
     public ResponseReservationRestoreDTO exec(ReservationDAO reservationDAO) {
         return ResponseReservationRestoreDTO.builder()
                 .reservationId(reservationDAO.getReservationId())
-                .isCancel(reservationDAO.getIsCancel())
+                .reservationType(reservationDAO.getReservationType())
                 .build();
     }
 }
