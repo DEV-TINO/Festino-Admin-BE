@@ -63,11 +63,11 @@ public class ReservationController {
     }
 
     // 예약 완료
-    @PostMapping("/complete")
-    public ResponseEntity<Map<String, Object>> completeReservation(@RequestBody RequestReservationCompleteDTO requestReservationCompleteDTO) {
+    @PutMapping("/complete")
+    public ResponseEntity<Map<String, Object>> completeReservation(@RequestBody RequestReservationCompleteUpdateDTO requestReservationCompleteUpdateDTO) {
 
         // 예약 삭제 service
-        ResponseReservationCompleteDTO responseReservationCompleteDTO = reservationService.completeReservation(requestReservationCompleteDTO);
+        ResponseReservationCompleteDTO responseReservationCompleteDTO = reservationService.completeReservation(requestReservationCompleteUpdateDTO);
 
         // 예약 삭제 성공 여부
         boolean success = responseReservationCompleteDTO != null;
@@ -83,7 +83,7 @@ public class ReservationController {
     }
 
     // 예약 복구
-    @PostMapping("/restore")
+    @PutMapping("/restore")
     public ResponseEntity<Map<String, Object>> restoreReservation(@RequestBody RequestReservationRestoreDTO requestReservationRestoreDTO) {
 
         // 예약 복구 service
