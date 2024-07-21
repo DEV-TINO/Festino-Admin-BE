@@ -63,7 +63,7 @@ public class ReservationController {
     }
 
     // 예약 완료
-    @DeleteMapping("/complete")
+    @PostMapping("/complete")
     public ResponseEntity<Map<String, Object>> completeReservation(@RequestBody RequestReservationCompleteDTO requestReservationCompleteDTO) {
 
         // 예약 삭제 service
