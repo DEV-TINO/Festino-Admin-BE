@@ -16,7 +16,6 @@ public class CreateNightBoothDTOBean {
                 .boothImage(nightBoothDAO.getBoothImage())
                 .adminName(nightBoothDAO.getAdminName())
                 .adminCategory(nightBoothDAO.getAdminCategory())
-                .location(nightBoothDAO.getLocation())
                 .openTime(nightBoothDAO.getOpenTime())
                 .closeTime(nightBoothDAO.getCloseTime())
                 .isOpen(nightBoothDAO.getIsOpen())
