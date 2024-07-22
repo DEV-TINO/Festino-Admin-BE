@@ -46,6 +46,6 @@ public class GetReservationsDAOBean {
     // reservagtionNum 이 오름차순 기준으로 2번째 예약 객체 찾기
     @Transactional(readOnly = true)
     public List<ReservationDAO> exec() {
-        return reservationRepositoryJPA.findTop2ByOrderByReservationNumAsc();
+        return reservationRepositoryJPA.findTop2ByReservationTypeOrderByReservationNumAsc(ReservationEnum.RESERVE);
     }
 }
