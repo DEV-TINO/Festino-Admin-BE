@@ -77,11 +77,11 @@ public class JwtFilter extends OncePerRequestFilter {
             String role = JwtUtil.getUserRole(accessToken, secretKey);
             log.info("role : {}", role);
 
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("MEMBER"));
-        if(role != null && role.equals("ADMIN")) {
-            authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        }
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority("MEMBER"));
+            if(role != null && role.equals("ADMIN")) {
+                authorities.add(new SimpleGrantedAuthority("ADMIN"));
+            }
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null, authorities);
             authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
