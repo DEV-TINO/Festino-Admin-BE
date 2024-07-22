@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface NightBoothRepositoryJPA extends JpaRepository<NightBoothDAO, UUID> {
+    NightBoothDAO findByAdminName(String adminName);
 }

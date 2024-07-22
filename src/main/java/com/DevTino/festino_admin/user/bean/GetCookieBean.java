@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GetCookieBean {
 
+    // 토큰이 들어있는 쿠키 조회
     public Cookie exec(HttpServletRequest request) {
         String cookieName = "access_token";
 

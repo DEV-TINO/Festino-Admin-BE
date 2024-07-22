@@ -23,6 +23,7 @@ public class MenuDAO {
     String menuDescription;
     String menuImage;
     Boolean isSoldOut;
+    Boolean isDeleted;
     LocalDateTime createAt;
     LocalDateTime updateAt;
     MenuType menuType;

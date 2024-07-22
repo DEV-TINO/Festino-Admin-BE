@@ -13,4 +13,6 @@ public interface ReservationRepositoryJPA extends JpaRepository<ReservationDAO, 
 
     // reservationId와 boothId를 통해 원하는 객체 찾기
     ReservationDAO findByReservationIdAndBoothId(UUID reservationId, UUID boothId);
+
+    List<ReservationDAO> findTop2ByReservationTypeOrderByReservationNumAsc(ReservationEnum reservationType);
 }

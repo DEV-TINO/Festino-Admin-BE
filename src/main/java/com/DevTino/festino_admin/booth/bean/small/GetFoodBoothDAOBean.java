@@ -26,4 +26,7 @@ public class GetFoodBoothDAOBean {
     public List<FoodBoothDAO> exec() {
         return foodBoothRepository.findAll();
     }
+
+    // adminName으로 DAO 찾아서 반환
+    public FoodBoothDAO exec(String adminName) { return foodBoothRepository.findByAdminName(adminName); }
 }
