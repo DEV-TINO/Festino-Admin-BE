@@ -16,9 +16,9 @@ public class CreateFoodBoothDAOBean {
     // 푸드트럭 DAO 생성
     public FoodBoothDAO exec(RequestFoodBoothSaveDTO requestFoodBoothSaveDTO) {
 
-        // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
+        // 부스 이미지를 넣지 않았을 때 null 넣어주는 예외처리
         List<String> boothImage = new ArrayList<>();
-        if (requestFoodBoothSaveDTO.getBoothImage().isEmpty())
+        if (requestFoodBoothSaveDTO.getBoothImage() == null)
             boothImage = Collections.singletonList("");
         else
             boothImage = requestFoodBoothSaveDTO.getBoothImage();

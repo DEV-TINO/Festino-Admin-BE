@@ -16,9 +16,9 @@ public class CreateNightBoothDAOBean {
     // 야간부스 DAO 생성
     public NightBoothDAO exec(RequestNightBoothSaveDTO requestNightBoothSaveDTO) {
 
-        // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
+        // 부스 이미지를 넣지 않았을 때 null 넣어주는 예외처리
         List<String> boothImage = new ArrayList<>();
-        if (requestNightBoothSaveDTO.getBoothImage().isEmpty())
+        if (requestNightBoothSaveDTO.getBoothImage() == null)
             boothImage = Collections.singletonList("");
         else
             boothImage = requestNightBoothSaveDTO.getBoothImage();

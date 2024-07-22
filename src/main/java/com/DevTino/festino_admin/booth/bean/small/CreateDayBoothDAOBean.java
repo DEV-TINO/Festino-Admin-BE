@@ -17,9 +17,9 @@ public class CreateDayBoothDAOBean {
     //주간부스 DAO 생성
     public DayBoothDAO exec(RequestDayBoothSaveDTO requestDayBoothSaveDTO) {
 
-        // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
+        // 부스 이미지를 넣지 않았을 때 null 넣어주는 예외처리
         List<String> boothImage = new ArrayList<>();
-        if (requestDayBoothSaveDTO.getBoothImage().isEmpty())
+        if (requestDayBoothSaveDTO.getBoothImage() == null)
             boothImage = Collections.singletonList("");
         else
             boothImage = requestDayBoothSaveDTO.getBoothImage();
