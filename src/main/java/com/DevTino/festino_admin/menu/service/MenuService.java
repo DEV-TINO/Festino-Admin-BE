@@ -43,7 +43,7 @@ public class MenuService {
     }
 
     // 메뉴 삭제
-    public boolean deleteMenu(RequestMenuDeleteDTO requestMenuDeleteDTO) {
+    public UUID deleteMenu(RequestMenuDeleteDTO requestMenuDeleteDTO) {
         return deleteMenuBean.exec(requestMenuDeleteDTO);
     }
 
