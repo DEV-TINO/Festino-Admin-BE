@@ -29,7 +29,6 @@ public class NightBoothDAO {
     List<String> boothImage;
     String openTime;
     String closeTime;
-    String location;
     Boolean isOpen;
     Boolean isOrder;
     Boolean isReservation;

@@ -18,7 +18,6 @@ public class CreateFoodBoothDTOBean {
                 .adminCategory(foodBoothDAO.getAdminCategory())
                 .openTime(foodBoothDAO.getOpenTime())
                 .closeTime(foodBoothDAO.getCloseTime())
-                .location(foodBoothDAO.getLocation())
                 .isOpen(foodBoothDAO.getIsOpen())
                 .build();
     }

@@ -14,7 +14,6 @@ public class CreateDayBoothDTOBean {
                 .boothIntro(dayBoothDAO.getBoothIntro())
                 .boothImage(dayBoothDAO.getBoothImage())
                 .boothName(dayBoothDAO.getBoothName())
-                .location(dayBoothDAO.getLocation())
                 .openTime(dayBoothDAO.getOpenTime())
                 .closeTime(dayBoothDAO.getCloseTime())
                 .adminName(dayBoothDAO.getAdminName())
