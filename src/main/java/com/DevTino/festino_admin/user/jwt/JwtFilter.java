@@ -42,6 +42,15 @@ public class JwtFilter extends OncePerRequestFilter {
         return null;
     }
 
+    private void clearToken(HttpServletResponse response) {
+        Cookie cookie = new Cookie("access_token", null);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+    }
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String accessToken = getTokenFromCookies(request.getCookies());
@@ -54,29 +63,37 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        try {
+            // Token 만료시간 확인
+            if(JwtUtil.isExpired(accessToken, secretKey)) {
+                log.error("token is expired");
+                filterChain.doFilter(request, response);
+                return;
+            }
 
-        // Token 만료시간 확인
-        if(JwtUtil.isExpired(accessToken, secretKey)) {
-            log.error("token is expired");
-            filterChain.doFilter(request, response);
+            String userId = JwtUtil.getUserId(accessToken, secretKey);
+            log.info("userId : {}", userId);
+
+            String role = JwtUtil.getUserRole(accessToken, secretKey);
+            log.info("role : {}", role);
+
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority("MEMBER"));
+            if(role.equals("ADMIN")) {
+                authorities.add(new SimpleGrantedAuthority("ADMIN"));
+            }
+
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null, authorities);
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            
+        } catch (Exception e) {
+            log.error("Error processing JWT token", e);
+            clearToken(response);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Invalid token");
             return;
         }
-
-        String userId = JwtUtil.getUserId(accessToken, secretKey);
-        log.info("userId : {}", userId);
-
-        String role = JwtUtil.getUserRole(accessToken, secretKey);
-        log.info("role : {}", role);
-
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("MEMBER"));
-        if(role.equals("ADMIN")) {
-            authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        }
-
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null, authorities);
-        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request, response);
     }
 }
