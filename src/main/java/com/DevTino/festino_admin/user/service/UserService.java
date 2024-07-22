@@ -83,10 +83,12 @@ public class UserService {
         return checkRoleBean.exec();
     }
 
+    // 토큰이 들어있는 쿠키 조회
     public Cookie getCookie(HttpServletRequest request) {
         return getCookieBean.exec(request);
     }
 
+    // adminName 과 매핑되는 boothId 조회
     public UUID getBooth(HttpServletRequest request) {
         return getBoothIdByAdminName.exec(request, secretKey);
     }
