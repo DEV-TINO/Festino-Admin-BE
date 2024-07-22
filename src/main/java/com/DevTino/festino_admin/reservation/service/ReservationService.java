@@ -5,6 +5,7 @@ import com.DevTino.festino_admin.reservation.domain.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -30,12 +31,12 @@ public class ReservationService {
     }
 
     // 예약 삭제
-    public ResponseReservationDeleteDTO deleteReservation(RequestReservationDeleteDTO requestReservationDeleteDTO) {
+    public ResponseReservationDeleteDTO deleteReservation(RequestReservationDeleteDTO requestReservationDeleteDTO) throws IOException {
         return deleteReservationCancelBean.exec(requestReservationDeleteDTO);
     }
 
     // 예약 완료
-    public ResponseReservationCompleteUpdateDTO completeReservation(RequestReservationCompleteUpdateDTO requestReservationCompleteUpdateDTO) {
+    public ResponseReservationCompleteUpdateDTO completeReservation(RequestReservationCompleteUpdateDTO requestReservationCompleteUpdateDTO) throws IOException {
         return deleteReservationCompleteBean.exec(requestReservationCompleteUpdateDTO);
     }
 
