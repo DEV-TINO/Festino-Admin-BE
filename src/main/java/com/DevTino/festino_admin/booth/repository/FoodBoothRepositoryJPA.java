@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface FoodBoothRepositoryJPA extends JpaRepository<FoodBoothDAO, UUID> {
+    FoodBoothDAO findByAdminName(String adminName);
 }

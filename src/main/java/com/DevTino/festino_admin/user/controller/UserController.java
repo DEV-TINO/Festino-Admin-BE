@@ -86,8 +86,8 @@ public class UserController {
 
     // 유저 수정
     @PutMapping
-    public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO, HttpServletRequest request) {
-        UUID userId = userService.updateUser(requestUserUpdateDTO, request);
+    public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO) {
+        UUID userId = userService.updateUser(requestUserUpdateDTO);
 
         // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
@@ -153,6 +153,21 @@ public class UserController {
         requestMap.put("success", userDAO != null);
         requestMap.put("message", userDAO == null ? "doesn't exist user" : "user exist");
         requestMap.put("role", userDAO == null ? null : userDAO.getRole() == RoleType.ADMIN);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 부스 아이디 확인
+    @GetMapping("/booth")
+    public ResponseEntity<Map<String, Object>> getBoothByAdminName(HttpServletRequest request) {
+        UUID boothId = userService.getBooth(request);
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", boothId != null);
+        requestMap.put("message", boothId == null ? "search failure" : "search success");
+        requestMap.put("boothId", boothId == null ? "00000000-0000-0000-0000-000000000000" : boothId);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
