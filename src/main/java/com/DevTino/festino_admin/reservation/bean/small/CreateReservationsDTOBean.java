@@ -43,13 +43,17 @@ public class CreateReservationsDTOBean {
             responseReservationGetDTOList.add(responseReservationGetDTO);
         }
 
+        // boothId를 통해 원하는 야간부스 객체를 찾기
+        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(boothId);
+        if(nightBoothDAO == null) return null;
+
         // 예약 리스트, 예약가능 여부, 총 예약수를 묶은 DTO 생성 후 반환
         return ResponseReservationsGetDTO.builder()
                 // 예약 리스트
                 .ReservationList(responseReservationGetDTOList)
 
                 // 예약가능 여부(boothId를 통해 원하는 야간부스 객체를 찾고 그 객체의 예약여부 가져오기)
-                .isReservation(getNightBoothDAOBean.exec(boothId).getIsReservation())
+                .isReservation(nightBoothDAO.getIsReservation())
 
                 // 총 예약수
                 .totalNum(reservationDAOList.size())

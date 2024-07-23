@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public class GetReservationsDAOBean {
     @Transactional(readOnly = true)
     public List<ReservationDAO> exec(UUID boothId, String type, Integer date) {
         // 예약 리스트 생성
-        List<ReservationDAO> reservationDAOList;
+        List<ReservationDAO> reservationDAOList = new ArrayList<>();
 
         // 예약 목록일 때
         if (type.equals("reserve"))
