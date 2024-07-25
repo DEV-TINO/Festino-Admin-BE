@@ -16,5 +16,7 @@ public class ResponseNightBoothsGetDTO {
     String closeTime;
     Boolean isOpen;
     Boolean isOrder;
+    Integer markerNum;
+    String location;
     Boolean isReservation;
 }

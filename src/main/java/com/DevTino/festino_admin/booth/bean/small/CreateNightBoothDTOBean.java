@@ -21,6 +21,8 @@ public class CreateNightBoothDTOBean {
                 .isOpen(nightBoothDAO.getIsOpen())
                 .isOrder(nightBoothDAO.getIsOrder())
                 .isReservation(nightBoothDAO.getIsReservation())
+                .location(nightBoothDAO.getLocation())
+                .markerNum(nightBoothDAO.getMarkerNum())
                 .totalReservationNum(nightBoothDAO.getTotalReservationNum())
                 .build();
     }

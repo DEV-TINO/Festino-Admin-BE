@@ -34,6 +34,8 @@ public class CreateFoodBoothDAOBean {
                 .closeTime(requestFoodBoothSaveDTO.getCloseTime())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
+                .location("")
+                .markerNum(0)
                 .isOpen(requestFoodBoothSaveDTO.getIsOpen())
                 .build();
     }

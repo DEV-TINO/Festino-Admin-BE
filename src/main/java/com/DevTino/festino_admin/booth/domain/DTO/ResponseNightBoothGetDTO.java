@@ -17,6 +17,7 @@ public class ResponseNightBoothGetDTO {
     String closeTime;
     String boothIntro;
     List<String> boothImage;
+    Integer markerNum;
     String location;
     Boolean isOpen;
     Boolean isOrder;

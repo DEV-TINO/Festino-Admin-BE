@@ -32,6 +32,10 @@ public class NightBoothDAO {
     Boolean isOpen;
     Boolean isOrder;
     Boolean isReservation;
+
+    Integer markerNum;
+    String location;
+
     LocalDateTime createAt;
     LocalDateTime updateAt;
     Integer totalReservationNum;

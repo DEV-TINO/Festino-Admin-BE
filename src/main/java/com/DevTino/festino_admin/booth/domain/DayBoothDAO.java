@@ -30,6 +30,10 @@ public class DayBoothDAO {
     @Convert(converter = StringConverter.class)
     List<String> boothImage;
     Boolean isOpen;
+
+    Integer markerNum;
+    String location;
+
     LocalDateTime createAt;
     LocalDateTime updateAt;
 }

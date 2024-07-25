@@ -18,6 +18,8 @@ public class CreateDayBoothDTOBean {
                 .closeTime(dayBoothDAO.getCloseTime())
                 .adminName(dayBoothDAO.getAdminName())
                 .adminCategory(dayBoothDAO.getAdminCategory())
+                .location(dayBoothDAO.getLocation())
+                .markerNum(dayBoothDAO.getMarkerNum())
                 .isOpen(dayBoothDAO.getIsOpen())
                 .build();
     }

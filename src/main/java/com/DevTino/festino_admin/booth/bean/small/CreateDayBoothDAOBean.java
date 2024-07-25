@@ -35,6 +35,8 @@ public class CreateDayBoothDAOBean {
                 .adminCategory(requestDayBoothSaveDTO.getAdminCategory())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
+                .location("")
+                .markerNum(0)
                 .isOpen(requestDayBoothSaveDTO.getIsOpen())
                 .build();
     }

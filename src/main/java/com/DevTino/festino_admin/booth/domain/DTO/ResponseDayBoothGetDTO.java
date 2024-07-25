@@ -17,6 +17,7 @@ public class ResponseDayBoothGetDTO {
     String closeTime;
     String boothIntro;
     List<String> boothImage;
+    Integer markerNum;
     String location;
     Boolean isOpen;
 }
