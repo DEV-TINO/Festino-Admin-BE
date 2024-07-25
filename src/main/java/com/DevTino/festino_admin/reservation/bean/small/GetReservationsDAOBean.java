@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,26 +21,8 @@ public class GetReservationsDAOBean {
 
     // boothId를 통해 원하는 부스 전체 DAO 오래된 순으로 반환
     @Transactional(readOnly = true)
-    public List<ReservationDAO> exec(UUID boothId, String type, Integer date) {
-        // 예약 리스트 생성
-        List<ReservationDAO> reservationDAOList = new ArrayList<>();
-
-        // 예약 목록일 때
-        if (type.equals("reserve"))
-            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndReservationTypeAndDateOrderByUpdateAtAsc(boothId, ReservationEnum.RESERVE, date);
-
-        // 삭제 목록일 때
-        else if(type.equals("cancel"))
-            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndReservationTypeAndDateOrderByUpdateAtAsc(boothId, ReservationEnum.CANCEL, date);
-
-        // 완료 목록일 때
-        else if(type.equals("complete"))
-            reservationDAOList = reservationRepositoryJPA.findAllByBoothIdAndReservationTypeAndDateOrderByUpdateAtAsc(boothId, ReservationEnum.COMPLETE, date);
-
-        else
-            reservationDAOList = null;
-
-        return reservationDAOList;
+    public List<ReservationDAO> exec(UUID boothId, Integer date) {
+        return reservationRepositoryJPA.findAllByBoothIdAndDateOrderByUpdateAtAsc(boothId, date);
     }
 
     // reservagtionNum 이 오름차순 기준으로 2번째 예약 객체 찾기

@@ -1,6 +1,8 @@
 package com.DevTino.festino_admin.reservation.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +19,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ReservationDAO {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer reservationNum;
+
     UUID reservationId;
 
     UUID boothId;
@@ -26,6 +31,5 @@ public class ReservationDAO {
     LocalDateTime createAt;
     LocalDateTime updateAt;
     ReservationEnum reservationType;
-    Integer reservationNum;
     Integer date;
 }

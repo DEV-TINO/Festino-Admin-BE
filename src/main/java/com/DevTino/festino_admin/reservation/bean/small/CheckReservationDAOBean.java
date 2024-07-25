@@ -22,10 +22,7 @@ public class CheckReservationDAOBean {
     }
 
     // 부스의 오픈 시간을 활용해서 몇일차인지 구함
-    public Integer exec(UUID boothId) {
-        // boothId를 통해 원하는 부스 찾기
-        NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(boothId);
-        if(nightBoothDAO == null) return null;
+    public Integer exec(NightBoothDAO nightBoothDAO) {
 
         String openTime = nightBoothDAO.getOpenTime();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");

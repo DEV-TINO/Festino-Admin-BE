@@ -40,6 +40,9 @@ public class WebSecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+                                .requestMatchers(HttpMethod.GET, "/admin/booth/night/all").permitAll()
+                                .requestMatchers("/admin/reservation/**").permitAll()
+                                .requestMatchers("/admin/reservation").permitAll()
                                 .requestMatchers("/admin/user/login").permitAll()
                                 .requestMatchers("/admin/user/role").permitAll()
                                 .requestMatchers("/admin/user/logout").permitAll()
@@ -61,7 +64,7 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://admin.festino.dev-tino.com"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "http://localhost:5173", "https://admin.festino.dev-tino.com"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
