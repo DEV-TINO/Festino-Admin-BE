@@ -1,12 +1,10 @@
 package com.DevTino.festino_admin.reservation.bean.small;
 
-import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationGetDTO;
 import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationsGetDTO;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
 import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -42,9 +42,12 @@ public class ReservationTop2SendMessageBean {
         String refKey = UUID.randomUUID().toString();
         String message = userName + "님 곧 입장이 가능합니다. 부스로 바로 와주세요.";
 
-        String messageStatus = sendMessageBean.exec(phoneNum, accessToken, refKey, message);
+        return sendMessageBean.exec(phoneNum, accessToken, refKey, message);
+
+        // 1팀 대기는 로직상 체크 안하고 가기로 결정
+        /*String messageStatus = sendMessageBean.exec(phoneNum, accessToken, refKey, message);
         if (messageStatus.equals("SEND_FAIL")) return messageStatus;
 
-        return checkMessageStatusBean.exec(refKey, accessToken);
+        return checkMessageStatusBean.exec(refKey, accessToken);*/
     }
 }
