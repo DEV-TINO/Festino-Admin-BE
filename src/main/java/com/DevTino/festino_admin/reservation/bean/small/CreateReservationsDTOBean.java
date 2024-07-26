@@ -46,6 +46,7 @@ public class CreateReservationsDTOBean {
                         .phoneNum(reservationDAO.getPhoneNum())
                         .updateAt(reservationDAO.getUpdateAt())
                         .reservationNum(reservationNum)
+                        .reservationType(reservationDAO.getReservationType())
                         .build();
 
                 // 예약 DTO 리스트에 각 DTO 추가

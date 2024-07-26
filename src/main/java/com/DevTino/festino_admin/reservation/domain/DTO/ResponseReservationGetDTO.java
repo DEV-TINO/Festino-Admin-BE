@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.reservation.domain.DTO;
 
+import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,4 +16,5 @@ public class ResponseReservationGetDTO {
     String phoneNum;
     LocalDateTime updateAt;
     Integer reservationNum;
+    ReservationEnum reservationType;
 }
