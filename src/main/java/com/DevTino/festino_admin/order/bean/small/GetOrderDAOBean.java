@@ -22,7 +22,7 @@ public class GetOrderDAOBean {
     // orderId로 DAO 찾아서 반환하는 메서드
     public OrderDAO exec(UUID orderId){
 
-        return orderRepositoryJPA.findById(orderId).orElse(null);
+        return orderRepositoryJPA.findByOrderId(orderId);
 
     }
 

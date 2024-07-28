@@ -9,6 +9,9 @@ import java.util.UUID;
 
 public interface OrderRepositoryJPA extends JpaRepository<OrderDAO, UUID> {
 
+    // orderId로 주문 검색
+    public OrderDAO findByOrderId(UUID orderId);
+
     // 해당 날짜의 전체 주문 최신순 검색
     public List<OrderDAO> findByDateOrderByCreateAtDesc(Integer date);
 
