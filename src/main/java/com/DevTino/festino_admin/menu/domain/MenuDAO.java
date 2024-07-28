@@ -27,4 +27,5 @@ public class MenuDAO {
     LocalDateTime createAt;
     LocalDateTime updateAt;
     MenuType menuType;
+    Integer menuIndex;
 }

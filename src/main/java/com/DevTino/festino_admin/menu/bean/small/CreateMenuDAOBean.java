@@ -27,6 +27,7 @@ public class CreateMenuDAOBean {
                 .menuPrice(requestMenuSaveDTO.getMenuPrice())
                 .createAt(LocalDateTime.now())
                 .updateAt(LocalDateTime.now())
+                .menuIndex(requestMenuSaveDTO.getMenuIndex())
                 .isDeleted(false)
                 .isSoldOut(requestMenuSaveDTO.getIsSoldOut())
                 .menuType(requestMenuSaveDTO.getMenuType())

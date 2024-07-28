@@ -39,6 +39,7 @@ public class UpdateMenuBean {
         menuDAO.setMenuName(requestMenuUpdateDTO.getMenuName());
         menuDAO.setMenuPrice(requestMenuUpdateDTO.getMenuPrice());
         menuDAO.setIsSoldOut(requestMenuUpdateDTO.getIsSoldOut());
+        menuDAO.setMenuIndex(requestMenuUpdateDTO.getMenuIndex());
 
         menuDAO.setMenuType(requestMenuUpdateDTO.getMenuType());
 
