@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.user.jwt;
+import com.DevTino.festino_admin.user.bean.small.GetUserDAOBean;
 import com.DevTino.festino_admin.user.domain.RoleType;
 
-import com.DevTino.festino_admin.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,14 +21,14 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-    UserService userService;
+    GetUserDAOBean getUserDAOBean;
 
     @Value("${JWT_SECRET_KEY}")
     String secretKey;
 
     @Autowired
-    public WebSecurityConfig(UserService userService) {
-        this.userService = userService;
+    public WebSecurityConfig(GetUserDAOBean getUserDAOBean) {
+        this.getUserDAOBean = getUserDAOBean;
     }
 
     @Bean
@@ -56,7 +56,7 @@ public class WebSecurityConfig {
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtFilter(getUserDAOBean, secretKey), UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

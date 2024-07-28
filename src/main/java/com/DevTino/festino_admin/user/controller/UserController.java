@@ -45,19 +45,18 @@ public class UserController {
     // 유저 로그인
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> loginUser(@RequestBody RequestUserLoginDTO requestUserLoginDTO, HttpServletResponse response) {
-        String accessToken = userService.login(requestUserLoginDTO);
+        Cookie[] cookies = userService.login(requestUserLoginDTO);
 
         // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", accessToken != null);
-        requestMap.put("message", accessToken == null ? "user login failure" : "user login success");
+        requestMap.put("success", cookies != null);
+        requestMap.put("message", cookies == null ? "user login failure" : "user login success");
 
-        Cookie cookie = new Cookie("access_token", accessToken);
-        cookie.setMaxAge(60*60*24);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-
-        response.addCookie(cookie);
+        if(cookies != null) {
+            for(Cookie c : cookies) {
+                response.addCookie(c);
+            }
+        }
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);

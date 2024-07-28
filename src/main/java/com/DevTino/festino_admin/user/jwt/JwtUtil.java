@@ -10,13 +10,21 @@ import java.util.UUID;
 @Component
 public class JwtUtil {
 
-    public static String createJwt(UUID userId, String secretKey, Long expiredMs, String role) {
-
+    public static String createAccessToken(UUID userId, String role, String secretKey) {
         return Jwts.builder()
                 .claim("userId", userId)
                 .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expiredMs))
+                .setExpiration(new Date(System.currentTimeMillis() + 3600000L))
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+    }
+
+    public static String createRefreshToken(UUID userId, String secretKey) {
+        return Jwts.builder()
+                .claim("userId", userId)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000L))
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
