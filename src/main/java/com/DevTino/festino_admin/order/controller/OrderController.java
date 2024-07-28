@@ -287,7 +287,7 @@ public class OrderController {
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
-        requestMap.put("message", success ? "입금 확인 성공" : "입금 확인 시 DAO 검색 실패");
+        requestMap.put("message", success ? "입금 확인 성공" : "입금 확인 시 DAO 검색 실패 또는 이미 입금 확인된 DAO");
         requestMap.put("depositInfo", responseOrderDepositUpdateDTO);
 
         // status, body 설정해서 응답 리턴
