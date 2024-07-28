@@ -12,12 +12,10 @@ import java.util.*;
 public class CreateOrderCookingGetDTOBean {
 
     GetCooksDAOBean getCooksDAOBean;
-    GetOrderDAOBean getOrderDAOBean;
 
     @Autowired
-    public CreateOrderCookingGetDTOBean(GetCooksDAOBean getCooksDAOBean, GetOrderDAOBean getOrderDAOBean){
+    public CreateOrderCookingGetDTOBean(GetCooksDAOBean getCooksDAOBean){
         this.getCooksDAOBean = getCooksDAOBean;
-        this.getOrderDAOBean = getOrderDAOBean;
     }
 
 
@@ -41,7 +39,7 @@ public class CreateOrderCookingGetDTOBean {
             // CookDAO의 정보로 Map 생성
             Map<String, Object> map = new HashMap<>();
             map.put("cookId", cookDAO.getCookId());
-            map.put("tableNum", getOrderDAOBean.exec(cookDAO.getOrderId()).getTableNum());
+            map.put("tableNum", cookDAO.getTableNum());
             map.put("totalCount", cookDAO.getTotalCount());
             map.put("servedCount", cookDAO.getServedCount());
 
