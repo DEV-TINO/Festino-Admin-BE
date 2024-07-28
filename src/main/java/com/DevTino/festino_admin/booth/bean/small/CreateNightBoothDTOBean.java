@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.booth.bean.small;
 
-import com.DevTino.festino_admin.booth.domain.DTO.AccountInfo;
 import com.DevTino.festino_admin.booth.domain.DTO.ResponseNightBoothGetDTO;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import org.springframework.stereotype.Component;
