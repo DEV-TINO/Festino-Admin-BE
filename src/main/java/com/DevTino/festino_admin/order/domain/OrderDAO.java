@@ -19,7 +19,7 @@ import java.util.UUID;
 @Setter
 public class OrderDAO {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer orderNum;
 
     UUID orderId;
