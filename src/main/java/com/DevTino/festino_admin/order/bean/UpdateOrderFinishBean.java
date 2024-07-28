@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.order.bean;
 
-import com.DevTino.festino_admin.order.bean.small.CreateOrderFinishUpdateDTOBean;
-import com.DevTino.festino_admin.order.bean.small.GetCooksDAOBean;
-import com.DevTino.festino_admin.order.bean.small.GetOrderDAOBean;
-import com.DevTino.festino_admin.order.bean.small.SaveOrderDAOBean;
+import com.DevTino.festino_admin.order.bean.small.*;
 import com.DevTino.festino_admin.order.domain.CookDAO;
 import com.DevTino.festino_admin.order.domain.DTO.RequestOrderFinishUpdateDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderFinishUpdateDTO;
@@ -19,13 +16,15 @@ public class UpdateOrderFinishBean {
 
     GetOrderDAOBean getOrderDAOBean;
     GetCooksDAOBean getCooksDAOBean;
+    SaveCookDAOBean saveCookDAOBean;
     SaveOrderDAOBean saveOrderDAOBean;
     CreateOrderFinishUpdateDTOBean createOrderFinishUpdateDTOBean;
 
     @Autowired
-    public UpdateOrderFinishBean(GetOrderDAOBean getOrderDAOBean, GetCooksDAOBean getCooksDAOBean, SaveOrderDAOBean saveOrderDAOBean, CreateOrderFinishUpdateDTOBean createOrderFinishUpdateDTOBean){
+    public UpdateOrderFinishBean(GetOrderDAOBean getOrderDAOBean, GetCooksDAOBean getCooksDAOBean, SaveCookDAOBean saveCookDAOBean, SaveOrderDAOBean saveOrderDAOBean, CreateOrderFinishUpdateDTOBean createOrderFinishUpdateDTOBean){
         this.getOrderDAOBean = getOrderDAOBean;
         this.getCooksDAOBean = getCooksDAOBean;
+        this.saveCookDAOBean = saveCookDAOBean;
         this.saveOrderDAOBean = saveOrderDAOBean;
         this.createOrderFinishUpdateDTOBean = createOrderFinishUpdateDTOBean;
     }
@@ -42,9 +41,12 @@ public class UpdateOrderFinishBean {
         // DTO / DAO의 OrderType 비교, 다르다면 null 리턴
         if (!orderDAO.getOrderType().name().equals(requestOrderFinishUpdateDTO.getOrderType())) return null;
 
-        // orderId에 해당하는 Cook DAO 모두 찾아서 isFinish를 true로 설정
+        // orderId에 해당하는 Cook DAO 모두 찾아서 isFinish를 true로 변경
         List<CookDAO> cookDAOList = getCooksDAOBean.exec(orderDAO.getOrderId());
         for (CookDAO cookDAO : cookDAOList){ cookDAO.setIsFinish(true); }
+
+        // 변경된 cookDAOList 저장
+        saveCookDAOBean.exec(cookDAOList);
 
         // DAO 수정
         orderDAO.setOrderType(OrderType.FINISH);
