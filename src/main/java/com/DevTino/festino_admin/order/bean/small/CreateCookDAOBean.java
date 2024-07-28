@@ -5,7 +5,6 @@ import com.DevTino.festino_admin.order.domain.CookDAO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,6 +18,7 @@ public class CreateCookDAOBean {
                 .cookId(UUID.randomUUID())
                 .orderId(orderDAO.getOrderId())
                 .boothId(orderDAO.getBoothId())
+                .tableNum(orderDAO.getTableNum())
                 .date(orderDAO.getDate())
                 .menuName((String) menu.get("menuName"))
                 .totalCount((Integer) menu.get("menuCount"))
