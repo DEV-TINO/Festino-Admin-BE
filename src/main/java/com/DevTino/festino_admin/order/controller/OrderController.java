@@ -25,18 +25,6 @@ public class OrderController {
     }
 
 
-
-    // date(일차 수) 조회
-    @GetMapping("/date")
-    public Integer getDate(){
-        
-        // 일차 수 조회 service 실행해 반환
-        return orderService.getDate();
-
-    }
-
-
-
     // 테이블 주문 현황 조회
     @GetMapping("/table/{date}")
     public ResponseEntity<Map<String, Object>> getOrderTable(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date){

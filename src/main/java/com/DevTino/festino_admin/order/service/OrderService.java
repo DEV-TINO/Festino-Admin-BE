@@ -12,7 +12,6 @@ import java.util.UUID;
 @Service
 public class OrderService {
 
-    GetDateBean getDateBean;
     GetOrderTableBean getOrderTableBean;
     GetOrderDetailBean getOrderDetailBean;
     GetOrderAllBean getOrderAllBean;
@@ -29,8 +28,7 @@ public class OrderService {
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
 
     @Autowired
-    public OrderService(GetDateBean getDateBean, GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderNowBean getOrderNowBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderCookingBean getOrderCookingBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, GetOrderStatisticBean getOrderStatisticBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
-        this.getDateBean = getDateBean;
+    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderNowBean getOrderNowBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderCookingBean getOrderCookingBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, GetOrderStatisticBean getOrderStatisticBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
         this.getOrderTableBean = getOrderTableBean;
         this.getOrderDetailBean = getOrderDetailBean;
         this.getOrderAllBean = getOrderAllBean;
@@ -45,15 +43,6 @@ public class OrderService {
         this.updateOrderDepositBean = updateOrderDepositBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
         this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
-    }
-
-
-
-    // date(일차 수) 조회
-    public Integer getDate(){
-
-        return getDateBean.exec();
-
     }
 
 

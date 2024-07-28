@@ -1,4 +1,4 @@
-package com.DevTino.festino_admin.order.bean;
+package com.DevTino.festino_admin.date.Bean;
 
 import com.DevTino.festino_admin.DateTimeUtils;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,7 @@ public class GetDateBean {
         LocalDateTime now = DateTimeUtils.nowZone();
 
         // 시간에 따라 date 설정
-        Integer date = 0;
+        int date = 0;
 
         if(now.isAfter(start11) && now.isBefore(end11)) {
             date = 1;
