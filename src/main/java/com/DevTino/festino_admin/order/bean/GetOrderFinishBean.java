@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class GetOrderFinishBean {
@@ -24,10 +25,10 @@ public class GetOrderFinishBean {
 
 
     // 조리완료 주문 조회
-    public List<ResponseOrderFinishGetDTO> exec(Integer date){
+    public List<ResponseOrderFinishGetDTO> exec(UUID boothId, Integer date){
 
-        // 해당 날짜의 조리완료 상태인 Order 최신순 전체 조회 -> DAO 리스트
-        List<OrderDAO> daoList = getOrderFinishDAOBean.exec(date);
+        // 해당 boothId, 날짜의 조리완료 상태인 Order 최신순 전체 조회 -> DAO 리스트
+        List<OrderDAO> daoList = getOrderFinishDAOBean.exec(boothId, date);
         if (daoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴

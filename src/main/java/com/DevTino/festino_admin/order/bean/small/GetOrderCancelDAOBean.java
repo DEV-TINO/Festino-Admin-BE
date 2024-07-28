@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class GetOrderCancelDAOBean {
@@ -20,10 +21,10 @@ public class GetOrderCancelDAOBean {
 
 
 
-    // 해당 날짜의 취소 상태인 Order 최신순 전체 조회
-    public List<OrderDAO> exec(Integer date){
+    // 해당 boothid, 날짜의 취소 상태인 Order 최신순 전체 조회
+    public List<OrderDAO> exec(UUID boothId, Integer date){
 
-        return orderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtDesc(OrderType.CANCEL, date);
+        return orderRepositoryJPA.findByBoothIdAndOrderTypeAndDateOrderByCreateAtDesc(boothId, OrderType.CANCEL, date);
 
     }
 
