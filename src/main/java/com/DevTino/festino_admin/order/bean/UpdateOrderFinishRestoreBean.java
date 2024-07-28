@@ -16,13 +16,15 @@ public class UpdateOrderFinishRestoreBean {
 
     GetOrderDAOBean getOrderDAOBean;
     GetCooksDAOBean getCooksDAOBean;
+    SaveCookDAOBean saveCookDAOBean;
     SaveOrderDAOBean saveOrderDAOBean;
     CreateOrderFinishRestoreUpdateDTOBean createOrderFinishRestoreUpdateDTOBean;
 
     @Autowired
-    public UpdateOrderFinishRestoreBean(GetOrderDAOBean getOrderDAOBean, GetCooksDAOBean getCooksDAOBean, SaveOrderDAOBean saveOrderDAOBean, CreateOrderFinishRestoreUpdateDTOBean createOrderFinishRestoreUpdateDTOBean){
+    public UpdateOrderFinishRestoreBean(GetOrderDAOBean getOrderDAOBean, GetCooksDAOBean getCooksDAOBean, SaveCookDAOBean saveCookDAOBean, SaveOrderDAOBean saveOrderDAOBean, CreateOrderFinishRestoreUpdateDTOBean createOrderFinishRestoreUpdateDTOBean){
         this.getOrderDAOBean = getOrderDAOBean;
         this.getCooksDAOBean = getCooksDAOBean;
+        this.saveCookDAOBean = saveCookDAOBean;
         this.saveOrderDAOBean = saveOrderDAOBean;
         this.createOrderFinishRestoreUpdateDTOBean = createOrderFinishRestoreUpdateDTOBean;
     }
@@ -39,9 +41,12 @@ public class UpdateOrderFinishRestoreBean {
         // DTO / DAO의 OrderType 비교, 다르다면 null 리턴
         if (!orderDAO.getOrderType().name().equals(requestOrderFinishRestoreUpdateDTO.getOrderType())) return null;
 
-        // orderId에 해당하는 Cook DAO 모두 찾아서 isFinish를 false로 설정
+        // orderId에 해당하는 Cook DAO 모두 찾아서 isFinish를 false로 변경
         List<CookDAO> cookDAOList = getCooksDAOBean.exec(orderDAO.getOrderId());
         for (CookDAO cookDAO : cookDAOList){ cookDAO.setIsFinish(false); }
+
+        // 변경된 cookDAOList 저장
+        saveCookDAOBean.exec(cookDAOList);
 
         // DAO 수정
         orderDAO.setOrderType(OrderType.COOKING);
