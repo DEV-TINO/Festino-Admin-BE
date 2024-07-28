@@ -14,4 +14,5 @@ public class RequestMenuSaveDTO {
     String menuImage;
     MenuType menuType;
     Boolean isSoldOut;
+    Integer menuIndex;
 }

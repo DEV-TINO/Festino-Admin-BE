@@ -19,6 +19,6 @@ public class GetMenusDAOBean {
 
     // boothId를 통해 원하는 부스 전체 DAO 찾아서 반환
     public List<MenuDAO> exec(UUID boothId) {
-        return menuRepositoryJPA.findAllByBoothIdAndIsDeleted(boothId, false);
+        return menuRepositoryJPA.findAllByBoothIdAndIsDeletedOrderByMenuIndexAsc(boothId, false);
     }
 }
