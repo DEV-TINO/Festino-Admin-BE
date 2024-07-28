@@ -30,7 +30,7 @@ public class GetOrderCookingBean {
         if (menuDAOList.isEmpty()) return null;
 
         // 메뉴 정보를 활용해 DTO 리스트를 생성해 리턴
-        return createOrderCookingGetDTOsBean.exec(menuDAOList, date);
+        return createOrderCookingGetDTOsBean.exec(boothId, menuDAOList, date);
 
     }
 

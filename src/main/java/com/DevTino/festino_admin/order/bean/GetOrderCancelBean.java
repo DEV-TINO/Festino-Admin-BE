@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class GetOrderCancelBean {
@@ -24,10 +25,10 @@ public class GetOrderCancelBean {
 
 
     // 취소 주문 조회
-    public List<ResponseOrderCancelGetDTO> exec(Integer date){
+    public List<ResponseOrderCancelGetDTO> exec(UUID boothId, Integer date){
 
-        // 해당 날짜의 취소된 Order 최신순 전체 조회 -> DAO 리스트
-        List<OrderDAO> daoList = getOrderCancelDAOBean.exec(date);
+        // 해당 boothId, 날짜의 취소된 Order 오래된순 전체 조회 -> DAO 리스트
+        List<OrderDAO> daoList = getOrderCancelDAOBean.exec(boothId, date);
         if (daoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴

@@ -6,10 +6,7 @@ import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderCookingGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class CreateOrderCookingGetDTOBean {
@@ -26,13 +23,13 @@ public class CreateOrderCookingGetDTOBean {
 
 
     // DTO 생성해 반환
-    public ResponseOrderCookingGetDTO exec(MenuDAO menuDAO, Integer date){
+    public ResponseOrderCookingGetDTO exec(UUID boothId, MenuDAO menuDAO, Integer date){
 
         // 각 메뉴에 해당하는 조리(Cook) 정보를 담을 List 생성
         List<Map<String, Object>> cooks = new ArrayList<>();
 
-        // menuName으로 해당 날짜의 조리중인 Cook 최신순 전체 조회
-        List<CookDAO> cookDAOList = getCooksDAOBean.exec(menuDAO.getMenuName(), false, date);
+        // menuName으로 해당 boothId, 날짜의 조리중인 Cook 오래된순 전체 조회
+        List<CookDAO> cookDAOList = getCooksDAOBean.exec(boothId, menuDAO.getMenuName(), false, date);
 
         // 주문한 테이블 총합, 남은 개수 총합
         Integer tableCount = 0;
