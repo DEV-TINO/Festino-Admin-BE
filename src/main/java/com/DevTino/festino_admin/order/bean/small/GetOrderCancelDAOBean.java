@@ -21,10 +21,10 @@ public class GetOrderCancelDAOBean {
 
 
 
-    // 해당 boothid, 날짜의 취소 상태인 Order 최신순 전체 조회
+    // 해당 boothid, 날짜의 취소 상태인 Order 오래된순 전체 조회
     public List<OrderDAO> exec(UUID boothId, Integer date){
 
-        return orderRepositoryJPA.findByBoothIdAndOrderTypeAndDateOrderByCreateAtDesc(boothId, OrderType.CANCEL, date);
+        return orderRepositoryJPA.findByBoothIdAndOrderTypeAndDateOrderByCreateAtAsc(boothId, OrderType.CANCEL, date);
 
     }
 

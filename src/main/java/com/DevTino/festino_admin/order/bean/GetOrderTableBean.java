@@ -27,7 +27,7 @@ public class GetOrderTableBean {
     // 테이블 주문 현황 조회
     public List<ResponseOrderTableGetDTO> exec(UUID boothId, Integer date){
 
-        // 해당 boothId, 날짜의 조리중인 Order 최신순 전체 조회
+        // 해당 boothId, 날짜의 조리중인 Order 오래된순 전체 조회
         List<OrderDAO> orderDAOList = getOrderCookingDAOBean.exec(boothId, date);
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴

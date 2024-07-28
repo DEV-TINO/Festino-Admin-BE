@@ -21,10 +21,10 @@ public class GetOrderWaitDepositDAOBean {
 
 
 
-    // 해당 boothId의 입금대기 중인 Order 최신순 전체 조회
+    // 해당 boothId의 입금대기 중인 Order 오래된순 전체 조회
     public List<OrderDAO> exec(UUID boothId, Integer date){
 
-        return orderRepositoryJPA.findByBoothIdAndIsDepositAndOrderTypeAndDateOrderByCreateAtDesc(boothId, false, OrderType.COOKING, date);
+        return orderRepositoryJPA.findByBoothIdAndIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(boothId, false, OrderType.COOKING, date);
 
     }
 

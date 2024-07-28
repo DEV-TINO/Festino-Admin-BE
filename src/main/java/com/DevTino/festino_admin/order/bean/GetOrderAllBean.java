@@ -27,7 +27,7 @@ public class GetOrderAllBean {
     // 주문 전체 조회
     public List<ResponseOrderAllGetDTO> exec(UUID boothId, Integer date){
 
-        // 해당 boothId, 날짜의 Order 최신순 전체 조회 -> DAO 리스트
+        // 해당 boothId, 날짜의 Order 오래된순 전체 조회 -> DAO 리스트
         List<OrderDAO> daoList = getOrdersDAOBean.exec(boothId, date);
         if (daoList == null) return null;
 

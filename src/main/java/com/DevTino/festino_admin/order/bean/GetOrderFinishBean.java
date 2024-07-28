@@ -27,7 +27,7 @@ public class GetOrderFinishBean {
     // 조리완료 주문 조회
     public List<ResponseOrderFinishGetDTO> exec(UUID boothId, Integer date){
 
-        // 해당 boothId, 날짜의 조리완료 상태인 Order 최신순 전체 조회 -> DAO 리스트
+        // 해당 boothId, 날짜의 조리완료 상태인 Order 오래된순 전체 조회 -> DAO 리스트
         List<OrderDAO> daoList = getOrderFinishDAOBean.exec(boothId, date);
         if (daoList == null) return null;
 

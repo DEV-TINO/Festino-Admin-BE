@@ -12,13 +12,13 @@ public interface OrderRepositoryJPA extends JpaRepository<OrderDAO, UUID> {
     // orderId로 주문 검색
     public OrderDAO findByOrderId(UUID orderId);
 
-    // 해당 boothId, 날짜의 전체 주문 최신순 검색
-    public List<OrderDAO> findByBoothIdAndDateOrderByCreateAtDesc(UUID boothId, Integer date);
+    // 해당 boothId, 날짜의 전체 주문 오래된순 검색
+    public List<OrderDAO> findByBoothIdAndDateOrderByCreateAtAsc(UUID boothId, Integer date);
 
-    // boothId, OrderType으로 주문 최신순 검색
-    public List<OrderDAO> findByBoothIdAndOrderTypeAndDateOrderByCreateAtDesc(UUID boothId, OrderType orderType, Integer date);
+    // boothId, OrderType으로 주문 오래된순 검색
+    public List<OrderDAO> findByBoothIdAndOrderTypeAndDateOrderByCreateAtAsc(UUID boothId, OrderType orderType, Integer date);
 
-    // boothId, isDeposit, OrderType, date로 주문 최신순 검색
-    public List<OrderDAO> findByBoothIdAndIsDepositAndOrderTypeAndDateOrderByCreateAtDesc(UUID boothId, Boolean isDeposit, OrderType orderType, Integer date);
+    // boothId, isDeposit, OrderType, date로 주문 오래된순 검색
+    public List<OrderDAO> findByBoothIdAndIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(UUID boothId, Boolean isDeposit, OrderType orderType, Integer date);
     
 }

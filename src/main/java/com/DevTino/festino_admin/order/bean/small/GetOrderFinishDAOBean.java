@@ -21,10 +21,10 @@ public class GetOrderFinishDAOBean {
 
 
 
-    // 해당 boothId, 날짜의 조리완료 상태인 Order 최신순 전체 조회
+    // 해당 boothId, 날짜의 조리완료 상태인 Order 오래된순 전체 조회
     public List<OrderDAO> exec(UUID boothId, Integer date){
 
-        return orderRepositoryJPA.findByBoothIdAndOrderTypeAndDateOrderByCreateAtDesc(boothId, OrderType.FINISH, date);
+        return orderRepositoryJPA.findByBoothIdAndOrderTypeAndDateOrderByCreateAtAsc(boothId, OrderType.FINISH, date);
 
     }
 

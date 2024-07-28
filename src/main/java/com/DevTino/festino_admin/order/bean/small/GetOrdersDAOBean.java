@@ -20,10 +20,10 @@ public class GetOrdersDAOBean {
 
 
 
-    // 해당 boothId, 날짜의 전체 주문 최신순 조회
+    // 해당 boothId, 날짜의 전체 주문 오래된순 조회
     public List<OrderDAO> exec(UUID boothId, Integer date){
 
-        return orderRepositoryJPA.findByBoothIdAndDateOrderByCreateAtDesc(boothId, date);
+        return orderRepositoryJPA.findByBoothIdAndDateOrderByCreateAtAsc(boothId, date);
 
     }
 
