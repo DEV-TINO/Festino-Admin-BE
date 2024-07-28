@@ -7,7 +7,6 @@ import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,6 +48,7 @@ public class UpdateNightBoothBean {
         nightBoothDAO.setIsOpen(requestNightBoothUpdateDTO.getIsOpen());
         nightBoothDAO.setIsOrder(requestNightBoothUpdateDTO.getIsOrder());
         nightBoothDAO.setIsReservation(requestNightBoothUpdateDTO.getIsReservation());
+        nightBoothDAO.setAccountInfo(requestNightBoothUpdateDTO.getAccountInfo());
 
         nightBoothDAO.setUpdateAt(DateTimeUtils.nowZone());
 

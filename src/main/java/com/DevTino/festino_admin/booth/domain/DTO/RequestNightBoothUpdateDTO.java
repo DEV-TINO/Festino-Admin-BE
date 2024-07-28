@@ -3,6 +3,7 @@ package com.DevTino.festino_admin.booth.domain.DTO;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -18,4 +19,5 @@ public class RequestNightBoothUpdateDTO {
     Boolean isOrder;
     Boolean isOpen;
     Boolean isReservation;
+    Map<String, String> accountInfo;
 }
