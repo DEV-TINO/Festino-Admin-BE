@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.domain;
 
+import com.DevTino.festino_admin.booth.others.StringMapConverter;
 import com.DevTino.festino_admin.booth.others.StringConverter;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -39,4 +41,7 @@ public class NightBoothDAO {
     LocalDateTime createAt;
     LocalDateTime updateAt;
     Integer totalReservationNum;
+
+    @Convert(converter = StringMapConverter.class)
+    Map<String, String> accountInfo;
 }

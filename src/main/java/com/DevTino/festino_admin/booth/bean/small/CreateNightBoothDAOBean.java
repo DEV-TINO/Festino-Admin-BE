@@ -5,7 +5,6 @@ import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothSaveDTO;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +33,7 @@ public class CreateNightBoothDAOBean {
                 .openTime(requestNightBoothSaveDTO.getOpenTime())
                 .closeTime(requestNightBoothSaveDTO.getCloseTime())
                 .createAt(DateTimeUtils.nowZone())
+                .accountInfo(requestNightBoothSaveDTO.getAccountInfo())
                 .updateAt(DateTimeUtils.nowZone())
                 .isOpen(requestNightBoothSaveDTO.getIsOpen())
                 .isOrder(requestNightBoothSaveDTO.getIsOrder())

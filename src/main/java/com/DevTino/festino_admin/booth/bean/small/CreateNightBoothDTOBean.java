@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreateNightBoothDTOBean {
 
+
     // 야간부스 DTO 생성
     public ResponseNightBoothGetDTO exec(NightBoothDAO nightBoothDAO) {
+
         return ResponseNightBoothGetDTO.builder()
                 .boothId(nightBoothDAO.getBoothId())
                 .boothName(nightBoothDAO.getBoothName())
@@ -24,6 +26,8 @@ public class CreateNightBoothDTOBean {
                 .location(nightBoothDAO.getLocation())
                 .markerNum(nightBoothDAO.getMarkerNum())
                 .totalReservationNum(nightBoothDAO.getTotalReservationNum())
+                .accountInfo(nightBoothDAO.getAccountInfo())
+
                 .build();
     }
 }
