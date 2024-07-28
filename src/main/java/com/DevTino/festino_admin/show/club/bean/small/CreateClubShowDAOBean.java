@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.show.club.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.show.club.domain.ClubShowDAO;
 import com.DevTino.festino_admin.show.club.domain.DTO.RequestClubShowSaveDTO;
 import org.springframework.stereotype.Component;
@@ -20,8 +21,8 @@ public class CreateClubShowDAOBean {
                 .showStartTime(requestClubShowSaveDTO.getShowStartTime())
                 .showEndTime(requestClubShowSaveDTO.getShowEndTime())
                 .clubImage(requestClubShowSaveDTO.getClubImage())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
+                .updateAt(DateTimeUtils.nowZone())
                 .build();
 
     }

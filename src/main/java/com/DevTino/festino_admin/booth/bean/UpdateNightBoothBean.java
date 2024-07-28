@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.bean.small.*;
 import com.DevTino.festino_admin.booth.domain.DTO.*;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
@@ -49,7 +50,7 @@ public class UpdateNightBoothBean {
         nightBoothDAO.setIsOrder(requestNightBoothUpdateDTO.getIsOrder());
         nightBoothDAO.setIsReservation(requestNightBoothUpdateDTO.getIsReservation());
 
-        nightBoothDAO.setUpdateAt(LocalDateTime.now());
+        nightBoothDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 수정된 DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);

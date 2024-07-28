@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.show.club.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.show.club.bean.small.GetClubShowDAOBean;
 import com.DevTino.festino_admin.show.club.bean.small.SaveClubShowDAOBean;
 import com.DevTino.festino_admin.show.club.domain.ClubShowDAO;
@@ -39,7 +40,7 @@ public class UpdateClubShowBean {
         clubShowDAO.setClubImage(requestClubShowUpdateDTO.getClubImage());
 
         // DAO 수정 : 수정 시간 저장
-        clubShowDAO.setUpdateAt(LocalDateTime.now());
+        clubShowDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 수정된 DAO 저장
         saveClubShowDAOBean.exec(clubShowDAO);

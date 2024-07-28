@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.menu.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.menu.bean.small.GetMenuDAOBean;
 import com.DevTino.festino_admin.menu.bean.small.SaveMenuDAOBean;
 import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuUpdateDTO;
@@ -43,7 +44,7 @@ public class UpdateMenuBean {
 
         menuDAO.setMenuType(requestMenuUpdateDTO.getMenuType());
 
-        menuDAO.setUpdateAt(LocalDateTime.now());
+        menuDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 수정한 DAO 저장
         saveMenuDAOBean.exec(menuDAO);

@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.notice.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.notice.domain.DTO.RequestNoticeSaveDTO;
 import com.DevTino.festino_admin.notice.domain.NoticeDAO;
 import org.springframework.stereotype.Component;
@@ -29,8 +30,8 @@ public class CreateNoticeDAOBean {
                 .imageUrl(boothImage)
                 .content(requestNoticeSaveDTO.getContent())
                 .isPin(requestNoticeSaveDTO.getIsPin())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
+                .updateAt(DateTimeUtils.nowZone())
                 .build();
 
     }

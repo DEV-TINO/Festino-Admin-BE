@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothSaveDTO;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import org.springframework.stereotype.Component;
@@ -32,8 +33,8 @@ public class CreateNightBoothDAOBean {
                 .adminCategory(requestNightBoothSaveDTO.getAdminCategory())
                 .openTime(requestNightBoothSaveDTO.getOpenTime())
                 .closeTime(requestNightBoothSaveDTO.getCloseTime())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
+                .updateAt(DateTimeUtils.nowZone())
                 .isOpen(requestNightBoothSaveDTO.getIsOpen())
                 .isOrder(requestNightBoothSaveDTO.getIsOrder())
                 .isReservation(requestNightBoothSaveDTO.getIsReservation())
