@@ -1,9 +1,7 @@
 package com.DevTino.festino_admin.order.domain;
 
 import com.DevTino.festino_admin.order.others.StringListConverter;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,24 +18,22 @@ import java.util.UUID;
 @Getter
 @Setter
 public class OrderDAO {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Integer orderNum;
+
     UUID orderId;
     UUID boothId;
     OrderType orderType;
-    Integer orderNum;
     Integer tableNum;
     Integer date;
     String userName;
     String phoneNum;
-
-    @Convert(converter = StringListConverter.class)
-    List<Map<String, Object>> menuInfo;
-
     Integer totalPrice;
     Boolean isDeposit;
     Boolean isCoupon;
     LocalDateTime createAt;
 
-
+    @Convert(converter = StringListConverter.class)
+    List<Map<String, Object>> menuInfo;
 }
