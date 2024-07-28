@@ -297,6 +297,29 @@ public class OrderController {
 
 
 
+    // 입금 확인 복구
+    @PutMapping("/deposit/restore")
+    public ResponseEntity<Map<String, Object>> updateIsDepositRestore(@RequestBody RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
+
+        // 입금 확인 복구 service 실행
+        ResponseOrderDepositRestoreUpdateDTO responseOrderDepositRestoreUpdateDTO = orderService.updateOrderDepositRestore(requestOrderDepositRestoreUpdateDTO);
+
+        // 입금 확인 복구 성공 여부 설정
+        boolean success = (responseOrderDepositRestoreUpdateDTO == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "입금 확인 복구 성공" : "입금 확인 복구 시 DAO 검색 실패");
+        requestMap.put("restoreInfo", responseOrderDepositRestoreUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
+
+
     // Order 조리 완료
     @PutMapping("/finish")
     public ResponseEntity<Map<String, Object>> updateOrderFinish(@RequestBody RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
