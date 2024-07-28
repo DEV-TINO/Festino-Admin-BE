@@ -30,6 +30,11 @@ public class SaveS3ImageDAOBean {
         ObjectMetadata objMeta = new ObjectMetadata();
         objMeta.setContentLength(multipartFile.getInputStream().available());
 
+        String contentType = multipartFile.getContentType();
+        if (contentType != null) {
+            objMeta.setContentType(contentType);
+        }
+
         // S3에 파일 저장
         amazonS3Client.putObject(bucket, s3FileName, multipartFile.getInputStream(), objMeta);
 
