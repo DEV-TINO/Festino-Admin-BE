@@ -42,7 +42,9 @@ public class DeleteReservationCompleteBean {
         this.getReservationsDAOBean = getReservationsDAOBean;
     }
 
-    // 예약 완료
+    // 예약 입장
+    // 대기 -> 입장
+    // 취소 -> 입장
     public ResponseReservationCompleteUpdateDTO exec(RequestReservationCompleteUpdateDTO requestReservationCompleteUpdateDTO) throws IOException {
 
         // reservationId와 boothId를 통해 원하는 객체(DAO) 찾기
@@ -57,6 +59,30 @@ public class DeleteReservationCompleteBean {
         if (reservationDAO.getReservationType().equals(ReservationEnum.RESERVE)) {
             // 야간부스 총 예약수 -1
             nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);
+
+            // 예약 완료여부 isCancel 값 수정
+            reservationDAO.setReservationType(ReservationEnum.COMPLETE);
+
+            // 수정된 DAO 값 저장
+            saveReservationDAOBean.exec(reservationDAO);
+            saveNightBoothDAOBean.exec(nightBoothDAO);
+
+            // 대기 1팀 메세지 전송
+            List<ReservationDAO> reservationDAOList = getReservationsDAOBean.exec(reservationDAO.getBoothId());
+            if (reservationDAOList != null) {
+                ReservationDAO top2ReservationDAO = reservationDAOList.size() > 1 ? reservationDAOList.get(1) : null;
+                if (top2ReservationDAO != null) {
+                    String top2MessageStatus = reservationTop2SendMessageBean.exec(top2ReservationDAO.getPhoneNum(), top2ReservationDAO.getUserName());
+                }
+            }
+
+            // 완료 메세지 전송
+            String deleteMessageStatus = completeReservationSendMessageBean.exec(reservationDAO.getPhoneNum(), reservationDAO.getUserName(), nightBoothDAO.getAdminName());
+
+            // DTO 생성
+            ResponseReservationCompleteUpdateDTO responseReservationCompleteUpdateDTO = createReservationCompleteDTOBean.exec(reservationDAO);
+            responseReservationCompleteUpdateDTO.setMessageStatus(deleteMessageStatus);
+            return responseReservationCompleteUpdateDTO;
         }
 
         // 예약 완료여부 isCancel 값 수정
@@ -64,16 +90,6 @@ public class DeleteReservationCompleteBean {
 
         // 수정된 DAO 값 저장
         saveReservationDAOBean.exec(reservationDAO);
-        saveNightBoothDAOBean.exec(nightBoothDAO);
-
-        // 대기 1팀 메세지 전송
-        List<ReservationDAO> reservationDAOList = getReservationsDAOBean.exec();
-        if (reservationDAOList != null) {
-            ReservationDAO top2ReservationDAO = reservationDAOList.size() > 1 ? reservationDAOList.get(1) : null;
-            if (top2ReservationDAO != null) {
-                String top2MessageStatus = reservationTop2SendMessageBean.exec(top2ReservationDAO.getPhoneNum(), top2ReservationDAO.getUserName());
-            }
-        }
 
         // 완료 메세지 전송
         String deleteMessageStatus = completeReservationSendMessageBean.exec(reservationDAO.getPhoneNum(), reservationDAO.getUserName(), nightBoothDAO.getAdminName());

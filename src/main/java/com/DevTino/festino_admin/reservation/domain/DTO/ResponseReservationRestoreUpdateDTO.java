@@ -11,4 +11,5 @@ import java.util.UUID;
 public class ResponseReservationRestoreUpdateDTO {
     UUID reservationId;
     ReservationEnum reservationType;
+    String messageStatus;
 }

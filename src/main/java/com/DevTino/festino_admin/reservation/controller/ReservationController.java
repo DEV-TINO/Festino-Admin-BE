@@ -85,7 +85,7 @@ public class ReservationController {
 
     // 예약 복구
     @PutMapping("/restore")
-    public ResponseEntity<Map<String, Object>> restoreReservation(@RequestBody RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
+    public ResponseEntity<Map<String, Object>> restoreReservation(@RequestBody RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) throws IOException {
 
         // 예약 복구 service
         ResponseReservationRestoreUpdateDTO responseReservationRestoreUpdateDTO = reservationService.restoreReservation(requestReservationRestoreUpdateDTO);

@@ -42,7 +42,9 @@ public class DeleteReservationCancelBean {
         this.getReservationsDAOBean = getReservationsDAOBean;
     }
 
-    // 예약 삭제
+    // 예약 취소
+    // 완료 -> 취소
+    // 대기 -> 취소
     public ResponseReservationDeleteDTO exec(RequestReservationDeleteDTO requestReservationDeleteDTO) throws IOException {
 
         // reservationId와 boothId를 통해 원하는 객체(DAO) 찾기
@@ -54,25 +56,40 @@ public class DeleteReservationCancelBean {
         if(nightBoothDAO == null) return null;
 
         // 예약 대기인 경우 총 에약수 감소
-        if (reservationDAO.getReservationType() == ReservationEnum.RESERVE)
+        if (reservationDAO.getReservationType() == ReservationEnum.RESERVE){
             // 야간부스 총 예약수 -1
             nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);
+
+            // 예약 삭제여부 isCancel 값 수정
+            reservationDAO.setReservationType(ReservationEnum.CANCEL);
+
+            // 수정된 DAO 값 저장
+            saveNightBoothDAOBean.exec(nightBoothDAO);
+            saveReservationDAOBean.exec(reservationDAO);
+
+            // 대기 1팀 메세지 전송
+            List<ReservationDAO> reservationDAOList = getReservationsDAOBean.exec(reservationDAO.getBoothId());
+            if (reservationDAOList != null) {
+                ReservationDAO top2ReservationDAO = reservationDAOList.size() > 1 ? reservationDAOList.get(1) : null;
+                if (top2ReservationDAO != null) {
+                    String top2MessageStatus = reservationTop2SendMessageBean.exec(top2ReservationDAO.getPhoneNum(), top2ReservationDAO.getUserName());
+                }
+            }
+
+            // 삭제 메세지 전송
+            String deleteMessageStatus = deleteReservationSendMessageBean.exec(reservationDAO.getPhoneNum(), reservationDAO.getUserName(), nightBoothDAO.getAdminName());
+
+            // DTO 생성
+            ResponseReservationDeleteDTO responseReservationDeleteDTO = createReservationDeleteDTOBean.exec(reservationDAO);
+            responseReservationDeleteDTO.setMessageStatus(deleteMessageStatus);
+            return responseReservationDeleteDTO;
+        }
 
         // 예약 삭제여부 isCancel 값 수정
         reservationDAO.setReservationType(ReservationEnum.CANCEL);
 
         // 수정된 DAO 값 저장
         saveReservationDAOBean.exec(reservationDAO);
-        saveNightBoothDAOBean.exec(nightBoothDAO);
-
-        // 대기 1팀 메세지 전송
-        List<ReservationDAO> reservationDAOList = getReservationsDAOBean.exec();
-        if (reservationDAOList != null) {
-            ReservationDAO top2ReservationDAO = reservationDAOList.size() > 1 ? reservationDAOList.get(1) : null;
-            if (top2ReservationDAO != null) {
-                String top2MessageStatus = reservationTop2SendMessageBean.exec(top2ReservationDAO.getPhoneNum(), top2ReservationDAO.getUserName());
-            }
-        }
 
         // 삭제 메세지 전송
         String deleteMessageStatus = deleteReservationSendMessageBean.exec(reservationDAO.getPhoneNum(), reservationDAO.getUserName(), nightBoothDAO.getAdminName());

@@ -41,7 +41,7 @@ public class ReservationService {
     }
 
     // 예약 복구
-    public ResponseReservationRestoreUpdateDTO restoreReservation(RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) {
+    public ResponseReservationRestoreUpdateDTO restoreReservation(RequestReservationRestoreUpdateDTO requestReservationRestoreUpdateDTO) throws IOException {
         return saveReservationRestoreBean.exec(requestReservationRestoreUpdateDTO);
     }
 

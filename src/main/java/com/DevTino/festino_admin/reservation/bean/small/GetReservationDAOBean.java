@@ -1,6 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean.small;
 
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
+import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import com.DevTino.festino_admin.reservation.repository.ReservationRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,5 +20,10 @@ public class GetReservationDAOBean {
     // reservationId와 boothId를 통해 원하는 객체 찾기
     public ReservationDAO exec(UUID reservationId, UUID boothId) {
         return reservationRepositoryJPA.findByReservationIdAndBoothId(reservationId, boothId);
+    }
+
+    // 전화번호 기준으로 예약된 내역 조회
+    public ReservationDAO exec(String phoneNum) {
+        return reservationRepositoryJPA.findByPhoneNumAndReservationType(phoneNum, ReservationEnum.RESERVE);
     }
 }
