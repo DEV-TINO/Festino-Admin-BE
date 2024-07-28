@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.notice.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.notice.bean.small.CreateNoticePinDTOBean;
 import com.DevTino.festino_admin.notice.bean.small.GetNoticeDAOBean;
 import com.DevTino.festino_admin.notice.bean.small.SaveNoticeDAOBean;
@@ -52,7 +53,7 @@ public class UpdateNoticeBean {
         noticeDAO.setIsPin(requestNoticeUpdateDTO.getIsPin());
 
         // DAO 수정 : 수정 시간 저장
-        noticeDAO.setUpdateAt(LocalDateTime.now());
+        noticeDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 수정된 DAO 저장
         saveNoticeDAOBean.exec(noticeDAO);

@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.bean.small.GetDayBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveDayBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothUpdateDTO;
@@ -46,7 +47,7 @@ public class UpdateDayBoothBean {
         dayBoothDAO.setAdminCategory(requestDayBoothUpdateDTO.getAdminCategory());
         dayBoothDAO.setIsOpen(requestDayBoothUpdateDTO.getIsOpen());
 
-        dayBoothDAO.setUpdateAt(LocalDateTime.now());
+        dayBoothDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 수정된 DAO 저장
         saveDayBoothDAOBean.exec(dayBoothDAO);

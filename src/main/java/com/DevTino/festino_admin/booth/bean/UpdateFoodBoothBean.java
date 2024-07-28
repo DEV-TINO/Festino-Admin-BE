@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.bean.small.CreateFoodBoothOpenDTOBean;
 import com.DevTino.festino_admin.booth.bean.small.GetFoodBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveFoodBoothDAOBean;
@@ -51,7 +52,7 @@ public class UpdateFoodBoothBean {
         foodBoothDAO.setCloseTime(requestFoodBoothUpdateDTO.getCloseTime());
         foodBoothDAO.setIsOpen(requestFoodBoothUpdateDTO.getIsOpen());
 
-        foodBoothDAO.setUpdateAt(LocalDateTime.now());
+        foodBoothDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 수정된 DAO 저장
         saveFoodBoothDAOBean.exec(foodBoothDAO);

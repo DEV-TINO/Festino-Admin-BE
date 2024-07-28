@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothSaveDTO;
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
 import org.springframework.stereotype.Component;
@@ -33,8 +34,8 @@ public class CreateDayBoothDAOBean {
                 .closeTime(requestDayBoothSaveDTO.getCloseTime())
                 .adminName(requestDayBoothSaveDTO.getAdminName())
                 .adminCategory(requestDayBoothSaveDTO.getAdminCategory())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
+                .updateAt(DateTimeUtils.nowZone())
                 .location("")
                 .markerNum(0)
                 .isOpen(requestDayBoothSaveDTO.getIsOpen())

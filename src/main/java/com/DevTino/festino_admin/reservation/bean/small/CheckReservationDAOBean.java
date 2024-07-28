@@ -1,8 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean.small;
 
-import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -12,20 +11,12 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class CheckReservationDAOBean {
-
-    GetNightBoothDAOBean getNightBoothDAOBean;
-
-    @Autowired
-    public CheckReservationDAOBean(GetNightBoothDAOBean getNightBoothDAOBean) {
-        this.getNightBoothDAOBean = getNightBoothDAOBean;
-    }
-
     // 부스의 오픈 시간을 활용해서 몇일차인지 구함
     public Integer exec(NightBoothDAO nightBoothDAO) {
 
         String openTime = nightBoothDAO.getOpenTime();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime open = LocalTime.parse(openTime, formatter).minusHours(1);
+        LocalTime open = LocalTime.parse(openTime, formatter).minusHours(2);
 
         LocalDateTime start11 = LocalDateTime.of(LocalDate.of(2024, 9, 11), open);
         LocalDateTime start12 = LocalDateTime.of(LocalDate.of(2024, 9, 12), open);
@@ -33,10 +24,9 @@ public class CheckReservationDAOBean {
 
         LocalDateTime end11 = start11.plusHours(12);
         LocalDateTime end12 = start12.plusHours(12);
-        LocalDateTime end13 = start13.plusHours(12);
 
         // 서버 시간 고려 9시간 더해줌
-        LocalDateTime now = LocalDateTime.now().plusHours(9);
+        LocalDateTime now = DateTimeUtils.nowZone();
 
         Integer date = 0;
 
@@ -44,7 +34,7 @@ public class CheckReservationDAOBean {
             date = 1;
         } else if(now.isAfter(start12) && now.isBefore(end12)) {
             date = 2;
-        } else if(now.isAfter(start13) && now.isBefore(end13)) {
+        } else if(now.isAfter(start13)) {
             date = 3;
         }
 

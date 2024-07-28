@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.booth.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothSaveDTO;
 import com.DevTino.festino_admin.booth.domain.FoodBoothDAO;
 import org.springframework.stereotype.Component;
@@ -32,8 +33,8 @@ public class CreateFoodBoothDAOBean {
                 .adminCategory(requestFoodBoothSaveDTO.getAdminCategory())
                 .openTime(requestFoodBoothSaveDTO.getOpenTime())
                 .closeTime(requestFoodBoothSaveDTO.getCloseTime())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
+                .updateAt(DateTimeUtils.nowZone())
                 .location("")
                 .markerNum(0)
                 .isOpen(requestFoodBoothSaveDTO.getIsOpen())

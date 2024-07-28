@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.order.domain.CookDAO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class CreateCookDAOBean {
                 .menuName((String) menu.get("menuName"))
                 .totalCount((Integer) menu.get("menuCount"))
                 .servedCount(0)
-                .createAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
                 .isFinish(false)
                 .build();
 
