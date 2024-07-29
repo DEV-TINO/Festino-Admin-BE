@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.reservation.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
@@ -56,9 +57,11 @@ public class SaveReservationRestoreBean {
         if(reservationDAO.getReservationType().equals(requestReservationRestoreUpdateDTO.getReservationType())) {
             // 예약 복구여부 isCancel 값 수정
             reservationDAO.setReservationType(ReservationEnum.RESERVE);
+            reservationDAO.setUpdateAt(DateTimeUtils.nowZone());
 
             // 야간부스 총 예약수 +1
             nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()+1);
+            reservationDAO.setUpdateAt(DateTimeUtils.nowZone());
         }
         else
             return null;

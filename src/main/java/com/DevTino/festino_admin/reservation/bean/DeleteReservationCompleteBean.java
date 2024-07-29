@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.reservation.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
@@ -59,9 +60,11 @@ public class DeleteReservationCompleteBean {
         if (reservationDAO.getReservationType().equals(ReservationEnum.RESERVE)) {
             // 야간부스 총 예약수 -1
             nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);
+            reservationDAO.setUpdateAt(DateTimeUtils.nowZone());
 
             // 예약 완료여부 isCancel 값 수정
             reservationDAO.setReservationType(ReservationEnum.COMPLETE);
+            reservationDAO.setUpdateAt(DateTimeUtils.nowZone());
 
             // 수정된 DAO 값 저장
             saveReservationDAOBean.exec(reservationDAO);
@@ -90,6 +93,7 @@ public class DeleteReservationCompleteBean {
 
         // 수정된 DAO 값 저장
         saveReservationDAOBean.exec(reservationDAO);
+        reservationDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 완료 메세지 전송
         String deleteMessageStatus = completeReservationSendMessageBean.exec(reservationDAO.getPhoneNum(), reservationDAO.getUserName(), nightBoothDAO.getAdminName());
