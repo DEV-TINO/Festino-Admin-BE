@@ -64,7 +64,7 @@ public class CookController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "서빙 수량 변경 성공" : "서빙 수량 변경 시 DAO 검색 실패 또는 부적절한 servedCount 값");
-        requestMap.put("restoreInfo", responseCookCountUpdateDTO);
+        requestMap.put("countInfo", responseCookCountUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
