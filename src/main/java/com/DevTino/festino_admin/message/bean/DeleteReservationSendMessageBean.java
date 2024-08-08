@@ -2,7 +2,7 @@ package com.DevTino.festino_admin.message.bean;
 
 import com.DevTino.festino_admin.message.bean.small.CheckMessageStatusBean;
 import com.DevTino.festino_admin.message.bean.small.GetAccessTokenBean;
-import com.DevTino.festino_admin.message.bean.small.SendMessageBean;
+import com.DevTino.festino_admin.message.bean.small.SendMessageContentBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +13,13 @@ import java.util.*;
 public class DeleteReservationSendMessageBean {
 
     GetAccessTokenBean getAccessTokenBean;
-    SendMessageBean sendMessageBean;
+    SendMessageContentBean sendMessageContentBean;
     CheckMessageStatusBean checkMessageStatusBean;
 
     @Autowired
-    public DeleteReservationSendMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageBean sendMessageBean, CheckMessageStatusBean checkMessageStatusBean) {
+    public DeleteReservationSendMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageContentBean sendMessageContentBean, CheckMessageStatusBean checkMessageStatusBean) {
         this.getAccessTokenBean = getAccessTokenBean;
-        this.sendMessageBean = sendMessageBean;
+        this.sendMessageContentBean = sendMessageContentBean;
         this.checkMessageStatusBean = checkMessageStatusBean;
     }
 
@@ -36,7 +36,7 @@ public class DeleteReservationSendMessageBean {
         String refKey = UUID.randomUUID().toString();
         String message = userName + "님 " + adminName + " 예약이 취소되었습니다.";
 
-        String messageStatus = sendMessageBean.exec(phoneNum, accessToken, refKey, message);
+        String messageStatus = sendMessageContentBean.exec(phoneNum, accessToken, refKey, message);
         if (messageStatus.equals("SEND_FAIL")) return messageStatus;
 
         return checkMessageStatusBean.exec(refKey, accessToken);

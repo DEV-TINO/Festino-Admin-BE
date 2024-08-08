@@ -15,12 +15,12 @@ import java.util.Objects;
 import static com.DevTino.festino_admin.message.others.SmsConfig.*;
 
 @Component
-public class SendMessageBean {
+public class SendMessageContentBean {
 
     SmsConfig smsConfig;
 
     @Autowired
-    public SendMessageBean(SmsConfig smsConfig) {
+    public SendMessageContentBean(SmsConfig smsConfig) {
         this.smsConfig = smsConfig;
     }
 
