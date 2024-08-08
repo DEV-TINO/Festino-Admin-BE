@@ -2,30 +2,24 @@ package com.DevTino.festino_admin.message.bean;
 
 import com.DevTino.festino_admin.message.bean.small.CheckMessageStatusBean;
 import com.DevTino.festino_admin.message.bean.small.GetAccessTokenBean;
-import com.DevTino.festino_admin.message.bean.small.SendMessageBean;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import okhttp3.*;
+import com.DevTino.festino_admin.message.bean.small.SendMessageContentBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Component
 public class ReservationTop2SendMessageBean {
 
     GetAccessTokenBean getAccessTokenBean;
-    SendMessageBean sendMessageBean;
+    SendMessageContentBean sendMessageContentBean;
     CheckMessageStatusBean checkMessageStatusBean;
 
     @Autowired
-    public ReservationTop2SendMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageBean sendMessageBean, CheckMessageStatusBean checkMessageStatusBean) {
+    public ReservationTop2SendMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageContentBean sendMessageContentBean, CheckMessageStatusBean checkMessageStatusBean) {
         this.getAccessTokenBean = getAccessTokenBean;
-        this.sendMessageBean = sendMessageBean;
+        this.sendMessageContentBean = sendMessageContentBean;
         this.checkMessageStatusBean = checkMessageStatusBean;
     }
 
@@ -42,7 +36,7 @@ public class ReservationTop2SendMessageBean {
         String refKey = UUID.randomUUID().toString();
         String message = userName + "님 곧 입장이 가능합니다. 부스로 바로 와주세요.";
 
-        return sendMessageBean.exec(phoneNum, accessToken, refKey, message);
+        return sendMessageContentBean.exec(phoneNum, accessToken, refKey, message);
 
         // 1팀 대기는 로직상 체크 안하고 가기로 결정
         /*String messageStatus = sendMessageBean.exec(phoneNum, accessToken, refKey, message);

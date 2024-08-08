@@ -56,7 +56,7 @@ public class CheckMessageStatusBean {
                 for (Map<String, Object> data : dataList) {
                     String code = (String) data.get("CODE");
                     if ("FAIL".equals(code)) {
-                        return "SEND_FAIL";
+                        return "PHONE_NUM_FAIL";
                     } else if ("SUCC".equals(code)) {
                         return "SEND_SUCCESS";
                     }
