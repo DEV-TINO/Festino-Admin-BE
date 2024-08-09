@@ -37,7 +37,7 @@ public class SaveTableNumBean {
         // 싹 다 삭제
         deleteTableNumDAOBean.exec(boothId);
 
-        List<TableNumDTO> tableNumDTOList = requestTableNumSaveDTO.getTableNumDTOList();
+        List<TableNumDTO> tableNumDTOList = requestTableNumSaveDTO.getTableNumList();
 
         List<TableNumDAO> newTableNumDAOList = new ArrayList<>();
 

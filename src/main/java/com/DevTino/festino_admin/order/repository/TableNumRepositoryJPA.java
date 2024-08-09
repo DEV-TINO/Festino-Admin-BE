@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface TableNumRepositoryJPA extends JpaRepository<TableNumDAO, Integer> {
 
-    List<TableNumDAO> findAllByBoothId(UUID boothId);
+    List<TableNumDAO> findAllByBoothIdOrderByTableNumIndexAsc(UUID boothId);
 
     void deleteAllByBoothId(UUID boothId);
 }

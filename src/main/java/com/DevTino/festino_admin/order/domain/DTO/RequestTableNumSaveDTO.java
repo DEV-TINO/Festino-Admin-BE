@@ -8,5 +8,5 @@ import java.util.UUID;
 @Data
 public class RequestTableNumSaveDTO {
     UUID boothId;
-    List<TableNumDTO> tableNumDTOList;
+    List<TableNumDTO> tableNumList;
 }

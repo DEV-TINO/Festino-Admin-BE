@@ -41,6 +41,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(HttpMethod.GET, "/admin/booth/night/all").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/admin/order/table").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/admin/order/table/booth/**").permitAll()
                                 .requestMatchers("/admin/reservation/**").permitAll()
                                 .requestMatchers("/admin/reservation").permitAll()
                                 .requestMatchers("/admin/user/login").permitAll()
