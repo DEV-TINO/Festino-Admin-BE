@@ -17,8 +17,14 @@ public class GetMenusDAOBean {
         this.menuRepositoryJPA = menuRepositoryJPA;
     }
 
-    // boothId를 통해 원하는 부스 전체 DAO 찾아서 반환
+
+    // boothId로 MenuDAO 검색해 반환
     public List<MenuDAO> exec(UUID boothId) {
-        return menuRepositoryJPA.findAllByBoothIdAndIsDeletedOrderByMenuIndexAsc(boothId, false);
+        return menuRepositoryJPA.findAllByBoothIdOrderByMenuIndexAsc(boothId);
+    }
+
+    // boothId, isDeleted로 MenuDAO 검색해 반환
+    public List<MenuDAO> exec(UUID boothId, Boolean isDeleted) {
+        return menuRepositoryJPA.findAllByBoothIdAndIsDeletedOrderByMenuIndexAsc(boothId, isDeleted);
     }
 }

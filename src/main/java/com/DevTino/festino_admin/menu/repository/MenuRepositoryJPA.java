@@ -8,5 +8,6 @@ import java.util.UUID;
 
 public interface MenuRepositoryJPA extends JpaRepository<MenuDAO, UUID> {
     MenuDAO findByMenuIdAndBoothId(UUID menuId, UUID boothId);
+    List<MenuDAO> findAllByBoothIdOrderByMenuIndexAsc(UUID boothId);
     List<MenuDAO> findAllByBoothIdAndIsDeletedOrderByMenuIndexAsc(UUID boothId, Boolean isDeleted);
 }
