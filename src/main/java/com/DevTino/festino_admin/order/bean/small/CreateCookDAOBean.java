@@ -20,7 +20,7 @@ public class CreateCookDAOBean {
                 .boothId(orderDAO.getBoothId())
                 .tableNum(orderDAO.getTableNum())
                 .date(orderDAO.getDate())
-                .menuName((String) menu.get("menuName"))
+                .menuId((UUID) menu.get("menuId"))
                 .totalCount((Integer) menu.get("menuCount"))
                 .servedCount(0)
                 .createAt(DateTimeUtils.nowZone())

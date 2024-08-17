@@ -19,9 +19,9 @@ public class CookDAO {
     UUID cookId;
     UUID orderId;
     UUID boothId;
+    UUID menuId;
     Integer tableNum;
     Integer date;
-    String menuName;
     Integer totalCount;
     Integer servedCount;
     LocalDateTime createAt;
