@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.domain;
 
+import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
 import com.DevTino.festino_admin.order.others.StringListConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -35,5 +35,6 @@ public class OrderDAO {
     LocalDateTime createAt;
 
     @Convert(converter = StringListConverter.class)
-    List<Map<String, Object>> menuInfo;
+    List<MenuInfoDTO> menuInfo;
+
 }

@@ -2,6 +2,7 @@ package com.DevTino.festino_admin.order.bean.small;
 
 import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 public class CreateCookDAOBean {
 
     // DAO 생성해 반환
-    public CookDAO exec(Map<String, Object> menu, OrderDAO orderDAO){
+    public CookDAO exec(MenuInfoDTO menu, OrderDAO orderDAO){
 
         return CookDAO.builder()
                 .cookId(UUID.randomUUID())
@@ -20,8 +21,8 @@ public class CreateCookDAOBean {
                 .boothId(orderDAO.getBoothId())
                 .tableNum(orderDAO.getTableNum())
                 .date(orderDAO.getDate())
-                .menuName((String) menu.get("menuName"))
-                .totalCount((Integer) menu.get("menuCount"))
+                .menuId(menu.getMenuId())
+                .totalCount(menu.getMenuCount())
                 .servedCount(0)
                 .createAt(DateTimeUtils.nowZone())
                 .isFinish(false)

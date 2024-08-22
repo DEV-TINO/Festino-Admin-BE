@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -17,6 +16,6 @@ public class ResponseOrderFinishGetDTO {
     String userName;
     String phoneNum;
     Integer totalPrice;
-    List<Map<String, Object>> menuList;
+    List<MenuInfoDTO> menuList;
 
 }

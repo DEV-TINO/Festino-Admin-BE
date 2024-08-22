@@ -29,19 +29,19 @@ public class GetCooksDAOBean {
 
 
 
-    // menuName, isFinish, date로 Cook 오래된순 전체 조회
-    public List<CookDAO> exec(UUID boothId, String menuName, Boolean isFinish, Integer date){
+    // menuId, isFinish, date로 Cook 오래된순 전체 조회
+    public List<CookDAO> exec(UUID boothId, UUID menuId, Boolean isFinish, Integer date){
 
-        return cookRepositoryJPA.findByBoothIdAndMenuNameAndIsFinishAndDateOrderByCreateAtAsc(boothId, menuName, isFinish, date);
+        return cookRepositoryJPA.findByBoothIdAndMenuIdAndIsFinishAndDateOrderByCreateAtAsc(boothId, menuId, isFinish, date);
 
     }
 
 
 
-    // menuName, date로 Cook 전체 조회
-    public List<CookDAO> exec(String menuName, Integer date){
+    // menuId, date, isFinish로 Cook 전체 조회
+    public List<CookDAO> exec(UUID menuId, Integer date, Boolean isFinish){
 
-        return cookRepositoryJPA.findByMenuNameAndDate(menuName, date);
+        return cookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
 
     }
 

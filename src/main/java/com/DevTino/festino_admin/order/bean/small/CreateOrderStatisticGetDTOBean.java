@@ -36,8 +36,8 @@ public class CreateOrderStatisticGetDTOBean {
             // 메뉴의 총판매수량
             Integer menuCount = 0;
 
-            // 메뉴 이름과 날짜(date)로 Cook 조회 : Cook은 입금 확인과 동시에 생성되므로 완료여부와 관계 없이 모두 통계 반영
-            List<CookDAO> cookDAOList = getCooksDAOBean.exec(menuDAO.getMenuName(), date);
+            // 메뉴 아이디와 날짜(date)로 완료된 Cook 조회
+            List<CookDAO> cookDAOList = getCooksDAOBean.exec(menuDAO.getMenuId(), date, true);
 
             // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
             for (CookDAO cookDAO : cookDAOList){ menuCount += cookDAO.getTotalCount(); }
@@ -45,6 +45,7 @@ public class CreateOrderStatisticGetDTOBean {
             // 메뉴의 매출 정보를 Map으로 생성
             Map<String, Object> map = new HashMap<>();
             map.put("menuName", menuDAO.getMenuName());
+            map.put("menuPrice", menuDAO.getMenuPrice());
             map.put("menuCount", menuCount);
             map.put("menuSale", menuDAO.getMenuPrice() * menuCount);
 

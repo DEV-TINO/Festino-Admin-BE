@@ -1,6 +1,7 @@
 package com.DevTino.festino_admin.order.bean.small;
 
 import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
 import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,13 +29,13 @@ public class CreateCookDAOsBean {
     public void exec(OrderDAO orderDAO){
 
         // 메뉴 정보 받기
-        List<Map<String, Object>> menuList = orderDAO.getMenuInfo();
+        List<MenuInfoDTO> menuList = orderDAO.getMenuInfo();
 
         // Cook DAO 리스트 생성
         List<CookDAO> cookDAOList = new ArrayList<>();
 
         // menuList에서 하나씩 꺼내서
-        for (Map<String, Object> menu : menuList){
+        for (MenuInfoDTO menu : menuList){
 
             // 메뉴 정보로 Cook DAO 생성
             CookDAO cookDAO = createCookDAOBean.exec(menu, orderDAO);

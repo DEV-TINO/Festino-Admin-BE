@@ -11,10 +11,10 @@ public interface CookRepositoryJPA extends JpaRepository<CookDAO, UUID> {
     // orderId에 해당하는 Cook 검색
     public List<CookDAO> findAllByOrderId(UUID orderId);
 
-    // boothId, menuName, isFinish, date에 해당하는 Cook 오래된순 검색
-    public List<CookDAO> findByBoothIdAndMenuNameAndIsFinishAndDateOrderByCreateAtAsc(UUID boothId, String menuName, Boolean isFinish, Integer date);
+    // boothId, menuId, isFinish, date에 해당하는 Cook 오래된순 검색
+    public List<CookDAO> findByBoothIdAndMenuIdAndIsFinishAndDateOrderByCreateAtAsc(UUID boothId, UUID menuId, Boolean isFinish, Integer date);
 
-    // menuName, date에 해당하는 Cook 검색
-    public List<CookDAO> findByMenuNameAndDate(String menuName, Integer date);
+    // menuId, date, isFinish에 해당하는 Cook 검색
+    public List<CookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish);
 
 }

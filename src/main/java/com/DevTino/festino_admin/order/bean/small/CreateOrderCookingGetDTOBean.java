@@ -26,8 +26,8 @@ public class CreateOrderCookingGetDTOBean {
         // 각 메뉴에 해당하는 조리(Cook) 정보를 담을 List 생성
         List<Map<String, Object>> cooks = new ArrayList<>();
 
-        // menuName으로 해당 boothId, 날짜의 조리중인 Cook 오래된순 전체 조회
-        List<CookDAO> cookDAOList = getCooksDAOBean.exec(boothId, menuDAO.getMenuName(), false, date);
+        // menuId로 해당 boothId, 날짜의 조리중인 Cook 오래된순 전체 조회
+        List<CookDAO> cookDAOList = getCooksDAOBean.exec(boothId, menuDAO.getMenuId(), false, date);
 
         // 주문한 테이블 총합, 남은 개수 총합
         Integer tableCount = 0;

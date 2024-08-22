@@ -28,7 +28,7 @@ public class GetMenusBean {
     // 메뉴 전체 조회
     public List<ResponseMenuGetDTO> exec(UUID boothId) {
         // boothId를 통해 원하는 부스 메뉴 전체 DAO 찾기
-        List<MenuDAO> menuDAOList = getMenusDAOBean.exec(boothId);
+        List<MenuDAO> menuDAOList = getMenusDAOBean.exec(boothId, false);
         if(menuDAOList.isEmpty()) return new ArrayList<>();
 
         // DAO 리스트를 DTO로 바꿔서 반환
