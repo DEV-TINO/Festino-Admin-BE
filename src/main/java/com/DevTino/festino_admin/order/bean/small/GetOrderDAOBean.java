@@ -89,6 +89,13 @@ public class GetOrderDAOBean {
                 nanoOrderDAO.setOrderType(OrderType.CANCEL);
                 return OrderDTO.fromNanoOrderDAO(nanoOrderDAO);
 
+            case "newMaterial" :
+                NewMaterialOrderDAO newMaterialOrderDAO = newMaterialOrderRepositoryJPA.findByOrderId(orderId);
+                if(newMaterialOrderDAO == null) return null;
+
+                newMaterialOrderDAO.setOrderType(OrderType.CANCEL);
+                return  OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO);
+                
             default:
                 return null;
         }
