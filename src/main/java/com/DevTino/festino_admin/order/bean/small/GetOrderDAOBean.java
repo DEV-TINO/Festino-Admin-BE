@@ -48,9 +48,6 @@ public class GetOrderDAOBean {
                 ComputerOrderDAO computerOrderDAO = computerOrderRepositoryJPA.findByOrderId(orderId);
                 if(computerOrderDAO == null) return null;
 
-                //orderType 값을 CANCEL로 변경
-                computerOrderDAO.setOrderType(OrderType.CANCEL);
-
                 // OrderDTO 타입으로 변경후 반환
                 return OrderDTO.fromComputerOrderDAO(computerOrderDAO);
 
@@ -58,42 +55,36 @@ public class GetOrderDAOBean {
                 ElectronicsOrderDAO electronicsOrderDAO = electronicsOrderRepositoryJPA.findByOrderId(orderId);
                 if(electronicsOrderDAO == null) return null;
 
-                electronicsOrderDAO.setOrderType(OrderType.CANCEL);
                 return OrderDTO.fromElectronicsOrderDAO(electronicsOrderDAO);
 
             case "energy" :
                 EnergyOrderDAO energyOrderDAO = energyOrderRepositoryJPA.findByOrderId(orderId);
                 if(energyOrderDAO == null) return null;
 
-                energyOrderDAO.setOrderType(OrderType.CANCEL);
                 return OrderDTO.fromEnergyOrderDAO(energyOrderDAO);
 
             case "game" :
                 GameOrderDAO gameOrderDAO = gameOrderRepositoryJPA.findByOrderId(orderId);
                 if(gameOrderDAO == null) return null;
 
-                gameOrderDAO.setOrderType(OrderType.CANCEL);
                 return OrderDTO.fromGameOrderDAO(gameOrderDAO);
 
             case "machine" :
                 MachineOrderDAO machineOrderDAO = machineOrderRepositoryJPA.findByOrderId(orderId);
                 if(machineOrderDAO == null) return null;
 
-                machineOrderDAO.setOrderType(OrderType.CANCEL);
                 return OrderDTO.fromMachineOrderDAO(machineOrderDAO);
 
             case "nano" :
                 NanoOrderDAO nanoOrderDAO = nanoOrderRepositoryJPA.findByOrderId(orderId);
                 if(nanoOrderDAO == null) return null;
 
-                nanoOrderDAO.setOrderType(OrderType.CANCEL);
                 return OrderDTO.fromNanoOrderDAO(nanoOrderDAO);
 
             case "newMaterial" :
                 NewMaterialOrderDAO newMaterialOrderDAO = newMaterialOrderRepositoryJPA.findByOrderId(orderId);
                 if(newMaterialOrderDAO == null) return null;
 
-                newMaterialOrderDAO.setOrderType(OrderType.CANCEL);
                 return  OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO);
                 
             default:
