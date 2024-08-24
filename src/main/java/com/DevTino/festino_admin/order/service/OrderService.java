@@ -59,9 +59,9 @@ public class OrderService {
 
 
     // 주문 상세 조회
-    public ResponseOrderDetailGetDTO getOrderDetail(UUID orderId){
+    public ResponseOrderDetailGetDTO getOrderDetail(UUID boothId, UUID orderId){
 
-        return getOrderDetailBean.exec(orderId);
+        return getOrderDetailBean.exec(boothId, orderId);
 
     }
 

@@ -50,10 +50,10 @@ public class OrderController {
 
     // 주문 상세 조회
     @GetMapping("/{orderId}")
-    public ResponseEntity<Map<String, Object>> getOrderDetail(@PathVariable("orderId") UUID orderId){
+    public ResponseEntity<Map<String, Object>> getOrderDetail(@PathVariable("boothId") UUID boothId, @PathVariable("orderId") UUID orderId){
 
         // 주문 상세 조회 service 실행
-        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(orderId);
+        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(boothId, orderId);
 
         // 주문 상세 조회 성공 여부 설정
         boolean success = (responseOrderDetailGetDTO == null) ? false : true;
