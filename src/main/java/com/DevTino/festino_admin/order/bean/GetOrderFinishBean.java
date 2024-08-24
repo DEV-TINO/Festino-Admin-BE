@@ -31,7 +31,7 @@ public class GetOrderFinishBean {
     public List<ResponseOrderFinishGetDTO> exec(UUID boothId, Integer date){
         // 주문한 학과 구분
         String adminName = getOrderBoothNameDAOBean.exec(boothId);
-        if(adminName.isEmpty()) return new ArrayList<>();
+        if(adminName.isEmpty()) return null;
 
         // 날짜의 조리완료 상태인 Order 오래된순 전체 조회 -> DAO 리스트
         List<OrderDTO> dtoList = getOrderFinishDAOBean.exec(adminName, date);
