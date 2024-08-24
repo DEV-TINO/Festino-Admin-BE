@@ -46,44 +46,37 @@ public class GetOrderDAOBean {
             case "computer" :
                 // orderId로 해당 Order DAO 찾고
                 ComputerOrderDAO computerOrderDAO = computerOrderRepositoryJPA.findByOrderId(orderId);
-                if(computerOrderDAO == null) return null;
 
                 // OrderDTO 타입으로 변경후 반환
                 return OrderDTO.fromComputerOrderDAO(computerOrderDAO);
 
             case "electronics" :
                 ElectronicsOrderDAO electronicsOrderDAO = electronicsOrderRepositoryJPA.findByOrderId(orderId);
-                if(electronicsOrderDAO == null) return null;
 
                 return OrderDTO.fromElectronicsOrderDAO(electronicsOrderDAO);
 
             case "energy" :
                 EnergyOrderDAO energyOrderDAO = energyOrderRepositoryJPA.findByOrderId(orderId);
-                if(energyOrderDAO == null) return null;
 
                 return OrderDTO.fromEnergyOrderDAO(energyOrderDAO);
 
             case "game" :
                 GameOrderDAO gameOrderDAO = gameOrderRepositoryJPA.findByOrderId(orderId);
-                if(gameOrderDAO == null) return null;
 
                 return OrderDTO.fromGameOrderDAO(gameOrderDAO);
 
             case "machine" :
                 MachineOrderDAO machineOrderDAO = machineOrderRepositoryJPA.findByOrderId(orderId);
-                if(machineOrderDAO == null) return null;
 
                 return OrderDTO.fromMachineOrderDAO(machineOrderDAO);
 
             case "nano" :
                 NanoOrderDAO nanoOrderDAO = nanoOrderRepositoryJPA.findByOrderId(orderId);
-                if(nanoOrderDAO == null) return null;
 
                 return OrderDTO.fromNanoOrderDAO(nanoOrderDAO);
 
             case "newMaterial" :
                 NewMaterialOrderDAO newMaterialOrderDAO = newMaterialOrderRepositoryJPA.findByOrderId(orderId);
-                if(newMaterialOrderDAO == null) return null;
 
                 return  OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO);
                 
