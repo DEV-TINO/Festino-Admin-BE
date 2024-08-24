@@ -10,6 +10,7 @@ import com.DevTino.festino_admin.order.domain.OrderType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 
@@ -31,6 +32,7 @@ public class DeleteOrderBean {
     public Boolean exec(UUID boothId, RequestOrderDeleteDTO requestOrderDeleteDTO){
         // 주문한 학과 구분
         String adminName = getOrderBoothNameDAOBean.exec(boothId);
+        if(adminName.isEmpty()) return false;
 
         // orderId로 해당 Order DAO 찾고, orderType 값을 CANCEL로 변경
         OrderDTO orderDTO = getOrderDAOBean.exec(requestOrderDeleteDTO.getOrderId(), adminName);

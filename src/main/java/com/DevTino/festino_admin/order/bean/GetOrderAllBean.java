@@ -9,6 +9,7 @@ import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +31,7 @@ public class GetOrderAllBean {
     public List<ResponseOrderAllGetDTO> exec(UUID boothId, Integer date){
         // 주문한 학과 구분
         String adminName = getOrderBoothNameDAOBean.exec(boothId);
-        if(adminName.isEmpty()) return null;
+        if(adminName.isEmpty()) return new ArrayList<>();
 
         // 날짜의 Order 오래된순 전체 조회 -> DAO 리스트
         List<OrderDTO> dtoList = getOrdersDAOBean.exec(adminName, date);
