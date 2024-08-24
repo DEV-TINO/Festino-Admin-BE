@@ -234,10 +234,10 @@ public class OrderController {
 
     // 주문 취소
     @DeleteMapping("/cancel")
-    public ResponseEntity<Map<String, Object>> deleteOrder(@RequestBody RequestOrderDeleteDTO requestOrderDeleteDTO){
+    public ResponseEntity<Map<String, Object>> deleteOrder(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDeleteDTO requestOrderDeleteDTO){
 
         // 주문 취소 service 실행 & 삭제 성공 여부 설정
-        boolean success = orderService.deleteOrder(requestOrderDeleteDTO);
+        boolean success = orderService.deleteOrder(boothId, requestOrderDeleteDTO);
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();

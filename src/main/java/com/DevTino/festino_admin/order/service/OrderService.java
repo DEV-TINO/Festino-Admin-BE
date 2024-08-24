@@ -131,9 +131,9 @@ public class OrderService {
 
 
     // 주문 취소
-    public Boolean deleteOrder(RequestOrderDeleteDTO requestOrderDeleteDTO){
+    public Boolean deleteOrder(UUID boothId, RequestOrderDeleteDTO requestOrderDeleteDTO){
 
-        return deleteOrderBean.exec(requestOrderDeleteDTO);
+        return deleteOrderBean.exec(boothId, requestOrderDeleteDTO);
 
     }
 
