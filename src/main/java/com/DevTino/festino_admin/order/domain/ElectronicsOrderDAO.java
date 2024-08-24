@@ -1,12 +1,10 @@
 package com.DevTino.festino_admin.order.domain;
 
 import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
+import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.others.StringListConverter;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class ElectronicsOrderDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +35,22 @@ public class ElectronicsOrderDAO {
 
     @Convert(converter = StringListConverter.class)
     List<MenuInfoDTO> menuInfo;
+
+    public static ElectronicsOrderDAO fromOrderDTO(OrderDTO orderDTO) {
+        return ElectronicsOrderDAO.builder()
+                .orderNum(orderDTO.getOrderNum())
+                .orderId(orderDTO.getOrderId())
+                .boothId(orderDTO.getBoothId())
+                .orderType(orderDTO.getOrderType())
+                .tableNum(orderDTO.getTableNum())
+                .date(orderDTO.getOrderNum())
+                .userName(orderDTO.getUserName())
+                .phoneNum(orderDTO.getPhoneNum())
+                .totalPrice(orderDTO.getTotalPrice())
+                .isDeposit(orderDTO.getIsDeposit())
+                .isCoupon(orderDTO.getIsCoupon())
+                .createAt(orderDTO.getCreateAt())
+                .menuInfo(orderDTO.getMenuInfo())
+                .build();
+    }
 }
