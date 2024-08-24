@@ -140,9 +140,9 @@ public class OrderService {
 
 
     // 주문 취소 복구
-    public ResponseOrderDeleteRestoreUpdateDTO updateOrderDeleteRestore(RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
+    public ResponseOrderDeleteRestoreUpdateDTO updateOrderDeleteRestore(UUID boothId, RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
 
-        return updateOrderDeleteRestoreBean.exec(requestOrderDeleteRestoreUpdateDTO);
+        return updateOrderDeleteRestoreBean.exec(boothId, requestOrderDeleteRestoreUpdateDTO);
 
     }
 

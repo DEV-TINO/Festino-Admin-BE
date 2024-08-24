@@ -253,10 +253,10 @@ public class OrderController {
 
     // 주문 취소 복구
     @PutMapping("/cancel/restore")
-    public ResponseEntity<Map<String, Object>> updateOrderDeleteRestore(@RequestBody RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateOrderDeleteRestore(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
 
         // 주문 취소 복구 service 실행
-        ResponseOrderDeleteRestoreUpdateDTO responseOrderDeleteRestoreUpdateDTO = orderService.updateOrderDeleteRestore(requestOrderDeleteRestoreUpdateDTO);
+        ResponseOrderDeleteRestoreUpdateDTO responseOrderDeleteRestoreUpdateDTO = orderService.updateOrderDeleteRestore(boothId, requestOrderDeleteRestoreUpdateDTO);
 
         // 주문 취소 복구 성공 여부 설정
         boolean success = (responseOrderDeleteRestoreUpdateDTO == null) ? false : true;
