@@ -149,9 +149,9 @@ public class OrderService {
 
 
     // 입금 확인
-    public ResponseOrderDepositUpdateDTO updateOrderDeposit(RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
+    public ResponseOrderDepositUpdateDTO updateOrderDeposit(UUID boothId, RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
 
-        return updateOrderDepositBean.exec(requestOrderDepositUpdateDTO);
+        return updateOrderDepositBean.exec(boothId, requestOrderDepositUpdateDTO);
 
     }
 

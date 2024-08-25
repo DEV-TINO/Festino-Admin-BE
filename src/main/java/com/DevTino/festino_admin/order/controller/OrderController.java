@@ -276,10 +276,10 @@ public class OrderController {
 
     // 입금 확인
     @PutMapping("/deposit")
-    public ResponseEntity<Map<String, Object>> updateIsDeposit(@RequestBody RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateIsDeposit(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
 
         // 입금 확인 service 실행
-        ResponseOrderDepositUpdateDTO responseOrderDepositUpdateDTO = orderService.updateOrderDeposit(requestOrderDepositUpdateDTO);
+        ResponseOrderDepositUpdateDTO responseOrderDepositUpdateDTO = orderService.updateOrderDeposit(boothId, requestOrderDepositUpdateDTO);
 
         // 입금 확인 성공 여부 설정
         boolean success = (responseOrderDepositUpdateDTO == null) ? false : true;

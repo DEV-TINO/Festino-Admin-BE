@@ -1,26 +1,25 @@
 package com.DevTino.festino_admin.order.bean.small;
 
 import com.DevTino.festino_admin.DateTimeUtils;
-import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
+import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
 import java.util.UUID;
 
 @Component
 public class CreateCookDAOBean {
 
     // DAO 생성해 반환
-    public CookDAO exec(MenuInfoDTO menu, OrderDAO orderDAO){
+    public CookDTO exec(MenuInfoDTO menu, OrderDTO orderDTO){
 
-        return CookDAO.builder()
+        return CookDTO.builder()
                 .cookId(UUID.randomUUID())
-                .orderId(orderDAO.getOrderId())
-                .boothId(orderDAO.getBoothId())
-                .tableNum(orderDAO.getTableNum())
-                .date(orderDAO.getDate())
+                .orderId(orderDTO.getOrderId())
+                .boothId(orderDTO.getBoothId())
+                .tableNum(orderDTO.getTableNum())
+                .date(orderDTO.getDate())
                 .menuId(menu.getMenuId())
                 .totalCount(menu.getMenuCount())
                 .servedCount(0)

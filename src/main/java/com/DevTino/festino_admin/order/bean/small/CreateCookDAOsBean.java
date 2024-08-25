@@ -1,14 +1,15 @@
 package com.DevTino.festino_admin.order.bean.small;
 
-import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
+import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class CreateCookDAOsBean {
@@ -23,30 +24,39 @@ public class CreateCookDAOsBean {
         this.saveCookDAOBean = saveCookDAOBean;
     }
 
-
-
     // orderDAO의 메뉴 정보에 따라 CookDAO 생성
-    public void exec(OrderDAO orderDAO){
-
-        // 메뉴 정보 받기
-        List<MenuInfoDTO> menuList = orderDAO.getMenuInfo();
+    public void exec(OrderDTO orderDTO, String adminName){
 
         // Cook DAO 리스트 생성
-        List<CookDAO> cookDAOList = new ArrayList<>();
+        List<CookDTO> cookDTOList = new ArrayList<>();
 
-        // menuList에서 하나씩 꺼내서
-        for (MenuInfoDTO menu : menuList){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Map<String, Object>> list = new ArrayList<>();
+        String newMenuList = null;
+        try {
+            // MenuInfo로 String으로 변환
+            newMenuList = objectMapper.writeValueAsString(orderDTO.getMenuInfo());
 
-            // 메뉴 정보로 Cook DAO 생성
-            CookDAO cookDAO = createCookDAOBean.exec(menu, orderDAO);
+            // String으로 변환한 MenuInfo를 objectMapper를 통해 List의 Map형태로 바꿈
+            list = objectMapper.readValue(newMenuList, new TypeReference<List<Map<String, Object>>>() {});
 
-            // 생성한 Cook DAO 리스트에 적재
-            cookDAOList.add(cookDAO);
+            // menuList에서 하나씩 꺼내서
+            for (Map<String, Object> menu : list){
 
+                MenuInfoDTO menuInfoDTO = objectMapper.convertValue(menu, MenuInfoDTO.class);
+
+                // 메뉴 정보로 Cook DAO 생성
+                CookDTO cookDTO = createCookDAOBean.exec(menuInfoDTO, orderDTO);
+
+                // 생성한 Cook DAO 리스트에 적재
+                cookDTOList.add(cookDTO);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
         // Cook DAO 리스트 저장
-        saveCookDAOBean.exec(cookDAOList);
+        saveCookDAOBean.exec(cookDTOList, adminName);
 
     }
 
