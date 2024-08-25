@@ -44,6 +44,7 @@ public class GetOrderFinishDAOBean {
             // 컴퓨터공학부에서 조회
             case "computer" :
                 List<ComputerOrderDAO> computerOrderDAOList = computerOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.FINISH, date);
+                if(computerOrderDAOList.isEmpty()) return new ArrayList<>();
 
                 for(ComputerOrderDAO computerOrderDAO : computerOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromComputerOrderDAO(computerOrderDAO));
@@ -53,6 +54,7 @@ public class GetOrderFinishDAOBean {
             // 전자공학부에서 조회
             case "electronics" :
                 List<ElectronicsOrderDAO> electronicsOrderDAOList = electronicsOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.FINISH, date);
+                if(electronicsOrderDAOList.isEmpty()) return new ArrayList<>();
 
                 for(ElectronicsOrderDAO electronicsOrderDAO : electronicsOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromElectronicsOrderDAO(electronicsOrderDAO));
@@ -62,6 +64,7 @@ public class GetOrderFinishDAOBean {
             // 에너지전기공학과에서 조회
             case "energy" :
                 List<EnergyOrderDAO> energyOrderDAOList = energyOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.FINISH, date);
+                if(energyOrderDAOList.isEmpty()) return new ArrayList<>();
 
                 for(EnergyOrderDAO energyOrderDAO : energyOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromEnergyOrderDAO(energyOrderDAO));
@@ -71,6 +74,7 @@ public class GetOrderFinishDAOBean {
             // 게임공학과에서 조회
             case "game" :
                 List<GameOrderDAO> gameOrderDAOList = gameOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.FINISH, date);
+                if(gameOrderDAOList.isEmpty()) return new ArrayList<>();
 
                 for(GameOrderDAO gameOrderDAO : gameOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromGameOrderDAO(gameOrderDAO));
@@ -80,6 +84,7 @@ public class GetOrderFinishDAOBean {
             // 기계공학과에서 조회
             case "machine" :
                 List<MachineOrderDAO> machineOrderDAOList = machineOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.FINISH, date);
+                if(machineOrderDAOList.isEmpty()) return new ArrayList<>();
 
                 for(MachineOrderDAO machineOrderDAO : machineOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromMachineOrderDAO(machineOrderDAO));
@@ -89,6 +94,7 @@ public class GetOrderFinishDAOBean {
             // 나노반도체공학과에서 조회
             case "nano" :
                 List<NanoOrderDAO> nanoOrderDAOList = nanoOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.FINISH, date);
+                if(nanoOrderDAOList.isEmpty()) return new ArrayList<>();
 
                 for(NanoOrderDAO nanoOrderDAO : nanoOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromNanoOrderDAO(nanoOrderDAO));
@@ -98,6 +104,7 @@ public class GetOrderFinishDAOBean {
             // 신소재공학과에서 조회
             case "newMaterial" :
                 List<NewMaterialOrderDAO> newMaterialOrderDAOList = newMaterialOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.FINISH, date);
+                if(newMaterialOrderDAOList.isEmpty()) return new ArrayList<>();
 
                 for(NewMaterialOrderDAO newMaterialOrderDAO : newMaterialOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO));
