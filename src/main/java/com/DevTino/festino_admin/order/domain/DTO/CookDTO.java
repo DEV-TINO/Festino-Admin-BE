@@ -51,7 +51,7 @@ public class CookDTO {
                 .build();
     }
 
-    public static CookDTO fromEnergyCookDAO(ComputerCookDAO energyCookDAO) {
+    public static CookDTO fromEnergyCookDAO(EnergyCookDAO energyCookDAO) {
         return CookDTO.builder()
                 .cookId(energyCookDAO.getCookId())
                 .orderId(energyCookDAO.getOrderId())

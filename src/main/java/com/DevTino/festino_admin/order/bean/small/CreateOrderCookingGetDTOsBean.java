@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class CreateOrderCookingGetDTOsBean {
@@ -22,16 +21,16 @@ public class CreateOrderCookingGetDTOsBean {
 
 
     // 메뉴 한 개당 하나의 DTO를 생성, DTO 리스트를 만들어 반환
-    public List<ResponseOrderCookingGetDTO> exec(UUID boothId, List<MenuDAO> menuDAOList, Integer date){
+    public List<ResponseOrderCookingGetDTO> exec(String adminName, List<MenuDAO> menuDAOList, Integer date){
 
         // DTO 리스트 생성
         List<ResponseOrderCookingGetDTO> orderCookingGetDTOList = new ArrayList<>();
         
         // MenuDAOList에서 Menu DAO 하나씩 꺼내서
         for (MenuDAO menuDAO : menuDAOList){
-            
+
             // 메뉴 한 개당 하나의 DTO 생성, DTO 리스트에 삽입
-            orderCookingGetDTOList.add(createOrderCookingGetDTOBean.exec(boothId, menuDAO, date));
+            orderCookingGetDTOList.add(createOrderCookingGetDTOBean.exec(adminName, menuDAO, date));
 
         }
 
