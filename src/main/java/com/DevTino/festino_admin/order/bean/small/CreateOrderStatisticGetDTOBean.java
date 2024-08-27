@@ -1,7 +1,6 @@
 package com.DevTino.festino_admin.order.bean.small;
 
 import com.DevTino.festino_admin.menu.domain.MenuDAO;
-import com.DevTino.festino_admin.order.domain.CookDAO;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderStatisticGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
