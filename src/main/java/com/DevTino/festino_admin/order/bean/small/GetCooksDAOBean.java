@@ -127,9 +127,83 @@ public class GetCooksDAOBean {
 
 
     // menuId, date, isFinish로 Cook 전체 조회
-    public List<CookDAO> exec(UUID menuId, Integer date, Boolean isFinish){
+    public List<CookDTO> exec(String adminName, UUID menuId, Integer date, Boolean isFinish){
 
-        return cookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+        List<CookDTO> cookDTOList = new ArrayList<>();
+
+        switch (adminName) {
+            // 컴퓨터 공학과에서 조회
+            case "computer" :
+                List<ComputerCookDAO> computerCookDAOList = computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(computerCookDAOList.isEmpty()) return new ArrayList<>();
+
+
+                for(ComputerCookDAO computerCookDAO : computerCookDAOList) {
+                    cookDTOList.add(CookDTO.fromComputerCookDAO(computerCookDAO));
+                }
+                break;
+
+            // 전자공학부에서 조회
+            case "electronics" :
+                List<ElectronicsCookDAO> electronicsCookDAOList = electronicsCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(electronicsCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(ElectronicsCookDAO electronicsCookDAO : electronicsCookDAOList) {
+                    cookDTOList.add(CookDTO.fromElectronicsCookDAO(electronicsCookDAO));
+                }
+                break;
+
+            // 에너지전기공학과에서 조회
+            case "energy" :
+                List<EnergyCookDAO> energyCookDAOList = energyCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(energyCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(EnergyCookDAO energyCookDAO : energyCookDAOList) {
+                    cookDTOList.add(CookDTO.fromEnergyCookDAO(energyCookDAO));
+                }
+                break;
+
+            // 게임공학과에서 조회
+            case "game" :
+                List<GameCookDAO> gameCookDAOList = gameCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(gameCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(GameCookDAO gameCookDAO : gameCookDAOList) {
+                    cookDTOList.add(CookDTO.fromGameCookDAO(gameCookDAO));
+                }
+                break;
+
+            // 기계공학과에서 조회
+            case "machine" :
+                List<MachineCookDAO> machineCookDAOList = machineCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(machineCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(MachineCookDAO machineCookDAO : machineCookDAOList) {
+                    cookDTOList.add(CookDTO.fromMachineCookDAO(machineCookDAO));
+                }
+                break;
+
+            // 나노반도체공학과에서 조회
+            case "nano" :
+                List<NanoCookDAO> nanoCookDAOList = nanoCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(nanoCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(NanoCookDAO nanoCookDAO : nanoCookDAOList) {
+                    cookDTOList.add(CookDTO.fromNanoCookDAO(nanoCookDAO));
+                }
+                break;
+
+            // 신소재공학과에서 조회
+            case "newMaterial" :
+                List<NewMaterialCookDAO> newMaterialCookDAOList = newMaterialCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(newMaterialCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(NewMaterialCookDAO newMaterialCookDAO : newMaterialCookDAOList) {
+                    cookDTOList.add(CookDTO.fromNewMaterialCookDAO(newMaterialCookDAO));
+                }
+                break;
+        }
+        return cookDTOList;
 
     }
 

@@ -2,6 +2,7 @@ package com.DevTino.festino_admin.order.bean.small;
 
 import com.DevTino.festino_admin.menu.domain.MenuDAO;
 import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderStatisticGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ public class CreateOrderStatisticGetDTOBean {
 
 
     // DTO 생성해 반환
-    public ResponseOrderStatisticGetDTO exec(Integer date, List<MenuDAO> menuDAOList){
+    public ResponseOrderStatisticGetDTO exec(String adminName, Integer date, List<MenuDAO> menuDAOList){
 
         // 총매출 totalSale, 메뉴별 매출 정보를 저장할 리스트 menuSaleList
         Integer totalSale = 0;
@@ -37,10 +38,10 @@ public class CreateOrderStatisticGetDTOBean {
             Integer menuCount = 0;
 
             // 메뉴 아이디와 날짜(date)로 완료된 Cook 조회
-            List<CookDAO> cookDAOList = getCooksDAOBean.exec(menuDAO.getMenuId(), date, true);
+            List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true);
 
             // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
-            for (CookDAO cookDAO : cookDAOList){ menuCount += cookDAO.getTotalCount(); }
+            for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
 
             // 메뉴의 매출 정보를 Map으로 생성
             Map<String, Object> map = new HashMap<>();
