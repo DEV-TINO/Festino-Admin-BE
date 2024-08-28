@@ -322,10 +322,10 @@ public class OrderController {
 
     // Order 조리 완료
     @PutMapping("/finish")
-    public ResponseEntity<Map<String, Object>> updateOrderFinish(@RequestBody RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateOrderFinish(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
 
         // Order 조리 완료 service 실행
-        ResponseOrderFinishUpdateDTO responseOrderFinishUpdateDTO = orderService.updateOrderFinish(requestOrderFinishUpdateDTO);
+        ResponseOrderFinishUpdateDTO responseOrderFinishUpdateDTO = orderService.updateOrderFinish(boothId, requestOrderFinishUpdateDTO);
 
         // Order 조리 완료 성공 여부 설정
         boolean success = (responseOrderFinishUpdateDTO == null) ? false : true;

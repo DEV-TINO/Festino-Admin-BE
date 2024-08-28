@@ -167,9 +167,9 @@ public class OrderService {
 
 
     // Order 조리 완료
-    public ResponseOrderFinishUpdateDTO updateOrderFinish(RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
+    public ResponseOrderFinishUpdateDTO updateOrderFinish(UUID boothId, RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
 
-        return updateOrderFinishBean.exec(requestOrderFinishUpdateDTO);
+        return updateOrderFinishBean.exec(boothId, requestOrderFinishUpdateDTO);
 
     }
 
