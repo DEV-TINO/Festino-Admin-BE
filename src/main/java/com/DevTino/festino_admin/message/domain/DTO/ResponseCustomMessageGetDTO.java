@@ -11,5 +11,5 @@ import java.util.UUID;
 public class ResponseCustomMessageGetDTO {
     UUID boothId;
     String message;
-    MessageType messageType;
+    Integer messageType;
 }

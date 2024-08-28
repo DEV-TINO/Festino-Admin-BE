@@ -15,7 +15,7 @@ public class CreateCustomMessageDTOBean {
                 .map(customMessageDAO -> ResponseCustomMessageGetDTO.builder()
                         .boothId(customMessageDAO.getBoothId())
                         .message(customMessageDAO.getMessage())
-                        .messageType(customMessageDAO.getMessageType())
+                        .messageType(customMessageDAO.getMessageType().ordinal())
                         .build())
                 .toList();
     }
