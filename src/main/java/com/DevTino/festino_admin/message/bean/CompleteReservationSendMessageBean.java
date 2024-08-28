@@ -2,7 +2,9 @@ package com.DevTino.festino_admin.message.bean;
 
 import com.DevTino.festino_admin.message.bean.small.CheckMessageStatusBean;
 import com.DevTino.festino_admin.message.bean.small.GetAccessTokenBean;
+import com.DevTino.festino_admin.message.bean.small.GetCustomMessageDAOBean;
 import com.DevTino.festino_admin.message.bean.small.SendMessageContentBean;
+import com.DevTino.festino_admin.message.domain.ENUM.MessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +17,14 @@ public class CompleteReservationSendMessageBean {
     GetAccessTokenBean getAccessTokenBean;
     SendMessageContentBean sendMessageContentBean;
     CheckMessageStatusBean checkMessageStatusBean;
+    GetCustomMessageDAOBean getCustomMessageDAOBean;
 
     @Autowired
-    public CompleteReservationSendMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageContentBean sendMessageContentBean, CheckMessageStatusBean checkMessageStatusBean) {
+    public CompleteReservationSendMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageContentBean sendMessageContentBean, CheckMessageStatusBean checkMessageStatusBean, GetCustomMessageDAOBean getCustomMessageDAOBean) {
         this.getAccessTokenBean = getAccessTokenBean;
         this.sendMessageContentBean = sendMessageContentBean;
         this.checkMessageStatusBean = checkMessageStatusBean;
+        this.getCustomMessageDAOBean = getCustomMessageDAOBean;
     }
 
     // 메세지 전송
@@ -28,13 +32,14 @@ public class CompleteReservationSendMessageBean {
         "SEND_FAIL" -> 메세지 전송 실패
         "SEND_SUCCESS" -> 메세지 전송 성공
     * */
-    public String exec(String phoneNum, String userName, String adminName) throws IOException {
+    public String exec(UUID boothId, String phoneNum, String userName) throws IOException {
 
         String accessToken = getAccessTokenBean.exec();
         if (accessToken == null) return "SEND_FAIL";
 
         String refKey = UUID.randomUUID().toString();
-        String message = userName + "님 " + adminName + "에서 즐거운 시간 보내시기 바랍니다.";
+        //String message = userName + "님 " + adminName + "에서 즐거운 시간 보내시기 바랍니다.";
+        String message = userName + "님 " + getCustomMessageDAOBean.exec(boothId, MessageType.COMPLETE).getMessage();
 
         String messageStatus = sendMessageContentBean.exec(phoneNum, accessToken, refKey, message);
         if (messageStatus.equals("SEND_FAIL")) return messageStatus;

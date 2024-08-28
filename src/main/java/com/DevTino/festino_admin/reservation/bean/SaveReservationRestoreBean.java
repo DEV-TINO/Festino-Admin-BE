@@ -70,7 +70,7 @@ public class SaveReservationRestoreBean {
         saveReservationDAOBean.exec(reservationDAO);
         saveNightBoothDAOBean.exec(nightBoothDAO);
 
-        String messageStatus = saveReservationSenMessageBean.exec(reservationDAO.getPhoneNum(), reservationDAO.getUserName(), nightBoothDAO.getAdminName());
+        String messageStatus = saveReservationSenMessageBean.exec(requestReservationRestoreUpdateDTO.getBoothId(), reservationDAO.getPhoneNum(), reservationDAO.getUserName());
 
         // DTO 생성해서 반환
         ResponseReservationRestoreUpdateDTO responseReservationRestoreUpdateDTO = createReservationRestoreDTOBean.exec(reservationDAO);
