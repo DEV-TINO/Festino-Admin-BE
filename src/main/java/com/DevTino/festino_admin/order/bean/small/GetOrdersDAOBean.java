@@ -107,9 +107,6 @@ public class GetOrdersDAOBean {
                     orderDTOList.add(OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO));
                 }
                 break;
-
-            default:
-                return null;
         }
         return orderDTOList;
     }
