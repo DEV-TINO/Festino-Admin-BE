@@ -158,9 +158,9 @@ public class OrderService {
 
 
     // 입금 확인 복구
-    public ResponseOrderDepositRestoreUpdateDTO updateOrderDepositRestore(RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
+    public ResponseOrderDepositRestoreUpdateDTO updateOrderDepositRestore(UUID boothId, RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
 
-        return updateOrderDepositRestoreBean.exec(requestOrderDepositRestoreUpdateDTO);
+        return updateOrderDepositRestoreBean.exec(boothId, requestOrderDepositRestoreUpdateDTO);
 
     }
 

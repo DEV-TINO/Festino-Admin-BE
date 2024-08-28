@@ -37,6 +37,7 @@ public class SaveOrderDAOBean {
 
     }
 
+    // 주문 DAO를 DB에 저장
     public void exec(String adminName, OrderDTO orderDTO) {
         switch (adminName) {
             case "computer" :

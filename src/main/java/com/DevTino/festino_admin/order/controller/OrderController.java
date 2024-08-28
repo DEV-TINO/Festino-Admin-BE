@@ -299,10 +299,10 @@ public class OrderController {
 
     // 입금 확인 복구
     @PutMapping("/deposit/restore")
-    public ResponseEntity<Map<String, Object>> updateIsDepositRestore(@RequestBody RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateIsDepositRestore(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
 
         // 입금 확인 복구 service 실행
-        ResponseOrderDepositRestoreUpdateDTO responseOrderDepositRestoreUpdateDTO = orderService.updateOrderDepositRestore(requestOrderDepositRestoreUpdateDTO);
+        ResponseOrderDepositRestoreUpdateDTO responseOrderDepositRestoreUpdateDTO = orderService.updateOrderDepositRestore(boothId, requestOrderDepositRestoreUpdateDTO);
 
         // 입금 확인 복구 성공 여부 설정
         boolean success = (responseOrderDepositRestoreUpdateDTO == null) ? false : true;
