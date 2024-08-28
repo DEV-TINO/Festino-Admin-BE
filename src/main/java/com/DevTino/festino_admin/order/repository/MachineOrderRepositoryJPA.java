@@ -1,7 +1,6 @@
 package com.DevTino.festino_admin.order.repository;
 
 import com.DevTino.festino_admin.order.domain.MachineOrderDAO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import com.DevTino.festino_admin.order.domain.OrderType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
