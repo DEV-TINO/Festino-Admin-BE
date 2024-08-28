@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -52,10 +53,10 @@ public class CookController {
 
     // 서빙 수량 변경
     @PutMapping("/count")
-    public ResponseEntity<Map<String, Object>> updateCookCount(@RequestBody RequestCookCountUpdateDTO requestCookCountUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateCookCount(@PathVariable("boothId") UUID boothId, @RequestBody RequestCookCountUpdateDTO requestCookCountUpdateDTO){
 
         // 서빙 수량 변경 service 실행
-        ResponseCookCountUpdateDTO responseCookCountUpdateDTO = cookService.updateCookCount(requestCookCountUpdateDTO);
+        ResponseCookCountUpdateDTO responseCookCountUpdateDTO = cookService.updateCookCount(boothId, requestCookCountUpdateDTO);
 
         // 서빙 수량 변경 성공 여부 설정
         boolean success = (responseCookCountUpdateDTO == null) ? false : true;

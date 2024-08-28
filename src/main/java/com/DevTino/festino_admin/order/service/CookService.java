@@ -9,6 +9,8 @@ import com.DevTino.festino_admin.order.domain.DTO.ResponseCookFinishUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class CookService {
 
@@ -33,9 +35,9 @@ public class CookService {
 
 
     // 서빙 수량 변경
-    public ResponseCookCountUpdateDTO updateCookCount(RequestCookCountUpdateDTO requestCookCountUpdateDTO){
+    public ResponseCookCountUpdateDTO updateCookCount(UUID boothId, RequestCookCountUpdateDTO requestCookCountUpdateDTO){
 
-        return updateCookCountBean.exec(requestCookCountUpdateDTO);
+        return updateCookCountBean.exec(boothId, requestCookCountUpdateDTO);
 
     }
 }

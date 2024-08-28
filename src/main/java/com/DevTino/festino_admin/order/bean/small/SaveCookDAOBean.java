@@ -41,6 +41,48 @@ public class SaveCookDAOBean {
 
     }
 
+    // 조리 DAO를 DB에 저장
+    public void exec(String adminName, CookDTO cookDTO){
+
+        switch(adminName) {
+
+            // 컴퓨터 공학과 저장
+            case "computer":
+                computerCookRepositoryJPA.save(ComputerCookDAO.fromCookDTO(cookDTO));
+                break;
+
+            // 전자공학부 저장
+            case "electronics":
+                electronicsCookRepositoryJPA.save(ElectronicsCookDAO.fromCookDTO(cookDTO));
+                break;
+
+            // 에너지전기공학과 저장
+            case "energy" :
+                energyCookRepositoryJPA.save(EnergyCookDAO.fromCookDTO(cookDTO));
+                break;
+
+            // 게임공학과 저장
+            case "game" :
+                gameCookRepositoryJPA.save(GameCookDAO.fromCookDTO(cookDTO));
+                break;
+
+            // 기계공학과 저장
+            case "machine" :
+                machineCookRepositoryJPA.save(MachineCookDAO.fromCookDTO(cookDTO));
+                break;
+
+            // 나노반도체공학과 저장
+            case "nano" :
+                nanoCookRepositoryJPA.save(NanoCookDAO.fromCookDTO(cookDTO));
+                break;
+
+            // 신소재공학과 저장
+            case "newMaterial" :
+                newMaterialCookRepositoryJPA.save(NewMaterialCookDAO.fromCookDTO(cookDTO));
+                break;
+        }
+    }
+
     // 조리 DAO 리스트를 DB에 저장
     public void exec(List<CookDAO> cookDAOList){
 
@@ -57,7 +99,6 @@ public class SaveCookDAOBean {
                 // Cook 리스트 생성
                 List<ComputerCookDAO> computerCookDAOList = new ArrayList<>();
 
-                // for문을 통해
                 for (CookDTO cookDTO : cookDTOList) {
                     computerCookDAOList.add(ComputerCookDAO.fromCookDTO(cookDTO));
                 }
