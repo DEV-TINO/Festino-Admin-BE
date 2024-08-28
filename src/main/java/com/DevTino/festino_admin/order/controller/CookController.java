@@ -30,10 +30,10 @@ public class CookController {
 
     // Cook 조리 완료
     @PutMapping("/finish")
-    public ResponseEntity<Map<String, Object>> updateCookFinish(@RequestBody RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateCookFinish(@PathVariable("boothId") UUID boothId, @RequestBody RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
 
         // Cook 조리 완료 service 실행
-        ResponseCookFinishUpdateDTO responseCookFinishUpdateDTO = cookService.updateCookFinish(requestCookFinishUpdateDTO);
+        ResponseCookFinishUpdateDTO responseCookFinishUpdateDTO = cookService.updateCookFinish(boothId, requestCookFinishUpdateDTO);
 
         // Cook 조리 완료 성공 여부 설정
         boolean success = (responseCookFinishUpdateDTO == null) ? false : true;

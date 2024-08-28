@@ -26,9 +26,9 @@ public class CookService {
 
 
     // Cook 조리 완료
-    public ResponseCookFinishUpdateDTO updateCookFinish(RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
+    public ResponseCookFinishUpdateDTO updateCookFinish(UUID boothId, RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
 
-        return updateCookFinishBean.exec(requestCookFinishUpdateDTO);
+        return updateCookFinishBean.exec(boothId, requestCookFinishUpdateDTO);
 
     }
 
