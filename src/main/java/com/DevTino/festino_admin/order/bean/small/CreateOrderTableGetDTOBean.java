@@ -1,8 +1,8 @@
 package com.DevTino.festino_admin.order.bean.small;
 
-import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
+import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderTableGetDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,24 +11,24 @@ import java.util.List;
 public class CreateOrderTableGetDTOBean {
 
     // DTO 생성해 반환
-    public ResponseOrderTableGetDTO exec(OrderDAO orderDAO, List<CookDAO> cookDAOList){
+    public ResponseOrderTableGetDTO exec(OrderDTO orderDTO, List<CookDTO> cookDTOList){
 
         Integer servedCount = 0;
         Integer totalCount = 0;
 
         // 모든 cookDAO의 servedCount, totalCount 총합 구하기
-        for (CookDAO cookDAO : cookDAOList){
+        for (CookDTO cookDTO : cookDTOList){
 
-            servedCount += cookDAO.getServedCount();
-            totalCount += cookDAO.getTotalCount();
+            servedCount += cookDTO.getServedCount();
+            totalCount += cookDTO.getTotalCount();
 
         }
 
         // DTO 생성해 반환
         return ResponseOrderTableGetDTO.builder()
-                .orderId(orderDAO.getOrderId())
-                .orderType(orderDAO.getOrderType().name())
-                .tableNum(orderDAO.getTableNum())
+                .orderId(orderDTO.getOrderId())
+                .orderType(orderDTO.getOrderType().name())
+                .tableNum(orderDTO.getTableNum())
                 .servedCount(servedCount)
                 .totalCount(totalCount)
                 .build();

@@ -1,8 +1,8 @@
 package com.DevTino.festino_admin.order.bean.small;
 
-import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
+import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderTableGetDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,19 +24,19 @@ public class CreateOrderTableGetDTOsBean {
 
 
     // DAO 리스트를 DTO 리스트로 변환
-    public List<ResponseOrderTableGetDTO> exec(List<OrderDAO> orderDAOList){
+    public List<ResponseOrderTableGetDTO> exec(String adminName, List<OrderDTO> orderDTOList){
 
         // 반환할 DTO 리스트 생성
         List<ResponseOrderTableGetDTO> dtoList = new ArrayList<>();
 
         // DAO 리스트를 DTO 리스트로 변환
-        for (OrderDAO orderDAO : orderDAOList){
+        for (OrderDTO orderDTO : orderDTOList){
 
             // orderId에 해당하는 Cook 검색 -> cookDAOList
-            List<CookDAO> cookDAOList = getCooksDAOBean.exec(orderDAO.getOrderId());
+            List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, orderDTO.getOrderId());
 
             // orderDAO, cookDAOList의 정보로 DTO 생성해 DTO 리스트에 삽입
-            dtoList.add(createOrderTableGetDTOBean.exec(orderDAO, cookDAOList));
+            dtoList.add(createOrderTableGetDTOBean.exec(orderDTO, cookDTOList));
 
         }
 

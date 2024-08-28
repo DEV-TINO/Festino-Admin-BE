@@ -42,6 +42,86 @@ public class GetCooksDAOBean {
 
     }
 
+    // orderId에 해당하는 Cook 찾아서 List로 반환
+    public List<CookDTO> exec(String adminName, UUID orderId){
+
+        List<CookDTO> cookDTOList = new ArrayList<>();
+
+        switch (adminName) {
+            // 컴퓨터 공학과에서 조회
+            case "computer" :
+                List<ComputerCookDAO> computerCookDAOList = computerCookRepositoryJPA.findAllByOrderId(orderId);
+                if(computerCookDAOList.isEmpty()) return new ArrayList<>();
+                System.out.println(computerCookDAOList);
+
+                for(ComputerCookDAO computerCookDAO : computerCookDAOList) {
+                    cookDTOList.add(CookDTO.fromComputerCookDAO(computerCookDAO));
+                }
+                break;
+
+            // 전자공학부에서 조회
+            case "electronics" :
+                List<ElectronicsCookDAO> electronicsCookDAOList = electronicsCookRepositoryJPA.findAllByOrderId(orderId);
+                if(electronicsCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(ElectronicsCookDAO electronicsCookDAO : electronicsCookDAOList) {
+                    cookDTOList.add(CookDTO.fromElectronicsCookDAO(electronicsCookDAO));
+                }
+                break;
+
+            // 에너지전기공학과에서 조회
+            case "energy" :
+                List<EnergyCookDAO> energyCookDAOList = energyCookRepositoryJPA.findAllByOrderId(orderId);
+                if(energyCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(EnergyCookDAO energyCookDAO : energyCookDAOList) {
+                    cookDTOList.add(CookDTO.fromEnergyCookDAO(energyCookDAO));
+                }
+                break;
+
+            // 게임공학과에서 조회
+            case "game" :
+                List<GameCookDAO> gameCookDAOList = gameCookRepositoryJPA.findAllByOrderId(orderId);
+                if(gameCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(GameCookDAO gameCookDAO : gameCookDAOList) {
+                    cookDTOList.add(CookDTO.fromGameCookDAO(gameCookDAO));
+                }
+                break;
+
+            // 기계공학과에서 조회
+            case "machine" :
+                List<MachineCookDAO> machineCookDAOList = machineCookRepositoryJPA.findAllByOrderId(orderId);
+                if(machineCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(MachineCookDAO machineCookDAO : machineCookDAOList) {
+                    cookDTOList.add(CookDTO.fromMachineCookDAO(machineCookDAO));
+                }
+                break;
+
+            // 나노반도체공학과에서 조회
+            case "nano" :
+                List<NanoCookDAO> nanoCookDAOList = nanoCookRepositoryJPA.findAllByOrderId(orderId);
+                if(nanoCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(NanoCookDAO nanoCookDAO : nanoCookDAOList) {
+                    cookDTOList.add(CookDTO.fromNanoCookDAO(nanoCookDAO));
+                }
+                break;
+
+            // 신소재공학과에서 조회
+            case "newMaterial" :
+                List<NewMaterialCookDAO> newMaterialCookDAOList = newMaterialCookRepositoryJPA.findAllByOrderId(orderId);
+                if(newMaterialCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(NewMaterialCookDAO newMaterialCookDAO : newMaterialCookDAOList) {
+                    cookDTOList.add(CookDTO.fromNewMaterialCookDAO(newMaterialCookDAO));
+                }
+                break;
+        }
+        return cookDTOList;
+    }
+
 
     // menuId, isFinish, date로 Cook 오래된순 전체 조회
     public List<CookDTO> exec(String adminName, UUID menuId, Boolean isFinish, Integer date){
@@ -136,7 +216,6 @@ public class GetCooksDAOBean {
                 List<ComputerCookDAO> computerCookDAOList = computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
                 if(computerCookDAOList.isEmpty()) return new ArrayList<>();
 
-
                 for(ComputerCookDAO computerCookDAO : computerCookDAOList) {
                     cookDTOList.add(CookDTO.fromComputerCookDAO(computerCookDAO));
                 }
@@ -166,8 +245,10 @@ public class GetCooksDAOBean {
             case "game" :
                 List<GameCookDAO> gameCookDAOList = gameCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
                 if(gameCookDAOList.isEmpty()) return new ArrayList<>();
+                System.out.println(gameCookDAOList);
 
                 for(GameCookDAO gameCookDAO : gameCookDAOList) {
+                    System.out.println(gameCookDAO);
                     cookDTOList.add(CookDTO.fromGameCookDAO(gameCookDAO));
                 }
                 break;
