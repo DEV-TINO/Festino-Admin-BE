@@ -5,11 +5,9 @@ import com.DevTino.festino_admin.order.bean.small.GetOrderBoothNameDAOBean;
 import com.DevTino.festino_admin.order.bean.small.GetOrderDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderDetailGetDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Component
@@ -33,7 +31,7 @@ public class GetOrderDetailBean {
         if(adminName.isEmpty()) return null;
 
         // orderId로 해당 Order DAO 찾기
-        OrderDTO orderDTO = getOrderDAOBean.exec(orderId, adminName);
+        OrderDTO orderDTO = getOrderDAOBean.exec(adminName, orderId);
         if (orderDTO == null) return null;
 
         // DTO 생성해 반환

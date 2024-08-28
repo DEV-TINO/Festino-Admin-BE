@@ -39,7 +39,7 @@ public class UpdateOrderFinishBean {
         if(adminName.isEmpty()) return null;
 
         // orderId로 해당 Order DAO 찾기
-        OrderDTO orderDTO = getOrderDAOBean.exec(requestOrderFinishUpdateDTO.getOrderId(), adminName);
+        OrderDTO orderDTO = getOrderDAOBean.exec(adminName, requestOrderFinishUpdateDTO.getOrderId());
         if (orderDTO == null) return null;
 
         // DTO / DAO의 OrderType 비교, 다르다면 null 리턴
@@ -50,7 +50,7 @@ public class UpdateOrderFinishBean {
         for (CookDTO cookDTO : cookDTOList){ cookDTO.setIsFinish(true); }
 
         // 변경된 cookDAOList 저장
-        saveCookDAOBean.exec(cookDTOList, adminName);
+        saveCookDAOBean.exec(adminName, cookDTOList);
 
         // DAO 수정
         orderDTO.setOrderType(OrderType.FINISH);

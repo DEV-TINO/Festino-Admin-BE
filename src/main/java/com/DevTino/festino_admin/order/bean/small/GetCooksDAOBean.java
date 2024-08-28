@@ -13,8 +13,6 @@ import java.util.UUID;
 @Component
 public class GetCooksDAOBean {
 
-    CookRepositoryJPA cookRepositoryJPA;
-
     ComputerCookRepositoryJPA computerCookRepositoryJPA;
     ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA;
     EnergyCookRepositoryJPA energyCookRepositoryJPA;
@@ -24,8 +22,7 @@ public class GetCooksDAOBean {
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
 
     @Autowired
-    public GetCooksDAOBean(CookRepositoryJPA cookRepositoryJPA, ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
-        this.cookRepositoryJPA = cookRepositoryJPA;
+    public GetCooksDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;
@@ -36,15 +33,9 @@ public class GetCooksDAOBean {
     }
 
     // orderId에 해당하는 Cook 찾아서 List로 반환
-    public List<CookDAO> exec(UUID orderId){
-
-        return cookRepositoryJPA.findAllByOrderId(orderId);
-
-    }
-
-    // orderId에 해당하는 Cook 찾아서 List로 반환
     public List<CookDTO> exec(String adminName, UUID orderId){
 
+        // 학과로 구분된 cook 리스트를 담아줄 cookDTO 빈 리스트 생성
         List<CookDTO> cookDTOList = new ArrayList<>();
 
         switch (adminName) {
@@ -126,6 +117,7 @@ public class GetCooksDAOBean {
     // menuId, isFinish, date로 Cook 오래된순 전체 조회
     public List<CookDTO> exec(String adminName, UUID menuId, Boolean isFinish, Integer date){
 
+        // 학과로 구분된 cook 리스트를 담아줄 cookDTO 빈 리스트 생성
         List<CookDTO> cookDTOList = new ArrayList<>();
 
         switch (adminName) {
@@ -208,6 +200,7 @@ public class GetCooksDAOBean {
     // menuId, date, isFinish로 Cook 전체 조회
     public List<CookDTO> exec(String adminName, UUID menuId, Integer date, Boolean isFinish){
 
+        // 학과로 구분된 cook 리스트를 담아줄 cookDTO 빈 리스트 생성
         List<CookDTO> cookDTOList = new ArrayList<>();
 
         switch (adminName) {
@@ -245,10 +238,8 @@ public class GetCooksDAOBean {
             case "game" :
                 List<GameCookDAO> gameCookDAOList = gameCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
                 if(gameCookDAOList.isEmpty()) return new ArrayList<>();
-                System.out.println(gameCookDAOList);
 
                 for(GameCookDAO gameCookDAO : gameCookDAOList) {
-                    System.out.println(gameCookDAO);
                     cookDTOList.add(CookDTO.fromGameCookDAO(gameCookDAO));
                 }
                 break;

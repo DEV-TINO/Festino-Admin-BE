@@ -13,8 +13,6 @@ import java.util.UUID;
 @Component
 public class GetOrderCancelDAOBean {
 
-    OrderRepositoryJPA orderRepositoryJPA;
-
     ComputerOrderRepositoryJPA computerOrderRepositoryJPA;
     ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA;
     EnergyOrderRepositoryJPA energyOrderRepositoryJPA;
@@ -24,8 +22,7 @@ public class GetOrderCancelDAOBean {
     NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA;
 
     @Autowired
-    public GetOrderCancelDAOBean(OrderRepositoryJPA orderRepositoryJPA, ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA) {
-        this.orderRepositoryJPA = orderRepositoryJPA;
+    public GetOrderCancelDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA) {
         this.computerOrderRepositoryJPA = computerOrderRepositoryJPA;
         this.electronicsOrderRepositoryJPA = electronicsOrderRepositoryJPA;
         this.energyOrderRepositoryJPA = energyOrderRepositoryJPA;
@@ -38,6 +35,7 @@ public class GetOrderCancelDAOBean {
     // 날짜의 취소 상태인 Order 오래된순 전체 조회
     public List<OrderDTO> exec(String adminName, Integer date){
 
+        // 학과로 구분된 order 리스트를 담아줄 orderDTO 빈 리스트 생성
         List<OrderDTO> orderDTOList = new ArrayList<>();
 
         switch (adminName) {
@@ -110,9 +108,6 @@ public class GetOrderCancelDAOBean {
                     orderDTOList.add(OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO));
                 }
                 break;
-
-            default:
-                return null;
         }
         return orderDTOList;
     }

@@ -31,7 +31,7 @@ public class GetOrderTableBean {
         String adminName = getOrderBoothNameDAOBean.exec(boothId);
         if(adminName.isEmpty()) return null;
 
-        // 해당 boothId, 날짜의 조리중인 Order 오래된순 전체 조회
+        // 날짜의 조리중인 Order 오래된순 전체 조회
         List<OrderDTO> orderDTOList = getOrderCookingDAOBean.exec(adminName, date);
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴

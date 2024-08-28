@@ -1,12 +1,10 @@
 package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.order.bean.small.*;
-import com.DevTino.festino_admin.order.domain.CookDAO;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.RequestOrderDepositRestoreUpdateDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderDepositRestoreUpdateDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,7 +38,7 @@ public class UpdateOrderDepositRestoreBean {
         if(adminName.isEmpty()) return null;
 
         // orderId로 해당 Order DAO 찾기
-        OrderDTO orderDTO = getOrderDAOBean.exec(requestOrderDepositRestoreUpdateDTO.getOrderId(), adminName);
+        OrderDTO orderDTO = getOrderDAOBean.exec(adminName, requestOrderDepositRestoreUpdateDTO.getOrderId());
 
         // orderDAO를 찾을 수 없거나 이미 입금 전 상태인 주문이라면 null 리턴
         if ((orderDTO == null) || (orderDTO.getIsDeposit() == false)) return null;

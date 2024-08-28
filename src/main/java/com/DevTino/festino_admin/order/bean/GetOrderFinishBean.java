@@ -5,11 +5,9 @@ import com.DevTino.festino_admin.order.bean.small.GetOrderBoothNameDAOBean;
 import com.DevTino.festino_admin.order.bean.small.GetOrderFinishDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderFinishGetDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 

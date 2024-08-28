@@ -12,8 +12,6 @@ import java.util.List;
 @Component
 public class GetOrderCookingDAOBean {
 
-    OrderRepositoryJPA orderRepositoryJPA;
-
     ComputerOrderRepositoryJPA computerOrderRepositoryJPA;
     GameOrderRepositoryJPA gameOrderRepositoryJPA;
     ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA;
@@ -23,8 +21,7 @@ public class GetOrderCookingDAOBean {
     MachineOrderRepositoryJPA machineOrderRepositoryJPA;
 
     @Autowired
-    public GetOrderCookingDAOBean(OrderRepositoryJPA orderRepositoryJPA, ComputerOrderRepositoryJPA computerOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA) {
-        this.orderRepositoryJPA = orderRepositoryJPA;
+    public GetOrderCookingDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA) {
         this.computerOrderRepositoryJPA = computerOrderRepositoryJPA;
         this.gameOrderRepositoryJPA = gameOrderRepositoryJPA;
         this.electronicsOrderRepositoryJPA = electronicsOrderRepositoryJPA;
@@ -36,9 +33,12 @@ public class GetOrderCookingDAOBean {
 
     // 날짜의 조리중인 Order 오래된순 전체 조회
     public List<OrderDTO> exec(String adminName, Integer date){
+
+        // 학과로 구분된 order 리스트를 담아줄 orderDTO 빈 리스트 생성
         List<OrderDTO> orderDTOList = new ArrayList<>();
 
         switch (adminName) {
+
             // 컴퓨터공학부에서 조회
             case "computer" :
                 List<ComputerOrderDAO> computerOrderDAOList = computerOrderRepositoryJPA.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(true, OrderType.COOKING, date);

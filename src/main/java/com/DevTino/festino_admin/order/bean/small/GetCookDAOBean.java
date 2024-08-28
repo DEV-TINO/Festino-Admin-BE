@@ -12,8 +12,6 @@ import java.util.UUID;
 @Component
 public class GetCookDAOBean {
 
-    CookRepositoryJPA cookRepositoryJPA;
-
     ComputerCookRepositoryJPA computerCookRepositoryJPA;
     ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA;
     EnergyCookRepositoryJPA energyCookRepositoryJPA;
@@ -23,8 +21,7 @@ public class GetCookDAOBean {
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
 
     @Autowired
-    public GetCookDAOBean(CookRepositoryJPA cookRepositoryJPA, ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
-        this.cookRepositoryJPA = cookRepositoryJPA;
+    public GetCookDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;

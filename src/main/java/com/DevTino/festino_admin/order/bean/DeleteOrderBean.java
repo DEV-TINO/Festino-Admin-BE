@@ -33,7 +33,7 @@ public class DeleteOrderBean {
         if(adminName.isEmpty()) return false;
 
         // orderId로 해당 Order DAO 찾고, orderType 값을 CANCEL로 변경
-        OrderDTO orderDTO = getOrderDAOBean.exec(requestOrderDeleteDTO.getOrderId(), adminName);
+        OrderDTO orderDTO = getOrderDAOBean.exec(adminName, requestOrderDeleteDTO.getOrderId());
         if (orderDTO == null) return false;
 
         //orderType 값을 CANCEL로 변경

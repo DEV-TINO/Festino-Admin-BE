@@ -12,8 +12,6 @@ import java.util.List;
 @Component
 public class GetOrdersDAOBean {
 
-    OrderRepositoryJPA orderRepositoryJPA;
-
     ComputerOrderRepositoryJPA computerOrderRepositoryJPA;
     ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA;
     EnergyOrderRepositoryJPA energyOrderRepositoryJPA;
@@ -23,8 +21,7 @@ public class GetOrdersDAOBean {
     NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA;
 
     @Autowired
-    public GetOrdersDAOBean(OrderRepositoryJPA orderRepositoryJPA, ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA) {
-        this.orderRepositoryJPA = orderRepositoryJPA;
+    public GetOrdersDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA) {
         this.computerOrderRepositoryJPA = computerOrderRepositoryJPA;
         this.electronicsOrderRepositoryJPA = electronicsOrderRepositoryJPA;
         this.energyOrderRepositoryJPA = energyOrderRepositoryJPA;
@@ -37,6 +34,7 @@ public class GetOrdersDAOBean {
     // 날짜의 전체 주문 오래된순 조회
     public List<OrderDTO> exec(String adminName, Integer date){
 
+        // 학과로 구분된 order 리스트를 담아줄 orderDTO 빈 리스트 생성
         List<OrderDTO> orderDTOList = new ArrayList<>();
 
         switch (adminName) {

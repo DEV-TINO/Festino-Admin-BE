@@ -12,8 +12,6 @@ import java.util.List;
 @Component
 public class SaveCookDAOBean {
 
-    CookRepositoryJPA cookRepositoryJPA;
-
     ComputerCookRepositoryJPA computerCookRepositoryJPA;
     ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA;
     EnergyCookRepositoryJPA energyCookRepositoryJPA;
@@ -23,8 +21,7 @@ public class SaveCookDAOBean {
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
 
     @Autowired
-    public SaveCookDAOBean(CookRepositoryJPA cookRepositoryJPA, ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
-        this.cookRepositoryJPA = cookRepositoryJPA;
+    public SaveCookDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;
@@ -34,14 +31,7 @@ public class SaveCookDAOBean {
         this.newMaterialCookRepositoryJPA = newMaterialCookRepositoryJPA;
     }
 
-    // 조리 DAO를 DB에 저장
-    public void exec(CookDAO cookDAO){
-
-        cookRepositoryJPA.save(cookDAO);
-
-    }
-
-    // 조리 DAO를 DB에 저장
+    // 각 학과로 구분하여 조리 DAO를 DB에 저장
     public void exec(String adminName, CookDTO cookDTO){
 
         switch(adminName) {
@@ -83,20 +73,13 @@ public class SaveCookDAOBean {
         }
     }
 
-    // 조리 DAO 리스트를 DB에 저장
-    public void exec(List<CookDAO> cookDAOList){
-
-        cookRepositoryJPA.saveAll(cookDAOList);
-
-    }
-
-    public void exec(List<CookDTO> cookDTOList, String adminName){
+    // 각 학과로 구분해 조리 DAO 리스트를 DB에 저장
+    public void exec(String adminName, List<CookDTO> cookDTOList){
 
         switch(adminName) {
 
-            // 컴퓨터 공학과
+            // 컴퓨터 공학과에 cook 리스트 저장
             case "computer":
-                // Cook 리스트 생성
                 List<ComputerCookDAO> computerCookDAOList = new ArrayList<>();
 
                 for (CookDTO cookDTO : cookDTOList) {
@@ -105,6 +88,7 @@ public class SaveCookDAOBean {
                 computerCookRepositoryJPA.saveAll(computerCookDAOList);
                 break;
 
+            // 전자공학부에 cook 리스트 저장
             case "electronics":
                 List<ElectronicsCookDAO> electronicsCookDAOList = new ArrayList<>();
 
@@ -114,6 +98,7 @@ public class SaveCookDAOBean {
                 electronicsCookRepositoryJPA.saveAll(electronicsCookDAOList);
                 break;
 
+            // 에너지 전기공학과에 cook 리스트 저장
             case "energy" :
                 List<EnergyCookDAO> energyCookDAOList = new ArrayList<>();
 
@@ -123,6 +108,7 @@ public class SaveCookDAOBean {
                 energyCookRepositoryJPA.saveAll(energyCookDAOList);
                 break;
 
+            // 게임공학과에 cook 리스트 저장
             case "game" :
                 List<GameCookDAO> gameCookDAOList = new ArrayList<>();
 
@@ -132,6 +118,7 @@ public class SaveCookDAOBean {
                 gameCookRepositoryJPA.saveAll(gameCookDAOList);
                 break;
 
+            // 기계공학과에 cook 리스트 저장
             case "machine" :
                 List<MachineCookDAO> machineCookDAOList = new ArrayList<>();
 
@@ -141,6 +128,7 @@ public class SaveCookDAOBean {
                 machineCookRepositoryJPA.saveAll(machineCookDAOList);
                 break;
 
+            // 나노반도체공학과에 cook 리스트 저장
             case "nano" :
                 List<NanoCookDAO> nanoCookDAOList = new ArrayList<>();
 
@@ -150,6 +138,7 @@ public class SaveCookDAOBean {
                 nanoCookRepositoryJPA.saveAll(nanoCookDAOList);
                 break;
 
+            // 신소재공학과에 cook 리스트 저장
             case "newMaterial" :
                 List<NewMaterialCookDAO> newMaterialCookDAOList = new ArrayList<>();
 

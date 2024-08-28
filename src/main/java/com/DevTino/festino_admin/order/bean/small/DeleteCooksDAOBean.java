@@ -12,8 +12,6 @@ import java.util.List;
 @Component
 public class DeleteCooksDAOBean {
 
-    CookRepositoryJPA cookRepositoryJPA;
-
     ComputerCookRepositoryJPA computerCookRepositoryJPA;
     ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA;
     EnergyCookRepositoryJPA energyCookRepositoryJPA;
@@ -23,8 +21,7 @@ public class DeleteCooksDAOBean {
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
 
     @Autowired
-    public DeleteCooksDAOBean(CookRepositoryJPA cookRepositoryJPA, ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
-        this.cookRepositoryJPA = cookRepositoryJPA;
+    public DeleteCooksDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;
@@ -33,7 +30,6 @@ public class DeleteCooksDAOBean {
         this.nanoCookRepositoryJPA = nanoCookRepositoryJPA;
         this.newMaterialCookRepositoryJPA = newMaterialCookRepositoryJPA;
     }
-
 
     // CookDAO 리스트를 삭제
     public void exec(String adminName, List<CookDTO> cookDTOList){

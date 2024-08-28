@@ -5,7 +5,6 @@ import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +24,7 @@ public class CreateCookDAOsBean {
     }
 
     // orderDAO의 메뉴 정보에 따라 CookDAO 생성
-    public void exec(OrderDTO orderDTO, String adminName){
+    public void exec(String adminName, OrderDTO orderDTO){
 
         // Cook DAO 리스트 생성
         List<CookDTO> cookDTOList = new ArrayList<>();
@@ -56,7 +55,7 @@ public class CreateCookDAOsBean {
             e.printStackTrace();
         }
         // Cook DAO 리스트 저장
-        saveCookDAOBean.exec(cookDTOList, adminName);
+        saveCookDAOBean.exec(adminName, cookDTOList);
 
     }
 

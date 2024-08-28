@@ -36,7 +36,7 @@ public class UpdateOrderDeleteRestoreBean {
         if(adminName.isEmpty()) return null;
 
         // orderId로 해당 Order DAO 찾기
-        OrderDTO orderDTO = getOrderDAOBean.exec(requestOrderDeleteRestoreUpdateDTO.getOrderId(), adminName);
+        OrderDTO orderDTO = getOrderDAOBean.exec(adminName, requestOrderDeleteRestoreUpdateDTO.getOrderId());
         if (orderDTO == null) return null;
 
         // DTO / DAO의 OrderType 비교, 다르다면 null 리턴

@@ -34,12 +34,12 @@ public class UpdateOrderDepositBean {
         if(adminName.isEmpty()) return null;
 
         // orderId로 해당 Order DAO 찾기
-        OrderDTO orderDTO = getOrderDAOBean.exec(requestOrderDepositUpdateDTO.getOrderId(), adminName);
+        OrderDTO orderDTO = getOrderDAOBean.exec(adminName, requestOrderDepositUpdateDTO.getOrderId());
         // orderDAO를 찾을 수 없거나 이미 입금 완료된 주문이라면 null 리턴
         if ((orderDTO == null) || (orderDTO.getIsDeposit())) return null;
 
         // orderDAO의 메뉴 정보에 따라 CookDAO 생성
-        createCookDAOsBean.exec(orderDTO, adminName);
+        createCookDAOsBean.exec(adminName, orderDTO);
 
         // DAO 수정
         orderDTO.setIsDeposit(true);
