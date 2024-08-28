@@ -4,7 +4,7 @@ import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
-import com.DevTino.festino_admin.message.bean.SaveReservationSenMessageBean;
+import com.DevTino.festino_admin.message.bean.SaveReservationSendMessageBean;
 import com.DevTino.festino_admin.reservation.bean.small.CreateReservationRestoreDTOBean;
 import com.DevTino.festino_admin.reservation.bean.small.GetReservationDAOBean;
 import com.DevTino.festino_admin.reservation.bean.small.SaveReservationDAOBean;
@@ -24,16 +24,16 @@ public class SaveReservationRestoreBean {
     SaveReservationDAOBean saveReservationDAOBean;
     SaveNightBoothDAOBean saveNightBoothDAOBean;
     CreateReservationRestoreDTOBean createReservationRestoreDTOBean;
-    SaveReservationSenMessageBean saveReservationSenMessageBean;
+    SaveReservationSendMessageBean saveReservationSendMessageBean;
 
     @Autowired
-    public SaveReservationRestoreBean(GetReservationDAOBean getReservationDAOBean, GetNightBoothDAOBean getNightBoothDAOBean, SaveReservationDAOBean saveReservationDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateReservationRestoreDTOBean createReservationRestoreDTOBean, SaveReservationSenMessageBean saveReservationSenMessageBean) {
+    public SaveReservationRestoreBean(GetReservationDAOBean getReservationDAOBean, GetNightBoothDAOBean getNightBoothDAOBean, SaveReservationDAOBean saveReservationDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateReservationRestoreDTOBean createReservationRestoreDTOBean, SaveReservationSendMessageBean saveReservationSendMessageBean) {
         this.getReservationDAOBean = getReservationDAOBean;
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.saveReservationDAOBean = saveReservationDAOBean;
         this.saveNightBoothDAOBean = saveNightBoothDAOBean;
         this.createReservationRestoreDTOBean = createReservationRestoreDTOBean;
-        this.saveReservationSenMessageBean = saveReservationSenMessageBean;
+        this.saveReservationSendMessageBean = saveReservationSendMessageBean;
     }
 
     // 예약 복구
@@ -70,7 +70,7 @@ public class SaveReservationRestoreBean {
         saveReservationDAOBean.exec(reservationDAO);
         saveNightBoothDAOBean.exec(nightBoothDAO);
 
-        String messageStatus = saveReservationSenMessageBean.exec(reservationDAO.getPhoneNum(), reservationDAO.getUserName(), nightBoothDAO.getAdminName());
+        String messageStatus = saveReservationSendMessageBean.exec(requestReservationRestoreUpdateDTO.getBoothId(), reservationDAO.getPhoneNum(), reservationDAO.getUserName());
 
         // DTO 생성해서 반환
         ResponseReservationRestoreUpdateDTO responseReservationRestoreUpdateDTO = createReservationRestoreDTOBean.exec(reservationDAO);
