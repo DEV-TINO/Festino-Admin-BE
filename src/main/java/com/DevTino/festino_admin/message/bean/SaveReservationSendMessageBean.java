@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Component
-public class SaveReservationSenMessageBean {
+public class SaveReservationSendMessageBean {
 
     GetAccessTokenBean getAccessTokenBean;
     SendMessageContentBean sendMessageContentBean;
@@ -20,7 +20,7 @@ public class SaveReservationSenMessageBean {
     GetCustomMessageDAOBean getCustomMessageDAOBean;
 
     @Autowired
-    public SaveReservationSenMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageContentBean sendMessageContentBean, CheckMessageStatusBean checkMessageStatusBean, GetCustomMessageDAOBean getCustomMessageDAOBean) {
+    public SaveReservationSendMessageBean(GetAccessTokenBean getAccessTokenBean, SendMessageContentBean sendMessageContentBean, CheckMessageStatusBean checkMessageStatusBean, GetCustomMessageDAOBean getCustomMessageDAOBean) {
         this.getAccessTokenBean = getAccessTokenBean;
         this.sendMessageContentBean = sendMessageContentBean;
         this.checkMessageStatusBean = checkMessageStatusBean;
