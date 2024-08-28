@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class CustomMessageSaveBean {
+public class SaveCustomMessageBean {
 
     GetCustomMessagesDAOBean getCustomMessagesDAOBean;
     DeleteCustomMessagesDAOBean deleteCustomMessagesDAOBean;
@@ -21,7 +21,7 @@ public class CustomMessageSaveBean {
     SaveCustomMessagesDAOBean saveCustomMessagesDAOBean;
 
     @Autowired
-    public CustomMessageSaveBean(GetCustomMessagesDAOBean getCustomMessagesDAOBean, DeleteCustomMessagesDAOBean deleteCustomMessagesDAOBean, CreateCustomMessageDAOBean createCustomMessageDAOBean, SaveCustomMessagesDAOBean saveCustomMessagesDAOBean) {
+    public SaveCustomMessageBean(GetCustomMessagesDAOBean getCustomMessagesDAOBean, DeleteCustomMessagesDAOBean deleteCustomMessagesDAOBean, CreateCustomMessageDAOBean createCustomMessageDAOBean, SaveCustomMessagesDAOBean saveCustomMessagesDAOBean) {
         this.getCustomMessagesDAOBean = getCustomMessagesDAOBean;
         this.deleteCustomMessagesDAOBean = deleteCustomMessagesDAOBean;
         this.createCustomMessageDAOBean = createCustomMessageDAOBean;

@@ -19,6 +19,6 @@ public class GetCustomMessagesDAOBean {
     }
 
     public List<CustomMessageDAO> exec(UUID boothId) {
-        return customMessageRepositoryJPA.findByBoothId(boothId);
+        return customMessageRepositoryJPA.findByBoothIdOrderByMessageTypeAsc(boothId);
     }
 }

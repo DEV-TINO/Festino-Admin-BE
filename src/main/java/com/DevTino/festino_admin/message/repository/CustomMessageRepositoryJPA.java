@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CustomMessageRepositoryJPA extends JpaRepository<CustomMessageDAO, Long> {
-    List<CustomMessageDAO> findByBoothId(UUID boothId);
+    List<CustomMessageDAO> findByBoothIdOrderByMessageTypeAsc(UUID boothId);
 }
