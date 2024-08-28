@@ -345,10 +345,10 @@ public class OrderController {
 
     // Order 조리 완료 복구
     @PutMapping("/finish/restore")
-    public ResponseEntity<Map<String, Object>> updateOrderFinishRestore(@RequestBody RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateOrderFinishRestore(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
 
         // Order 조리 완료 복구 service 실행
-        ResponseOrderFinishRestoreUpdateDTO responseOrderFinishRestoreUpdateDTO = orderService.updateOrderFinishRestore(requestOrderFinishRestoreUpdateDTO);
+        ResponseOrderFinishRestoreUpdateDTO responseOrderFinishRestoreUpdateDTO = orderService.updateOrderFinishRestore(boothId, requestOrderFinishRestoreUpdateDTO);
 
         // Order 조리 완료 복구 성공 여부 설정
         boolean success = (responseOrderFinishRestoreUpdateDTO == null) ? false : true;

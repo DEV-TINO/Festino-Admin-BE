@@ -176,9 +176,9 @@ public class OrderService {
 
 
     // Order 조리 완료 복구
-    public ResponseOrderFinishRestoreUpdateDTO updateOrderFinishRestore(RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
+    public ResponseOrderFinishRestoreUpdateDTO updateOrderFinishRestore(UUID boothId, RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
 
-        return updateOrderFinishRestoreBean.exec(requestOrderFinishRestoreUpdateDTO);
+        return updateOrderFinishRestoreBean.exec(boothId, requestOrderFinishRestoreUpdateDTO);
 
     }
 
