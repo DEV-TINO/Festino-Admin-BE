@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderWaitDepositGetDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,20 +21,20 @@ public class CreateOrderWaitDepositGetDTOsBean {
 
 
     // DAO 리스트를 DTO 리스트로 변환
-    public List<ResponseOrderWaitDepositGetDTO> exec(List<OrderDAO> daoList){
+    public List<ResponseOrderWaitDepositGetDTO> exec(List<OrderDTO> dtoList){
 
         // 반환할 DTO 리스트 생성
-        List<ResponseOrderWaitDepositGetDTO> dtoList = new ArrayList<>();
+        List<ResponseOrderWaitDepositGetDTO> responseOrderWaitDepositGetDTOList = new ArrayList<>();
 
         // DAO 리스트를 DTO 리스트로 변환
-        for (OrderDAO orderDAO : daoList){
+        for (OrderDTO orderDTO : dtoList){
 
-            dtoList.add(createOrderWaitDepositGetDTOBean.exec(orderDAO));
+            responseOrderWaitDepositGetDTOList.add(createOrderWaitDepositGetDTOBean.exec(orderDTO));
 
         }
         
         // DTO 리스트 리턴
-        return dtoList;
+        return responseOrderWaitDepositGetDTOList;
 
     }
     

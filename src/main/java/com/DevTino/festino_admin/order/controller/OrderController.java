@@ -50,10 +50,10 @@ public class OrderController {
 
     // 주문 상세 조회
     @GetMapping("/{orderId}")
-    public ResponseEntity<Map<String, Object>> getOrderDetail(@PathVariable("orderId") UUID orderId){
+    public ResponseEntity<Map<String, Object>> getOrderDetail(@PathVariable("boothId") UUID boothId, @PathVariable("orderId") UUID orderId){
 
         // 주문 상세 조회 service 실행
-        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(orderId);
+        ResponseOrderDetailGetDTO responseOrderDetailGetDTO = orderService.getOrderDetail(boothId, orderId);
 
         // 주문 상세 조회 성공 여부 설정
         boolean success = (responseOrderDetailGetDTO == null) ? false : true;
@@ -234,10 +234,10 @@ public class OrderController {
 
     // 주문 취소
     @DeleteMapping("/cancel")
-    public ResponseEntity<Map<String, Object>> deleteOrder(@RequestBody RequestOrderDeleteDTO requestOrderDeleteDTO){
+    public ResponseEntity<Map<String, Object>> deleteOrder(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDeleteDTO requestOrderDeleteDTO){
 
         // 주문 취소 service 실행 & 삭제 성공 여부 설정
-        boolean success = orderService.deleteOrder(requestOrderDeleteDTO);
+        boolean success = orderService.deleteOrder(boothId, requestOrderDeleteDTO);
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
         Map<String, Object> requestMap = new HashMap<>();
@@ -253,10 +253,10 @@ public class OrderController {
 
     // 주문 취소 복구
     @PutMapping("/cancel/restore")
-    public ResponseEntity<Map<String, Object>> updateOrderDeleteRestore(@RequestBody RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateOrderDeleteRestore(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
 
         // 주문 취소 복구 service 실행
-        ResponseOrderDeleteRestoreUpdateDTO responseOrderDeleteRestoreUpdateDTO = orderService.updateOrderDeleteRestore(requestOrderDeleteRestoreUpdateDTO);
+        ResponseOrderDeleteRestoreUpdateDTO responseOrderDeleteRestoreUpdateDTO = orderService.updateOrderDeleteRestore(boothId, requestOrderDeleteRestoreUpdateDTO);
 
         // 주문 취소 복구 성공 여부 설정
         boolean success = (responseOrderDeleteRestoreUpdateDTO == null) ? false : true;
@@ -276,10 +276,10 @@ public class OrderController {
 
     // 입금 확인
     @PutMapping("/deposit")
-    public ResponseEntity<Map<String, Object>> updateIsDeposit(@RequestBody RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateIsDeposit(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
 
         // 입금 확인 service 실행
-        ResponseOrderDepositUpdateDTO responseOrderDepositUpdateDTO = orderService.updateOrderDeposit(requestOrderDepositUpdateDTO);
+        ResponseOrderDepositUpdateDTO responseOrderDepositUpdateDTO = orderService.updateOrderDeposit(boothId, requestOrderDepositUpdateDTO);
 
         // 입금 확인 성공 여부 설정
         boolean success = (responseOrderDepositUpdateDTO == null) ? false : true;
@@ -299,10 +299,10 @@ public class OrderController {
 
     // 입금 확인 복구
     @PutMapping("/deposit/restore")
-    public ResponseEntity<Map<String, Object>> updateIsDepositRestore(@RequestBody RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateIsDepositRestore(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
 
         // 입금 확인 복구 service 실행
-        ResponseOrderDepositRestoreUpdateDTO responseOrderDepositRestoreUpdateDTO = orderService.updateOrderDepositRestore(requestOrderDepositRestoreUpdateDTO);
+        ResponseOrderDepositRestoreUpdateDTO responseOrderDepositRestoreUpdateDTO = orderService.updateOrderDepositRestore(boothId, requestOrderDepositRestoreUpdateDTO);
 
         // 입금 확인 복구 성공 여부 설정
         boolean success = (responseOrderDepositRestoreUpdateDTO == null) ? false : true;
@@ -322,10 +322,10 @@ public class OrderController {
 
     // Order 조리 완료
     @PutMapping("/finish")
-    public ResponseEntity<Map<String, Object>> updateOrderFinish(@RequestBody RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateOrderFinish(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
 
         // Order 조리 완료 service 실행
-        ResponseOrderFinishUpdateDTO responseOrderFinishUpdateDTO = orderService.updateOrderFinish(requestOrderFinishUpdateDTO);
+        ResponseOrderFinishUpdateDTO responseOrderFinishUpdateDTO = orderService.updateOrderFinish(boothId, requestOrderFinishUpdateDTO);
 
         // Order 조리 완료 성공 여부 설정
         boolean success = (responseOrderFinishUpdateDTO == null) ? false : true;
@@ -345,10 +345,10 @@ public class OrderController {
 
     // Order 조리 완료 복구
     @PutMapping("/finish/restore")
-    public ResponseEntity<Map<String, Object>> updateOrderFinishRestore(@RequestBody RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
+    public ResponseEntity<Map<String, Object>> updateOrderFinishRestore(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
 
         // Order 조리 완료 복구 service 실행
-        ResponseOrderFinishRestoreUpdateDTO responseOrderFinishRestoreUpdateDTO = orderService.updateOrderFinishRestore(requestOrderFinishRestoreUpdateDTO);
+        ResponseOrderFinishRestoreUpdateDTO responseOrderFinishRestoreUpdateDTO = orderService.updateOrderFinishRestore(boothId, requestOrderFinishRestoreUpdateDTO);
 
         // Order 조리 완료 복구 성공 여부 설정
         boolean success = (responseOrderFinishRestoreUpdateDTO == null) ? false : true;

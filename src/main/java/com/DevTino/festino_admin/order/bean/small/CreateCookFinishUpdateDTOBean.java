@@ -1,6 +1,6 @@
 package com.DevTino.festino_admin.order.bean.small;
 
-import com.DevTino.festino_admin.order.domain.CookDAO;
+import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseCookFinishUpdateDTO;
 import org.springframework.stereotype.Component;
 
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 public class CreateCookFinishUpdateDTOBean {
 
     // DTO 생성해 반환
-    public ResponseCookFinishUpdateDTO exec(CookDAO cookDAO){
+    public ResponseCookFinishUpdateDTO exec(CookDTO cookDTO){
 
         return ResponseCookFinishUpdateDTO.builder()
-                .cookId(cookDAO.getCookId())
-                .isFinish(cookDAO.getIsFinish())
+                .cookId(cookDTO.getCookId())
+                .isFinish(cookDTO.getIsFinish())
                 .build();
 
     }

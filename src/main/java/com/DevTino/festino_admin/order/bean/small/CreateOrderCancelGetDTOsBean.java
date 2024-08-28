@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderCancelGetDTO;
-import com.DevTino.festino_admin.order.domain.OrderDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,20 +21,20 @@ public class CreateOrderCancelGetDTOsBean {
 
 
     // DAO 리스트를 DTO 리스트로 변환
-    public List<ResponseOrderCancelGetDTO> exec(List<OrderDAO> daoList){
+    public List<ResponseOrderCancelGetDTO> exec(List<OrderDTO> dtoList){
 
         // 반환할 DTO 리스트 생성
-        List<ResponseOrderCancelGetDTO> dtoList = new ArrayList<>();
+        List<ResponseOrderCancelGetDTO> responseOrderCancelGetDTOList = new ArrayList<>();
 
         // DAO 리스트를 DTO 리스트로 변환
-        for (OrderDAO orderDAO : daoList){
+        for (OrderDTO orderDTO : dtoList){
 
-            dtoList.add(createOrderCancelGetDTOBean.exec(orderDAO));
+            responseOrderCancelGetDTOList.add(createOrderCancelGetDTOBean.exec(orderDTO));
 
         }
 
         // 생성된 DTO 리스트 반환
-        return dtoList;
+        return responseOrderCancelGetDTOList;
 
     }
 }

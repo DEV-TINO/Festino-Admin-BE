@@ -59,9 +59,9 @@ public class OrderService {
 
 
     // 주문 상세 조회
-    public ResponseOrderDetailGetDTO getOrderDetail(UUID orderId){
+    public ResponseOrderDetailGetDTO getOrderDetail(UUID boothId, UUID orderId){
 
-        return getOrderDetailBean.exec(orderId);
+        return getOrderDetailBean.exec(boothId, orderId);
 
     }
 
@@ -131,54 +131,54 @@ public class OrderService {
 
 
     // 주문 취소
-    public Boolean deleteOrder(RequestOrderDeleteDTO requestOrderDeleteDTO){
+    public Boolean deleteOrder(UUID boothId, RequestOrderDeleteDTO requestOrderDeleteDTO){
 
-        return deleteOrderBean.exec(requestOrderDeleteDTO);
+        return deleteOrderBean.exec(boothId, requestOrderDeleteDTO);
 
     }
 
 
 
     // 주문 취소 복구
-    public ResponseOrderDeleteRestoreUpdateDTO updateOrderDeleteRestore(RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
+    public ResponseOrderDeleteRestoreUpdateDTO updateOrderDeleteRestore(UUID boothId, RequestOrderDeleteRestoreUpdateDTO requestOrderDeleteRestoreUpdateDTO){
 
-        return updateOrderDeleteRestoreBean.exec(requestOrderDeleteRestoreUpdateDTO);
+        return updateOrderDeleteRestoreBean.exec(boothId, requestOrderDeleteRestoreUpdateDTO);
 
     }
 
 
 
     // 입금 확인
-    public ResponseOrderDepositUpdateDTO updateOrderDeposit(RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
+    public ResponseOrderDepositUpdateDTO updateOrderDeposit(UUID boothId, RequestOrderDepositUpdateDTO requestOrderDepositUpdateDTO){
 
-        return updateOrderDepositBean.exec(requestOrderDepositUpdateDTO);
+        return updateOrderDepositBean.exec(boothId, requestOrderDepositUpdateDTO);
 
     }
 
 
 
     // 입금 확인 복구
-    public ResponseOrderDepositRestoreUpdateDTO updateOrderDepositRestore(RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
+    public ResponseOrderDepositRestoreUpdateDTO updateOrderDepositRestore(UUID boothId, RequestOrderDepositRestoreUpdateDTO requestOrderDepositRestoreUpdateDTO){
 
-        return updateOrderDepositRestoreBean.exec(requestOrderDepositRestoreUpdateDTO);
+        return updateOrderDepositRestoreBean.exec(boothId, requestOrderDepositRestoreUpdateDTO);
 
     }
 
 
 
     // Order 조리 완료
-    public ResponseOrderFinishUpdateDTO updateOrderFinish(RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
+    public ResponseOrderFinishUpdateDTO updateOrderFinish(UUID boothId, RequestOrderFinishUpdateDTO requestOrderFinishUpdateDTO){
 
-        return updateOrderFinishBean.exec(requestOrderFinishUpdateDTO);
+        return updateOrderFinishBean.exec(boothId, requestOrderFinishUpdateDTO);
 
     }
 
 
 
     // Order 조리 완료 복구
-    public ResponseOrderFinishRestoreUpdateDTO updateOrderFinishRestore(RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
+    public ResponseOrderFinishRestoreUpdateDTO updateOrderFinishRestore(UUID boothId, RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
 
-        return updateOrderFinishRestoreBean.exec(requestOrderFinishRestoreUpdateDTO);
+        return updateOrderFinishRestoreBean.exec(boothId, requestOrderFinishRestoreUpdateDTO);
 
     }
 
