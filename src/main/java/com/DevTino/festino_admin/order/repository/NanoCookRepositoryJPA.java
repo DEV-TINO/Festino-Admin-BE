@@ -14,5 +14,5 @@ public interface NanoCookRepositoryJPA extends JpaRepository<NanoCookDAO, UUID> 
     public List<NanoCookDAO> findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(UUID menuId, Boolean isFinish, Integer date);
 
     // menuId, date, isFinish에 해당하는 Cook 검색
-    public List<NanoCookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish);
+    public List<NanoCookDAO> findByMenuIdAndDateAndIsFinishAndIsService(UUID menuId, Integer date, Boolean isFinish, Boolean isService);
 }

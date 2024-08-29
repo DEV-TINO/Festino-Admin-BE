@@ -14,5 +14,5 @@ public interface EnergyCookRepositoryJPA extends JpaRepository<EnergyCookDAO, UU
     public List<EnergyCookDAO> findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(UUID menuId, Boolean isFinish, Integer date);
 
     // menuId, date, isFinish에 해당하는 Cook 검색
-    public List<EnergyCookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish);
+    public List<EnergyCookDAO> findByMenuIdAndDateAndIsFinishAndIsService(UUID menuId, Integer date, Boolean isFinish, Boolean isService);
 }

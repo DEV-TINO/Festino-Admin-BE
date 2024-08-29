@@ -197,8 +197,8 @@ public class GetCooksDAOBean {
 
 
 
-    // menuId, date, isFinish로 Cook 전체 조회
-    public List<CookDTO> exec(String adminName, UUID menuId, Integer date, Boolean isFinish){
+    // menuId, date, isFinish, isService로 Cook 전체 조회
+    public List<CookDTO> exec(String adminName, UUID menuId, Integer date, Boolean isFinish, Boolean isService){
 
         // 학과로 구분된 cook 리스트를 담아줄 cookDTO 빈 리스트 생성
         List<CookDTO> cookDTOList = new ArrayList<>();
@@ -206,7 +206,7 @@ public class GetCooksDAOBean {
         switch (adminName) {
             // 컴퓨터 공학과에서 조회
             case "computer" :
-                List<ComputerCookDAO> computerCookDAOList = computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                List<ComputerCookDAO> computerCookDAOList = computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
                 if(computerCookDAOList.isEmpty()) return new ArrayList<>();
 
                 for(ComputerCookDAO computerCookDAO : computerCookDAOList) {
@@ -216,7 +216,7 @@ public class GetCooksDAOBean {
 
             // 전자공학부에서 조회
             case "electronics" :
-                List<ElectronicsCookDAO> electronicsCookDAOList = electronicsCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                List<ElectronicsCookDAO> electronicsCookDAOList = electronicsCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
                 if(electronicsCookDAOList.isEmpty()) return new ArrayList<>();
 
                 for(ElectronicsCookDAO electronicsCookDAO : electronicsCookDAOList) {
@@ -226,7 +226,7 @@ public class GetCooksDAOBean {
 
             // 에너지전기공학과에서 조회
             case "energy" :
-                List<EnergyCookDAO> energyCookDAOList = energyCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                List<EnergyCookDAO> energyCookDAOList = energyCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
                 if(energyCookDAOList.isEmpty()) return new ArrayList<>();
 
                 for(EnergyCookDAO energyCookDAO : energyCookDAOList) {
@@ -236,7 +236,7 @@ public class GetCooksDAOBean {
 
             // 게임공학과에서 조회
             case "game" :
-                List<GameCookDAO> gameCookDAOList = gameCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                List<GameCookDAO> gameCookDAOList = gameCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
                 if(gameCookDAOList.isEmpty()) return new ArrayList<>();
 
                 for(GameCookDAO gameCookDAO : gameCookDAOList) {
@@ -246,7 +246,7 @@ public class GetCooksDAOBean {
 
             // 기계공학과에서 조회
             case "machine" :
-                List<MachineCookDAO> machineCookDAOList = machineCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                List<MachineCookDAO> machineCookDAOList = machineCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
                 if(machineCookDAOList.isEmpty()) return new ArrayList<>();
 
                 for(MachineCookDAO machineCookDAO : machineCookDAOList) {
@@ -256,7 +256,7 @@ public class GetCooksDAOBean {
 
             // 나노반도체공학과에서 조회
             case "nano" :
-                List<NanoCookDAO> nanoCookDAOList = nanoCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                List<NanoCookDAO> nanoCookDAOList = nanoCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
                 if(nanoCookDAOList.isEmpty()) return new ArrayList<>();
 
                 for(NanoCookDAO nanoCookDAO : nanoCookDAOList) {
@@ -266,7 +266,7 @@ public class GetCooksDAOBean {
 
             // 신소재공학과에서 조회
             case "newMaterial" :
-                List<NewMaterialCookDAO> newMaterialCookDAOList = newMaterialCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                List<NewMaterialCookDAO> newMaterialCookDAOList = newMaterialCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
                 if(newMaterialCookDAOList.isEmpty()) return new ArrayList<>();
 
                 for(NewMaterialCookDAO newMaterialCookDAO : newMaterialCookDAOList) {

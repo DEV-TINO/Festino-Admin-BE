@@ -36,8 +36,8 @@ public class CreateOrderStatisticGetDTOBean {
             // 메뉴의 총판매수량
             Integer menuCount = 0;
 
-            // 메뉴 아이디와 날짜(date)로 완료된 Cook 조회
-            List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true);
+            // 메뉴 아이디와 날짜(date)로 완료된, 서비스가 아닌 Cook 조회
+            List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true, false);
 
             // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
             for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
