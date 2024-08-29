@@ -364,4 +364,22 @@ public class OrderController {
 
     }
 
+
+
+    // 서비스 주문 등록
+    @PostMapping("/service")
+    public ResponseEntity<Map<String, Object>> saveOrderService(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderServiceSaveDTO requestOrderServiceSaveDTO){
+
+        UUID orderId = orderService.saveOrderService(boothId, requestOrderServiceSaveDTO);
+
+        // message, success, id 값 json 데이터로 반환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", orderId != null);
+        requestMap.put("message", (orderId != null) ? "서비스 주문 등록 성공": "서비스 주문 등록 시 DAO 생성 실패");
+        requestMap.put("orderId", (orderId != null) ? orderId : "00000000-0000-0000-0000-000000000000");
+
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+
+    }
+
 }
