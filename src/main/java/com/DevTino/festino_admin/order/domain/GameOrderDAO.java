@@ -43,7 +43,7 @@ public class GameOrderDAO {
                 .boothId(orderDTO.getBoothId())
                 .orderType(orderDTO.getOrderType())
                 .tableNum(orderDTO.getTableNum())
-                .date(orderDTO.getOrderNum())
+                .date(orderDTO.getDate())
                 .userName(orderDTO.getUserName())
                 .phoneNum(orderDTO.getPhoneNum())
                 .totalPrice(orderDTO.getTotalPrice())
