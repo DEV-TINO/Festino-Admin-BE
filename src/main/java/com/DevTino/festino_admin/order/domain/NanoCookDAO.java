@@ -26,6 +26,7 @@ public class NanoCookDAO {
     Integer servedCount;
     LocalDateTime createAt;
     Boolean isFinish;
+    Boolean isService;
 
     public static NanoCookDAO fromCookDTO(CookDTO cookDTO) {
         return NanoCookDAO.builder()
@@ -39,6 +40,7 @@ public class NanoCookDAO {
                 .servedCount(cookDTO.getServedCount())
                 .createAt(cookDTO.getCreateAt())
                 .isFinish(cookDTO.getIsFinish())
+                .isService(cookDTO.getIsService())
                 .build();
     }
 }

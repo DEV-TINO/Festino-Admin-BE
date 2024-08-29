@@ -26,6 +26,7 @@ public class NewMaterialCookDAO {
     Integer servedCount;
     LocalDateTime createAt;
     Boolean isFinish;
+    Boolean isService;
 
     public static NewMaterialCookDAO fromCookDTO(CookDTO cookDTO) {
         return NewMaterialCookDAO.builder()
@@ -39,6 +40,7 @@ public class NewMaterialCookDAO {
                 .servedCount(cookDTO.getServedCount())
                 .createAt(cookDTO.getCreateAt())
                 .isFinish(cookDTO.getIsFinish())
+                .isService(cookDTO.getIsService())
                 .build();
     }
 }

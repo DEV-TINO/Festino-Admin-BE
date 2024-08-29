@@ -31,6 +31,7 @@ public class NewMaterialOrderDAO {
     Integer totalPrice;
     Boolean isDeposit;
     Boolean isCoupon;
+    Boolean isService;
     LocalDateTime createAt;
 
     @Convert(converter = StringListConverter.class)
@@ -49,6 +50,7 @@ public class NewMaterialOrderDAO {
                 .totalPrice(orderDTO.getTotalPrice())
                 .isDeposit(orderDTO.getIsDeposit())
                 .isCoupon(orderDTO.getIsCoupon())
+                .isService(orderDTO.getIsService())
                 .createAt(orderDTO.getCreateAt())
                 .menuInfo(orderDTO.getMenuInfo())
                 .build();

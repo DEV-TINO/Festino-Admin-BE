@@ -20,6 +20,7 @@ public class CookDTO {
     Integer servedCount;
     LocalDateTime createAt;
     Boolean isFinish;
+    Boolean isService;
 
     public static CookDTO fromComputerCookDAO(ComputerCookDAO computerCookDAO) {
         return CookDTO.builder()

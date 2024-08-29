@@ -26,6 +26,7 @@ public class ElectronicsCookDAO {
     Integer servedCount;
     LocalDateTime createAt;
     Boolean isFinish;
+    Boolean isService;
 
     public static ElectronicsCookDAO fromCookDTO(CookDTO cookDTO) {
         return ElectronicsCookDAO.builder()
@@ -39,6 +40,7 @@ public class ElectronicsCookDAO {
                 .servedCount(cookDTO.getServedCount())
                 .createAt(cookDTO.getCreateAt())
                 .isFinish(cookDTO.getIsFinish())
+                .isService(cookDTO.getIsService())
                 .build();
     }
 }

@@ -22,6 +22,7 @@ public class OrderDTO {
     Integer totalPrice;
     Boolean isDeposit;
     Boolean isCoupon;
+    Boolean isService;
     LocalDateTime createAt;
     List<MenuInfoDTO> menuInfo;
 
