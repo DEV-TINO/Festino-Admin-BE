@@ -25,6 +25,7 @@ public class CreateCookDAOBean {
                 .servedCount(0)
                 .createAt(DateTimeUtils.nowZone())
                 .isFinish(false)
+                .isService(orderDTO.getIsService())
                 .build();
 
     }

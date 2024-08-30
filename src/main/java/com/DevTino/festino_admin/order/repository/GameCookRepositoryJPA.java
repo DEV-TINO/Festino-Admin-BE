@@ -14,5 +14,5 @@ public interface GameCookRepositoryJPA extends JpaRepository<GameCookDAO, UUID> 
     public List<GameCookDAO> findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(UUID menuId, Boolean isFinish, Integer date);
 
     // menuId, date, isFinish에 해당하는 Cook 검색
-    public List<GameCookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish);
+    public List<GameCookDAO> findByMenuIdAndDateAndIsFinishAndIsService(UUID menuId, Integer date, Boolean isFinish, Boolean isService);
 }

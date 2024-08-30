@@ -26,6 +26,7 @@ public class GameCookDAO {
     Integer servedCount;
     LocalDateTime createAt;
     Boolean isFinish;
+    Boolean isService;
 
     public static GameCookDAO fromCookDTO(CookDTO cookDTO) {
         return GameCookDAO.builder()
@@ -39,6 +40,7 @@ public class GameCookDAO {
                 .servedCount(cookDTO.getServedCount())
                 .createAt(cookDTO.getCreateAt())
                 .isFinish(cookDTO.getIsFinish())
+                .isService(cookDTO.getIsService())
                 .build();
     }
 }

@@ -26,6 +26,7 @@ public class EnergyCookDAO {
     Integer servedCount;
     LocalDateTime createAt;
     Boolean isFinish;
+    Boolean isService;
 
     public static EnergyCookDAO fromCookDTO(CookDTO cookDTO) {
         return EnergyCookDAO.builder()
@@ -39,6 +40,7 @@ public class EnergyCookDAO {
                 .servedCount(cookDTO.getServedCount())
                 .createAt(cookDTO.getCreateAt())
                 .isFinish(cookDTO.getIsFinish())
+                .isService(cookDTO.getIsService())
                 .build();
     }
 }

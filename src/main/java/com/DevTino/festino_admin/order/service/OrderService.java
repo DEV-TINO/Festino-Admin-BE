@@ -27,9 +27,10 @@ public class OrderService {
     UpdateOrderDepositRestoreBean updateOrderDepositRestoreBean;
     UpdateOrderFinishBean updateOrderFinishBean;
     UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean;
+    SaveOrderServiceBean saveOrderServiceBean;
 
     @Autowired
-    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderNowBean getOrderNowBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderCookingBean getOrderCookingBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, GetOrderStatisticBean getOrderStatisticBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderDepositRestoreBean updateOrderDepositRestoreBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean){
+    public OrderService(GetOrderTableBean getOrderTableBean, GetOrderDetailBean getOrderDetailBean, GetOrderAllBean getOrderAllBean, GetOrderNowBean getOrderNowBean, GetOrderWaitDepositBean getOrderWaitDepositBean, GetOrderCookingBean getOrderCookingBean, GetOrderFinishBean getOrderFinishBean, GetOrderCancelBean getOrderCancelBean, GetOrderStatisticBean getOrderStatisticBean, DeleteOrderBean deleteOrderBean, UpdateOrderDeleteRestoreBean updateOrderDeleteRestoreBean, UpdateOrderDepositBean updateOrderDepositBean, UpdateOrderDepositRestoreBean updateOrderDepositRestoreBean, UpdateOrderFinishBean updateOrderFinishBean, UpdateOrderFinishRestoreBean updateOrderFinishRestoreBean, SaveOrderServiceBean saveOrderServiceBean){
         this.getOrderTableBean = getOrderTableBean;
         this.getOrderDetailBean = getOrderDetailBean;
         this.getOrderAllBean = getOrderAllBean;
@@ -45,6 +46,7 @@ public class OrderService {
         this.updateOrderDepositRestoreBean = updateOrderDepositRestoreBean;
         this.updateOrderFinishBean = updateOrderFinishBean;
         this.updateOrderFinishRestoreBean = updateOrderFinishRestoreBean;
+        this.saveOrderServiceBean = saveOrderServiceBean;
     }
 
 
@@ -179,6 +181,15 @@ public class OrderService {
     public ResponseOrderFinishRestoreUpdateDTO updateOrderFinishRestore(UUID boothId, RequestOrderFinishRestoreUpdateDTO requestOrderFinishRestoreUpdateDTO){
 
         return updateOrderFinishRestoreBean.exec(boothId, requestOrderFinishRestoreUpdateDTO);
+
+    }
+
+
+
+    // 서비스 주문 등록
+    public UUID saveOrderService(UUID boothId, RequestOrderServiceSaveDTO requestOrderServiceSaveDTO){
+
+        return saveOrderServiceBean.exec(boothId, requestOrderServiceSaveDTO);
 
     }
 

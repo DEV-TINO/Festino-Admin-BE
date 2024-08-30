@@ -15,5 +15,5 @@ public interface ComputerCookRepositoryJPA extends JpaRepository<ComputerCookDAO
     public List<ComputerCookDAO> findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(UUID menuId, Boolean isFinish, Integer date);
 
     // menuId, date, isFinish에 해당하는 Cook 검색
-    public List<ComputerCookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish);
+    public List<ComputerCookDAO> findByMenuIdAndDateAndIsFinishAndIsService(UUID menuId, Integer date, Boolean isFinish, Boolean isService);
 }

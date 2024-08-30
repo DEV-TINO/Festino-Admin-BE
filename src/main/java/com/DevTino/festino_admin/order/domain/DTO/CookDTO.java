@@ -20,6 +20,7 @@ public class CookDTO {
     Integer servedCount;
     LocalDateTime createAt;
     Boolean isFinish;
+    Boolean isService;
 
     public static CookDTO fromComputerCookDAO(ComputerCookDAO computerCookDAO) {
         return CookDTO.builder()
@@ -33,6 +34,7 @@ public class CookDTO {
                 .servedCount(computerCookDAO.getServedCount())
                 .createAt(computerCookDAO.getCreateAt())
                 .isFinish(computerCookDAO.getIsFinish())
+                .isService(computerCookDAO.getIsService())
                 .build();
     }
 
@@ -48,6 +50,7 @@ public class CookDTO {
                 .servedCount(electronicsCookDAO.getServedCount())
                 .createAt(electronicsCookDAO.getCreateAt())
                 .isFinish(electronicsCookDAO.getIsFinish())
+                .isService(electronicsCookDAO.getIsService())
                 .build();
     }
 
@@ -63,6 +66,7 @@ public class CookDTO {
                 .servedCount(energyCookDAO.getServedCount())
                 .createAt(energyCookDAO.getCreateAt())
                 .isFinish(energyCookDAO.getIsFinish())
+                .isService(energyCookDAO.getIsService())
                 .build();
     }
 
@@ -78,6 +82,7 @@ public class CookDTO {
                 .servedCount(gameCookDAO.getServedCount())
                 .createAt(gameCookDAO.getCreateAt())
                 .isFinish(gameCookDAO.getIsFinish())
+                .isService(gameCookDAO.getIsService())
                 .build();
     }
 
@@ -93,6 +98,7 @@ public class CookDTO {
                 .servedCount(machineCookDAO.getServedCount())
                 .createAt(machineCookDAO.getCreateAt())
                 .isFinish(machineCookDAO.getIsFinish())
+                .isService(machineCookDAO.getIsService())
                 .build();
     }
 
@@ -108,6 +114,7 @@ public class CookDTO {
                 .servedCount(nanoCookDAO.getServedCount())
                 .createAt(nanoCookDAO.getCreateAt())
                 .isFinish(nanoCookDAO.getIsFinish())
+                .isService(nanoCookDAO.getIsService())
                 .build();
     }
 
@@ -123,6 +130,7 @@ public class CookDTO {
                 .servedCount(newMaterialCookDAO.getServedCount())
                 .createAt(newMaterialCookDAO.getCreateAt())
                 .isFinish(newMaterialCookDAO.getIsFinish())
+                .isService(newMaterialCookDAO.getIsService())
                 .build();
     }
 }
