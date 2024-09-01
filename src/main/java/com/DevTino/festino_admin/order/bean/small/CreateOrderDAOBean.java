@@ -27,7 +27,7 @@ public class CreateOrderDAOBean {
                 .createAt(DateTimeUtils.nowZone())
                 .isCoupon(requestOrderServiceSaveDTO.getIsCoupon())
                 .isDeposit(true)
-                .isService(true)
+                .isService(requestOrderServiceSaveDTO.getIsService())
                 .build();
 
     }

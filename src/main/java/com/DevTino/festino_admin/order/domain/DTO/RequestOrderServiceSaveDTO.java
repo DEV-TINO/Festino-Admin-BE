@@ -16,5 +16,6 @@ public class RequestOrderServiceSaveDTO {
 
     Integer totalPrice;
     Boolean isCoupon;
+    Boolean isService;
 
 }
