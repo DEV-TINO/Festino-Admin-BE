@@ -15,6 +15,7 @@ public class ResponseOrderDetailGetDTO {
     Integer tableNum;
     String userName;
     String phoneNum;
+    String note;
     Integer totalPrice;
     List<MenuInfoDTO> menuList;
 
