@@ -18,6 +18,7 @@ public class CreateOrderDAOBean {
                 .orderId(UUID.randomUUID())
                 .boothId(boothId)
                 .tableNum(requestOrderServiceSaveDTO.getTableNum())
+                .note(requestOrderServiceSaveDTO.getNote())
                 .userName("service")
                 .phoneNum("00000000000")
                 .date(date)

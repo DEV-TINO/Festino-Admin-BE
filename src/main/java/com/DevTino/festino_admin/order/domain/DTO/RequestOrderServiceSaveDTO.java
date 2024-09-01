@@ -10,6 +10,7 @@ import java.util.List;
 public class RequestOrderServiceSaveDTO {
 
     Integer tableNum;
+    String note;
 
     @Convert(converter = StringListConverter.class)
     List<MenuInfoDTO> menuInfo;

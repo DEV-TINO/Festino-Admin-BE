@@ -45,7 +45,6 @@ public class GetCooksDAOBean {
             case "computer" :
                 List<ComputerCookDAO> computerCookDAOList = computerCookRepositoryJPA.findAllByOrderId(orderId);
                 if(computerCookDAOList.isEmpty()) return new ArrayList<>();
-                System.out.println(computerCookDAOList);
 
                 for(ComputerCookDAO computerCookDAO : computerCookDAOList) {
                     cookDTOList.add(CookDTO.fromComputerCookDAO(computerCookDAO));
