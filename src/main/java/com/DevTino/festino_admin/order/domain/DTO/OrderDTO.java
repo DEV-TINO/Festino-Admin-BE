@@ -19,6 +19,7 @@ public class OrderDTO {
     Integer date;
     String userName;
     String phoneNum;
+    String note;
     Integer totalPrice;
     Boolean isDeposit;
     Boolean isCoupon;
@@ -36,6 +37,7 @@ public class OrderDTO {
                 .date(computerOrderDAO.getDate())
                 .userName(computerOrderDAO.getUserName())
                 .phoneNum(computerOrderDAO.getPhoneNum())
+                .note(computerOrderDAO.getNote())
                 .totalPrice(computerOrderDAO.getTotalPrice())
                 .isDeposit(computerOrderDAO.getIsDeposit())
                 .isCoupon(computerOrderDAO.getIsCoupon())
@@ -55,6 +57,7 @@ public class OrderDTO {
                 .date(electronicsOrderDAO.getDate())
                 .userName(electronicsOrderDAO.getUserName())
                 .phoneNum(electronicsOrderDAO.getPhoneNum())
+                .note(electronicsOrderDAO.getNote())
                 .totalPrice(electronicsOrderDAO.getTotalPrice())
                 .isDeposit(electronicsOrderDAO.getIsDeposit())
                 .isCoupon(electronicsOrderDAO.getIsCoupon())
@@ -74,6 +77,7 @@ public class OrderDTO {
                 .date(energyOrderDAO.getDate())
                 .userName(energyOrderDAO.getUserName())
                 .phoneNum(energyOrderDAO.getPhoneNum())
+                .note(energyOrderDAO.getNote())
                 .totalPrice(energyOrderDAO.getTotalPrice())
                 .isDeposit(energyOrderDAO.getIsDeposit())
                 .isCoupon(energyOrderDAO.getIsCoupon())
@@ -93,6 +97,7 @@ public class OrderDTO {
                 .date(gameOrderDAO.getDate())
                 .userName(gameOrderDAO.getUserName())
                 .phoneNum(gameOrderDAO.getPhoneNum())
+                .note(gameOrderDAO.getNote())
                 .totalPrice(gameOrderDAO.getTotalPrice())
                 .isDeposit(gameOrderDAO.getIsDeposit())
                 .isCoupon(gameOrderDAO.getIsCoupon())
@@ -112,6 +117,7 @@ public class OrderDTO {
                 .date(machineOrderDAO.getDate())
                 .userName(machineOrderDAO.getUserName())
                 .phoneNum(machineOrderDAO.getPhoneNum())
+                .note(machineOrderDAO.getNote())
                 .totalPrice(machineOrderDAO.getTotalPrice())
                 .isDeposit(machineOrderDAO.getIsDeposit())
                 .isCoupon(machineOrderDAO.getIsCoupon())
@@ -131,6 +137,7 @@ public class OrderDTO {
                 .date(nanoOrderDAO.getDate())
                 .userName(nanoOrderDAO.getUserName())
                 .phoneNum(nanoOrderDAO.getPhoneNum())
+                .note(nanoOrderDAO.getNote())
                 .totalPrice(nanoOrderDAO.getTotalPrice())
                 .isDeposit(nanoOrderDAO.getIsDeposit())
                 .isCoupon(nanoOrderDAO.getIsCoupon())
@@ -150,6 +157,7 @@ public class OrderDTO {
                 .date(newMaterialOrderDAO.getDate())
                 .userName(newMaterialOrderDAO.getUserName())
                 .phoneNum(newMaterialOrderDAO.getPhoneNum())
+                .note(newMaterialOrderDAO.getNote())
                 .totalPrice(newMaterialOrderDAO.getTotalPrice())
                 .isDeposit(newMaterialOrderDAO.getIsDeposit())
                 .isCoupon(newMaterialOrderDAO.getIsCoupon())

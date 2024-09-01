@@ -31,6 +31,7 @@ public class CreateOrderTableGetDTOBean {
                 .tableNum(orderDTO.getTableNum())
                 .servedCount(servedCount)
                 .totalCount(totalCount)
+                .createAt(orderDTO.getCreateAt())
                 .build();
 
     }

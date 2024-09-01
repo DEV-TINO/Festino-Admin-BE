@@ -16,8 +16,10 @@ public class CreateOrderDetailGetDTOBean {
                 .tableNum(orderDTO.getTableNum())
                 .userName(orderDTO.getUserName())
                 .phoneNum(orderDTO.getPhoneNum())
+                .note(orderDTO.getNote())
                 .totalPrice(orderDTO.getTotalPrice())
                 .menuList(orderDTO.getMenuInfo())
+                .createAt(orderDTO.getCreateAt())
                 .build();
 
     }

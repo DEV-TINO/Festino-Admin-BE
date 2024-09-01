@@ -28,6 +28,7 @@ public class NanoOrderDAO {
     Integer date;
     String userName;
     String phoneNum;
+    String note;
     Integer totalPrice;
     Boolean isDeposit;
     Boolean isCoupon;
@@ -47,6 +48,7 @@ public class NanoOrderDAO {
                 .date(orderDTO.getDate())
                 .userName(orderDTO.getUserName())
                 .phoneNum(orderDTO.getPhoneNum())
+                .note(orderDTO.getNote())
                 .totalPrice(orderDTO.getTotalPrice())
                 .isDeposit(orderDTO.getIsDeposit())
                 .isCoupon(orderDTO.getIsCoupon())
