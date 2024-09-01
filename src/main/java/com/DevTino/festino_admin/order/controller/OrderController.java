@@ -210,11 +210,11 @@ public class OrderController {
 
 
     // 주문 통계 조회
-    @GetMapping("/statistic/{date}")
-    public ResponseEntity<Map<String, Object>> getOrderStatistic(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date){
+    @GetMapping("/statistic/{date}/{type}")
+    public ResponseEntity<Map<String, Object>> getOrderStatistic(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date, @PathVariable("type") String type){
 
         // 통계 조회 service 실행
-        ResponseOrderStatisticGetDTO responseOrderStatisticGetDTO = orderService.getOrderStatistic(boothId, date);
+        ResponseOrderStatisticGetDTO responseOrderStatisticGetDTO = orderService.getOrderStatistic(boothId, date, type);
 
         // 통계 조회 성공 여부 설정
         boolean success = (responseOrderStatisticGetDTO == null) ? false : true;
