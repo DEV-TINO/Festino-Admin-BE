@@ -20,9 +20,10 @@ public class GetOrderCancelDAOBean {
     MachineOrderRepositoryJPA machineOrderRepositoryJPA;
     NanoOrderRepositoryJPA nanoOrderRepositoryJPA;
     NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA;
+    DesignOrderRepositoryJPA designOrderRepositoryJPA;
 
     @Autowired
-    public GetOrderCancelDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA) {
+    public GetOrderCancelDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA, DesignOrderRepositoryJPA designOrderRepositoryJPA) {
         this.computerOrderRepositoryJPA = computerOrderRepositoryJPA;
         this.electronicsOrderRepositoryJPA = electronicsOrderRepositoryJPA;
         this.energyOrderRepositoryJPA = energyOrderRepositoryJPA;
@@ -30,6 +31,7 @@ public class GetOrderCancelDAOBean {
         this.machineOrderRepositoryJPA = machineOrderRepositoryJPA;
         this.nanoOrderRepositoryJPA = nanoOrderRepositoryJPA;
         this.newMaterialOrderRepositoryJPA = newMaterialOrderRepositoryJPA;
+        this.designOrderRepositoryJPA = designOrderRepositoryJPA;
     }
 
     // 날짜의 취소 상태인 Order 오래된순 전체 조회
@@ -106,6 +108,16 @@ public class GetOrderCancelDAOBean {
 
                 for(NewMaterialOrderDAO newMaterialOrderDAO : newMaterialOrderDAOList) {
                     orderDTOList.add(OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO));
+                }
+                break;
+
+            // 디자인공학부에서 조회
+            case "design" :
+                List<DesignOrderDAO> designOrderDAOList = designOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(OrderType.CANCEL, date);
+                if(designOrderDAOList.isEmpty()) return new ArrayList<>();
+
+                for(DesignOrderDAO designOrderDAO : designOrderDAOList) {
+                    orderDTOList.add(OrderDTO.fromDesignOrderDAO(designOrderDAO));
                 }
                 break;
         }

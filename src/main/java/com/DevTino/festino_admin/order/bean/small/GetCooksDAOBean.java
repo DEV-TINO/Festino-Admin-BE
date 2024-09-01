@@ -20,9 +20,10 @@ public class GetCooksDAOBean {
     MachineCookRepositoryJPA machineCookRepositoryJPA;
     NanoCookRepositoryJPA nanoCookRepositoryJPA;
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
+    DesignCookRepositoryJPA designCookRepositoryJPA;
 
     @Autowired
-    public GetCooksDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
+    public GetCooksDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA, DesignCookRepositoryJPA designCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;
@@ -30,6 +31,7 @@ public class GetCooksDAOBean {
         this.machineCookRepositoryJPA = machineCookRepositoryJPA;
         this.nanoCookRepositoryJPA = nanoCookRepositoryJPA;
         this.newMaterialCookRepositoryJPA = newMaterialCookRepositoryJPA;
+        this.designCookRepositoryJPA = designCookRepositoryJPA;
     }
 
     // orderId에 해당하는 Cook 찾아서 List로 반환
@@ -107,6 +109,16 @@ public class GetCooksDAOBean {
 
                 for(NewMaterialCookDAO newMaterialCookDAO : newMaterialCookDAOList) {
                     cookDTOList.add(CookDTO.fromNewMaterialCookDAO(newMaterialCookDAO));
+                }
+                break;
+
+            // 디자인공학부에서 조회
+            case "design" :
+                List<DesignCookDAO> designCookDAOList = designCookRepositoryJPA.findAllByOrderId(orderId);
+                if(designCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(DesignCookDAO designCookDAO : designCookDAOList) {
+                    cookDTOList.add(CookDTO.fromDesignCookDAO(designCookDAO));
                 }
                 break;
         }
@@ -191,6 +203,16 @@ public class GetCooksDAOBean {
                     cookDTOList.add(CookDTO.fromNewMaterialCookDAO(newMaterialCookDAO));
                 }
                 break;
+
+            // 디자인공학부에서 조회
+            case "design" :
+                List<DesignCookDAO> designCookDAOList = designCookRepositoryJPA.findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(menuId, isFinish, date);
+                if(designCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(DesignCookDAO designCookDAO : designCookDAOList) {
+                    cookDTOList.add(CookDTO.fromDesignCookDAO(designCookDAO));
+                }
+                break;
         }
         return cookDTOList;
     }
@@ -273,9 +295,18 @@ public class GetCooksDAOBean {
                     cookDTOList.add(CookDTO.fromNewMaterialCookDAO(newMaterialCookDAO));
                 }
                 break;
+
+            // 디자인공학부에서 조회
+            case "design" :
+                List<DesignCookDAO> designCookDAOList = designCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
+                if(designCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(DesignCookDAO designCookDAO : designCookDAOList) {
+                    cookDTOList.add(CookDTO.fromDesignCookDAO(designCookDAO));
+                }
+                break;
         }
         return cookDTOList;
-
     }
 
     // menuId, date, isFinish 로 Cook 전체 조회

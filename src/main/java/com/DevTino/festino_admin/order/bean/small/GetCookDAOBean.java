@@ -19,9 +19,10 @@ public class GetCookDAOBean {
     MachineCookRepositoryJPA machineCookRepositoryJPA;
     NanoCookRepositoryJPA nanoCookRepositoryJPA;
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
+    DesignCookRepositoryJPA designCookRepositoryJPA;
 
     @Autowired
-    public GetCookDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
+    public GetCookDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA, DesignCookRepositoryJPA designCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;
@@ -29,6 +30,7 @@ public class GetCookDAOBean {
         this.machineCookRepositoryJPA = machineCookRepositoryJPA;
         this.nanoCookRepositoryJPA = nanoCookRepositoryJPA;
         this.newMaterialCookRepositoryJPA = newMaterialCookRepositoryJPA;
+        this.designCookRepositoryJPA = designCookRepositoryJPA;
     }
 
     // cookId로 DAO 찾아서 반환하는 메서드
@@ -97,6 +99,15 @@ public class GetCookDAOBean {
 
                 // cookDTO 타입으로 변경후 반환
                 return CookDTO.fromNewMaterialCookDAO(newMaterialCookDAO);
+
+            // 디자인공학부에서 조회
+            case "design" :
+                // cookId 해당 Cook DAO 찾고
+                DesignCookDAO designCookDAO = designCookRepositoryJPA.findById(cookId).orElse(null);
+                if(designCookDAO == null) return null;
+
+                // cookDTO 타입으로 변경후 반환
+                return CookDTO.fromDesignCookDAO(designCookDAO);
 
             default:
                 return null;

@@ -19,9 +19,10 @@ public class SaveCookDAOBean {
     MachineCookRepositoryJPA machineCookRepositoryJPA;
     NanoCookRepositoryJPA nanoCookRepositoryJPA;
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
+    DesignCookRepositoryJPA designCookRepositoryJPA;
 
     @Autowired
-    public SaveCookDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
+    public SaveCookDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA, DesignCookRepositoryJPA designCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;
@@ -29,6 +30,7 @@ public class SaveCookDAOBean {
         this.machineCookRepositoryJPA = machineCookRepositoryJPA;
         this.nanoCookRepositoryJPA = nanoCookRepositoryJPA;
         this.newMaterialCookRepositoryJPA = newMaterialCookRepositoryJPA;
+        this.designCookRepositoryJPA = designCookRepositoryJPA;
     }
 
     // 각 학과로 구분하여 조리 DAO를 DB에 저장
@@ -69,6 +71,11 @@ public class SaveCookDAOBean {
             // 신소재공학과 저장
             case "newMaterial" :
                 newMaterialCookRepositoryJPA.save(NewMaterialCookDAO.fromCookDTO(cookDTO));
+                break;
+
+            // 디자인공학부 저장
+            case "design" :
+                designCookRepositoryJPA.save(DesignCookDAO.fromCookDTO(cookDTO));
                 break;
         }
     }
@@ -146,6 +153,16 @@ public class SaveCookDAOBean {
                     newMaterialCookDAOList.add(NewMaterialCookDAO.fromCookDTO(cookDTO));
                 }
                 newMaterialCookRepositoryJPA.saveAll(newMaterialCookDAOList);
+                break;
+
+            // 디자인공학부에 cook 리스트 저장
+            case "design" :
+                List<DesignCookDAO> designCookDAOList = new ArrayList<>();
+
+                for (CookDTO cookDTO : cookDTOList) {
+                    designCookDAOList.add(DesignCookDAO.fromCookDTO(cookDTO));
+                }
+                designCookRepositoryJPA.saveAll(designCookDAOList);
                 break;
         }
     }
