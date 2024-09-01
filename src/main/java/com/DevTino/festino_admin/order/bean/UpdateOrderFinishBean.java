@@ -9,6 +9,7 @@ import com.DevTino.festino_admin.order.domain.OrderType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -54,6 +55,7 @@ public class UpdateOrderFinishBean {
 
         // DAO 수정
         orderDTO.setOrderType(OrderType.FINISH);
+        orderDTO.setFinishAt(LocalDateTime.now());
 
         // 수정된 DAO 저장
         saveOrderDAOBean.exec(adminName, orderDTO);
