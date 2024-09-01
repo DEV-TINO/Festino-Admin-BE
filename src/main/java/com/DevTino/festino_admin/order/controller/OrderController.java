@@ -370,6 +370,7 @@ public class OrderController {
     @PostMapping("/service")
     public ResponseEntity<Map<String, Object>> saveOrderService(@PathVariable("boothId") UUID boothId, @RequestBody RequestOrderServiceSaveDTO requestOrderServiceSaveDTO){
 
+        // 서비스 주문 등록 service 실행
         UUID orderId = orderService.saveOrderService(boothId, requestOrderServiceSaveDTO);
 
         // message, success, id 값 json 데이터로 반환

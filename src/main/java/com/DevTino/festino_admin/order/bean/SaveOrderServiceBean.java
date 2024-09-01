@@ -8,6 +8,7 @@ import com.DevTino.festino_admin.order.domain.DTO.RequestOrderServiceSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -16,15 +17,17 @@ public class SaveOrderServiceBean {
     GetNightBoothDAOBean getNightBoothDAOBean;
     CheckOrderDAODateFieldBean checkOrderDAODateFieldBean;
     GetOrderBoothNameDAOBean getOrderBoothNameDAOBean;
+    UpdateOrderServiceSaveDTOBean updateOrderServiceSaveDTOBean;
     CreateOrderDAOBean createOrderDAOBean;
     SaveOrderDAOBean saveOrderDAOBean;
     CreateCookDAOsBean createCookDAOsBean;
 
     @Autowired
-    public SaveOrderServiceBean(GetNightBoothDAOBean getNightBoothDAOBean, CheckOrderDAODateFieldBean checkOrderDAODateFieldBean, GetOrderBoothNameDAOBean getOrderBoothNameDAOBean, CreateOrderDAOBean createOrderDAOBean, SaveOrderDAOBean saveOrderDAOBean, UpdateOrderDepositBean updateOrderDepositBean, CreateCookDAOsBean createCookDAOsBean){
+    public SaveOrderServiceBean(GetNightBoothDAOBean getNightBoothDAOBean, CheckOrderDAODateFieldBean checkOrderDAODateFieldBean, GetOrderBoothNameDAOBean getOrderBoothNameDAOBean, UpdateOrderServiceSaveDTOBean updateOrderServiceSaveDTOBean, CreateOrderDAOBean createOrderDAOBean, SaveOrderDAOBean saveOrderDAOBean, UpdateOrderDepositBean updateOrderDepositBean, CreateCookDAOsBean createCookDAOsBean){
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.checkOrderDAODateFieldBean = checkOrderDAODateFieldBean;
         this.getOrderBoothNameDAOBean = getOrderBoothNameDAOBean;
+        this.updateOrderServiceSaveDTOBean = updateOrderServiceSaveDTOBean;
         this.createOrderDAOBean = createOrderDAOBean;
         this.saveOrderDAOBean = saveOrderDAOBean;
         this.createCookDAOsBean = createCookDAOsBean;
@@ -49,6 +52,9 @@ public class SaveOrderServiceBean {
 
         // 주문한 학과가 없다면 주문 등록 실패
         if(adminName.isEmpty()) return null;
+
+        // 서비스 주문이라면 가격을 모두 0으로 수정
+        if (requestOrderServiceSaveDTO.getIsService()){ updateOrderServiceSaveDTOBean.exec(requestOrderServiceSaveDTO); }
 
         // 주문 정보 생성
         OrderDTO orderDTO = createOrderDAOBean.exec(date, boothId, requestOrderServiceSaveDTO);
