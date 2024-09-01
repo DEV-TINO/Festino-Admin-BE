@@ -385,6 +385,16 @@ public class GetCooksDAOBean {
                     cookDTOList.add(CookDTO.fromNewMaterialCookDAO(newMaterialCookDAO));
                 }
                 break;
+
+            // 디자인학과에서 조회
+            case "design" :
+                List<DesignCookDAO> designCookDAOList = designCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+                if(designCookDAOList.isEmpty()) return new ArrayList<>();
+
+                for(DesignCookDAO designCookDAO : designCookDAOList) {
+                    cookDTOList.add(CookDTO.fromDesignCookDAO(designCookDAO));
+                }
+                break;
         }
         return cookDTOList;
 

@@ -15,4 +15,7 @@ public interface DesignCookRepositoryJPA extends JpaRepository<DesignCookDAO, UU
 
     // menuId, date, isFinish에 해당하는 Cook 검색
     public List<DesignCookDAO> findByMenuIdAndDateAndIsFinishAndIsService(UUID menuId, Integer date, Boolean isFinish, Boolean isService);
+
+    // isService 신경 쓰지 않고 menuId, date, isFinish에 해당하는 cook 검색
+    public List<DesignCookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish);
 }
