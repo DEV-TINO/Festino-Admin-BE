@@ -18,6 +18,7 @@ public class CreateOrderWaitDepositGetDTOBean {
                 .phoneNum(orderDTO.getPhoneNum())
                 .totalPrice(orderDTO.getTotalPrice())
                 .menuList(orderDTO.getMenuInfo())
+                .createAt(orderDTO.getCreateAt())
                 .build();
 
     }

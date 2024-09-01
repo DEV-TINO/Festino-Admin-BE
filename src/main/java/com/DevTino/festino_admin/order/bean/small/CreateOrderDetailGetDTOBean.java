@@ -19,6 +19,7 @@ public class CreateOrderDetailGetDTOBean {
                 .note(orderDTO.getNote())
                 .totalPrice(orderDTO.getTotalPrice())
                 .menuList(orderDTO.getMenuInfo())
+                .createAt(orderDTO.getCreateAt())
                 .build();
 
     }
