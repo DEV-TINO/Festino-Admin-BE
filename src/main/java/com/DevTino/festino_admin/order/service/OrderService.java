@@ -124,9 +124,9 @@ public class OrderService {
 
 
     // 주문 통계 조회
-    public ResponseOrderStatisticGetDTO getOrderStatistic(UUID boothId, Integer date){
+    public ResponseOrderStatisticGetDTO getOrderStatistic(UUID boothId, Integer date, String type){
 
-        return getOrderStatisticBean.exec(boothId, date);
+        return getOrderStatisticBean.exec(boothId, date, type);
 
     }
 

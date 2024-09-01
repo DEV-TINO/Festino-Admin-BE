@@ -24,7 +24,7 @@ public class CreateOrderStatisticGetDTOBean {
 
 
     // DTO 생성해 반환
-    public ResponseOrderStatisticGetDTO exec(String adminName, Integer date, List<MenuDAO> menuDAOList){
+    public ResponseOrderStatisticGetDTO exec(String adminName, Integer date, List<MenuDAO> menuDAOList, String type){
 
         // 총매출 totalSale, 메뉴별 매출 정보를 저장할 리스트 menuSaleList
         Integer totalSale = 0;
@@ -36,11 +36,32 @@ public class CreateOrderStatisticGetDTOBean {
             // 메뉴의 총판매수량
             Integer menuCount = 0;
 
-            // 메뉴 아이디와 날짜(date)로 완료된, 서비스가 아닌 Cook 조회
-            List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true, false);
+            switch (type) {
+                case "all" -> {
+                    // 타입이 all일 때 메뉴 아이디와 날짜(date)로 완료된, 일반과 서비스가 포함된 Cook 조회
+                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true);
 
-            // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
-            for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
+                    // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
+                    for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
+                }
+                case "service" -> {
+                    // 타입이 service일 때 메뉴 아이디와 날짜(date)로 완료된, 서비스인 Cook 조회
+                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true, true);
+
+                    // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
+                    for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
+                }
+                case "normal" -> {
+                    // 타입이 normal일 때 메뉴 아이디와 날짜(date)로 완료된, 일반 Cook 조회
+                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true, false);
+
+                    // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
+                    for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
+                }
+                default -> {
+                    return null;
+                }
+            }
 
             // 메뉴의 매출 정보를 Map으로 생성
             Map<String, Object> map = new HashMap<>();

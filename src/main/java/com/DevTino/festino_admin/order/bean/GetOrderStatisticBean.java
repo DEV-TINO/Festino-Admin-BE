@@ -26,7 +26,7 @@ public class GetOrderStatisticBean {
     }
 
     // 주문 통계 조회
-    public ResponseOrderStatisticGetDTO exec(UUID boothId, Integer date){
+    public ResponseOrderStatisticGetDTO exec(UUID boothId, Integer date, String type){
         // 주문한 학과 구분
         String adminName = getOrderBoothNameDAOBean.exec(boothId);
         if(adminName.isEmpty()) return null;
@@ -36,7 +36,7 @@ public class GetOrderStatisticBean {
         if (menuDAOList.isEmpty()) return null;
 
         // 메뉴별 통계와 총매출 계산 -> DTO 생성해 반환
-        return createOrderStatisticGetDTOBean.exec(adminName, date, menuDAOList);
+        return createOrderStatisticGetDTOBean.exec(adminName, date, menuDAOList, type);
 
     }
 
