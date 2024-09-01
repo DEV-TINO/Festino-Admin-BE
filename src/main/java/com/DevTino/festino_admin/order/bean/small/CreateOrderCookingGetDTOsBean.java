@@ -29,8 +29,11 @@ public class CreateOrderCookingGetDTOsBean {
         // MenuDAOList에서 Menu DAO 하나씩 꺼내서
         for (MenuDAO menuDAO : menuDAOList){
 
-            // 메뉴 한 개당 하나의 DTO 생성, DTO 리스트에 삽입
-            orderCookingGetDTOList.add(createOrderCookingGetDTOBean.exec(adminName, menuDAO, date));
+            // 메뉴 한 개당 하나의 DTO 생성
+            ResponseOrderCookingGetDTO responseOrderCookingGetDTO = createOrderCookingGetDTOBean.exec(adminName, menuDAO, date);
+
+            // DTO가 null이 아니라면 DTO 리스트에 삽입
+            if (responseOrderCookingGetDTO != null) orderCookingGetDTOList.add(responseOrderCookingGetDTO);
 
         }
 

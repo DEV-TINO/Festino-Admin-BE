@@ -26,6 +26,9 @@ public class CreateOrderCookingGetDTOBean {
 
         // menuId로 해당 학과에 맞는 날짜의 조리중인 Cook 오래된순 전체 조회
         List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), false, date);
+        
+        // 메뉴가 삭제된 상태이고, 메뉴로 조회한 CookList도 비어 있다면 null 리턴
+        if (menuDAO.getIsDeleted() && cookDTOList.isEmpty()) return null;
 
         // 주문한 테이블 총합, 남은 개수 총합
         Integer tableCount = 0;
