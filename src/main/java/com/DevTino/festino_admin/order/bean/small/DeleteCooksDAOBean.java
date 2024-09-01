@@ -19,9 +19,10 @@ public class DeleteCooksDAOBean {
     MachineCookRepositoryJPA machineCookRepositoryJPA;
     NanoCookRepositoryJPA nanoCookRepositoryJPA;
     NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
+    DesignCookRepositoryJPA designCookRepositoryJPA;
 
     @Autowired
-    public DeleteCooksDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA) {
+    public DeleteCooksDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA, DesignCookRepositoryJPA designCookRepositoryJPA) {
         this.computerCookRepositoryJPA = computerCookRepositoryJPA;
         this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
         this.energyCookRepositoryJPA = energyCookRepositoryJPA;
@@ -29,6 +30,7 @@ public class DeleteCooksDAOBean {
         this.machineCookRepositoryJPA = machineCookRepositoryJPA;
         this.nanoCookRepositoryJPA = nanoCookRepositoryJPA;
         this.newMaterialCookRepositoryJPA = newMaterialCookRepositoryJPA;
+        this.designCookRepositoryJPA = designCookRepositoryJPA;
     }
 
     // CookDAO 리스트를 삭제
@@ -105,6 +107,16 @@ public class DeleteCooksDAOBean {
                     newMaterialCookDAOList.add(NewMaterialCookDAO.fromCookDTO(cookDTO));
                 }
                 newMaterialCookRepositoryJPA.deleteAll(newMaterialCookDAOList);
+                break;
+
+            // 디자인공학부 Cook 리스트 삭제
+            case "design":
+                List<DesignCookDAO> designCookDAOList = new ArrayList<>();
+
+                for (CookDTO cookDTO : cookDTOList) {
+                    designCookDAOList.add(DesignCookDAO.fromCookDTO(cookDTO));
+                }
+                designCookRepositoryJPA.deleteAll(designCookDAOList);
                 break;
         }
     }

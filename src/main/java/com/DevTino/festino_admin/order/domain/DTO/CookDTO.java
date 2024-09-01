@@ -133,4 +133,20 @@ public class CookDTO {
                 .isService(newMaterialCookDAO.getIsService())
                 .build();
     }
+
+    public static CookDTO fromDesignCookDAO(DesignCookDAO designCookDAO) {
+        return CookDTO.builder()
+                .cookId(designCookDAO.getCookId())
+                .orderId(designCookDAO.getOrderId())
+                .boothId(designCookDAO.getBoothId())
+                .menuId(designCookDAO.getMenuId())
+                .tableNum(designCookDAO.getTableNum())
+                .date(designCookDAO.getDate())
+                .totalCount(designCookDAO.getTotalCount())
+                .servedCount(designCookDAO.getServedCount())
+                .createAt(designCookDAO.getCreateAt())
+                .isFinish(designCookDAO.getIsFinish())
+                .isService(designCookDAO.getIsService())
+                .build();
+    }
 }

@@ -17,6 +17,7 @@ public class GetOrderBoothNameDAOBean {
             case "5167a573-3a5f-4b40-ab9e-22c8fdf16c84" -> "energy";
             case "f0fe6e61-e530-4606-a003-cf224833b11b" -> "electronics";
             case "3d6eda5d-d9fd-427e-9335-61e70754f7fe" -> "nano";
+            case "cc958624-20ae-4621-8ea1-d968886d8d6c" -> "design";
             default -> "";
         };
     }

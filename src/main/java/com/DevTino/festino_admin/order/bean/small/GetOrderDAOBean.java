@@ -18,9 +18,10 @@ public class GetOrderDAOBean {
     MachineOrderRepositoryJPA machineOrderRepositoryJPA;
     NanoOrderRepositoryJPA nanoOrderRepositoryJPA;
     NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA;
+    DesignOrderRepositoryJPA designOrderRepositoryJPA;
 
     @Autowired
-    public GetOrderDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA) {
+    public GetOrderDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA, DesignOrderRepositoryJPA designOrderRepositoryJPA) {
         this.computerOrderRepositoryJPA = computerOrderRepositoryJPA;
         this.electronicsOrderRepositoryJPA = electronicsOrderRepositoryJPA;
         this.energyOrderRepositoryJPA = energyOrderRepositoryJPA;
@@ -28,6 +29,7 @@ public class GetOrderDAOBean {
         this.machineOrderRepositoryJPA = machineOrderRepositoryJPA;
         this.nanoOrderRepositoryJPA = nanoOrderRepositoryJPA;
         this.newMaterialOrderRepositoryJPA = newMaterialOrderRepositoryJPA;
+        this.designOrderRepositoryJPA = designOrderRepositoryJPA;
     }
 
     // 학과로 구분해 orderId로 DAO 찾아서 반환
@@ -95,6 +97,15 @@ public class GetOrderDAOBean {
 
                 // OrderDTO 타입으로 변경후 반환
                 return  OrderDTO.fromNewMaterialOrderDAO(newMaterialOrderDAO);
+
+            // 디자인공학부
+            case "design" :
+                // orderId로 해당 Order DAO 찾고
+                DesignOrderDAO designOrderDAO = designOrderRepositoryJPA.findByOrderId(orderId);
+                if(designOrderDAO == null) return null;
+
+                // OrderDTO 타입으로 변경후 반환
+                return  OrderDTO.fromDesignOrderDAO(designOrderDAO);
                 
             default:
                 return null;
