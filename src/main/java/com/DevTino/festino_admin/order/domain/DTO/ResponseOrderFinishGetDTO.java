@@ -19,5 +19,6 @@ public class ResponseOrderFinishGetDTO {
     Integer totalPrice;
     List<MenuInfoDTO> menuList;
     LocalDateTime createAt;
+    LocalDateTime finishAt;
 
 }

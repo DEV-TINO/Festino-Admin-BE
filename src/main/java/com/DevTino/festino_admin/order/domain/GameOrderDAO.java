@@ -34,6 +34,7 @@ public class GameOrderDAO {
     Boolean isCoupon;
     Boolean isService;
     LocalDateTime createAt;
+    LocalDateTime finishAt;
 
     @Convert(converter = StringListConverter.class)
     List<MenuInfoDTO> menuInfo;
@@ -54,6 +55,7 @@ public class GameOrderDAO {
                 .isCoupon(orderDTO.getIsCoupon())
                 .isService(orderDTO.getIsService())
                 .createAt(orderDTO.getCreateAt())
+                .finishAt(orderDTO.getFinishAt())
                 .menuInfo(orderDTO.getMenuInfo())
                 .build();
     }
