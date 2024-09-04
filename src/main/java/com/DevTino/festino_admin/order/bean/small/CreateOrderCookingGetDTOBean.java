@@ -43,6 +43,7 @@ public class CreateOrderCookingGetDTOBean {
             map.put("tableNum", cookDTO.getTableNum());
             map.put("totalCount", cookDTO.getTotalCount());
             map.put("servedCount", cookDTO.getServedCount());
+            map.put("orderId", cookDTO.getOrderId());
 
             // cooks에 삽입
             cooks.add(map);
