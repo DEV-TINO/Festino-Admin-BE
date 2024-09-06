@@ -22,7 +22,7 @@ public class GetReservationsDAOBean {
     // boothId를 통해 원하는 부스 전체 DAO 오래된 순으로 반환
     @Transactional(readOnly = true)
     public List<ReservationDAO> exec(UUID boothId, Integer date) {
-        return reservationRepositoryJPA.findAllByBoothIdAndDateOrderByUpdateAtAsc(boothId, date);
+        return reservationRepositoryJPA.findAllByBoothIdAndDateOrderByCreateAtAsc(boothId, date);
     }
 
     // reservagtionNum 이 오름차순 기준으로 2번째 예약 객체 찾기
