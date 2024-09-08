@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.show.talent.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.show.talent.bean.small.GetTalentShowDAOBean;
 import com.DevTino.festino_admin.show.talent.bean.small.SaveTalentShowDAOBean;
 import com.DevTino.festino_admin.show.talent.domain.DTO.RequestTalentShowUpdateDTO;
@@ -40,7 +41,7 @@ public class UpdateTalentShowBean {
         talentShowDAO.setShowEndTime(requestTalentShowUpdateDTO.getShowEndTime());
 
         // DAO 수정 : 수정 시간 저장
-        talentShowDAO.setUpdateAt(LocalDateTime.now());
+        talentShowDAO.setUpdateAt(DateTimeUtils.nowZone());
 
         // 수정된 DAO 저장
         saveTalentShowDAOBean.exec(talentShowDAO);

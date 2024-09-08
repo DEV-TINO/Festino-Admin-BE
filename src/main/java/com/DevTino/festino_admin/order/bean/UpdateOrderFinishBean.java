@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.order.bean.small.*;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
@@ -55,7 +56,7 @@ public class UpdateOrderFinishBean {
 
         // DAO 수정
         orderDTO.setOrderType(OrderType.FINISH);
-        orderDTO.setFinishAt(LocalDateTime.now());
+        orderDTO.setFinishAt(DateTimeUtils.nowZone());
 
         // 수정된 DAO 저장
         saveOrderDAOBean.exec(adminName, orderDTO);
