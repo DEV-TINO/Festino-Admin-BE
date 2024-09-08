@@ -36,6 +36,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'	// security
 	implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 	implementation 'com.google.code.gson:gson:2.9.0'
+	implementation 'org.mindrot:jbcrypt:0.4'  // Password Encryption
 
 	// JWT
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
