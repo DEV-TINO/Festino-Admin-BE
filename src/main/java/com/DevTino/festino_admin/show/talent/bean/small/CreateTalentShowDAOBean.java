@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.show.talent.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.show.talent.domain.DTO.RequestTalentShowSaveDTO;
 import com.DevTino.festino_admin.show.talent.domain.TalentShowDAO;
 import org.springframework.stereotype.Component;
@@ -21,8 +22,8 @@ public class CreateTalentShowDAOBean {
                 .showStartTime(requestTalentShowSaveDTO.getShowStartTime())
                 .showEndTime(requestTalentShowSaveDTO.getShowEndTime())
                 .musicList(requestTalentShowSaveDTO.getMusicList())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
+                .updateAt(DateTimeUtils.nowZone())
                 .build();
 
     }

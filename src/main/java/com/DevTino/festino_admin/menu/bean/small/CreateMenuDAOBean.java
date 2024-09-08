@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.menu.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.menu.domain.DTO.RequestMenuSaveDTO;
 import com.DevTino.festino_admin.menu.domain.MenuDAO;
 import org.springframework.stereotype.Component;
@@ -25,8 +26,8 @@ public class CreateMenuDAOBean {
                 .menuDescription(requestMenuSaveDTO.getMenuDescription())
                 .menuImage(image)
                 .menuPrice(requestMenuSaveDTO.getMenuPrice())
-                .createAt(LocalDateTime.now())
-                .updateAt(LocalDateTime.now())
+                .createAt(DateTimeUtils.nowZone())
+                .updateAt(DateTimeUtils.nowZone())
                 .menuIndex(requestMenuSaveDTO.getMenuIndex())
                 .isDeleted(false)
                 .isSoldOut(requestMenuSaveDTO.getIsSoldOut())

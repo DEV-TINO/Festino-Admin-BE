@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.show.talent.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.show.talent.domain.DTO.ResponseTalentShowGetDTO;
 import com.DevTino.festino_admin.show.talent.domain.TalentShowDAO;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,7 @@ public class CreateTalentShowDTOBean {
         // 공연이 현재 진행 중인지 판단해서 isShowing 설정
         // 추후 [ 공연 전 / 공연 중 / 공연 후 ] 를 구분해 나타내도록 변경될 수 있음
         Boolean isShowing =
-                LocalDateTime.now().isAfter(showStart) && LocalDateTime.now().isBefore(showEnd);
+                DateTimeUtils.nowZone().isAfter(showStart) && DateTimeUtils.nowZone().isBefore(showEnd);
 
         // DAO 값으로 설정한 DTO 생성해 반환
         return ResponseTalentShowGetDTO.builder()
