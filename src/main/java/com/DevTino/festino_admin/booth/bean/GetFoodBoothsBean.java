@@ -7,6 +7,7 @@ import com.DevTino.festino_admin.booth.domain.FoodBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -24,7 +25,7 @@ public class GetFoodBoothsBean {
     public List<ResponseFoodBoothsGetDTO> exec() {
         // 푸드트럭 전체 DAO 가져오기
         List<FoodBoothDAO> foodBoothDAOList = getFoodBoothDAOBean.exec();
-        if(foodBoothDAOList.isEmpty()) return null;
+        if(foodBoothDAOList.isEmpty()) return new ArrayList<>();
 
         // DAO 리스트를 DAO로 바꾸고 반환
         return createFoodBoothsDTOBean.exec(foodBoothDAOList);
