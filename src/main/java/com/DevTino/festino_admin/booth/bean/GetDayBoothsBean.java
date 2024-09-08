@@ -7,6 +7,7 @@ import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -25,7 +26,7 @@ public class GetDayBoothsBean {
 
         // 주간부스 전체 DAO 가져오기
         List<DayBoothDAO> dayBoothDAOList = getDayBoothDAOBean.exec();
-        if(dayBoothDAOList.isEmpty()) return null;
+        if(dayBoothDAOList.isEmpty()) return new ArrayList<>();
 
         // DAO 리스트를 DTO로 바꿔서 반환
         return createDayBoothsDTOBean.exec(dayBoothDAOList);
