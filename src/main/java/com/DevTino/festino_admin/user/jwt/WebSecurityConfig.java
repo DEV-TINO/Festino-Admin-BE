@@ -51,6 +51,7 @@ public class WebSecurityConfig {
                                 //.requestMatchers(HttpMethod.GET, "/admin/order/table/booth/**").permitAll()
                                 //.requestMatchers("/admin/reservation/**").permitAll()
                                 //.requestMatchers("/admin/reservation").permitAll()
+                                .requestMatchers("/").permitAll()
                                 .requestMatchers("/admin/user/login").permitAll()
                                 .requestMatchers("/admin/user/role").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/admin/user/logout").permitAll()
