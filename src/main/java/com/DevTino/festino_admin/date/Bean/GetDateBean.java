@@ -14,13 +14,13 @@ public class GetDateBean {
     public Integer exec(){
 
         // 시작 시간
-        LocalDateTime start11 = LocalDateTime.of(LocalDate.of(2024, 9, 11), LocalTime.of(14, 0, 0));
-        LocalDateTime start12 = LocalDateTime.of(LocalDate.of(2024, 9, 12), LocalTime.of(14, 0, 0));
-        LocalDateTime start13 = LocalDateTime.of(LocalDate.of(2024, 9, 13), LocalTime.of(14, 0, 0));
+        LocalDateTime start11 = LocalDateTime.of(LocalDate.of(2024, 9, 11), LocalTime.of(15, 0, 0));
+        LocalDateTime start12 = LocalDateTime.of(LocalDate.of(2024, 9, 12), LocalTime.of(15, 0, 0));
+        LocalDateTime start13 = LocalDateTime.of(LocalDate.of(2024, 9, 13), LocalTime.of(15, 0, 0));
 
         // 종료 시간
-        LocalDateTime end11 = start11.plusHours(18);
-        LocalDateTime end12 = start12.plusHours(18);
+        LocalDateTime end11 = start11.plusHours(24);
+        LocalDateTime end12 = start12.plusHours(24);
 
         // 서버 시간 고려 9시간 더해줌
         LocalDateTime now = DateTimeUtils.nowZone();
