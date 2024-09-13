@@ -191,6 +191,7 @@ public class OrderDTO {
                 .isCoupon(designOrderDAO.getIsCoupon())
                 .isService(designOrderDAO.getIsService())
                 .createAt(designOrderDAO.getCreateAt())
+                .finishAt(designOrderDAO.getFinishAt())
                 .menuInfo(designOrderDAO.getMenuInfo())
                 .build();
     }
