@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.image.bean.small;
 
-
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Component
@@ -40,7 +39,9 @@ public class SaveS3ImageDAOBean {
         }
 
         // S3에 저장될 파일 이름
-        String s3FileName = "festino/" + UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
+        String randomNumber = String.format("%03d", new Random().nextInt(1000));
+        String s3FileName = "festino_v2/" + randomNumber + "-" + multipartFile.getOriginalFilename();
+
 
         // S3에 저장될 파일 메타데이터
         ObjectMetadata objMeta = new ObjectMetadata();
@@ -50,7 +51,7 @@ public class SaveS3ImageDAOBean {
         // S3에 파일 저장
         amazonS3Client.putObject(bucket, s3FileName, multipartFile.getInputStream(), objMeta);
 
-        // S3에 저장된 파일 URL 반환
+        // 저장된 S3 URL 반환
         return amazonS3Client.getUrl(bucket, s3FileName).toString();
     }
 }
