@@ -1,7 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.order.bean.small.CreateOrderWaitDepositGetDTOsBean;
-import com.DevTino.festino_admin.order.bean.small.GetOrderBoothNameDAOBean;
+import com.DevTino.festino_admin.order.others.BoothNameResolver;
 import com.DevTino.festino_admin.order.bean.small.GetOrderWaitDepositDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderWaitDepositGetDTO;
@@ -16,23 +16,22 @@ public class GetOrderWaitDepositBean {
 
     GetOrderWaitDepositDAOBean getOrderWaitDepositDAOBean;
     CreateOrderWaitDepositGetDTOsBean createOrderWaitDepositGetDTOsBean;
-    GetOrderBoothNameDAOBean getOrderBoothNameDAOBean;
+    BoothNameResolver boothNameResolver;
 
     @Autowired
-    public GetOrderWaitDepositBean(GetOrderWaitDepositDAOBean getOrderWaitDepositDAOBean, CreateOrderWaitDepositGetDTOsBean createOrderWaitDepositGetDTOsBean, GetOrderBoothNameDAOBean getOrderBoothNameDAOBean) {
+    public GetOrderWaitDepositBean(GetOrderWaitDepositDAOBean getOrderWaitDepositDAOBean, CreateOrderWaitDepositGetDTOsBean createOrderWaitDepositGetDTOsBean, BoothNameResolver boothNameResolver) {
         this.getOrderWaitDepositDAOBean = getOrderWaitDepositDAOBean;
         this.createOrderWaitDepositGetDTOsBean = createOrderWaitDepositGetDTOsBean;
-        this.getOrderBoothNameDAOBean = getOrderBoothNameDAOBean;
+        this.boothNameResolver = boothNameResolver;
     }
+
+
 
     // 입금대기 주문 조회
     public List<ResponseOrderWaitDepositGetDTO> exec(UUID boothId, Integer date){
-        // 주문한 학과
-        String adminName = getOrderBoothNameDAOBean.exec(boothId);
-        if(adminName.isEmpty()) return null;
 
         // 날짜의 입금 대기 중인 Order 오래된순 전체 조회 -> DAO 리스트
-        List<OrderDTO> dtoList = getOrderWaitDepositDAOBean.exec(adminName, date);
+        List<OrderDTO> dtoList = getOrderWaitDepositDAOBean.exec(boothId, date);
         if (dtoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴

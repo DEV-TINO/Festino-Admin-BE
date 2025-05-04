@@ -2,122 +2,42 @@ package com.DevTino.festino_admin.order.bean.small;
 
 import com.DevTino.festino_admin.order.domain.*;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
-import com.DevTino.festino_admin.order.repository.*;
+import com.DevTino.festino_admin.order.others.BoothNameResolver;
+import com.DevTino.festino_admin.order.repository.CookRepository;
+import com.DevTino.festino_admin.order.repository.jpa.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Component
 public class DeleteCooksDAOBean {
 
-    ComputerCookRepositoryJPA computerCookRepositoryJPA;
-    ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA;
-    EnergyCookRepositoryJPA energyCookRepositoryJPA;
-    GameCookRepositoryJPA gameCookRepositoryJPA;
-    MachineCookRepositoryJPA machineCookRepositoryJPA;
-    NanoCookRepositoryJPA nanoCookRepositoryJPA;
-    NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA;
-    DesignCookRepositoryJPA designCookRepositoryJPA;
+    private final Map<String, CookRepository> cookRepositoryMap;
+    BoothNameResolver boothNameResolver;
 
     @Autowired
-    public DeleteCooksDAOBean(ComputerCookRepositoryJPA computerCookRepositoryJPA, ElectronicsCookRepositoryJPA electronicsCookRepositoryJPA, EnergyCookRepositoryJPA energyCookRepositoryJPA, GameCookRepositoryJPA gameCookRepositoryJPA, MachineCookRepositoryJPA machineCookRepositoryJPA, NanoCookRepositoryJPA nanoCookRepositoryJPA, NewMaterialCookRepositoryJPA newMaterialCookRepositoryJPA, DesignCookRepositoryJPA designCookRepositoryJPA) {
-        this.computerCookRepositoryJPA = computerCookRepositoryJPA;
-        this.electronicsCookRepositoryJPA = electronicsCookRepositoryJPA;
-        this.energyCookRepositoryJPA = energyCookRepositoryJPA;
-        this.gameCookRepositoryJPA = gameCookRepositoryJPA;
-        this.machineCookRepositoryJPA = machineCookRepositoryJPA;
-        this.nanoCookRepositoryJPA = nanoCookRepositoryJPA;
-        this.newMaterialCookRepositoryJPA = newMaterialCookRepositoryJPA;
-        this.designCookRepositoryJPA = designCookRepositoryJPA;
+    public DeleteCooksDAOBean(Map<String, CookRepository> cookRepositoryMap, BoothNameResolver boothNameResolver){
+        this.cookRepositoryMap = cookRepositoryMap;
+        this.boothNameResolver = boothNameResolver;
     }
 
-    // CookDAO 리스트를 삭제
-    public void exec(String adminName, List<CookDTO> cookDTOList){
 
-        switch(adminName) {
 
-            // 컴퓨터공학과 Cook 리스트 삭제
-            case "computer":
-                // Cook 리스트 생성
-                List<ComputerCookDAO> computerCookDAOList = new ArrayList<>();
+    // CookDAO 리스트 삭제
+    public void exec(UUID boothId, List<CookDTO> cookDTOList){
 
-                for (CookDTO cookDTO : cookDTOList) {
-                    computerCookDAOList.add(ComputerCookDAO.fromCookDTO(cookDTO));
-                }
-                computerCookRepositoryJPA.deleteAll(computerCookDAOList);
-                break;
+        // boothId로 부스 이름 찾아서
+        String boothName = boothNameResolver.execCook(boothId);
 
-            // 전자공학부 Cook 리스트 삭제
-            case "electronics":
-                List<ElectronicsCookDAO> electronicsCookDAOList = new ArrayList<>();
+        // Map에서 해당 부스의 Repository 꺼내기
+        CookRepository cookRepository = cookRepositoryMap.get(boothName);
 
-                for (CookDTO cookDTO : cookDTOList) {
-                    electronicsCookDAOList.add(ElectronicsCookDAO.fromCookDTO(cookDTO));
-                }
-                electronicsCookRepositoryJPA.deleteAll(electronicsCookDAOList);
-                break;
+        // 조리 리스트 삭제
+        cookRepository.deleteAll(cookDTOList);
 
-            // 에너지전기공학과 Cook 리스트 삭제
-            case "energy":
-                List<EnergyCookDAO> energyCookDAOList = new ArrayList<>();
-
-                for (CookDTO cookDTO : cookDTOList) {
-                    energyCookDAOList.add(EnergyCookDAO.fromCookDTO(cookDTO));
-                }
-                energyCookRepositoryJPA.deleteAll(energyCookDAOList);
-                break;
-
-            // 게임공학과 Cook 리스트 삭제
-            case "game":
-                List<GameCookDAO> gameCookDAOList = new ArrayList<>();
-
-                for (CookDTO cookDTO : cookDTOList) {
-                    gameCookDAOList.add(GameCookDAO.fromCookDTO(cookDTO));
-                }
-                gameCookRepositoryJPA.deleteAll(gameCookDAOList);
-                break;
-
-            // 기계공학과 Cook 리스트 삭제
-            case "machine":
-                List<MachineCookDAO> machineCookDAOList = new ArrayList<>();
-
-                for (CookDTO cookDTO : cookDTOList) {
-                    machineCookDAOList.add(MachineCookDAO.fromCookDTO(cookDTO));
-                }
-                machineCookRepositoryJPA.deleteAll(machineCookDAOList);
-                break;
-
-            // 나노반도체공학과 Cook 리스트 삭제
-            case "nano":
-                List<NanoCookDAO> nanoCookDAOList = new ArrayList<>();
-
-                for (CookDTO cookDTO : cookDTOList) {
-                    nanoCookDAOList.add(NanoCookDAO.fromCookDTO(cookDTO));
-                }
-                nanoCookRepositoryJPA.deleteAll(nanoCookDAOList);
-                break;
-
-            // 신소재공학과 Cook 리스트 삭제
-            case "newMaterial":
-                List<NewMaterialCookDAO> newMaterialCookDAOList = new ArrayList<>();
-
-                for (CookDTO cookDTO : cookDTOList) {
-                    newMaterialCookDAOList.add(NewMaterialCookDAO.fromCookDTO(cookDTO));
-                }
-                newMaterialCookRepositoryJPA.deleteAll(newMaterialCookDAOList);
-                break;
-
-            // 디자인공학부 Cook 리스트 삭제
-            case "design":
-                List<DesignCookDAO> designCookDAOList = new ArrayList<>();
-
-                for (CookDTO cookDTO : cookDTOList) {
-                    designCookDAOList.add(DesignCookDAO.fromCookDTO(cookDTO));
-                }
-                designCookRepositoryJPA.deleteAll(designCookDAOList);
-                break;
-        }
     }
 }

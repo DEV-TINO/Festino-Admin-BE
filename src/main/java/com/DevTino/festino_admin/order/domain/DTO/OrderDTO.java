@@ -195,4 +195,25 @@ public class OrderDTO {
                 .menuInfo(designOrderDAO.getMenuInfo())
                 .build();
     }
+
+    public static OrderDTO fromAbstractOrderDAO(AbstractOrderDAO abstractOrderDAO) {
+        return OrderDTO.builder()
+                .orderNum(abstractOrderDAO.getOrderNum())
+                .orderId(abstractOrderDAO.getOrderId())
+                .boothId(abstractOrderDAO.getBoothId())
+                .orderType(abstractOrderDAO.getOrderType())
+                .tableNum(abstractOrderDAO.getTableNum())
+                .date(abstractOrderDAO.getDate())
+                .userName(abstractOrderDAO.getUserName())
+                .phoneNum(abstractOrderDAO.getPhoneNum())
+                .note(abstractOrderDAO.getNote())
+                .totalPrice(abstractOrderDAO.getTotalPrice())
+                .isDeposit(abstractOrderDAO.getIsDeposit())
+                .isCoupon(abstractOrderDAO.getIsCoupon())
+                .isService(abstractOrderDAO.getIsService())
+                .createAt(abstractOrderDAO.getCreateAt())
+                .finishAt(abstractOrderDAO.getFinishAt())
+                .menuInfo(abstractOrderDAO.getMenuInfo())
+                .build();
+    }
 }

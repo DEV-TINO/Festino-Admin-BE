@@ -27,6 +27,8 @@ public class SaveTableNumBean {
         this.saveTableNumDAOBean = saveTableNumDAOBean;
     }
 
+
+
     public UUID exec(RequestTableNumSaveDTO requestTableNumSaveDTO) {
 
         UUID boothId = requestTableNumSaveDTO.getBoothId();

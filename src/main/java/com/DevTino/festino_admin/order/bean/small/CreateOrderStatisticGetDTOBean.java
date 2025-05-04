@@ -6,10 +6,7 @@ import com.DevTino.festino_admin.order.domain.DTO.ResponseOrderStatisticGetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class CreateOrderStatisticGetDTOBean {
@@ -24,7 +21,7 @@ public class CreateOrderStatisticGetDTOBean {
 
 
     // DTO 생성해 반환
-    public ResponseOrderStatisticGetDTO exec(String adminName, Integer date, List<MenuDAO> menuDAOList, String type){
+    public ResponseOrderStatisticGetDTO exec(UUID boothId, Integer date, List<MenuDAO> menuDAOList, String type){
 
         // 총매출 totalSale, 메뉴별 매출 정보를 저장할 리스트 menuSaleList
         Integer totalSale = 0;
@@ -39,21 +36,21 @@ public class CreateOrderStatisticGetDTOBean {
             switch (type) {
                 case "all" -> {
                     // 타입이 all일 때 메뉴 아이디와 날짜(date)로 완료된, 일반과 서비스가 포함된 Cook 조회
-                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true);
+                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(boothId, menuDAO.getMenuId(), date, true);
 
                     // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
                     for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
                 }
                 case "service" -> {
                     // 타입이 service일 때 메뉴 아이디와 날짜(date)로 완료된, 서비스인 Cook 조회
-                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true, true);
+                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(boothId, menuDAO.getMenuId(), date, true, true);
 
                     // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
                     for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }
                 }
                 case "normal" -> {
                     // 타입이 normal일 때 메뉴 아이디와 날짜(date)로 완료된, 일반 Cook 조회
-                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), date, true, false);
+                    List<CookDTO> cookDTOList = getCooksDAOBean.exec(boothId, menuDAO.getMenuId(), date, true, false);
 
                     // 조회한 Cook 리스트로 메뉴의 총판매수량 계산
                     for (CookDTO cookDTO : cookDTOList){ menuCount += cookDTO.getTotalCount(); }

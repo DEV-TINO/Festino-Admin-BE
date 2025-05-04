@@ -1,43 +1,16 @@
 package com.DevTino.festino_admin.order.domain;
 
-import com.DevTino.festino_admin.order.domain.DTO.MenuInfoDTO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
-import com.DevTino.festino_admin.order.others.StringListConverter;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Getter
 @Setter
-@Builder
-public class DesignOrderDAO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer orderNum;
-
-    UUID orderId;
-    UUID boothId;
-    OrderType orderType;
-    Integer tableNum;
-    Integer date;
-    String userName;
-    String phoneNum;
-    String note;
-    Integer totalPrice;
-    Boolean isDeposit;
-    Boolean isCoupon;
-    Boolean isService;
-    LocalDateTime createAt;
-    LocalDateTime finishAt;
-
-    @Convert(converter = StringListConverter.class)
-    List<MenuInfoDTO> menuInfo;
+@SuperBuilder
+public class DesignOrderDAO extends AbstractOrderDAO{
 
     public static DesignOrderDAO fromOrderDTO(OrderDTO orderDTO) {
         return DesignOrderDAO.builder()

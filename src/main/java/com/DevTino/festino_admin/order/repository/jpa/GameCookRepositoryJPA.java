@@ -1,4 +1,4 @@
-package com.DevTino.festino_admin.order.repository;
+package com.DevTino.festino_admin.order.repository.jpa;
 
 import com.DevTino.festino_admin.order.domain.GameCookDAO;
 import org.springframework.data.jpa.repository.JpaRepository;

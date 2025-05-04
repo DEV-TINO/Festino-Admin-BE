@@ -1,4 +1,4 @@
-package com.DevTino.festino_admin.order.repository;
+package com.DevTino.festino_admin.order.repository.jpa;
 
 import com.DevTino.festino_admin.order.domain.EnergyOrderDAO;
 import com.DevTino.festino_admin.order.domain.OrderType;
