@@ -27,7 +27,7 @@ public class NightBoothDAO {
     String adminCategory;
     String boothIntro;
     String tossPay;
-    String kakoPay;
+    String kakaoPay;
 
     @Convert(converter = StringConverter.class)
     List<String> boothImage;

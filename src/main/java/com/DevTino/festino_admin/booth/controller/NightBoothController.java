@@ -123,6 +123,25 @@ public class NightBoothController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
+    @PutMapping("/toss")
+    public ResponseEntity<Map<String, Object>> updateNightBoothTossPay(@RequestBody RequestNightBoothTossPayUpdateDTO requestNightBoothTossPayUpdateDTO) {
+
+        // 야간부스 토스페이 가능 여부 수정 service
+        ResponseNightBoothTossPayUpdateDTO responseNightBoothTossPayUpdateDTO = nightBoothService.updateNightBoothTossPay(requestNightBoothTossPayUpdateDTO);
+
+        // 야간부스 토스페이 가능 여부 수정 성공 여부
+        boolean success = responseNightBoothTossPayUpdateDTO != null;
+
+        // Map을 통해 메시지와 info 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "야간부스 토스페이 가능 여부 수정 성공" : "야간부스 토스페이 가능 여부 수정 시 DAO 저장 실패");
+        requestMap.put("reservationInfo", responseNightBoothTossPayUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
     // 야간부스 조회
     @GetMapping("/{boothId}")
     public ResponseEntity<Map<String, Object>> getNightBooth(@PathVariable("boothId") UUID boothId) {

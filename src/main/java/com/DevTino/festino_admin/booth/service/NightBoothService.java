@@ -15,16 +15,18 @@ public class NightBoothService {
     UpdateNightBoothOpenBean updateNightBoothOpenBean;
     UpdateNightBoothOrderBean updateNightBoothOrderBean;
     UpdateNightBoothReservationBean updateNightBoothReservationBean;
+    UpdateNightBoothTossPayBean updateNightBoothTossPayBean;
     GetNightBoothBean getNightBoothBean;
     GetNightBoothsBean getNightBoothsBean;
 
     @Autowired
-    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, UpdateNightBoothOrderBean updateNightBoothOrderBean, UpdateNightBoothReservationBean updateNightBoothReservationBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
+    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, UpdateNightBoothOrderBean updateNightBoothOrderBean, UpdateNightBoothReservationBean updateNightBoothReservationBean, UpdateNightBoothTossPayBean updateNightBoothTossPayBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
         this.saveNightBoothBean = saveNightBoothBean;
         this.updateNightBoothBean = updateNightBoothBean;
         this.updateNightBoothOpenBean = updateNightBoothOpenBean;
         this.updateNightBoothOrderBean = updateNightBoothOrderBean;
         this.updateNightBoothReservationBean = updateNightBoothReservationBean;
+        this.updateNightBoothTossPayBean = updateNightBoothTossPayBean;
         this.getNightBoothBean = getNightBoothBean;
         this.getNightBoothsBean = getNightBoothsBean;
     }
@@ -52,6 +54,11 @@ public class NightBoothService {
     // 야간부스 예약가능 여부 수정
     public ResponseNightBoothReservationUpdateDTO updateNightBoothReservation(RequestNightBoothReservationUpdateDTO requestNightBoothReservationUpdateDTO) {
         return updateNightBoothReservationBean.exec(requestNightBoothReservationUpdateDTO);
+    }
+
+    // 야간부스 토스페이 가능 여부 수정
+    public ResponseNightBoothTossPayUpdateDTO updateNightBoothTossPay(RequestNightBoothTossPayUpdateDTO requestNightBoothTossPayUpdateDTO) {
+        return updateNightBoothTossPayBean.exec(requestNightBoothTossPayUpdateDTO);
     }
 
     // 야간부스 조회
