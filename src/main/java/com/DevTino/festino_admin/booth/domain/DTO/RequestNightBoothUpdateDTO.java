@@ -16,8 +16,12 @@ public class RequestNightBoothUpdateDTO {
     List<String> boothImage;
     String openTime;
     String closeTime;
+    String tossPay;
+    String kakaoPay;
     Boolean isOrder;
     Boolean isOpen;
     Boolean isReservation;
+    Boolean isTossPay;
+    Boolean isKakaoPay;
     Map<String, String> accountInfo;
 }

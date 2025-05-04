@@ -49,6 +49,10 @@ public class UpdateNightBoothBean {
         nightBoothDAO.setIsOrder(requestNightBoothUpdateDTO.getIsOrder());
         nightBoothDAO.setIsReservation(requestNightBoothUpdateDTO.getIsReservation());
         nightBoothDAO.setAccountInfo(requestNightBoothUpdateDTO.getAccountInfo());
+        nightBoothDAO.setIsTossPay(requestNightBoothUpdateDTO.getIsTossPay());
+        nightBoothDAO.setIsKakaoPay(requestNightBoothUpdateDTO.getIsKakaoPay());
+        nightBoothDAO.setTossPay(requestNightBoothUpdateDTO.getTossPay());
+        nightBoothDAO.setKakaoPay(requestNightBoothUpdateDTO.getKakaoPay());
 
         nightBoothDAO.setUpdateAt(DateTimeUtils.nowZone());
 
