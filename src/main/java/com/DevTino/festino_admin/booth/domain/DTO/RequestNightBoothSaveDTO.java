@@ -14,8 +14,12 @@ public class RequestNightBoothSaveDTO {
     List<String> boothImage;
     String openTime;
     String closeTime;
+    String kakaoPay;
+    String tossPay;
     Boolean isOpen;
     Boolean isOrder;
     Boolean isReservation;
+    Boolean isTossPay;
+    Boolean isKakaoPay;
     Map<String, String> accountInfo;
 }
