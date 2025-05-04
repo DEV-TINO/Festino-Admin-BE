@@ -17,12 +17,16 @@ public class ResponseNightBoothGetDTO {
     String openTime;
     String closeTime;
     String boothIntro;
+    String tossPay;
+    String kakaoPay;
     List<String> boothImage;
     Integer markerNum;
     String location;
     Boolean isOpen;
     Boolean isOrder;
     Boolean isReservation;
+    Boolean isTossPay;
+    Boolean isKakaoPay;
     Integer totalReservationNum;
     Map<String, String> accountInfo;
 }
