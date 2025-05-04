@@ -123,6 +123,7 @@ public class NightBoothController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
+    // 토스페이 가능 여부 수정
     @PutMapping("/toss")
     public ResponseEntity<Map<String, Object>> updateNightBoothTossPay(@RequestBody RequestNightBoothTossPayUpdateDTO requestNightBoothTossPayUpdateDTO) {
 
@@ -136,7 +137,27 @@ public class NightBoothController {
         Map<String, Object> requestMap = new HashMap<>();
         requestMap.put("success", success);
         requestMap.put("message", success ? "야간부스 토스페이 가능 여부 수정 성공" : "야간부스 토스페이 가능 여부 수정 시 DAO 저장 실패");
-        requestMap.put("reservationInfo", responseNightBoothTossPayUpdateDTO);
+        requestMap.put("tossPayInfo", responseNightBoothTossPayUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
+    // 카카오페이 가능 여부 수정
+    @PutMapping("/kakao")
+    public ResponseEntity<Map<String, Object>> updateNightBoothKakaoPay(@RequestBody RequestNightBoothKakaoPayUpdateDTO requestNightBoothKakaoPayUpdateDTO) {
+
+        // 야간부스 카카오페이 가능 여부 수정 service
+        ResponseNightBoothKakaoPayUpdateDTO responseNightBoothKakaoPayUpdateDTO = nightBoothService.updateNightBoothKakaoPay(requestNightBoothKakaoPayUpdateDTO);
+
+        // 야간부스 카카오페이 가능 여부 수정 성공 여부
+        boolean success = responseNightBoothKakaoPayUpdateDTO != null;
+
+        // Map을 통해 메시지와 info 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "야간부스 카카오페이 가능 여부 수정 성공" : "야간부스 카카오페이 가능 여부 수정 시 DAO 저장 실패");
+        requestMap.put("kakaoPayInfo", responseNightBoothKakaoPayUpdateDTO);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
