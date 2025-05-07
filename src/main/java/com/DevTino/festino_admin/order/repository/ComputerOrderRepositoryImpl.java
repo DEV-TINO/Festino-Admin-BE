@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.order.repository;
 
-import com.DevTino.festino_admin.order.domain.AbstractOrderDAO;
 import com.DevTino.festino_admin.order.domain.ComputerOrderDAO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.OrderType;
@@ -10,10 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component("computer")
-public class ComputerOrderRepositoryImpl implements OrderRepository{
+public class ComputerOrderRepositoryImpl implements OrderRepository<ComputerOrderDAO>{
 
     ComputerOrderRepositoryJPA computerOrderRepositoryJPA;
 
@@ -32,42 +30,30 @@ public class ComputerOrderRepositoryImpl implements OrderRepository{
     }
 
     // orderId로 주문 검색
-    public AbstractOrderDAO findByOrderId(UUID orderId){
+    public ComputerOrderDAO findByOrderId(UUID orderId){
 
         return computerOrderRepositoryJPA.findByOrderId(orderId);
 
     }
 
     // 날짜의 전체 주문 오래된순 검색
-    public List<AbstractOrderDAO> findByDateOrderByCreateAtAsc(Integer date){
-        
-        // List 요소들을 업캐스팅해 반환
-        return computerOrderRepositoryJPA.findByDateOrderByCreateAtAsc(date)
-                .stream()
-                .map(e -> (AbstractOrderDAO) e)
-                .collect(Collectors.toList());
+    public List<ComputerOrderDAO> findByDateOrderByCreateAtAsc(Integer date){
+
+        return computerOrderRepositoryJPA.findByDateOrderByCreateAtAsc(date);
 
     }
 
     // OrderType으로 주문 오래된순 검색
-    public List<AbstractOrderDAO> findByOrderTypeAndDateOrderByCreateAtAsc(OrderType orderType, Integer date){
+    public List<ComputerOrderDAO> findByOrderTypeAndDateOrderByCreateAtAsc(OrderType orderType, Integer date){
 
-        // List 요소들을 업캐스팅해 반환
-        return computerOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(orderType, date)
-                .stream()
-                .map(e -> (AbstractOrderDAO) e)
-                .collect(Collectors.toList());
+        return computerOrderRepositoryJPA.findByOrderTypeAndDateOrderByCreateAtAsc(orderType, date);
 
     }
 
     // isDeposit, OrderType, date로 주문 오래된순 검색
-    public List<AbstractOrderDAO> findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(Boolean isDeposit, OrderType orderType, Integer date){
+    public List<ComputerOrderDAO> findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(Boolean isDeposit, OrderType orderType, Integer date){
 
-        // List 요소들을 업캐스팅해 반환
-        return computerOrderRepositoryJPA.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(isDeposit, orderType, date)
-                .stream()
-                .map(e -> (AbstractOrderDAO) e)
-                .collect(Collectors.toList());
+        return computerOrderRepositoryJPA.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(isDeposit, orderType, date);
 
     }
 

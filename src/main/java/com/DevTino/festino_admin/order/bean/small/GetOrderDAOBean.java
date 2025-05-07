@@ -13,11 +13,11 @@ import java.util.UUID;
 @Component
 public class GetOrderDAOBean {
 
-    private final Map<String, OrderRepository> orderRepositoryMap;
+    private final Map<String, OrderRepository<?>> orderRepositoryMap;
     BoothNameResolver boothNameResolver;
 
     @Autowired
-    public GetOrderDAOBean(Map<String, OrderRepository> orderRepositoryMap, BoothNameResolver boothNameResolver){
+    public GetOrderDAOBean(Map<String, OrderRepository<?>> orderRepositoryMap, BoothNameResolver boothNameResolver){
         this.orderRepositoryMap = orderRepositoryMap;
         this.boothNameResolver = boothNameResolver;
     }
@@ -31,7 +31,7 @@ public class GetOrderDAOBean {
         String boothName = boothNameResolver.exec(boothId);
 
         // Map에서 해당 부스의 Repository 꺼내기
-        OrderRepository orderRepository = orderRepositoryMap.get(boothName);
+        OrderRepository<?> orderRepository = orderRepositoryMap.get(boothName);
         
         // OrderId로 해당 DAO 찾아서
         AbstractOrderDAO dao = orderRepository.findByOrderId(orderId);

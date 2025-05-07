@@ -4,25 +4,21 @@ import com.DevTino.festino_admin.order.domain.*;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.others.BoothNameResolver;
 import com.DevTino.festino_admin.order.repository.CookRepository;
-import com.DevTino.festino_admin.order.repository.OrderRepository;
-import com.DevTino.festino_admin.order.repository.jpa.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @Component
 public class GetCookDAOBean {
 
-    private final Map<String, CookRepository> cookRepositoryMap;
+    private final Map<String, CookRepository<?>> cookRepositoryMap;
     BoothNameResolver boothNameResolver;
 
     @Autowired
-    public GetCookDAOBean(Map<String, CookRepository> cookRepositoryMap, BoothNameResolver boothNameResolver){
+    public GetCookDAOBean(Map<String, CookRepository<?>> cookRepositoryMap, BoothNameResolver boothNameResolver){
         this.cookRepositoryMap = cookRepositoryMap;
         this.boothNameResolver = boothNameResolver;
     }

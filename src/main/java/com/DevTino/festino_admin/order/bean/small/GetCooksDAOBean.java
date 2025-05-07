@@ -15,11 +15,11 @@ import java.util.UUID;
 @Component
 public class GetCooksDAOBean {
 
-    private final Map<String, CookRepository> cookRepositoryMap;
+    private final Map<String, CookRepository<?>> cookRepositoryMap;
     BoothNameResolver boothNameResolver;
 
     @Autowired
-    public GetCooksDAOBean(Map<String, CookRepository> cookRepositoryMap, BoothNameResolver boothNameResolver){
+    public GetCooksDAOBean(Map<String, CookRepository<?>> cookRepositoryMap, BoothNameResolver boothNameResolver){
         this.cookRepositoryMap = cookRepositoryMap;
         this.boothNameResolver = boothNameResolver;
     }
@@ -33,10 +33,10 @@ public class GetCooksDAOBean {
         String boothName = boothNameResolver.execCook(boothId);
 
         // Map에서 해당 부스의 Repository 꺼내기
-        CookRepository cookRepository = cookRepositoryMap.get(boothName);
+        CookRepository<?> cookRepository = cookRepositoryMap.get(boothName);
 
         // orderId로 CookDAO 리스트 조회
-        List<AbstractCookDAO> cookDAOList = cookRepository.findAllByOrderId(orderId);
+        List<? extends AbstractCookDAO> cookDAOList = cookRepository.findAllByOrderId(orderId);
         if(cookDAOList.isEmpty()) return new ArrayList<>();
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환
@@ -54,10 +54,10 @@ public class GetCooksDAOBean {
         String boothName = boothNameResolver.execCook(boothId);
 
         // Map에서 해당 부스의 Repository 꺼내기
-        CookRepository cookRepository = cookRepositoryMap.get(boothName);
+        CookRepository<?> cookRepository = cookRepositoryMap.get(boothName);
 
         // orderId로 CookDAO 리스트 조회
-        List<AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(menuId, isFinish, date);
+        List<? extends AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(menuId, isFinish, date);
         if(cookDAOList.isEmpty()) return new ArrayList<>();
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환
@@ -76,10 +76,10 @@ public class GetCooksDAOBean {
         String boothName = boothNameResolver.execCook(boothId);
 
         // Map에서 해당 부스의 Repository 꺼내기
-        CookRepository cookRepository = cookRepositoryMap.get(boothName);
+        CookRepository<?> cookRepository = cookRepositoryMap.get(boothName);
 
         // orderId로 CookDAO 리스트 조회
-        List<AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
+        List<? extends AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
         if(cookDAOList.isEmpty()) return new ArrayList<>();
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환
@@ -96,10 +96,10 @@ public class GetCooksDAOBean {
         String boothName = boothNameResolver.execCook(boothId);
 
         // Map에서 해당 부스의 Repository 꺼내기
-        CookRepository cookRepository = cookRepositoryMap.get(boothName);
+        CookRepository<?> cookRepository = cookRepositoryMap.get(boothName);
 
         // orderId로 CookDAO 리스트 조회
-        List<AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
+        List<? extends AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
         if(cookDAOList.isEmpty()) return new ArrayList<>();
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환

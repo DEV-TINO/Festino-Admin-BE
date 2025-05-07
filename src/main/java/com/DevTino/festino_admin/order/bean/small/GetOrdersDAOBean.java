@@ -16,11 +16,11 @@ import java.util.UUID;
 @Component
 public class GetOrdersDAOBean {
 
-    private final Map<String, OrderRepository> orderRepositoryMap;
+    private final Map<String, OrderRepository<?>> orderRepositoryMap;
     BoothNameResolver boothNameResolver;
 
     @Autowired
-    public GetOrdersDAOBean(Map<String, OrderRepository> orderRepositoryMap, BoothNameResolver boothNameResolver){
+    public GetOrdersDAOBean(Map<String, OrderRepository<?>> orderRepositoryMap, BoothNameResolver boothNameResolver){
         this.orderRepositoryMap = orderRepositoryMap;
         this.boothNameResolver = boothNameResolver;
     }
@@ -34,10 +34,10 @@ public class GetOrdersDAOBean {
         String boothName = boothNameResolver.exec(boothId);
 
         // Map에서 해당 부스의 Repository 꺼내기
-        OrderRepository orderRepository = orderRepositoryMap.get(boothName);
+        OrderRepository<?> orderRepository = orderRepositoryMap.get(boothName);
 
         // OrderDAO 리스트 조회
-        List<AbstractOrderDAO> orderDAOList = orderRepository.findByDateOrderByCreateAtAsc(date);
+        List<? extends AbstractOrderDAO> orderDAOList = orderRepository.findByDateOrderByCreateAtAsc(date);
         if (orderDAOList.isEmpty()) return new ArrayList<>();
 
         // OrderDAO 리스트를 OrderDTO 리스트로 변환해 반환

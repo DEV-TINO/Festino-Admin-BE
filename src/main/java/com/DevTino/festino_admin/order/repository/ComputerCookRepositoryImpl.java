@@ -1,6 +1,5 @@
 package com.DevTino.festino_admin.order.repository;
 
-import com.DevTino.festino_admin.order.domain.AbstractCookDAO;
 import com.DevTino.festino_admin.order.domain.ComputerCookDAO;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.repository.jpa.ComputerCookRepositoryJPA;
@@ -10,10 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component("computerCook")
-public class ComputerCookRepositoryImpl implements CookRepository{
+public class ComputerCookRepositoryImpl implements CookRepository<ComputerCookDAO>{
 
     ComputerCookRepositoryJPA computerCookRepositoryJPA;
 
@@ -41,53 +39,37 @@ public class ComputerCookRepositoryImpl implements CookRepository{
     }
 
     // cookId로 Cook 검색
-    public AbstractCookDAO findById(UUID cookId){
+    public ComputerCookDAO findById(UUID cookId){
 
         return computerCookRepositoryJPA.findById(cookId).orElse(null);
 
     }
 
     // orderId에 해당하는 Cook 검색
-    public List<AbstractCookDAO> findAllByOrderId(UUID orderId){
+    public List<ComputerCookDAO> findAllByOrderId(UUID orderId){
 
-        // List 요소들을 업캐스팅해 반환
-        return computerCookRepositoryJPA.findAllByOrderId(orderId)
-                .stream()
-                .map(e -> (AbstractCookDAO) e)
-                .collect(Collectors.toList());
+        return computerCookRepositoryJPA.findAllByOrderId(orderId);
 
     }
 
     // menuId, isFinish, date에 해당하는 Cook 오래된순 검색
-    public List<AbstractCookDAO> findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(UUID menuId, Boolean isFinish, Integer date){
+    public List<ComputerCookDAO> findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(UUID menuId, Boolean isFinish, Integer date){
 
-        // List 요소들을 업캐스팅해 반환
-        return computerCookRepositoryJPA.findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(menuId, isFinish, date)
-                .stream()
-                .map(e -> (AbstractCookDAO) e)
-                .collect(Collectors.toList());
+        return computerCookRepositoryJPA.findByMenuIdAndIsFinishAndDateOrderByCreateAtAsc(menuId, isFinish, date);
 
     }
 
     // menuId, date, isFinish에 해당하는 Cook 검색
-    public List<AbstractCookDAO> findByMenuIdAndDateAndIsFinishAndIsService(UUID menuId, Integer date, Boolean isFinish, Boolean isService){
+    public List<ComputerCookDAO> findByMenuIdAndDateAndIsFinishAndIsService(UUID menuId, Integer date, Boolean isFinish, Boolean isService){
 
-        // List 요소들을 업캐스팅해 반환
-        return computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService)
-                .stream()
-                .map(e -> (AbstractCookDAO) e)
-                .collect(Collectors.toList());
+        return computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
 
     }
 
     // isService 신경 쓰지 않고 menuId, date, isFinish에 해당하는 cook 검색
-    public List<AbstractCookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish){
+    public List<ComputerCookDAO> findByMenuIdAndDateAndIsFinish(UUID menuId, Integer date, Boolean isFinish){
 
-        // List 요소들을 업캐스팅해 반환
-        return computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish)
-                .stream()
-                .map(e -> (AbstractCookDAO) e)
-                .collect(Collectors.toList());
+        return computerCookRepositoryJPA.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
 
     }
 
