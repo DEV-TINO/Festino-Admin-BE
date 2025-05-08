@@ -19,13 +19,13 @@ public class CreateOrderCookingGetDTOBean {
     }
 
     // DTO 생성해 반환
-    public ResponseOrderCookingGetDTO exec(String adminName, MenuDAO menuDAO, Integer date){
+    public ResponseOrderCookingGetDTO exec(UUID boothId, MenuDAO menuDAO, Integer date){
 
         // 각 메뉴에 해당하는 조리(Cook) 정보를 담을 List 생성
         List<Map<String, Object>> cooks = new ArrayList<>();
 
         // menuId로 해당 학과에 맞는 날짜의 조리중인 Cook 오래된순 전체 조회
-        List<CookDTO> cookDTOList = getCooksDAOBean.exec(adminName, menuDAO.getMenuId(), false, date);
+        List<CookDTO> cookDTOList = getCooksDAOBean.exec(boothId, menuDAO.getMenuId(), false, date);
         
         // 메뉴가 삭제된 상태이고, 메뉴로 조회한 CookList도 비어 있다면 null 리턴
         if (menuDAO.getIsDeleted() && cookDTOList.isEmpty()) return null;

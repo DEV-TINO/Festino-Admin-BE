@@ -1,6 +1,6 @@
 package com.DevTino.festino_admin.order.bean.small;
 
-import com.DevTino.festino_admin.order.repository.TableNumRepositoryJPA;
+import com.DevTino.festino_admin.order.repository.jpa.TableNumRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

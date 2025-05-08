@@ -2,77 +2,41 @@ package com.DevTino.festino_admin.order.bean.small;
 
 import com.DevTino.festino_admin.order.domain.*;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
-import com.DevTino.festino_admin.order.repository.*;
+import com.DevTino.festino_admin.order.others.BoothNameResolver;
+import com.DevTino.festino_admin.order.repository.OrderRepository;
+import com.DevTino.festino_admin.order.repository.jpa.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
+import java.util.UUID;
 
 @Component
 public class SaveOrderDAOBean {
 
-    ComputerOrderRepositoryJPA computerOrderRepositoryJPA;
-    ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA;
-    EnergyOrderRepositoryJPA energyOrderRepositoryJPA;
-    GameOrderRepositoryJPA gameOrderRepositoryJPA;
-    MachineOrderRepositoryJPA machineOrderRepositoryJPA;
-    NanoOrderRepositoryJPA nanoOrderRepositoryJPA;
-    NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA;
-    DesignOrderRepositoryJPA designOrderRepositoryJPA;
+    private final Map<String, OrderRepository> orderRepositoryMap;
+    BoothNameResolver boothNameResolver;
 
     @Autowired
-    public SaveOrderDAOBean(ComputerOrderRepositoryJPA computerOrderRepositoryJPA, ElectronicsOrderRepositoryJPA electronicsOrderRepositoryJPA, EnergyOrderRepositoryJPA energyOrderRepositoryJPA, GameOrderRepositoryJPA gameOrderRepositoryJPA, MachineOrderRepositoryJPA machineOrderRepositoryJPA, NanoOrderRepositoryJPA nanoOrderRepositoryJPA, NewMaterialOrderRepositoryJPA newMaterialOrderRepositoryJPA, DesignOrderRepositoryJPA designOrderRepositoryJPA) {
-        this.computerOrderRepositoryJPA = computerOrderRepositoryJPA;
-        this.electronicsOrderRepositoryJPA = electronicsOrderRepositoryJPA;
-        this.energyOrderRepositoryJPA = energyOrderRepositoryJPA;
-        this.gameOrderRepositoryJPA = gameOrderRepositoryJPA;
-        this.machineOrderRepositoryJPA = machineOrderRepositoryJPA;
-        this.nanoOrderRepositoryJPA = nanoOrderRepositoryJPA;
-        this.newMaterialOrderRepositoryJPA = newMaterialOrderRepositoryJPA;
-        this.designOrderRepositoryJPA = designOrderRepositoryJPA;
+    public SaveOrderDAOBean(Map<String, OrderRepository> orderRepositoryMap, BoothNameResolver boothNameResolver){
+        this.orderRepositoryMap = orderRepositoryMap;
+        this.boothNameResolver = boothNameResolver;
     }
 
+
+
     // 주문 DAO를 DB에 저장
-    public void exec(String adminName, OrderDTO orderDTO) {
-        switch (adminName) {
-            // 컴퓨터 공학과에 저장
-            case "computer" :
-                computerOrderRepositoryJPA.save(ComputerOrderDAO.fromOrderDTO(orderDTO));
-                break;
+    public void exec(UUID boothId, OrderDTO orderDTO) {
 
-            // 전자공학부에 저장
-            case "electronics" :
-                electronicsOrderRepositoryJPA.save(ElectronicsOrderDAO.fromOrderDTO(orderDTO));
-                break;
+        // boothId로 부스 이름 찾아서
+        String boothName = boothNameResolver.exec(boothId);
 
-            // 에너지전기공학과에 저장
-            case "energy" :
-                energyOrderRepositoryJPA.save(EnergyOrderDAO.fromOrderDTO(orderDTO));
-                break;
+        // Map에서 해당 부스의 Repository 꺼내기
+        OrderRepository orderRepository = orderRepositoryMap.get(boothName);
+        
+        // 저장
+        orderRepository.save(orderDTO);
 
-            // 게임공학과에 저장
-            case "game" :
-                gameOrderRepositoryJPA.save(GameOrderDAO.fromOrderDTO(orderDTO));
-                break;
-
-            // 기계공학과에 저장
-            case "machine" :
-                machineOrderRepositoryJPA.save(MachineOrderDAO.fromOrderDTO(orderDTO));
-                break;
-
-            // 나노반도체공학과에 저장
-            case "nano" :
-                nanoOrderRepositoryJPA.save(NanoOrderDAO.fromOrderDTO(orderDTO));
-                break;
-
-            // 신소재공학과에 저장
-            case "newMaterial" :
-                newMaterialOrderRepositoryJPA.save(NewMaterialOrderDAO.fromOrderDTO(orderDTO));
-                break;
-
-            // 디자인공학부에 저장
-            case "design" :
-                designOrderRepositoryJPA.save(DesignOrderDAO.fromOrderDTO(orderDTO));
-                break;
-        }
     }
 
 }

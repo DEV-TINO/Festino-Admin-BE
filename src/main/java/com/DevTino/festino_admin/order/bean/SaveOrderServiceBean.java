@@ -5,10 +5,10 @@ import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import com.DevTino.festino_admin.order.bean.small.*;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.RequestOrderServiceSaveDTO;
+import com.DevTino.festino_admin.order.others.BoothNameResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -16,22 +16,23 @@ public class SaveOrderServiceBean {
 
     GetNightBoothDAOBean getNightBoothDAOBean;
     CheckOrderDAODateFieldBean checkOrderDAODateFieldBean;
-    GetOrderBoothNameDAOBean getOrderBoothNameDAOBean;
+    BoothNameResolver boothNameResolver;
     UpdateOrderServiceSaveDTOBean updateOrderServiceSaveDTOBean;
     CreateOrderDAOBean createOrderDAOBean;
     SaveOrderDAOBean saveOrderDAOBean;
     CreateCookDAOsBean createCookDAOsBean;
 
     @Autowired
-    public SaveOrderServiceBean(GetNightBoothDAOBean getNightBoothDAOBean, CheckOrderDAODateFieldBean checkOrderDAODateFieldBean, GetOrderBoothNameDAOBean getOrderBoothNameDAOBean, UpdateOrderServiceSaveDTOBean updateOrderServiceSaveDTOBean, CreateOrderDAOBean createOrderDAOBean, SaveOrderDAOBean saveOrderDAOBean, UpdateOrderDepositBean updateOrderDepositBean, CreateCookDAOsBean createCookDAOsBean){
+    public SaveOrderServiceBean(GetNightBoothDAOBean getNightBoothDAOBean, CheckOrderDAODateFieldBean checkOrderDAODateFieldBean, BoothNameResolver boothNameResolver, UpdateOrderServiceSaveDTOBean updateOrderServiceSaveDTOBean, CreateOrderDAOBean createOrderDAOBean, SaveOrderDAOBean saveOrderDAOBean, UpdateOrderDepositBean updateOrderDepositBean, CreateCookDAOsBean createCookDAOsBean){
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.checkOrderDAODateFieldBean = checkOrderDAODateFieldBean;
-        this.getOrderBoothNameDAOBean = getOrderBoothNameDAOBean;
+        this.boothNameResolver = boothNameResolver;
         this.updateOrderServiceSaveDTOBean = updateOrderServiceSaveDTOBean;
         this.createOrderDAOBean = createOrderDAOBean;
         this.saveOrderDAOBean = saveOrderDAOBean;
         this.createCookDAOsBean = createCookDAOsBean;
     }
+
 
 
     // 서비스 주문 등록
@@ -48,7 +49,7 @@ public class SaveOrderServiceBean {
         Integer date = checkOrderDAODateFieldBean.exec(nightBoothDAO);
 
         // 주문한 학과
-        String adminName = getOrderBoothNameDAOBean.exec(boothId);
+        String adminName = boothNameResolver.exec(boothId);
 
         // 주문한 학과가 없다면 주문 등록 실패
         if(adminName.isEmpty()) return null;
@@ -60,10 +61,10 @@ public class SaveOrderServiceBean {
         OrderDTO orderDTO = createOrderDAOBean.exec(date, boothId, requestOrderServiceSaveDTO);
 
         // 주문 정보 저장
-        saveOrderDAOBean.exec(adminName, orderDTO);
+        saveOrderDAOBean.exec(boothId, orderDTO);
 
         // orderDTO의 메뉴 정보에 따라 CookDAO 생성
-        createCookDAOsBean.exec(adminName, orderDTO);
+        createCookDAOsBean.exec(boothId, orderDTO);
 
         // 생성된 orderId 리턴
         return orderDTO.getOrderId();

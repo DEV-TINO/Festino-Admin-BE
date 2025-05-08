@@ -2,31 +2,15 @@ package com.DevTino.festino_admin.order.domain;
 
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
-
-import java.time.LocalDateTime;
-import java.util.UUID;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Getter
 @Setter
-@Builder
-public class ElectronicsCookDAO {
-    @Id
-    UUID cookId;
-    UUID orderId;
-    UUID boothId;
-    UUID menuId;
-    Integer tableNum;
-    Integer date;
-    Integer totalCount;
-    Integer servedCount;
-    LocalDateTime createAt;
-    Boolean isFinish;
-    Boolean isService;
+@SuperBuilder
+public class ElectronicsCookDAO extends AbstractCookDAO{
 
     public static ElectronicsCookDAO fromCookDTO(CookDTO cookDTO) {
         return ElectronicsCookDAO.builder()

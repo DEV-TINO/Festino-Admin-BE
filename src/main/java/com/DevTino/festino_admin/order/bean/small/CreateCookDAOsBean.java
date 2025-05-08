@@ -24,7 +24,7 @@ public class CreateCookDAOsBean {
     }
 
     // orderDAO의 메뉴 정보에 따라 CookDAO 생성
-    public void exec(String adminName, OrderDTO orderDTO){
+    public void exec(UUID boothId, OrderDTO orderDTO){
 
         // Cook DAO 리스트 생성
         List<CookDTO> cookDTOList = new ArrayList<>();
@@ -55,7 +55,7 @@ public class CreateCookDAOsBean {
             e.printStackTrace();
         }
         // Cook DAO 리스트 저장
-        saveCookDAOBean.exec(adminName, cookDTOList);
+        saveCookDAOBean.exec(boothId, cookDTOList);
 
     }
 
