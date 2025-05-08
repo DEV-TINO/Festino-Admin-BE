@@ -41,6 +41,10 @@ public class CreateNightBoothDAOBean {
                 .location("")
                 .markerNum(0)
                 .totalReservationNum(0)
+                .isTossPay(requestNightBoothSaveDTO.getIsTossPay())
+                .isKakaoPay(requestNightBoothSaveDTO.getIsKakaoPay())
+                .tossPay(requestNightBoothSaveDTO.getTossPay())
+                .kakaoPay(requestNightBoothSaveDTO.getKakaoPay())
                 .build();
     }
 }

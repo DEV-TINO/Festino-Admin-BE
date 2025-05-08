@@ -26,6 +26,8 @@ public class NightBoothDAO {
     String adminName;
     String adminCategory;
     String boothIntro;
+    String tossPay;
+    String kakaoPay;
 
     @Convert(converter = StringConverter.class)
     List<String> boothImage;
@@ -34,6 +36,8 @@ public class NightBoothDAO {
     Boolean isOpen;
     Boolean isOrder;
     Boolean isReservation;
+    Boolean isTossPay;
+    Boolean isKakaoPay;
 
     Integer markerNum;
     String location;

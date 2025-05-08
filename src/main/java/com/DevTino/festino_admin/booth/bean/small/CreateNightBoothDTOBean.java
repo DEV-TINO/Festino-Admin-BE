@@ -27,6 +27,10 @@ public class CreateNightBoothDTOBean {
                 .markerNum(nightBoothDAO.getMarkerNum())
                 .totalReservationNum(nightBoothDAO.getTotalReservationNum())
                 .accountInfo(nightBoothDAO.getAccountInfo())
+                .isTossPay(nightBoothDAO.getIsTossPay())
+                .isKakaoPay(nightBoothDAO.getIsKakaoPay())
+                .tossPay(nightBoothDAO.getTossPay())
+                .kakaoPay(nightBoothDAO.getKakaoPay())
 
                 .build();
     }
