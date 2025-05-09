@@ -57,4 +57,10 @@ public class ComputerOrderRepositoryImpl implements OrderRepository<ComputerOrde
 
     }
 
+    // tableNum, 주문 오래된순 검색
+    public List<ComputerOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
+
+        return computerOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
+    }
+
 }

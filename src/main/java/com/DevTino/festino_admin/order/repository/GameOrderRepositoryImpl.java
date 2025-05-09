@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.repository;
 
+import com.DevTino.festino_admin.order.domain.ComputerOrderDAO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.GameOrderDAO;
 import com.DevTino.festino_admin.order.domain.OrderType;
@@ -53,6 +54,12 @@ public class GameOrderRepositoryImpl implements OrderRepository<GameOrderDAO>{
 
         return gameOrderRepositoryJPA.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(isDeposit, orderType, date);
 
+    }
+
+    // tableNum, 주문 오래된순 검색
+    public List<GameOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
+
+        return gameOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
     }
 
 }
