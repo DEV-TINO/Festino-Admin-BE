@@ -230,6 +230,24 @@ public class OrderController {
 
     }
 
+    // 테이블 별 주문 전체 조회
+    @GetMapping("/all/table/{tableNum}")
+    public ResponseEntity<Map<String, Object>> getOrderTableAll(@PathVariable("boothId") UUID boothId, @PathVariable("tableNum") Integer tableNum){
+
+        List<ResponseOrderTableAllGetDTO> responseOrderTableAllGetDTOS = orderService.getOrderTableAll(boothId, tableNum);
+
+        boolean success = (responseOrderTableAllGetDTOS == null) ? false : true;
+
+        // Map 이용해서 메시지와 id 값 json 데이터로 변환
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("success", success);
+        requestMap.put("message", success ? "테이블 별 주문 전체 조회 성공" : "테이블 별 주문 전체 조회 실패");
+        requestMap.put("orderTableList", responseOrderTableAllGetDTOS);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
+
 
 
     // 주문 취소

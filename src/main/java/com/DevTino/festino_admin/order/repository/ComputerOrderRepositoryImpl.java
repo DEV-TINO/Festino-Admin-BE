@@ -57,4 +57,9 @@ public class ComputerOrderRepositoryImpl implements OrderRepository<ComputerOrde
 
     }
 
+    public List<ComputerOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
+
+        return computerOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
+    }
+
 }

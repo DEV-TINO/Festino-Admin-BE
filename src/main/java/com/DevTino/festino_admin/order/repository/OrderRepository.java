@@ -13,4 +13,5 @@ public interface OrderRepository<T extends AbstractOrderDAO> {
     List<T> findByDateOrderByCreateAtAsc(Integer date);
     List<T> findByOrderTypeAndDateOrderByCreateAtAsc(OrderType orderType, Integer date);
     List<T> findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(Boolean isDeposit, OrderType orderType, Integer date);
+    List<T> findByTableNumOrderByCreateAtAsc(Integer tableNum);
 }

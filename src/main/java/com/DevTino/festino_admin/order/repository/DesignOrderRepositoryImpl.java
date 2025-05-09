@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.repository;
 
+import com.DevTino.festino_admin.order.domain.ComputerOrderDAO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DesignOrderDAO;
 import com.DevTino.festino_admin.order.domain.OrderType;
@@ -55,6 +56,11 @@ public class DesignOrderRepositoryImpl implements OrderRepository<DesignOrderDAO
 
         return designOrderRepositoryJPA.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(isDeposit, orderType, date);
 
+    }
+
+    public List<DesignOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
+
+        return designOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
     }
 
 }

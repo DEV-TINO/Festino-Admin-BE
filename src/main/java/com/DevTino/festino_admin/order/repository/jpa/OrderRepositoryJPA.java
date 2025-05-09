@@ -18,4 +18,6 @@ public interface OrderRepositoryJPA<T extends AbstractOrderDAO> extends JpaRepos
     List<T> findByOrderTypeAndDateOrderByCreateAtAsc(OrderType orderType, Integer date);
 
     List<T> findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(Boolean isDeposit, OrderType orderType, Integer date);
+
+    List<T> findByTableNumOrderByCreateAtAsc(Integer tableNum);
 }
