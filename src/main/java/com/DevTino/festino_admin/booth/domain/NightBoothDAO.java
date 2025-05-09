@@ -38,6 +38,7 @@ public class NightBoothDAO {
     Boolean isReservation;
     Boolean isTossPay;
     Boolean isKakaoPay;
+    Boolean isCall;
 
     Integer markerNum;
     String location;
