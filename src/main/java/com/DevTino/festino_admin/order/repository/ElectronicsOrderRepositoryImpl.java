@@ -56,6 +56,7 @@ public class ElectronicsOrderRepositoryImpl implements OrderRepository<Electroni
 
     }
 
+    // tableNum, 주문 오래된순 검색
     public List<ElectronicsOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return electronicsOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);

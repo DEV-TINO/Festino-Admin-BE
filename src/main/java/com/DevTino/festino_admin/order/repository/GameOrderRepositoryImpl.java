@@ -56,6 +56,7 @@ public class GameOrderRepositoryImpl implements OrderRepository<GameOrderDAO>{
 
     }
 
+    // tableNum, 주문 오래된순 검색
     public List<GameOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return gameOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);

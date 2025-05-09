@@ -56,6 +56,7 @@ public class NewMaterialOrderRepositoryImpl implements OrderRepository<NewMateri
 
     }
 
+    // tableNum, 주문 오래된순 검색
     public List<NewMaterialOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return newMaterialOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);

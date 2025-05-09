@@ -56,6 +56,7 @@ public class MachineOrderRepositoryImpl implements OrderRepository<MachineOrderD
 
     }
 
+    // tableNum, 주문 오래된순 검색
     public List<MachineOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return machineOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);

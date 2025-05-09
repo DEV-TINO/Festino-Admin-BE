@@ -234,8 +234,10 @@ public class OrderController {
     @GetMapping("/all/table/{tableNum}")
     public ResponseEntity<Map<String, Object>> getOrderTableAll(@PathVariable("boothId") UUID boothId, @PathVariable("tableNum") Integer tableNum){
 
+        // 테이블 별 주문 전체 조회 service 실행
         List<ResponseOrderTableAllGetDTO> responseOrderTableAllGetDTOS = orderService.getOrderTableAll(boothId, tableNum);
 
+        // 테이블 별 주문 전체 조회 성공 여부 설정
         boolean success = (responseOrderTableAllGetDTOS == null) ? false : true;
 
         // Map 이용해서 메시지와 id 값 json 데이터로 변환

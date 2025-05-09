@@ -58,6 +58,7 @@ public class DesignOrderRepositoryImpl implements OrderRepository<DesignOrderDAO
 
     }
 
+    // tableNum, 주문 오래된순 검색
     public List<DesignOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return designOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);

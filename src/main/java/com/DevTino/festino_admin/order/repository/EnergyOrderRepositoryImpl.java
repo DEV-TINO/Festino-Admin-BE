@@ -56,6 +56,7 @@ public class EnergyOrderRepositoryImpl implements OrderRepository<EnergyOrderDAO
 
     }
 
+    // tableNum, 주문 오래된순 검색
     public List<EnergyOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return energyOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);

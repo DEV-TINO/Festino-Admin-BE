@@ -55,6 +55,7 @@ public class NanoOrderRepositoryImpl implements OrderRepository<NanoOrderDAO>{
         return nanoOrderRepositoryJPA.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(isDeposit, orderType, date);
     }
 
+    // tableNum, 주문 오래된순 검색
     public List<NanoOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return nanoOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
