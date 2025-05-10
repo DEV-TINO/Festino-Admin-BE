@@ -32,7 +32,6 @@ public class GetOrderCancelBean {
 
         // 날짜의 취소된 Order 오래된순 전체 조회 -> DAO 리스트
         List<OrderDTO> dtoList = getOrderCancelDAOBean.exec(boothId, date);
-        if (dtoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴
         return createOrderCancelGetDTOsBean.exec(dtoList);

@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.bean.small.CreateOrderDeleteRestoreUpdateDTOBean;
 import com.DevTino.festino_admin.order.others.BoothNameResolver;
 import com.DevTino.festino_admin.order.bean.small.GetOrderDAOBean;
@@ -36,10 +38,9 @@ public class UpdateOrderDeleteRestoreBean {
 
         // orderId로 해당 Order 찾고
         OrderDTO orderDTO = getOrderDAOBean.exec(boothId, requestOrderDeleteRestoreUpdateDTO.getOrderId());
-        if (orderDTO == null) return null;
 
-        // OrderType 비교, 다르다면 null 리턴
-        if (!orderDTO.getOrderType().name().equals(requestOrderDeleteRestoreUpdateDTO.getOrderType())) return null;
+        // OrderType 비교, 다르다면 예외 발생
+        if (!orderDTO.getOrderType().name().equals(requestOrderDeleteRestoreUpdateDTO.getOrderType())) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
 
         // Order 수정
         orderDTO.setOrderType(OrderType.COOKING);
