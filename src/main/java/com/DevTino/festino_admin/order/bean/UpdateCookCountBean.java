@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.bean.small.CreateCookCountUpdateDTOBean;
 import com.DevTino.festino_admin.order.bean.small.GetCookDAOBean;
 import com.DevTino.festino_admin.order.others.BoothNameResolver;
@@ -36,11 +38,10 @@ public class UpdateCookCountBean {
 
         // cookId로 해당 Cook DAO 찾기
         CookDTO cookDTO = getCookDAOBean.exec(boothId, requestCookCountUpdateDTO.getCookId());
-        if (cookDTO == null) return null;
 
         // 서빙 수량이 적정 범위가 아니라면 null 리턴
         Integer servedCount = requestCookCountUpdateDTO.getServedCount();
-        if (!(servedCount >= minCount && servedCount <= cookDTO.getTotalCount())) return null;
+        if (!(servedCount >= minCount && servedCount <= cookDTO.getTotalCount())) throw new ServiceException(ExceptionEnum.INVALID_INPUT_VALUE);
 
         // DAO 수정
         cookDTO.setServedCount(servedCount);
