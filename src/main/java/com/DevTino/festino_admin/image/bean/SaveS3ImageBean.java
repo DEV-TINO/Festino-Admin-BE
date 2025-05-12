@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.image.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.image.bean.small.SaveS3ImageDAOBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,7 @@ public class SaveS3ImageBean {
     public String exec(MultipartFile file) throws IOException {
 
         if (file == null || file.isEmpty()) {
-            return null;
+            throw new ServiceException(ExceptionEnum.INVALID_INPUT_VALUE);
         }
 
         // S3 이미지 저장
