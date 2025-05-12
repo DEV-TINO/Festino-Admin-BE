@@ -4,6 +4,8 @@ import com.DevTino.festino_admin.booth.bean.small.CreateNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothSaveDTO;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +27,6 @@ public class SaveNightBoothBean {
 
         // 야간부스 DAO 생성
         NightBoothDAO nightBoothDAO = createNightBoothDAOBean.exec(requestNightBoothSaveDTO);
-        if(nightBoothDAO == null) return null;
 
         // DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);

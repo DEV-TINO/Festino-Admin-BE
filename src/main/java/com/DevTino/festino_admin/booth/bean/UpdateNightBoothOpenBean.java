@@ -27,7 +27,6 @@ public class UpdateNightBoothOpenBean {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothOpenUpdateDTO.getBoothId());
-        if(nightBoothDAO == null) return null;
 
         // DAO 운영 중 여부 수정
         if(requestNightBoothOpenUpdateDTO.getIsOpen() == nightBoothDAO.getIsOpen())

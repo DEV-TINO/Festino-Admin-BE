@@ -28,7 +28,6 @@ public class UpdateNightBoothBean {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothUpdateDTO.getBoothId());
-        if(nightBoothDAO == null) return null;
 
         // 부스 이미지를 넣지 않았을 때 빈값으로 넣어주는 예외처리
         List<String> boothImage = new ArrayList<>();

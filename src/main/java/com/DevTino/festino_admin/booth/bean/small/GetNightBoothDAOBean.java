@@ -36,7 +36,12 @@ public class GetNightBoothDAOBean {
 
     // 전체 DAO 반환
     public List<NightBoothDAO> exec() {
-        return nightBoothRepository.findAll();
+
+        List<NightBoothDAO> daoList = nightBoothRepository.findAll();
+        if (daoList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoList;
+
     }
 
     // adminName으로 DAO 찾아서 반환

@@ -6,6 +6,8 @@ import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothReservationUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DTO.ResponseNightBoothReservationUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,13 +29,12 @@ public class UpdateNightBoothReservationBean {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothReservationUpdateDTO.getBoothId());
-        if(nightBoothDAO == null) return null;
+
+        // 예약 가능 여부가 입력값과 다른 경우 예외 발생
+        if(requestNightBoothReservationUpdateDTO.getIsReservation() != nightBoothDAO.getIsReservation()) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
 
         // DAO 예약가능 여부 수정
-        if(requestNightBoothReservationUpdateDTO.getIsReservation() == nightBoothDAO.getIsReservation())
-            nightBoothDAO.setIsReservation(!nightBoothDAO.getIsReservation());
-        else
-            return null;
+        nightBoothDAO.setIsReservation(!nightBoothDAO.getIsReservation());
 
         // 수정된 DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);
