@@ -32,6 +32,11 @@ public class GetMenusDAOBean {
 
     // boothId, isDeleted로 MenuDAO 검색해 반환
     public List<MenuDAO> exec(UUID boothId, Boolean isDeleted) {
-        return menuRepositoryJPA.findAllByBoothIdAndIsDeletedOrderByMenuIndexAsc(boothId, isDeleted);
+
+        List<MenuDAO> daoList = menuRepositoryJPA.findAllByBoothIdAndIsDeletedOrderByMenuIndexAsc(boothId, isDeleted);
+        if (daoList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoList;
+
     }
 }

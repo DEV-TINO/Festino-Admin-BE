@@ -25,7 +25,6 @@ public class SaveMenuBean {
 
         // 메뉴 DAO 생성
         MenuDAO menuDAO = createMenuDAOBean.exec(requestMenuSaveDTO);
-        if(menuDAO == null) return null;
 
         // 메뉴 저장
         saveMenuDAOBean.exec(menuDAO);
