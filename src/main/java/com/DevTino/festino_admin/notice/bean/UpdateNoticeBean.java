@@ -36,7 +36,6 @@ public class UpdateNoticeBean {
 
         // noticeId로 해당 Notice DAO 찾기
         NoticeDAO noticeDAO = getNoticeDAOBean.exec(requestNoticeUpdateDTO.getNoticeId());
-        if (noticeDAO == null) return null;
 
         // 공지 이미지를 넣지 않았을 때 빈값으로 저장
         List<String> imageUrl;

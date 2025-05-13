@@ -32,7 +32,6 @@ public class GetNoticesBean {
 
         // 공지사항 DAO pin 우선, 최신순 정렬 검색
         Page<NoticeDAO> page = getNoticeDAOBean.exec(pageNo, PAGE_SIZE);
-        if (page == null) return null;
 
         // 공지사항 전체 개수
         Integer noticeTotal = getNoticeDAOBean.exec().size();

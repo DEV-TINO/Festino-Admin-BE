@@ -28,7 +28,6 @@ public class SaveNoticeBean {
 
         // 공지사항 DAO 객체 생성
         NoticeDAO noticeDAO = createNoticeDAOBean.exec(requestNoticeSaveDTO);
-        if (noticeDAO == null) return null;
 
         // DAO 저장
         saveNoticeDAOBean.exec(noticeDAO);
