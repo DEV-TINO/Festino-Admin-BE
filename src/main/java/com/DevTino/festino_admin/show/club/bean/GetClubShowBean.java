@@ -28,7 +28,6 @@ public class GetClubShowBean {
 
         // clubId로 해당 ClubShow DAO 찾기
         ClubShowDAO clubShowDAO = getClubShowDAOBean.exec(clubId);
-        if (clubShowDAO == null) return null;
 
         // DTO 생성해서 반환
         return createClubShowDTOBean.exec(clubShowDAO);

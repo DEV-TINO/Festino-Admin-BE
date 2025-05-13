@@ -22,15 +22,13 @@ public class DeleteClubShowBean {
 
 
     // 동아리 공연 삭제
-    public boolean exec(RequestClubShowDeleteDTO requestClubShowDeleteDTO){
+    public void exec(RequestClubShowDeleteDTO requestClubShowDeleteDTO){
 
         // clubId로 해당 ClubShow DAO 찾기
         ClubShowDAO clubShowDAO = getClubShowDAOBean.exec(requestClubShowDeleteDTO.getClubId());
-        if (clubShowDAO == null) return false;
 
         // DAO 삭제
         deleteClubShowDAOBean.exec(clubShowDAO);
-        return true;
 
     }
 
