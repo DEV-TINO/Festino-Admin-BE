@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.message.controller;
 
+import com.DevTino.festino_admin.ApiResponse;
 import com.DevTino.festino_admin.message.domain.DTO.RequestCustomMessageSaveDTO;
 import com.DevTino.festino_admin.message.domain.DTO.RequestMessageSendDTO;
 import com.DevTino.festino_admin.message.domain.DTO.ResponseCustomMessageGetDTO;
@@ -30,42 +31,34 @@ public class MessageController {
     // 메세지 전송
     @PostMapping("/send")
     public String sendMessage(@RequestBody RequestMessageSendDTO requestMessageSendDTO) throws IOException {
+
         return messageService.sendMessage(requestMessageSendDTO);
     }
 
     // 커스텀 메세지 전체 조회
     @GetMapping("/all")
-    public ResponseEntity<Map<String, Object>> getCustomMessages(@RequestParam("boothId") UUID boothId) {
+    public ResponseEntity<ApiResponse<Object>> getCustomMessages(@RequestParam("boothId") UUID boothId) {
 
         List<ResponseCustomMessageGetDTO> responseCustomMessageGetDTOList = messageService.getCustomMessages(boothId);
 
-        // 커스텀 메세지 조회
-        boolean success = (responseCustomMessageGetDTOList.isEmpty()) ? false : true;
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", success);
-        requestMap.put("message",success ? "커스텀 메세지 전체 조회 완료" : "커스텀 메세지 전체 조회 실패");
-        requestMap.put("customMessageList", responseCustomMessageGetDTOList);
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> response = new ApiResponse<>(true, "커스텀 메세지 전체 조회 성공", responseCustomMessageGetDTOList);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     // 커스텀 메시지 저장
     @PostMapping("")
-    public ResponseEntity<Map<String, Object>> saveCustomMessage(@RequestBody RequestCustomMessageSaveDTO requestCustomMessageSaveDTO) throws IOException {
+    public ResponseEntity<ApiResponse<Object>> saveCustomMessage(@RequestBody RequestCustomMessageSaveDTO requestCustomMessageSaveDTO) throws IOException {
+
         UUID boothId = messageService.saveCustomMessage(requestCustomMessageSaveDTO);
 
-        // 주문 상세 조회 성공 여부 설정
-        boolean success = (boothId == null) ? false : true;
-
-        // Map 이용해서 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", success);
-        requestMap.put("message", success ? "커스텀 메세지 수정 완료" : "커스텀 메세지 수정 실패");
-        requestMap.put("boothId", boothId);
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> response = new ApiResponse<>(true, "커스텀 메시지 저장 성공", boothId);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
 
