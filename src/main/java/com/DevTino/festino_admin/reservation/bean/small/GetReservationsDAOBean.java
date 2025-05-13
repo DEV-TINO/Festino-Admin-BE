@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
 import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import com.DevTino.festino_admin.reservation.repository.ReservationRepositoryJPA;
@@ -22,7 +24,12 @@ public class GetReservationsDAOBean {
     // boothId를 통해 원하는 부스 전체 DAO 오래된 순으로 반환
     @Transactional(readOnly = true)
     public List<ReservationDAO> exec(UUID boothId, Integer date) {
-        return reservationRepositoryJPA.findAllByBoothIdAndDateOrderByCreateAtAsc(boothId, date);
+
+        List<ReservationDAO> daoList = reservationRepositoryJPA.findAllByBoothIdAndDateOrderByCreateAtAsc(boothId, date);
+        if (daoList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoList;
+
     }
 
     // reservagtionNum 이 오름차순 기준으로 2번째 예약 객체 찾기

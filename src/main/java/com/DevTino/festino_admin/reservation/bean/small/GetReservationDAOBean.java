@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.reservation.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.reservation.domain.ReservationDAO;
 import com.DevTino.festino_admin.reservation.domain.ReservationEnum;
 import com.DevTino.festino_admin.reservation.repository.ReservationRepositoryJPA;
@@ -19,7 +21,12 @@ public class GetReservationDAOBean {
 
     // reservationId와 boothId를 통해 원하는 객체 찾기
     public ReservationDAO exec(UUID reservationId, UUID boothId) {
-        return reservationRepositoryJPA.findByReservationIdAndBoothId(reservationId, boothId);
+
+        ReservationDAO dao = reservationRepositoryJPA.findByReservationIdAndBoothId(reservationId, boothId);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
+
     }
 
     // 전화번호 기준으로 예약된 내역 조회

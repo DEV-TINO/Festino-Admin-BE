@@ -14,6 +14,7 @@ public enum ExceptionEnum {
     ALREADY_PROCESSED(HttpStatus.CONFLICT, "E005", "이미 처리된 요청입니다."),
     BOOTH_CLOSED(HttpStatus.FORBIDDEN, "E006", "부스가 닫혀 있습니다."),
     ORDER_DISABLED(HttpStatus.FORBIDDEN, "E007", "주문이 비활성화된 상태입니다."),
+    RESERVATION_ALREADY_EXIST(HttpStatus.CONFLICT, "E008", "이미 예약이 존재합니다."),
 
     // 공통 예외
     INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "E999", "서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
