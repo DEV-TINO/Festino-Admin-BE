@@ -24,7 +24,6 @@ public class GetUsersBean {
     public List<ResponseUsersGetDTO> exec() {
         List<UserDAO> userDAOList = getUsersDAOBean.exec();
 
-        List<ResponseUsersGetDTO> userList = createResponseUsersGetDTOBean.exec(userDAOList);
-        return userList;
+        return createResponseUsersGetDTOBean.exec(userDAOList);
     }
 }

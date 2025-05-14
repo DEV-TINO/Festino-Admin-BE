@@ -22,10 +22,11 @@ public class SaveUserBean {
     }
 
     // 유저 저장
-    public Boolean exec(RequestUserSaveDTO requestUserSaveDTO) {
+    public void exec(RequestUserSaveDTO requestUserSaveDTO) {
         UserDAO userDAO = createUserDAOBean.exec(requestUserSaveDTO);
         saveUserDAOBean.exec(userDAO);
 
-        return getUserDAOBean.exec(userDAO.getUserId()) != null;
+        // 저장된 유저 확인
+        getUserDAOBean.exec(userDAO.getUserId());
     }
 }

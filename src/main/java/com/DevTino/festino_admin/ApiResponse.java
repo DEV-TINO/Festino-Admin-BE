@@ -1,5 +1,8 @@
 package com.DevTino.festino_admin;
 
+import lombok.Getter;
+
+@Getter
 public class ApiResponse<T> {
 
     private boolean success;
