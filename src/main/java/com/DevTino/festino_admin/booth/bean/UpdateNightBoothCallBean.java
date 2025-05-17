@@ -9,6 +9,7 @@ import com.DevTino.festino_admin.booth.domain.DTO.ResponseNightBoothCallUpdateDT
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import com.DevTino.festino_admin.exception.ExceptionEnum;
 import com.DevTino.festino_admin.exception.ServiceException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,6 +19,7 @@ public class UpdateNightBoothCallBean {
     SaveNightBoothDAOBean saveNightBoothDAOBean;
     CreateNightBoothCallDTOBean createNightBoothCallDTOBean;
 
+    @Autowired
     public UpdateNightBoothCallBean(GetNightBoothDAOBean getNightBoothDAOBean, SaveNightBoothDAOBean saveNightBoothDAOBean, CreateNightBoothCallDTOBean createNightBoothCallDTOBean) {
         this.getNightBoothDAOBean = getNightBoothDAOBean;
         this.saveNightBoothDAOBean = saveNightBoothDAOBean;
