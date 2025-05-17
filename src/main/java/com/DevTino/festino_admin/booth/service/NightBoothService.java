@@ -17,11 +17,12 @@ public class NightBoothService {
     UpdateNightBoothReservationBean updateNightBoothReservationBean;
     UpdateNightBoothTossPayBean updateNightBoothTossPayBean;
     UpdateNightBoothKakaoPayBean updateNightBoothKakaoPayBean;
+    UpdateNightBoothCallBean updateNightBoothCallBean;
     GetNightBoothBean getNightBoothBean;
     GetNightBoothsBean getNightBoothsBean;
 
     @Autowired
-    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, UpdateNightBoothOrderBean updateNightBoothOrderBean, UpdateNightBoothReservationBean updateNightBoothReservationBean, UpdateNightBoothTossPayBean updateNightBoothTossPayBean, UpdateNightBoothKakaoPayBean updateNightBoothKakaoPayBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
+    public NightBoothService(SaveNightBoothBean saveNightBoothBean, UpdateNightBoothBean updateNightBoothBean, UpdateNightBoothOpenBean updateNightBoothOpenBean, UpdateNightBoothOrderBean updateNightBoothOrderBean, UpdateNightBoothReservationBean updateNightBoothReservationBean, UpdateNightBoothTossPayBean updateNightBoothTossPayBean, UpdateNightBoothKakaoPayBean updateNightBoothKakaoPayBean, UpdateNightBoothCallBean updateNightBoothCallBean, GetNightBoothBean getNightBoothBean, GetNightBoothsBean getNightBoothsBean) {
         this.saveNightBoothBean = saveNightBoothBean;
         this.updateNightBoothBean = updateNightBoothBean;
         this.updateNightBoothOpenBean = updateNightBoothOpenBean;
@@ -29,6 +30,7 @@ public class NightBoothService {
         this.updateNightBoothReservationBean = updateNightBoothReservationBean;
         this.updateNightBoothTossPayBean = updateNightBoothTossPayBean;
         this.updateNightBoothKakaoPayBean = updateNightBoothKakaoPayBean;
+        this.updateNightBoothCallBean = updateNightBoothCallBean;
         this.getNightBoothBean = getNightBoothBean;
         this.getNightBoothsBean = getNightBoothsBean;
     }
@@ -66,6 +68,11 @@ public class NightBoothService {
     // 야간부스 카카오페이 가능 여부 수정
     public ResponseNightBoothKakaoPayUpdateDTO updateNightBoothKakaoPay(RequestNightBoothKakaoPayUpdateDTO requestNightBoothKakaoPayUpdateDTO) {
         return updateNightBoothKakaoPayBean.exec(requestNightBoothKakaoPayUpdateDTO);
+    }
+
+    // 야간부스 직원호출 가능 여부 수정
+    public ResponseNightBoothCallUpdateDTO updateNightBoothIsCall(RequestNightBoothCallUpdateDTO requestNightBoothCallUpdateDTO){
+        return updateNightBoothCallBean.exec(requestNightBoothCallUpdateDTO);
     }
 
     // 야간부스 조회

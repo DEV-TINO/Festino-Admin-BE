@@ -120,6 +120,20 @@ public class NightBoothController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    // 직원호출 가능 여부 수정
+    @PutMapping("/call")
+    public ResponseEntity<ApiResponse<Object>> updateNightBoothIsCall(@RequestBody RequestNightBoothCallUpdateDTO requestNightBoothCallUpdateDTO) {
+
+        // 야간부스 직원호출 가능 여부 수정 service
+        ResponseNightBoothCallUpdateDTO responseNightBoothCallUpdateDTO = nightBoothService.updateNightBoothIsCall(requestNightBoothCallUpdateDTO);
+
+        // Map을 통해 메시지와 info 값 json 데이터로 변환
+        ApiResponse<Object> response = new ApiResponse<>(true, "직원호출 가능 여부 수정 성공", responseNightBoothCallUpdateDTO);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
     // 야간부스 조회
     @GetMapping("/{boothId}")
     public ResponseEntity<ApiResponse<Object>> getNightBooth(@PathVariable("boothId") UUID boothId) {
