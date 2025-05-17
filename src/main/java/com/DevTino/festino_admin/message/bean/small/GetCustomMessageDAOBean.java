@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.message.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.message.domain.CustomMessageDAO;
 import com.DevTino.festino_admin.message.domain.ENUM.MessageType;
 import com.DevTino.festino_admin.message.repository.CustomMessageRepositoryJPA;
@@ -19,6 +21,11 @@ public class GetCustomMessageDAOBean {
     }
 
     public CustomMessageDAO exec(UUID boothId, MessageType messageType) {
-        return customMessageRepositoryJPA.findByBoothIdAndMessageType(boothId, messageType);
+
+        CustomMessageDAO dao = customMessageRepositoryJPA.findByBoothIdAndMessageType(boothId, messageType);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
+
     }
 }

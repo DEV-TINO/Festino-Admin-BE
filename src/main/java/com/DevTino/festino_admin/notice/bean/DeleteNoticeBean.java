@@ -22,15 +22,13 @@ public class DeleteNoticeBean {
     }
 
     // 공지사항 삭제
-    public boolean exec(RequestNoticeDeleteDTO requestNoticeDeleteDTO){
+    public void exec(RequestNoticeDeleteDTO requestNoticeDeleteDTO){
 
         // noticeId로 해당 Notice DAO 찾기
         NoticeDAO noticeDAO = getNoticeDAOBean.exec(requestNoticeDeleteDTO.getNoticeId());
-        if (noticeDAO == null) return false;
 
         // DAO 삭제
         deleteNoticeDAOBean.exec(noticeDAO);
-        return true;
 
     }
 

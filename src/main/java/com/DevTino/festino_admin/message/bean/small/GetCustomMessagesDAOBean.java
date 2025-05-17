@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.message.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.message.domain.CustomMessageDAO;
 import com.DevTino.festino_admin.message.repository.CustomMessageRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,11 @@ public class GetCustomMessagesDAOBean {
     }
 
     public List<CustomMessageDAO> exec(UUID boothId) {
-        return customMessageRepositoryJPA.findByBoothIdOrderByMessageTypeAsc(boothId);
+
+        List<CustomMessageDAO> daoList = customMessageRepositoryJPA.findByBoothIdOrderByMessageTypeAsc(boothId);
+        if (daoList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoList;
+
     }
 }

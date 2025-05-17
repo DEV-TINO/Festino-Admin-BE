@@ -32,7 +32,6 @@ public class GetOrderWaitDepositBean {
 
         // 날짜의 입금 대기 중인 Order 오래된순 전체 조회 -> DAO 리스트
         List<OrderDTO> dtoList = getOrderWaitDepositDAOBean.exec(boothId, date);
-        if (dtoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴
         return createOrderWaitDepositGetDTOsBean.exec(dtoList);

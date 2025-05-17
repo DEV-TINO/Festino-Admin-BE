@@ -42,7 +42,6 @@ public class GetReservationsBean {
         // boothId를 통해 원하는 부스의 전체 예약 DAO 오래된 순서로 찾기
         // 삭제된 예약인지 아닌지 type(all/cancel) 으로 구별하여 찾기
         List<ReservationDAO> reservationDAOList = getReservationsDAOBean.exec(boothId, date);
-        if(reservationDAOList == null) return null;
 
         // DAO 리스트를 DTO 리스트 생성해서 반환
         return createReservationsDTOBean.exec(type, nightBoothDAO, reservationDAOList);

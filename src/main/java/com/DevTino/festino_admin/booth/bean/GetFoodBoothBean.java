@@ -24,7 +24,6 @@ public class GetFoodBoothBean {
 
         // 부스아이디를 통해 원하는 객체(DAO) 찾기
         FoodBoothDAO foodBoothDAO = getFoodBoothDAOBean.exec(boothId);
-        if(foodBoothDAO == null) return null;
 
         // DTO 생성해서 반환
         return createFoodBoothDTOBean.exec(foodBoothDAO);

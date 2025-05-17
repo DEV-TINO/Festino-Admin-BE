@@ -28,7 +28,6 @@ public class GetTalentShowBean {
 
         // talentId로 해당 TalentShow DAO 찾기
         TalentShowDAO talentShowDAO = getTalentShowDAOBean.exec(talentId);
-        if (talentShowDAO == null) return null;
 
         // DTO 생성해서 반환
         return createTalentShowDTOBean.exec(talentShowDAO);

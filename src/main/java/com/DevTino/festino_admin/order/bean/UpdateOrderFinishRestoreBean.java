@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.bean.small.*;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
@@ -40,10 +42,9 @@ public class UpdateOrderFinishRestoreBean {
 
         // orderId로 해당 Order 찾고
         OrderDTO orderDTO = getOrderDAOBean.exec(boothId, requestOrderFinishRestoreUpdateDTO.getOrderId());
-        if (orderDTO == null) return null;
 
-        // OrderType 비교, 다르다면 null 리턴
-        if (!orderDTO.getOrderType().name().equals(requestOrderFinishRestoreUpdateDTO.getOrderType())) return null;
+        // OrderType 비교, 다르다면 예외 발생
+        if (!orderDTO.getOrderType().name().equals(requestOrderFinishRestoreUpdateDTO.getOrderType())) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
 
         // orderId에 해당하는 Cook DAO 모두 찾아서 isFinish를 false로 변경
         List<CookDTO> cookDTOList = getCooksDAOBean.exec(boothId, orderDTO.getOrderId());

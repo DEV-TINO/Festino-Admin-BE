@@ -49,14 +49,12 @@ public class DeleteReservationCancelBean {
 
         // reservationId와 boothId를 통해 원하는 객체(DAO) 찾기
         ReservationDAO reservationDAO = getReservationDAOBean.exec(requestReservationDeleteDTO.getReservationId(), requestReservationDeleteDTO.getBoothId());
-        if(reservationDAO == null) return null;
 
         // 예약 대기인 경우 총 에약수 감소
         if (reservationDAO.getReservationType() == ReservationEnum.RESERVE){
 
             // boothId를 통해 원하는 부스객체 찾기
             NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationDeleteDTO.getBoothId());
-            if(nightBoothDAO == null) return null;
 
             // 야간부스 총 예약수 -1
             nightBoothDAO.setTotalReservationNum(nightBoothDAO.getTotalReservationNum()-1);

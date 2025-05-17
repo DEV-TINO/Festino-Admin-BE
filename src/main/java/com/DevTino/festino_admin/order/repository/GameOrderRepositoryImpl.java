@@ -3,10 +3,12 @@ package com.DevTino.festino_admin.order.repository;
 import com.DevTino.festino_admin.order.domain.ComputerOrderDAO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.GameOrderDAO;
+import com.DevTino.festino_admin.order.domain.NanoOrderDAO;
 import com.DevTino.festino_admin.order.domain.OrderType;
 import com.DevTino.festino_admin.order.repository.jpa.GameOrderRepositoryJPA;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,6 +62,12 @@ public class GameOrderRepositoryImpl implements OrderRepository<GameOrderDAO>{
     public List<GameOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return gameOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
+    }
+
+    // 테이블 번호에 따른 주문 검색
+    public List<GameOrderDAO> findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(Integer date, LocalDateTime after){
+
+        return gameOrderRepositoryJPA.findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(date, after);
     }
 
 }

@@ -28,7 +28,6 @@ public class GetTalentShowsBean {
 
         // 연예인 공연 DAO 전체 검색 -> talentShowDAOList
         List<TalentShowDAO> talentShowDAOList = getTalentShowDAOBean.exec();
-        if (talentShowDAOList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해서 리턴
         return createTalentShowsDTOBean.exec(talentShowDAOList);

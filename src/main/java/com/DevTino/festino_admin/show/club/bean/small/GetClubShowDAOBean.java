@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.show.club.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.show.club.domain.ClubShowDAO;
 import com.DevTino.festino_admin.show.club.repository.ClubShowRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +25,20 @@ public class GetClubShowDAOBean {
     // clubId로 DAO 찾아서 반환
     public ClubShowDAO exec(UUID clubId){
 
-        return clubShowRepositoryJPA.findById(clubId).orElse(null);
+        ClubShowDAO dao = clubShowRepositoryJPA.findById(clubId).orElse(null);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
 
     }
 
     // 동아리 공연 DAO 전체 검색해서 반환
     public List<ClubShowDAO> exec(){
 
-        return clubShowRepositoryJPA.findAll();
+        List<ClubShowDAO> daoList = clubShowRepositoryJPA.findAll();
+        if (daoList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoList;
 
     }
 

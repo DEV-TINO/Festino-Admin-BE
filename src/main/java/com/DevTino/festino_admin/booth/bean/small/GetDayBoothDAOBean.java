@@ -2,6 +2,8 @@ package com.DevTino.festino_admin.booth.bean.small;
 
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
 import com.DevTino.festino_admin.booth.repository.DayBoothRepositoryJPA;
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +21,22 @@ public class GetDayBoothDAOBean {
 
     // 부스아이디로 DAO 찾아서 반환
     public DayBoothDAO exec(UUID boothId) {
-        return dayBoothRepository.findById(boothId).orElse(null);
+
+        DayBoothDAO dao = dayBoothRepository.findById(boothId).orElse(null);
+        if (dao ==  null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
+
     }
 
+    // 전체 주간부스 DAO 찾아서 반환
     public List<DayBoothDAO> exec() {
-        return dayBoothRepository.findAll();
+
+        List<DayBoothDAO> daoList = dayBoothRepository.findAll();
+        if (daoList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoList;
+
     }
 
     // adminName으로 DAO 찾아서 반환

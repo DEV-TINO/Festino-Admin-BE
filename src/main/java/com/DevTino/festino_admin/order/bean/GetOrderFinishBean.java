@@ -32,7 +32,6 @@ public class GetOrderFinishBean {
 
         // 날짜의 조리완료 상태인 Order 오래된순 전체 조회 -> DAO 리스트
         List<OrderDTO> dtoList = getOrderFinishDAOBean.exec(boothId, date);
-        if (dtoList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해 리턴
         return createOrderFinishGetDTOsBean.exec(dtoList);

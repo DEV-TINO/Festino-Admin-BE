@@ -2,6 +2,8 @@ package com.DevTino.festino_admin.booth.bean.small;
 
 import com.DevTino.festino_admin.booth.domain.FoodBoothDAO;
 import com.DevTino.festino_admin.booth.repository.FoodBoothRepositoryJPA;
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +21,22 @@ public class GetFoodBoothDAOBean {
 
     // 부스 아이디로 DAO 찾아서 반환
     public FoodBoothDAO exec(UUID boothId) {
-        return foodBoothRepository.findById(boothId).orElse(null);
+
+        FoodBoothDAO dao = foodBoothRepository.findById(boothId).orElse(null);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
+
     }
 
     // 전체 DAO 반환
     public List<FoodBoothDAO> exec() {
-        return foodBoothRepository.findAll();
+
+        List<FoodBoothDAO> daoList = foodBoothRepository.findAll();
+        if(daoList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoList;
+
     }
 
     // adminName으로 DAO 찾아서 반환

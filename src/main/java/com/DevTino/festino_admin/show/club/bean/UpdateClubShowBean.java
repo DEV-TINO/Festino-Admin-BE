@@ -30,7 +30,6 @@ public class UpdateClubShowBean {
 
         // clubId로 해당 ClubShow DAO 찾기
         ClubShowDAO clubShowDAO = getClubShowDAOBean.exec(requestClubShowUpdateDTO.getClubId());
-        if (clubShowDAO == null) return null;
 
         // DAO 수정
         clubShowDAO.setClubName(requestClubShowUpdateDTO.getClubName());

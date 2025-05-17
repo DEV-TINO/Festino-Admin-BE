@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.bean.small.*;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
@@ -40,8 +42,8 @@ public class UpdateOrderDepositRestoreBean {
         // orderId로 해당 Order 찾고
         OrderDTO orderDTO = getOrderDAOBean.exec(boothId, requestOrderDepositRestoreUpdateDTO.getOrderId());
 
-        // orderDAO를 찾을 수 없거나 이미 입금 전 상태인 주문이라면 null 리턴
-        if ((orderDTO == null) || (orderDTO.getIsDeposit() == false)) return null;
+        // 이미 입금 전 상태인 주문이라면 예외 발생
+        if (orderDTO.getIsDeposit() == false) throw new ServiceException(ExceptionEnum.ALREADY_PROCESSED);
 
         // orderId에 해당하는 Cook DAO 모두 검색
         List<CookDTO> cookDTOList = getCooksDAOBean.exec(boothId, orderDTO.getOrderId());

@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.notice.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.notice.domain.NoticeDAO;
 import com.DevTino.festino_admin.notice.repository.NoticeRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,10 @@ public class GetNoticeDAOBean {
     // noticeId로 DAO 찾아서 반환
     public NoticeDAO exec(UUID noticeId){
 
-        return noticeRepositoryJPA.findById(noticeId).orElse(null);
+        NoticeDAO dao = noticeRepositoryJPA.findById(noticeId).orElse(null);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
 
     }
 
@@ -39,7 +44,10 @@ public class GetNoticeDAOBean {
         Pageable pageable = PageRequest.of(pageNo, PAGE_SIZE);
 
         // pin 우선, 최신순 정렬 검색해서 반환
-        return noticeRepositoryJPA.findAllByOrderByIsPinDescCreateAtDesc(pageable);
+        Page<NoticeDAO> daoPage = noticeRepositoryJPA.findAllByOrderByIsPinDescCreateAtDesc(pageable);
+        if (daoPage.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+
+        return daoPage;
 
     }
 

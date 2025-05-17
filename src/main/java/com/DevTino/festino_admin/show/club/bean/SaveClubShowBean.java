@@ -28,7 +28,6 @@ public class SaveClubShowBean {
 
         // 동아리 공연 DAO 객체 생성
         ClubShowDAO clubShowDAO = createClubShowDAOBean.exec(requestClubShowSaveDTO);
-        if (clubShowDAO == null) return null;
 
         // DAO 저장
         saveClubShowDAOBean.exec(clubShowDAO);

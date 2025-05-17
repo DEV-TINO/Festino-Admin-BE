@@ -25,7 +25,6 @@ public class SaveNightBoothBean {
 
         // 야간부스 DAO 생성
         NightBoothDAO nightBoothDAO = createNightBoothDAOBean.exec(requestNightBoothSaveDTO);
-        if(nightBoothDAO == null) return null;
 
         // DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);

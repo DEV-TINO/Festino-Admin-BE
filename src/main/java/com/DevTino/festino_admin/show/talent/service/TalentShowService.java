@@ -60,9 +60,9 @@ public class TalentShowService {
     }
 
     // 연예인 공연 삭제
-    public boolean deleteTalentShow(RequestTalentShowDeleteDTO requestTalentShowDeleteDTO){
+    public void deleteTalentShow(RequestTalentShowDeleteDTO requestTalentShowDeleteDTO){
 
-        return deleteTalentShowBean.exec(requestTalentShowDeleteDTO);
+        deleteTalentShowBean.exec(requestTalentShowDeleteDTO);
 
     }
 

@@ -3,10 +3,12 @@ package com.DevTino.festino_admin.order.repository;
 import com.DevTino.festino_admin.order.domain.ComputerOrderDAO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.ElectronicsOrderDAO;
+import com.DevTino.festino_admin.order.domain.NanoOrderDAO;
 import com.DevTino.festino_admin.order.domain.OrderType;
 import com.DevTino.festino_admin.order.repository.jpa.ElectronicsOrderRepositoryJPA;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,6 +62,12 @@ public class ElectronicsOrderRepositoryImpl implements OrderRepository<Electroni
     public List<ElectronicsOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return electronicsOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
+    }
+
+    // 테이블 번호에 따른 주문 검색
+    public List<ElectronicsOrderDAO> findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(Integer date, LocalDateTime after){
+
+        return electronicsOrderRepositoryJPA.findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(date, after);
     }
 
 }

@@ -66,9 +66,9 @@ public class NoticeService {
     }
 
     // 공지사항 삭제
-    public boolean deleteNotice(RequestNoticeDeleteDTO requestNoticeDeleteDTO){
+    public void deleteNotice(RequestNoticeDeleteDTO requestNoticeDeleteDTO){
 
-        return deleteNoticeBean.exec(requestNoticeDeleteDTO);
+        deleteNoticeBean.exec(requestNoticeDeleteDTO);
 
     }
 

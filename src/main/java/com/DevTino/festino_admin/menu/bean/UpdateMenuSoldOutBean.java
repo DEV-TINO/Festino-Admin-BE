@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.menu.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.menu.bean.small.CreateMenuSoldOutDTOBean;
 import com.DevTino.festino_admin.menu.bean.small.GetMenuDAOBean;
 import com.DevTino.festino_admin.menu.bean.small.SaveMenuDAOBean;
@@ -26,13 +28,12 @@ public class UpdateMenuSoldOutBean {
     public ResponseMenuSoldOutUpdateDTO exec(RequestMenuSoldOutUpdateDTO requestMenuSoldOutUpdateDTO) {
         // menuId와 boothId 통해 원하는 객체(DAO) 찾기
         MenuDAO menuDAO = getMenuDAOBean.exec(requestMenuSoldOutUpdateDTO.getMenuId(), requestMenuSoldOutUpdateDTO.getBoothId());
-        if(menuDAO == null) return null;
+
+        // 메뉴 품절 여부와 입력값이 다른 경우 예외 발생
+        if(requestMenuSoldOutUpdateDTO.getIsSoldOut() != menuDAO.getIsSoldOut()) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
 
         // DAO 품절 여부 확인 후 수정
-        if(requestMenuSoldOutUpdateDTO.getIsSoldOut() == menuDAO.getIsSoldOut())
-            menuDAO.setIsSoldOut(!menuDAO.getIsSoldOut());
-        else
-            return null;
+        menuDAO.setIsSoldOut(!menuDAO.getIsSoldOut());
 
         // 수정된 DAO 저장
         saveMenuDAOBean.exec(menuDAO);

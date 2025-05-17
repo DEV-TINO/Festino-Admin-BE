@@ -25,7 +25,6 @@ public class DeleteMenuBean {
     public UUID exec(RequestMenuDeleteDTO requestMenuDeleteDTO) {
         // menuId와 boothId를 통해 원하는 객체(DAO) 찾기
         MenuDAO menuDAO = getMenuDAOBean.exec(requestMenuDeleteDTO.getMenuId(), requestMenuDeleteDTO.getBoothId());
-        if(menuDAO==null) return null;
 
         // 메뉴 삭제 여부를 Boolean 을 통해 변경
         menuDAO.setIsDeleted(true);
