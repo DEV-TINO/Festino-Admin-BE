@@ -25,7 +25,6 @@ public class SaveDayBoothBean {
 
         // 주간부스 DAO 생성
         DayBoothDAO dayBoothDAO = createDayBoothDAOBean.exec(requestDayBoothSaveDTO);
-        if(dayBoothDAO == null) return null;
 
         // 주간부스 저장
         saveDayBoothDAOBean.exec(dayBoothDAO);

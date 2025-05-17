@@ -6,6 +6,8 @@ import com.DevTino.festino_admin.booth.bean.small.SaveNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestNightBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.DTO.ResponseNightBoothOpenUpdateDTO;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,11 +30,11 @@ public class UpdateNightBoothOpenBean {
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestNightBoothOpenUpdateDTO.getBoothId());
 
+        // 부스 운영중 여부와 입력값이 다른 경우 예외 발생
+        if(requestNightBoothOpenUpdateDTO.getIsOpen() != nightBoothDAO.getIsOpen()) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
+
         // DAO 운영 중 여부 수정
-        if(requestNightBoothOpenUpdateDTO.getIsOpen() == nightBoothDAO.getIsOpen())
-            nightBoothDAO.setIsOpen(!nightBoothDAO.getIsOpen());
-        else
-            return null;
+        nightBoothDAO.setIsOpen(!nightBoothDAO.getIsOpen());
 
         // 수정된 DAO 저장
         saveNightBoothDAOBean.exec(nightBoothDAO);

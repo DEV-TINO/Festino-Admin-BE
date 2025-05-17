@@ -5,7 +5,6 @@ import com.DevTino.festino_admin.booth.domain.DTO.RequestDayBoothSaveDTO;
 import com.DevTino.festino_admin.booth.domain.DayBoothDAO;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
