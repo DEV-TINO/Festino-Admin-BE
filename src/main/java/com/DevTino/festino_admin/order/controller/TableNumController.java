@@ -24,7 +24,7 @@ public class TableNumController {
         this.tableNumService = tableNumService;
     }
 
-    @GetMapping("/booth/{boothId} ")
+    @GetMapping("/booth/{boothId}")
     public ResponseEntity<ApiResponse<Object>> getTableNum(@PathVariable(value = "boothId") UUID boothId){
 
         List<ResponseTableNumGetDTO> responseTableNumGetDTOList = tableNumService.getTableNum(boothId);
