@@ -22,4 +22,5 @@ public class ResponseOrderTableAllGetDTO {
     Boolean isDeposit;
     List<MenuInfoDTO> menuList;
     LocalDateTime createAt;
+    LocalDateTime finishAt;
 }
