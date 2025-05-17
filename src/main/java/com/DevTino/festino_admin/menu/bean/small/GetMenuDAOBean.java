@@ -21,7 +21,12 @@ public class GetMenuDAOBean {
 
     // menuId를 통해 원하는 DAO 찾아서 반환
     public MenuDAO exec(UUID menuId) {
-        return menuRepositoryJPA.findById(menuId).orElse(null);
+
+        MenuDAO dao = menuRepositoryJPA.findById(menuId).orElse(null);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
+
     }
 
     // menuId와 boothId를 통해 원하는 DAO 찾아서 반환
