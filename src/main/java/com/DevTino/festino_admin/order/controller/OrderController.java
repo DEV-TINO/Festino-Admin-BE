@@ -189,6 +189,20 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    // 테이블 시각화
+    @GetMapping("/visualization/{date}")
+    public ResponseEntity<ApiResponse<Object>> getOrderTableVisualization(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date){
+
+        // 테이블 시각화 service 실행
+        List<ResponseAllTableOrderGetDTO> responseAllTableOrderGetDTOS = orderService.getAllTableOrder(boothId, date);
+
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> response = new ApiResponse<>(true, "테이블 시각화 성공", responseAllTableOrderGetDTOS);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 
 
     // 주문 취소
