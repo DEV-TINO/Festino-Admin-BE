@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.user.controller;
 
+import com.DevTino.festino_admin.ApiResponse;
 import com.DevTino.festino_admin.user.domain.DTO.*;
 import com.DevTino.festino_admin.user.domain.RoleType;
 import com.DevTino.festino_admin.user.domain.UserDAO;
@@ -12,9 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -30,27 +29,20 @@ public class UserController {
 
     // 유저 저장
     @PostMapping("/join")
-    public ResponseEntity<Map<String, Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO) {
-        Boolean success = userService.saveUser(requestUserSaveDTO);
+    public ResponseEntity<ApiResponse<Object>> saveUser(@RequestBody RequestUserSaveDTO requestUserSaveDTO) {
+        userService.saveUser(requestUserSaveDTO);
 
-        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", success);
-        requestMap.put("message", success ? "user save success" : "user save failure");
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "user save success", null);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // 유저 로그인
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody RequestUserLoginDTO requestUserLoginDTO, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<Object>> loginUser(@RequestBody RequestUserLoginDTO requestUserLoginDTO, HttpServletResponse response) {
         Cookie[] cookies = userService.login(requestUserLoginDTO);
-
-        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", cookies != null);
-        requestMap.put("message", cookies == null ? "user login failure" : "user login success");
 
         if(cookies != null) {
             for(Cookie c : cookies) {
@@ -58,19 +50,17 @@ public class UserController {
             }
         }
 
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "user login success", null);
+
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // 유저 로그아웃
     @PostMapping("/logout")
-    public ResponseEntity<Map<String, Object>> logoutUser(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<Object>> logoutUser(HttpServletRequest request, HttpServletResponse response) {
         Cookie cookie = userService.getCookie(request);
-
-        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", cookie != null);
-        requestMap.put("message", cookie != null ? "logout success" : "logout failure");
 
         if(cookie != null) {
             Cookie c = new Cookie("access_token", "");
@@ -79,96 +69,83 @@ public class UserController {
             response.addCookie(c);
         }
 
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "logout success", null);
+
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // 유저 수정
     @PutMapping
-    public ResponseEntity<Map<String, Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO) {
+    public ResponseEntity<ApiResponse<Object>> updateUser(@RequestBody RequestUserUpdateDTO requestUserUpdateDTO) {
         UUID userId = userService.updateUser(requestUserUpdateDTO);
 
-        // Map 이용해서 success, 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", userId != null);
-        requestMap.put("message", userId == null ? "user update failure" : "user update success");
-        requestMap.put("userId", userId == null ? "00000000-0000-0000-0000-000000000000" : userId);
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "user update success", userId);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // 유저 삭제
     @DeleteMapping
-    public ResponseEntity<Map<String, Object>> deleteUser(@RequestBody RequestUserDeleteDTO requestUserDeleteDTO) {
-        boolean success = userService.deleteUser(requestUserDeleteDTO);
+    public ResponseEntity<ApiResponse<Object>> deleteUser(@RequestBody RequestUserDeleteDTO requestUserDeleteDTO) {
+        userService.deleteUser(requestUserDeleteDTO);
 
-        // Map 이용해서 success, 메시지 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", success);
-        requestMap.put("message", success ? "user delete success" : "user delete failure");
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "user delete success", null);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // 특정 유저 조회
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getUser(@RequestParam("userId") UUID userId) {
+    public ResponseEntity<ApiResponse<Object>> getUser(@RequestParam("userId") UUID userId) {
         UserDAO userDAO = userService.getUser(userId);
 
-        // Map 이용해서 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", userDAO != null);
-        requestMap.put("message", userDAO == null ? "doesn't exist user" : "success get user");
-        requestMap.put("user", userDAO);
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "success get user", userDAO);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // 유저 전체 조회
     @GetMapping("/all")
-    public ResponseEntity<Map<String, Object>> getUserAll() {
+    public ResponseEntity<ApiResponse<Object>> getUserAll() {
         List<ResponseUsersGetDTO> userList = userService.getUserAll();
 
-        // Map 이용해서 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", !userList.isEmpty());
-        requestMap.put("message", userList.isEmpty() ? "doesn't exist user" : "success get users");
-        requestMap.put("userList", userList.isEmpty() ? null : userList);
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "success get users", userList);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // role 확인
     @PostMapping("/role")
-    public ResponseEntity<Map<String, Object>> checkRole() {
+    public ResponseEntity<ApiResponse<Object>> checkRole() {
         UserDAO userDAO = userService.checkRole();
 
-        // Map 이용해서 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", userDAO != null);
-        requestMap.put("message", userDAO == null ? "doesn't exist user" : "user exist");
-        requestMap.put("role", userDAO == null ? null : userDAO.getRole() == RoleType.ADMIN);
+        // Map 이용해서 반환값 json 데이터로 변환
+        Boolean isAdmin = (userDAO.getRole() == RoleType.ADMIN);
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "success check role", isAdmin);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 
     // 부스 아이디 확인
     @GetMapping("/booth")
-    public ResponseEntity<Map<String, Object>> getBoothByAdminName(HttpServletRequest request) {
+    public ResponseEntity<ApiResponse<Object>> getBoothByAdminName(HttpServletRequest request) {
         UUID boothId = userService.getBooth(request);
 
-        // Map 이용해서 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", boothId != null);
-        requestMap.put("message", boothId == null ? "search failure" : "search success");
-        requestMap.put("boothId", boothId == null ? "00000000-0000-0000-0000-000000000000" : boothId);
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> apiResponse = new ApiResponse<>(true, "search success", boothId);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 }

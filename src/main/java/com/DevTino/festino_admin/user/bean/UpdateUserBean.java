@@ -32,8 +32,6 @@ public class UpdateUserBean {
     public UUID exec(RequestUserUpdateDTO requestUserUpdateDTO) {
         UserDAO userDAO = getUserDAOBean.exec(requestUserUpdateDTO.getUserId());
 
-        if(userDAO == null) return null;
-
         updateUserDAOBean.exec(userDAO, requestUserUpdateDTO);
         saveUserDAOBean.exec(userDAO);
 

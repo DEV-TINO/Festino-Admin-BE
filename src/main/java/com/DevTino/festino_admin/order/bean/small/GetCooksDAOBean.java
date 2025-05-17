@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.domain.*;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.others.BoothNameResolver;
@@ -37,7 +39,7 @@ public class GetCooksDAOBean {
 
         // orderId로 CookDAO 리스트 조회
         List<? extends AbstractCookDAO> cookDAOList = cookRepository.findAllByOrderId(orderId);
-        if(cookDAOList.isEmpty()) return new ArrayList<>();
+        if(cookDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환
         List<CookDTO> cookDTOList = new ArrayList<>();
@@ -80,7 +82,7 @@ public class GetCooksDAOBean {
 
         // orderId로 CookDAO 리스트 조회
         List<? extends AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndDateAndIsFinishAndIsService(menuId, date, isFinish, isService);
-        if(cookDAOList.isEmpty()) return new ArrayList<>();
+        if(cookDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환
         List<CookDTO> cookDTOList = new ArrayList<>();
@@ -100,7 +102,7 @@ public class GetCooksDAOBean {
 
         // orderId로 CookDAO 리스트 조회
         List<? extends AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
-        if(cookDAOList.isEmpty()) return new ArrayList<>();
+        if(cookDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환
         List<CookDTO> cookDTOList = new ArrayList<>();

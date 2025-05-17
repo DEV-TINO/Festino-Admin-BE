@@ -24,7 +24,6 @@ public class GetMenuBean {
     public ResponseMenuGetDTO exec(UUID menuId) {
         // menuId를 통해 원하는 객체(DAO 찾기)
         MenuDAO menuDAO = getMenuDAOBean.exec(menuId);
-        if(menuDAO == null) return null;
 
         // DTO 생성해서 반환
         return createMenuDTOBean.exec(menuDAO);

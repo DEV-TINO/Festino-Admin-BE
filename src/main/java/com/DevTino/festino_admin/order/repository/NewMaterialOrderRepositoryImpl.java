@@ -7,6 +7,7 @@ import com.DevTino.festino_admin.order.domain.OrderType;
 import com.DevTino.festino_admin.order.repository.jpa.NewMaterialOrderRepositoryJPA;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,6 +61,13 @@ public class NewMaterialOrderRepositoryImpl implements OrderRepository<NewMateri
     public List<NewMaterialOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return newMaterialOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
+    }
+
+    // 테이블 번호에 따른 주문 검색
+    public List<NewMaterialOrderDAO> findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(Integer date, LocalDateTime after){
+
+        return newMaterialOrderRepositoryJPA.findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(date, after);
+
     }
 
 }

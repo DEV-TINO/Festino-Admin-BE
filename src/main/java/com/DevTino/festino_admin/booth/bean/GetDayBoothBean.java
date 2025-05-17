@@ -23,7 +23,6 @@ public class GetDayBoothBean {
     public ResponseDayBoothGetDTO exec(UUID boothId) {
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         DayBoothDAO dayBoothDAO = getDayBoothDAOBean.exec(boothId);
-        if(dayBoothDAO == null) return null;
 
         // DTO 생성해서 반환
         return createDayBoothDTOBean.exec(dayBoothDAO);

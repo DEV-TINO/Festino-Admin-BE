@@ -29,7 +29,6 @@ public class GetClubShowsBean {
 
         // 동아리 공연 DAO 전체 검색 -> clubShowDAOList
         List<ClubShowDAO> clubShowDAOList = getClubShowDAOBean.exec();
-        if (clubShowDAOList == null) return null;
 
         // DAO 리스트를 DTO 리스트로 변환해서 리턴
         return createClubShowsDTOBean.exec(clubShowDAOList);

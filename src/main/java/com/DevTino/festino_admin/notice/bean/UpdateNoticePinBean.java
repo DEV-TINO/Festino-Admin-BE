@@ -39,7 +39,6 @@ public class UpdateNoticePinBean {
 
             // noticeId로 해당 Notice DAO 찾기
             NoticeDAO noticeDAO = getNoticeDAOBean.exec(requestNoticePinUpdateDTO.getNoticeId());
-            if (noticeDAO == null) return null;
 
             // DTO pin 값과 DAO pin 값 비교해서 같을 경우만 DAO pin 수정
             if (requestNoticePinUpdateDTO.getIsPin() == noticeDAO.getIsPin()) {

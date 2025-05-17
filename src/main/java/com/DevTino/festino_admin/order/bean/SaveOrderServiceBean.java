@@ -2,6 +2,8 @@ package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.booth.bean.small.GetNightBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.bean.small.*;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.RequestOrderServiceSaveDTO;
@@ -40,19 +42,13 @@ public class SaveOrderServiceBean {
 
         // 부스 정보 조회
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(boothId);
-        if (nightBoothDAO == null) return null;
 
-        // 부스가 닫혀 있거나 주문 불가할 경우 주문 등록 실패
-        if (!nightBoothDAO.getIsOpen() || !nightBoothDAO.getIsOrder()) return null;
+        // 부스가 닫혀 있거나 주문 불가할 경우 예외 발생
+        if (!nightBoothDAO.getIsOpen()) throw new ServiceException(ExceptionEnum.BOOTH_CLOSED);
+        if (!nightBoothDAO.getIsOrder()) throw new ServiceException(ExceptionEnum.ORDER_DISABLED);
 
         // 날짜 조회
         Integer date = checkOrderDAODateFieldBean.exec(nightBoothDAO);
-
-        // 주문한 학과
-        String adminName = boothNameResolver.exec(boothId);
-
-        // 주문한 학과가 없다면 주문 등록 실패
-        if(adminName.isEmpty()) return null;
 
         // 서비스 주문이라면 가격을 모두 0으로 수정
         if (requestOrderServiceSaveDTO.getIsService()){ updateOrderServiceSaveDTOBean.exec(requestOrderServiceSaveDTO); }

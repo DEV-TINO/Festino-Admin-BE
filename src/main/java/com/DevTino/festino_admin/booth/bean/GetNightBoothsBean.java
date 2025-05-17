@@ -7,7 +7,6 @@ import com.DevTino.festino_admin.booth.domain.NightBoothDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -26,7 +25,6 @@ public class GetNightBoothsBean {
 
         // 야간부스 전체 DAO 찾기
         List<NightBoothDAO> nightBoothDAOList = getNightBoothDAOBean.exec();
-        if(nightBoothDAOList.isEmpty()) return new ArrayList<>();
 
         // DAO 리스트를 DTO로 바꿔서 반환
         return createNightBoothsDTOBean.exec(nightBoothDAOList);

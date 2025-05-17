@@ -28,7 +28,6 @@ public class SaveTalentShowBean {
 
         // 연예인 공연 DAO 객체 생성
         TalentShowDAO talentShowDAO = createTalentShowDAOBean.exec(requestTalentShowSaveDTO);
-        if (talentShowDAO == null) return null;
 
         // DAO 저장
         saveTalentShowDAOBean.exec(talentShowDAO);

@@ -19,13 +19,9 @@ public class DeleteUserBean {
     }
 
     // 유저 삭제
-    public Boolean exec(RequestUserDeleteDTO requestUserDeleteDTO) {
+    public void exec(RequestUserDeleteDTO requestUserDeleteDTO) {
         UserDAO userDAO = getUserDAOBean.exec(requestUserDeleteDTO.getUserId());
 
-        if(userDAO == null) return false;
-
         deleteUserDAOBean.exec(userDAO);
-
-        return true;
     }
 }

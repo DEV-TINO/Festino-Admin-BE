@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.image.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.image.bean.small.SaveS3ImagesDAOBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +25,7 @@ public class SaveS3ImagesBean {
 
         // 이미지가 없는 경우
         if (fileList == null || fileList.isEmpty()) {
-            return null;
+            throw new ServiceException(ExceptionEnum.INVALID_INPUT_VALUE);
         }
 
         // S3 이미지 저장

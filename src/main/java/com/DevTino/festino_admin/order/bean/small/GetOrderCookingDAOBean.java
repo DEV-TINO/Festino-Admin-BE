@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.domain.*;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.others.BoothNameResolver;
@@ -37,7 +39,7 @@ public class GetOrderCookingDAOBean {
 
         // OrderDAO 리스트 조회
         List<? extends AbstractOrderDAO> orderDAOList = orderRepository.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(true, OrderType.COOKING, date);
-        if (orderDAOList.isEmpty()) return new ArrayList<>();
+        if (orderDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         // OrderDAO 리스트를 OrderDTO 리스트로 변환해 반환
         List<OrderDTO> orderDTOList = new ArrayList<>();

@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.domain.*;
 import com.DevTino.festino_admin.order.domain.DTO.CookDTO;
 import com.DevTino.festino_admin.order.others.BoothNameResolver;
@@ -36,7 +38,7 @@ public class GetCookDAOBean {
 
         // cookId로 CookDAO 조회, CookDTO로 변환해 반환
         AbstractCookDAO dao = cookRepository.findById(cookId);
-        if (dao == null) return null;
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
         return CookDTO.fromAbstractCookDAO(dao);
 
     }

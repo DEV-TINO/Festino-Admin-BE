@@ -34,15 +34,12 @@ public class GetOrderNowBean {
 
         // 입금대기 리스트 조회
         List<ResponseOrderWaitDepositGetDTO> waitDepositList = getOrderWaitDepositBean.exec(boothId, date);
-        if (waitDepositList == null) return null;
 
         // 조리중 리스트 조회
         List<ResponseOrderCookingGetDTO> cookingList = getOrderCookingBean.exec(boothId, date);
-        if (cookingList == null) return null;
 
         // 조리완료 리스트 조회
         List<ResponseOrderFinishGetDTO> finishList = getOrderFinishBean.exec(boothId, date);
-        if (finishList == null) return null;
 
         // DTO 생성해 반환
         return createOrderNowGetDTOBean.exec(waitDepositList, cookingList, finishList);

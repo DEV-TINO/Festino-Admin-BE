@@ -61,9 +61,9 @@ public class ClubShowService {
     }
 
     // 동아리 공연 삭제
-    public boolean deleteClubShow(RequestClubShowDeleteDTO requestClubShowDeleteDTO){
+    public void deleteClubShow(RequestClubShowDeleteDTO requestClubShowDeleteDTO){
 
-        return deleteClubShowBean.exec(requestClubShowDeleteDTO);
+        deleteClubShowBean.exec(requestClubShowDeleteDTO);
 
     }
 

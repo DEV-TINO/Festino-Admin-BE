@@ -29,10 +29,9 @@ public class GetOrderTableAllBean {
     public List<ResponseOrderTableAllGetDTO> exec(UUID boothId, Integer tableNum){
 
         // 테이블, 주문 오래된 순 전체 조회
-        List<OrderDTO> orderDTOS = getOrdersTableAllDAOBean.exec(boothId, tableNum);
-        if (orderDTOS == null) return null;
+        List<OrderDTO> dtoList = getOrdersTableAllDAOBean.exec(boothId, tableNum);
 
         // DAO를 DTO 리스트로 변환해 반환
-        return createOrderTableAllGetDTOsBean.exec(orderDTOS);
+        return createOrderTableAllGetDTOsBean.exec(dtoList);
     }
 }

@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.user.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.user.domain.DTO.RequestUserLoginDTO;
 import com.DevTino.festino_admin.user.domain.UserDAO;
 import com.DevTino.festino_admin.user.repository.UserRepositoryJPA;
@@ -22,7 +24,12 @@ public class GetUserDAOBean {
 
     // id로 특정 유저 조회
     public UserDAO exec(UUID userId) {
-        return userRepositoryJPA.findById(userId).orElse(null);
+
+        UserDAO dao = userRepositoryJPA.findById(userId).orElse(null);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
+
     }
 
     // adminId와 passWord로 특정 유저 조회
@@ -32,11 +39,13 @@ public class GetUserDAOBean {
       
         UserDAO userDAO = userRepositoryJPA.findByAdminId(adminId);
 
-        // accountId로 조회했을 때 값이 없는 경우
-        if(userDAO == null) return null;
+        // accountId로 조회했을 때 값이 없는 경우 예외 발생
+        if(userDAO == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
 
-        // 암호화된 비밀번호를 확인했을 때 일치한다면 true, 다르다면 false
+        // 암호화된 비밀번호를 확인하고 다른 경우 예외 발생
         boolean flag = BCrypt.checkpw(passWord, userDAO.getPassWord());
-        return flag ? userDAO : null;
+        if (!flag) throw new ServiceException(ExceptionEnum.PASSWORD_MISMATCH);
+        
+        return userDAO;
     }
 }

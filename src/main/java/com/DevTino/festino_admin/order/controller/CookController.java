@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.controller;
 
+import com.DevTino.festino_admin.ApiResponse;
 import com.DevTino.festino_admin.order.domain.DTO.RequestCookCountUpdateDTO;
 import com.DevTino.festino_admin.order.domain.DTO.RequestCookFinishUpdateDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseCookCountUpdateDTO;
@@ -10,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -30,22 +29,16 @@ public class CookController {
 
     // Cook 조리 완료
     @PutMapping("/finish")
-    public ResponseEntity<Map<String, Object>> updateCookFinish(@PathVariable("boothId") UUID boothId, @RequestBody RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
+    public ResponseEntity<ApiResponse<Object>> updateCookFinish(@PathVariable("boothId") UUID boothId, @RequestBody RequestCookFinishUpdateDTO requestCookFinishUpdateDTO){
 
         // Cook 조리 완료 service 실행
         ResponseCookFinishUpdateDTO responseCookFinishUpdateDTO = cookService.updateCookFinish(boothId, requestCookFinishUpdateDTO);
 
-        // Cook 조리 완료 성공 여부 설정
-        boolean success = (responseCookFinishUpdateDTO == null) ? false : true;
-
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", success);
-        requestMap.put("message", success ? "Cook 조리 완료 성공" : "Cook 조리 완료 시 DAO 검색 실패");
-        requestMap.put("finishInfo", responseCookFinishUpdateDTO);
+        ApiResponse<Object> response = new ApiResponse<>(true, "Cook 조리 완료 성공", responseCookFinishUpdateDTO);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 
@@ -53,22 +46,16 @@ public class CookController {
 
     // 서빙 수량 변경
     @PutMapping("/count")
-    public ResponseEntity<Map<String, Object>> updateCookCount(@PathVariable("boothId") UUID boothId, @RequestBody RequestCookCountUpdateDTO requestCookCountUpdateDTO){
+    public ResponseEntity<ApiResponse<Object>> updateCookCount(@PathVariable("boothId") UUID boothId, @RequestBody RequestCookCountUpdateDTO requestCookCountUpdateDTO){
 
         // 서빙 수량 변경 service 실행
         ResponseCookCountUpdateDTO responseCookCountUpdateDTO = cookService.updateCookCount(boothId, requestCookCountUpdateDTO);
 
-        // 서빙 수량 변경 성공 여부 설정
-        boolean success = (responseCookCountUpdateDTO == null) ? false : true;
-
         // Map 이용해서 메시지와 id 값 json 데이터로 변환
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("success", success);
-        requestMap.put("message", success ? "서빙 수량 변경 성공" : "서빙 수량 변경 시 DAO 검색 실패 또는 부적절한 servedCount 값");
-        requestMap.put("countInfo", responseCookCountUpdateDTO);
+        ApiResponse<Object> response = new ApiResponse<>(true, "서빙 수량 변경 성공", responseCookCountUpdateDTO);
 
         // status, body 설정해서 응답 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 

@@ -33,10 +33,8 @@ public class SaveCustomMessageBean {
         // 기존 메세지 조회
         List<CustomMessageDAO> customMessageDAOList = getCustomMessagesDAOBean.exec(requestCustomMessageSaveDTO.getBoothId());
 
-        if (!customMessageDAOList.isEmpty()) {
-            // 기존 메세지 삭제
-            deleteCustomMessagesDAOBean.exec(customMessageDAOList);
-        }
+        // 기존 메세지 삭제
+        deleteCustomMessagesDAOBean.exec(customMessageDAOList);
 
         List<CustomMessageDAO> newCustomMessageDAOList = createCustomMessageDAOBean.exec(requestCustomMessageSaveDTO);
 

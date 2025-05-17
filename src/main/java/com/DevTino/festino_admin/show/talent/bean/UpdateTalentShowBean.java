@@ -30,7 +30,6 @@ public class UpdateTalentShowBean {
 
         // talentId로 해당 TalentShow DAO 찾기
         TalentShowDAO talentShowDAO = getTalentShowDAOBean.exec(requestTalentShowUpdateDTO.getTalentId());
-        if (talentShowDAO == null) return null;
 
         // DAO 수정
         talentShowDAO.setTalentId(requestTalentShowUpdateDTO.getTalentId());

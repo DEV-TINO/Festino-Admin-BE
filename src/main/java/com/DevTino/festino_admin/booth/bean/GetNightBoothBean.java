@@ -24,7 +24,6 @@ public class GetNightBoothBean {
 
         // 부스 아이디를 통해 원하는 객체(DAO) 찾기
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(boothId);
-        if(nightBoothDAO == null) return null;
 
         // DTO 생성해서 반환
         return createNightBoothDTOBean.exec(nightBoothDAO);

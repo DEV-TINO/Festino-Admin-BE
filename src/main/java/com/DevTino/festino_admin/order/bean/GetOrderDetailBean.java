@@ -31,7 +31,6 @@ public class GetOrderDetailBean {
 
         // orderId로 해당 Order DAO 찾기
         OrderDTO orderDTO = getOrderDAOBean.exec(boothId, orderId);
-        if (orderDTO == null) return null;
 
         // DTO 생성해 반환
         return createOrderDetailGetDTOBean.exec(orderDTO);

@@ -3,11 +3,13 @@ package com.DevTino.festino_admin.order.repository;
 import com.DevTino.festino_admin.order.domain.ComputerOrderDAO;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DesignOrderDAO;
+import com.DevTino.festino_admin.order.domain.NanoOrderDAO;
 import com.DevTino.festino_admin.order.domain.OrderType;
 import com.DevTino.festino_admin.order.repository.jpa.DesignOrderRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,6 +64,12 @@ public class DesignOrderRepositoryImpl implements OrderRepository<DesignOrderDAO
     public List<DesignOrderDAO> findByTableNumOrderByCreateAtAsc(Integer tableNum){
 
         return designOrderRepositoryJPA.findByTableNumOrderByCreateAtAsc(tableNum);
+    }
+
+    // 테이블 번호에 따른 주문 검색
+    public List<DesignOrderDAO> findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(Integer date, LocalDateTime after){
+
+        return designOrderRepositoryJPA.findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(date, after);
     }
 
 }

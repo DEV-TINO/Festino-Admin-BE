@@ -28,7 +28,6 @@ public class GetNoticeBean {
 
         // noticeId로 해당 Notice DAO 찾기
         NoticeDAO noticeDAO = getNoticeDAOBean.exec(noticeId);
-        if (noticeDAO == null) return null;
 
         // DTO 생성해서 반환
         return createNoticeDTOBean.exec(noticeDAO);

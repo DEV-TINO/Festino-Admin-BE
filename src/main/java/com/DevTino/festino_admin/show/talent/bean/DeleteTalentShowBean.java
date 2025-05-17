@@ -22,15 +22,13 @@ public class DeleteTalentShowBean {
 
 
     // 연예인 공연 삭제
-    public boolean exec(RequestTalentShowDeleteDTO requestTalentShowDeleteDTO){
+    public void exec(RequestTalentShowDeleteDTO requestTalentShowDeleteDTO){
 
         // talentId로 해당 TalentShow DAO 찾기
         TalentShowDAO talentShowDAO = getTalentShowDAOBean.exec(requestTalentShowDeleteDTO.getTalentId());
-        if (talentShowDAO == null) return false;
 
         // DAO 삭제
         deleteTalentShowDAOBean.exec(talentShowDAO);
-        return true;
 
     }
 }

@@ -32,7 +32,6 @@ public class GetOrderCookingBean {
 
         // boothId로 해당 부스의 메뉴 검색
         List<MenuDAO> menuDAOList = getMenusDAOBean.exec(boothId);
-        if (menuDAOList.isEmpty()) return null;
 
         // 메뉴 정보를 활용해 DTO 리스트를 생성해 리턴
         return createOrderCookingGetDTOsBean.exec(boothId, menuDAOList, date);

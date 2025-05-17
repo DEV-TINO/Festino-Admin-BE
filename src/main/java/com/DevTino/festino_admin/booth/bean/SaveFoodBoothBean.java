@@ -4,6 +4,8 @@ import com.DevTino.festino_admin.booth.bean.small.CreateFoodBoothDAOBean;
 import com.DevTino.festino_admin.booth.bean.small.SaveFoodBoothDAOBean;
 import com.DevTino.festino_admin.booth.domain.DTO.RequestFoodBoothSaveDTO;
 import com.DevTino.festino_admin.booth.domain.FoodBoothDAO;
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +27,6 @@ public class SaveFoodBoothBean {
 
         // 푸드트럭 DAO 생성
         FoodBoothDAO foodBoothDAO = createFoodBoothDAOBean.exec(requestFoodBoothSaveDTO);
-        if(foodBoothDAO == null) return null;
 
         // 푸드트럭 저장
         saveFoodBoothDAOBean.exec(foodBoothDAO);

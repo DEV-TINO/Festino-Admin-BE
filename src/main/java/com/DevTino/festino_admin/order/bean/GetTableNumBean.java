@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.bean.small.GetTableNumDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseTableNumGetDTO;
 import com.DevTino.festino_admin.order.domain.TableNumDAO;
@@ -22,7 +24,7 @@ public class GetTableNumBean {
     public List<ResponseTableNumGetDTO> exec(UUID boothId) {
 
         List<TableNumDAO> tableNumDAOList = getTableNumDAOBean.exec(boothId);
-        if (tableNumDAOList == null) return null;
+        if (tableNumDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         return tableNumDAOList.stream().map(tableNumDAO -> ResponseTableNumGetDTO.builder()
                 .tableNumIndex(tableNumDAO.getTableNumIndex())

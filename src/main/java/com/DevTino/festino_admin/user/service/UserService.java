@@ -43,15 +43,13 @@ public class UserService {
     }
 
     // 유저 저장
-    public Boolean saveUser(RequestUserSaveDTO requestUserSaveDTO) {
-        return saveUserBean.exec(requestUserSaveDTO);
+    public void saveUser(RequestUserSaveDTO requestUserSaveDTO) {
+        saveUserBean.exec(requestUserSaveDTO);
     }
 
     // 유저 로그인
     public Cookie[] login(RequestUserLoginDTO requestUserLoginDTO) {
         UserDAO userDAO = checkUserBean.exec(requestUserLoginDTO);
-
-        if(userDAO == null) return null;
 
         return addCookieBean.exec(userDAO, secretKey);
     }
@@ -62,8 +60,8 @@ public class UserService {
     }
 
     // 유저 삭제
-    public Boolean deleteUser(RequestUserDeleteDTO requestUserDeleteDTO) {
-        return deleteUserBean.exec(requestUserDeleteDTO);
+    public void deleteUser(RequestUserDeleteDTO requestUserDeleteDTO) {
+        deleteUserBean.exec(requestUserDeleteDTO);
     }
 
     // 특정 유저 조회

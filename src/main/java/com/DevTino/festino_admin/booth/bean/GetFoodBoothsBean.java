@@ -25,7 +25,6 @@ public class GetFoodBoothsBean {
     public List<ResponseFoodBoothsGetDTO> exec() {
         // 푸드트럭 전체 DAO 가져오기
         List<FoodBoothDAO> foodBoothDAOList = getFoodBoothDAOBean.exec();
-        if(foodBoothDAOList.isEmpty()) return new ArrayList<>();
 
         // DAO 리스트를 DAO로 바꾸고 반환
         return createFoodBoothsDTOBean.exec(foodBoothDAOList);
