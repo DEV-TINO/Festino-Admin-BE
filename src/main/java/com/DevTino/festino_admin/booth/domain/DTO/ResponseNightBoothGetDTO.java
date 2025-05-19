@@ -27,6 +27,7 @@ public class ResponseNightBoothGetDTO {
     Boolean isReservation;
     Boolean isTossPay;
     Boolean isKakaoPay;
+    Boolean isCall;
     Integer totalReservationNum;
     Map<String, String> accountInfo;
 }

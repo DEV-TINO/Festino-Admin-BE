@@ -29,6 +29,7 @@ public class CreateNightBoothDTOBean {
                 .accountInfo(nightBoothDAO.getAccountInfo())
                 .isTossPay(nightBoothDAO.getIsTossPay())
                 .isKakaoPay(nightBoothDAO.getIsKakaoPay())
+                .isCall(nightBoothDAO.getIsCall())
                 .tossPay(nightBoothDAO.getTossPay())
                 .kakaoPay(nightBoothDAO.getKakaoPay())
 
