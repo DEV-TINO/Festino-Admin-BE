@@ -50,6 +50,7 @@ public class UpdateNightBoothBean {
         nightBoothDAO.setAccountInfo(requestNightBoothUpdateDTO.getAccountInfo());
         nightBoothDAO.setIsTossPay(requestNightBoothUpdateDTO.getIsTossPay());
         nightBoothDAO.setIsKakaoPay(requestNightBoothUpdateDTO.getIsKakaoPay());
+        nightBoothDAO.setIsCall(requestNightBoothUpdateDTO.getIsCall());
         nightBoothDAO.setTossPay(requestNightBoothUpdateDTO.getTossPay());
         nightBoothDAO.setKakaoPay(requestNightBoothUpdateDTO.getKakaoPay());
 

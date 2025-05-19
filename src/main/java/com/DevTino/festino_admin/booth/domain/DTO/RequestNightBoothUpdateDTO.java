@@ -23,5 +23,6 @@ public class RequestNightBoothUpdateDTO {
     Boolean isReservation;
     Boolean isTossPay;
     Boolean isKakaoPay;
+    Boolean isCall;
     Map<String, String> accountInfo;
 }
