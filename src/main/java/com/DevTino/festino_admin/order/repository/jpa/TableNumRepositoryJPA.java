@@ -11,4 +11,7 @@ public interface TableNumRepositoryJPA extends JpaRepository<TableNumDAO, Intege
     List<TableNumDAO> findAllByBoothIdOrderByTableNumIndexAsc(UUID boothId);
 
     void deleteAllByBoothId(UUID boothId);
+
+    // 부스 아이디와 isDeleted 가 false인 테이블 전체 조회
+    List<TableNumDAO> findAllByBoothIdAndIsDeletedFalseOrderByTableNumIndexAsc(UUID boothId);
 }

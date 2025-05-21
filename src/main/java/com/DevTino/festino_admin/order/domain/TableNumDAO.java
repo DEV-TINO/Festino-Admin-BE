@@ -22,4 +22,6 @@ public class TableNumDAO {
     Integer tableNumIndex;
     String customTableNum;
     String orderUrl;
+
+    Boolean isDeleted;
 }
