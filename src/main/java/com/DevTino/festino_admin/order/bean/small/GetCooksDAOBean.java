@@ -102,7 +102,7 @@ public class GetCooksDAOBean {
 
         // orderId로 CookDAO 리스트 조회
         List<? extends AbstractCookDAO> cookDAOList = cookRepository.findByMenuIdAndDateAndIsFinish(menuId, date, isFinish);
-        if(cookDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+        //if(cookDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         // CookDAO 리스트를 CookDTO 리스트로 변환해 반환
         List<CookDTO> cookDTOList = new ArrayList<>();
