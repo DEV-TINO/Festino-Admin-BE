@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.exception.ExceptionEnum;
 import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.domain.AbstractOrderDAO;
@@ -38,7 +39,7 @@ public class GetAllTableOrderDAOBean {
         OrderRepository<?> orderRepository = orderRepositoryMap.get(boothName);
 
         // OrderDAO 리스트 조회
-        LocalDateTime after= LocalDateTime.now().minusHours(1);
+        LocalDateTime after= DateTimeUtils.nowZone().minusHours(1);
         List<? extends AbstractOrderDAO> orderDAOList = orderRepository.findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(date, after);
         if (orderDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
