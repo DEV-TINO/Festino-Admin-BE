@@ -39,7 +39,7 @@ public class GetOrderWaitDepositDAOBean {
 
         // OrderDAO 리스트 조회
         List<? extends AbstractOrderDAO> orderDAOList = orderRepository.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(false, OrderType.COOKING, date);
-        if (orderDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
+        //if (orderDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         // OrderDAO 리스트를 OrderDTO 리스트로 변환해 반환
         List<OrderDTO> orderDTOList = new ArrayList<>();
