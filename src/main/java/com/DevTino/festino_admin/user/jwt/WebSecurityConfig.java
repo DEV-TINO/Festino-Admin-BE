@@ -49,7 +49,7 @@ public class WebSecurityConfig {
                                 //.requestMatchers(HttpMethod.GET, "/admin/booth/night/all").permitAll()
                                 //.requestMatchers(HttpMethod.POST, "/admin/order/table").permitAll()
                                 //.requestMatchers(HttpMethod.GET, "/admin/order/table/booth/**").permitAll()
-                                //.requestMatchers("/admin/reservation/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/admin/order/table").permitAll()
                                 .requestMatchers("/admin/booth/bcb6ddc2-1116-4729-a643-fa8f3bb5408f/order/cooking/all/3").permitAll()
                                 .requestMatchers("/admin/booth/bcb6ddc2-1116-4729-a643-fa8f3bb5408f/order/visualization/3").permitAll()
                                 .requestMatchers("/").permitAll()
@@ -60,8 +60,8 @@ public class WebSecurityConfig {
                                 .requestMatchers("/admin/user/all").hasAuthority(RoleType.MEMBER.name())
                                 .requestMatchers("/admin/user/booth").hasAuthority(RoleType.MEMBER.name())
                                 .requestMatchers("/admin/user/**").hasAuthority(RoleType.ADMIN.name())
-                                // .requestMatchers("/admin/user/**").authenticated()
                                 // .requestMatchers("/admin/user/**").authenticated().hasRole("ADMIN")
+                                // .requestMatchers("/admin/user/**").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

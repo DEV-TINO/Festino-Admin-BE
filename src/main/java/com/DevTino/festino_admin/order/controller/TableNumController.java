@@ -36,7 +36,7 @@ public class TableNumController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<ApiResponse<Object>> saveTableNum(@RequestBody RequestTableNumSaveDTO requestTableNumSaveDTO){
 
         UUID boothId = tableNumService.saveTableNum(requestTableNumSaveDTO);

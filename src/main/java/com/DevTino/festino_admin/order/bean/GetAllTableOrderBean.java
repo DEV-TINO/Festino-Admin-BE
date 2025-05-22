@@ -2,6 +2,7 @@ package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.order.bean.small.GetAllTableOrderDAOBean;
 import com.DevTino.festino_admin.order.bean.small.GetTableNumDAOBean;
+import com.DevTino.festino_admin.order.bean.small.GetTableNumDeleteCheckDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseAllTableOrderGetDTO;
 import com.DevTino.festino_admin.order.domain.OrderType;
@@ -14,12 +15,12 @@ import java.util.*;
 @Component
 public class GetAllTableOrderBean {
 
-    GetTableNumDAOBean getTableNumDAOBean;
+    GetTableNumDeleteCheckDAOBean getTableNumDeleteCheckDAOBean;
     GetAllTableOrderDAOBean getAllTableOrderDAOBean;
 
     @Autowired
-    public GetAllTableOrderBean(GetTableNumDAOBean getTableNumDAOBean, GetAllTableOrderDAOBean getAllTableOrderDAOBean) {
-        this.getTableNumDAOBean = getTableNumDAOBean;
+    public GetAllTableOrderBean(GetTableNumDeleteCheckDAOBean getTableNumDeleteCheckDAOBean, GetAllTableOrderDAOBean getAllTableOrderDAOBean) {
+        this.getTableNumDeleteCheckDAOBean = getTableNumDeleteCheckDAOBean;
         this.getAllTableOrderDAOBean = getAllTableOrderDAOBean;
     }
 
@@ -27,7 +28,7 @@ public class GetAllTableOrderBean {
     public List<ResponseAllTableOrderGetDTO> exec(UUID boothId, Integer date){
 
         // 일단 해당 학과에 모든 테이블을 가져와
-        List<TableNumDAO> tableNumDAOList = getTableNumDAOBean.exec(boothId);
+        List<TableNumDAO> tableNumDAOList = getTableNumDeleteCheckDAOBean.exec(boothId);
 
         // 최근 한시간에 주문을 테이블 번호로 정렬해서 가져와
         List<OrderDTO> orderDTOList = getAllTableOrderDAOBean.exec(boothId, date);

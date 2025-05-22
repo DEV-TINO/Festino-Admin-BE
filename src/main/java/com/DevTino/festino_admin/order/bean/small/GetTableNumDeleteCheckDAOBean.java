@@ -6,22 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
-public class SaveTableNumDAOBean {
+public class GetTableNumDeleteCheckDAOBean {
 
     TableNumRepositoryJPA tableNumRepositoryJPA;
 
     @Autowired
-    public SaveTableNumDAOBean(TableNumRepositoryJPA tableNumRepositoryJPA) {
+    public GetTableNumDeleteCheckDAOBean(TableNumRepositoryJPA tableNumRepositoryJPA) {
         this.tableNumRepositoryJPA = tableNumRepositoryJPA;
     }
 
-    public TableNumDAO exec(TableNumDAO tableNumDAO) {
-        return tableNumRepositoryJPA.save(tableNumDAO);
-    }
-
-    public void exec(List<TableNumDAO> tableNumDAOList) {
-        tableNumRepositoryJPA.saveAll(tableNumDAOList);
+    public List<TableNumDAO> exec(UUID boothId) {
+        return tableNumRepositoryJPA.findAllByBoothIdAndIsDeletedFalseOrderByTableNumIndexAsc(boothId);
     }
 }
