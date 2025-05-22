@@ -1,6 +1,7 @@
 package com.DevTino.festino_admin.order.controller;
 
 import com.DevTino.festino_admin.ApiResponse;
+import com.DevTino.festino_admin.order.domain.DTO.RequestAllTableNumPriorityUpdateDTO;
 import com.DevTino.festino_admin.order.domain.DTO.RequestTableNumSaveDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseTableNumGetDTO;
 import com.DevTino.festino_admin.order.service.TableNumService;
@@ -24,6 +25,7 @@ public class TableNumController {
         this.tableNumService = tableNumService;
     }
 
+    // 테이블 전체 조회
     @GetMapping("/booth/{boothId}")
     public ResponseEntity<ApiResponse<Object>> getTableNum(@PathVariable(value = "boothId") UUID boothId){
 
@@ -36,6 +38,7 @@ public class TableNumController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    // 테이블 번호 저장
     @PostMapping
     public ResponseEntity<ApiResponse<Object>> saveTableNum(@RequestBody RequestTableNumSaveDTO requestTableNumSaveDTO){
 
@@ -43,6 +46,19 @@ public class TableNumController {
 
         // Map 이용해서 반환값 json 데이터로 변환
         ApiResponse<Object> response = new ApiResponse<>(true, "테이블 번호 저장 성공", boothId);
+
+        // status, body 설정해서 응답 리턴
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    // 테이블 번호 우선순위 수정
+    @PutMapping("/priority")
+    public ResponseEntity<ApiResponse<Object>> updateTableNumPriority(@RequestBody RequestAllTableNumPriorityUpdateDTO requestAllTableNumPriorityUpdateDTO){
+
+        UUID boothId = tableNumService.updateTableNumPriority(requestAllTableNumPriorityUpdateDTO);
+
+        // Map 이용해서 반환값 json 데이터로 변환
+        ApiResponse<Object> response = new ApiResponse<>(true, "테이블 번호 우선순위 수정 성공", boothId);
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(response);

@@ -14,4 +14,7 @@ public interface TableNumRepositoryJPA extends JpaRepository<TableNumDAO, Intege
 
     // 부스 아이디와 isDeleted 가 false인 테이블 전체 조회
     List<TableNumDAO> findAllByBoothIdAndIsDeletedFalseOrderByTableNumIndexAsc(UUID boothId);
+
+    // 부스 아이디와 테이블 인덱스 조회
+    TableNumDAO findByBoothIdAndTableNumIndex(UUID boothId, Integer tableNumIndex);
 }

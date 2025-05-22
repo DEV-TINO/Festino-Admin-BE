@@ -1,7 +1,6 @@
 package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.order.bean.small.GetAllTableOrderDAOBean;
-import com.DevTino.festino_admin.order.bean.small.GetTableNumDAOBean;
 import com.DevTino.festino_admin.order.bean.small.GetTableNumDeleteCheckDAOBean;
 import com.DevTino.festino_admin.order.domain.DTO.OrderDTO;
 import com.DevTino.festino_admin.order.domain.DTO.ResponseAllTableOrderGetDTO;
@@ -74,10 +73,13 @@ public class GetAllTableOrderBean {
 
             responseAllTableOrderGetDTOS.add(ResponseAllTableOrderGetDTO.builder()
                     .tableNumIndex(tableNum)
+                    .tablePriority(table.getTablePriority())
                     .type(type)
                     .orderInfo(selectedOrder)
                     .build());
         }
+
+        responseAllTableOrderGetDTOS.sort(Comparator.comparing(ResponseAllTableOrderGetDTO::getTablePriority));
 
         return responseAllTableOrderGetDTOS;
 
