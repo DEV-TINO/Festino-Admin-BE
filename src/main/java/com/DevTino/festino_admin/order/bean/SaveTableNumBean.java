@@ -1,5 +1,6 @@
 package com.DevTino.festino_admin.order.bean;
 
+import com.DevTino.festino_admin.DateTimeUtils;
 import com.DevTino.festino_admin.exception.ExceptionEnum;
 import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.bean.small.CheckFieldMatchingTableNumBean;
@@ -61,7 +62,10 @@ public class SaveTableNumBean {
                 TableNumDAO tableNumDAO = TableNumDAO.builder()
                         .boothId(boothId)
                         .customTableNum(tableNumDTO.getCustomTableNum())
+                        .tablePriority(0)
                         .isDeleted(false)
+                        .createAt(DateTimeUtils.nowZone())
+                        .updateAt(DateTimeUtils.nowZone())
                         .build();
                 saveTableNumDAOBean.exec(tableNumDAO);
 
@@ -70,8 +74,13 @@ public class SaveTableNumBean {
             } else {
                 // 수정
                 TableNumDAO tableNumDAO = existingTableNumDAOMap.get(tableNumDTO.getTableNumIndex());
-                if (tableNumDAO != null && !tableNumDAO.getCustomTableNum().equals(tableNumDTO.getCustomTableNum())) {
-                    tableNumDAO.setCustomTableNum(tableNumDTO.getCustomTableNum());
+
+                if (tableNumDAO != null) {
+                    if (!tableNumDAO.getCustomTableNum().equals(tableNumDTO.getCustomTableNum())){
+                        tableNumDAO.setCustomTableNum(tableNumDTO.getCustomTableNum());
+                        tableNumDAO.setUpdateAt(DateTimeUtils.nowZone());
+                    }
+
                     saveTableNumDAOBean.exec(tableNumDAO);
                 }
             }

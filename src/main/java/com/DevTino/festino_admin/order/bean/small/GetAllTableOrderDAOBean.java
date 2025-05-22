@@ -40,10 +40,12 @@ public class GetAllTableOrderDAOBean {
         // OrderDAO 리스트 조회
         LocalDateTime after= LocalDateTime.now().minusHours(1);
         List<? extends AbstractOrderDAO> orderDAOList = orderRepository.findByDateAndCreateAtAfterOrderByTableNumAscCreateAtAsc(date, after);
-        if (orderDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
 
         // OrderDAO 리스트를 OrderDTO 리스트로 변환해 반환
         List<OrderDTO> orderDTOList = new ArrayList<>();
+
+        if (orderDAOList.isEmpty()) return orderDTOList;
+
         for (AbstractOrderDAO dao : orderDAOList) { orderDTOList.add(OrderDTO.fromAbstractOrderDAO(dao)); }
         return orderDTOList;
 

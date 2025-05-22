@@ -1,5 +1,7 @@
 package com.DevTino.festino_admin.order.bean.small;
 
+import com.DevTino.festino_admin.exception.ExceptionEnum;
+import com.DevTino.festino_admin.exception.ServiceException;
 import com.DevTino.festino_admin.order.domain.TableNumDAO;
 import com.DevTino.festino_admin.order.repository.jpa.TableNumRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,13 @@ public class GetTableNumDAOBean {
     @Autowired
     public GetTableNumDAOBean(TableNumRepositoryJPA tableNumRepositoryJPA) {
         this.tableNumRepositoryJPA = tableNumRepositoryJPA;
+    }
+
+    public TableNumDAO exec(UUID boothId, Integer tableNumIndex) {
+        TableNumDAO dao = tableNumRepositoryJPA.findByBoothIdAndTableNumIndex(boothId, tableNumIndex);
+        if (dao == null) throw new ServiceException(ExceptionEnum.ENTITY_NOT_FOUND);
+
+        return dao;
     }
 
     public List<TableNumDAO> exec(UUID boothId) {
