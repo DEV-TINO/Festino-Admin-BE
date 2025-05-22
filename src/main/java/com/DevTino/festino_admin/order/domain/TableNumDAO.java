@@ -17,9 +17,8 @@ import java.util.UUID;
 public class TableNumDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long tableNumId;
-    UUID boothId;
     Integer tableNumIndex;
+    UUID boothId;
     String customTableNum;
     String orderUrl;
 

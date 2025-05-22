@@ -19,6 +19,7 @@ public class GetTableNumDAOBean {
     }
 
     public List<TableNumDAO> exec(UUID boothId) {
-        return tableNumRepositoryJPA.findAllByBoothIdAndIsDeletedFalseOrderByTableNumIndexAsc(boothId);
+        //return tableNumRepositoryJPA.findAllByBoothIdAndIsDeletedFalseOrderByTableNumIndexAsc(boothId);
+        return tableNumRepositoryJPA.findAllByBoothIdOrderByTableNumIndexAsc(boothId);
     }
 }

@@ -17,6 +17,10 @@ public class SaveTableNumDAOBean {
         this.tableNumRepositoryJPA = tableNumRepositoryJPA;
     }
 
+    public TableNumDAO exec(TableNumDAO tableNumDAO) {
+        return tableNumRepositoryJPA.save(tableNumDAO);
+    }
+
     public void exec(List<TableNumDAO> tableNumDAOList) {
         tableNumRepositoryJPA.saveAll(tableNumDAOList);
     }
