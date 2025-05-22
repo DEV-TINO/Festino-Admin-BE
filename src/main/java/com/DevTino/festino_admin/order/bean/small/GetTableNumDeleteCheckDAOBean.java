@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class GetTableNumDAOBean {
+public class GetTableNumDeleteCheckDAOBean {
 
     TableNumRepositoryJPA tableNumRepositoryJPA;
 
     @Autowired
-    public GetTableNumDAOBean(TableNumRepositoryJPA tableNumRepositoryJPA) {
+    public GetTableNumDeleteCheckDAOBean(TableNumRepositoryJPA tableNumRepositoryJPA) {
         this.tableNumRepositoryJPA = tableNumRepositoryJPA;
     }
 
     public List<TableNumDAO> exec(UUID boothId) {
-        return tableNumRepositoryJPA.findAllByBoothIdOrderByTableNumIndexAsc(boothId);
+        return tableNumRepositoryJPA.findAllByBoothIdAndIsDeletedFalseOrderByTableNumIndexAsc(boothId);
     }
 }
