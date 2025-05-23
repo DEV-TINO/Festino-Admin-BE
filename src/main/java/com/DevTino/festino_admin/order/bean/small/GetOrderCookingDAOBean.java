@@ -35,7 +35,7 @@ public class GetOrderCookingDAOBean {
         String boothName = boothNameResolver.exec(boothId);
 
         // Map에서 해당 부스의 Repository 꺼내기
-        OrderRepository orderRepository = orderRepositoryMap.get(boothName);
+        OrderRepository<?> orderRepository = orderRepositoryMap.get(boothName);
 
         // OrderDAO 리스트 조회
         List<? extends AbstractOrderDAO> orderDAOList = orderRepository.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(true, OrderType.COOKING, date);
