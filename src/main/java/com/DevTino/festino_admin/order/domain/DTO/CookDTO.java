@@ -54,22 +54,6 @@ public class CookDTO {
                 .build();
     }
 
-    public static CookDTO fromEnergyCookDAO(EnergyCookDAO energyCookDAO) {
-        return CookDTO.builder()
-                .cookId(energyCookDAO.getCookId())
-                .orderId(energyCookDAO.getOrderId())
-                .boothId(energyCookDAO.getBoothId())
-                .menuId(energyCookDAO.getMenuId())
-                .tableNum(energyCookDAO.getTableNum())
-                .date(energyCookDAO.getDate())
-                .totalCount(energyCookDAO.getTotalCount())
-                .servedCount(energyCookDAO.getServedCount())
-                .createAt(energyCookDAO.getCreateAt())
-                .isFinish(energyCookDAO.getIsFinish())
-                .isService(energyCookDAO.getIsService())
-                .build();
-    }
-
     public static CookDTO fromGameCookDAO(GameCookDAO gameCookDAO) {
         return CookDTO.builder()
                 .cookId(gameCookDAO.getCookId())

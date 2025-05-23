@@ -70,27 +70,6 @@ public class OrderDTO {
                 .build();
     }
 
-    public static OrderDTO fromEnergyOrderDAO(EnergyOrderDAO energyOrderDAO) {
-        return OrderDTO.builder()
-                .orderNum(energyOrderDAO.getOrderNum())
-                .orderId(energyOrderDAO.getOrderId())
-                .boothId(energyOrderDAO.getBoothId())
-                .orderType(energyOrderDAO.getOrderType())
-                .tableNum(energyOrderDAO.getTableNum())
-                .date(energyOrderDAO.getDate())
-                .userName(energyOrderDAO.getUserName())
-                .phoneNum(energyOrderDAO.getPhoneNum())
-                .note(energyOrderDAO.getNote())
-                .totalPrice(energyOrderDAO.getTotalPrice())
-                .isDeposit(energyOrderDAO.getIsDeposit())
-                .isCoupon(energyOrderDAO.getIsCoupon())
-                .isService(energyOrderDAO.getIsService())
-                .createAt(energyOrderDAO.getCreateAt())
-                .finishAt(energyOrderDAO.getFinishAt())
-                .menuInfo(energyOrderDAO.getMenuInfo())
-                .build();
-    }
-
     public static OrderDTO fromGameOrderDAO(GameOrderDAO gameOrderDAO) {
         return OrderDTO.builder()
                 .orderNum(gameOrderDAO.getOrderNum())

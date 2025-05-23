@@ -48,6 +48,7 @@ public class WebSecurityConfig {
                                 //.requestMatchers(HttpMethod.GET, "/admin/message/all").permitAll()
                                 //.requestMatchers(HttpMethod.GET, "/admin/booth/night/all").permitAll()
                                 //.requestMatchers(HttpMethod.POST, "/admin/order/table").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/admin/booth/cc958624-20ae-4621-8ea1-d968886d8d6c/order/table/0").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/admin/order/table").permitAll()
                                 .requestMatchers("/admin/booth/bcb6ddc2-1116-4729-a643-fa8f3bb5408f/order/visualization/0").permitAll()
                                 .requestMatchers("/admin/booth/bcb6ddc2-1116-4729-a643-fa8f3bb5408f/order/visualization/3").permitAll()
