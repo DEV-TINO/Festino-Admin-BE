@@ -11,6 +11,8 @@ import com.DevTino.festino_admin.reservation.domain.DTO.ResponseReservationUpdat
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class UpdateReservationBean {
     GetNightBoothDAOBean getNightBoothDAOBean;
@@ -30,7 +32,7 @@ public class UpdateReservationBean {
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationUpdateDTO.getBoothId());
 
         // 예약 가능 여부가 입력값과 다른 경우 예외 발생
-        if(requestReservationUpdateDTO.getIsReservation() == nightBoothDAO.getIsReservation()) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
+        if(!Objects.equals(requestReservationUpdateDTO.getIsReservation(), nightBoothDAO.getIsReservation())) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
 
         // 야간부스 테이블 isReservation 필드 수정
         nightBoothDAO.setIsReservation(!nightBoothDAO.getIsReservation());
