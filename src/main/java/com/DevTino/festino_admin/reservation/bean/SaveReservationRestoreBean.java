@@ -54,7 +54,7 @@ public class SaveReservationRestoreBean {
         NightBoothDAO nightBoothDAO = getNightBoothDAOBean.exec(requestReservationRestoreUpdateDTO.getBoothId());
 
         // 예약의 상태 타입이 입력값과 다른 경우 예외 발생
-        if(!reservationDAO.getReservationType().equals(requestReservationRestoreUpdateDTO.getReservationType())) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
+        if(!reservationDAO.getReservationType().name().equals(requestReservationRestoreUpdateDTO.getReservationType().name())) throw new ServiceException(ExceptionEnum.STATUS_MISMATCH);
 
         // 예약 복구여부 변경
         reservationDAO.setReservationType(ReservationEnum.RESERVE);
