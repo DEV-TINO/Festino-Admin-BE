@@ -48,6 +48,7 @@ public class GetAllTableOrderBean {
             // 1. 입금 대기 상태
             OrderDTO selectedOrder = tableOrderList.stream()
                     .filter(order -> Boolean.FALSE.equals(order.getIsDeposit()))
+                    .filter(order -> !OrderType.CANCEL.equals(order.getOrderType()))
                     .findFirst()
                     .orElse(null);
 
