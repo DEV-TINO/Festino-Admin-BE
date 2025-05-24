@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Component("biochemistryCook")
-public class BiochemistryCookRepositoryImpl {
+public class BiochemistryCookRepositoryImpl implements CookRepository<BiochemistryCookDAO>{
 
     BiochemistryCookRepositoryJPA biochemistryCookRepositoryJPA;
 
