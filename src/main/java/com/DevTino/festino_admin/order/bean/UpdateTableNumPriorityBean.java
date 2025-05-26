@@ -26,7 +26,7 @@ public class UpdateTableNumPriorityBean {
     // 테이블 시각화 시 순서 변경
     public UUID exec(RequestAllTableNumPriorityUpdateDTO requestAllTableNumPriorityUpdateDTO) {
 
-        UUID boothId = requestAllTableNumPriorityUpdateDTO.getBoothId();
+        /*UUID boothId = requestAllTableNumPriorityUpdateDTO.getBoothId();
         List<RequestTableNumPriorityUpdateDTO> tableNumPriorityList = requestAllTableNumPriorityUpdateDTO.getTableNumPriorityList();
 
         // 전체 tableNumPriorityList를 순회하며
@@ -36,9 +36,11 @@ public class UpdateTableNumPriorityBean {
             TableNumDAO tableNumDAO = getTableNumDAOBean.exec(boothId, requestTableNumPriorityUpdateDTO.getTableNumIndex());
             tableNumDAO.setTablePriority(requestTableNumPriorityUpdateDTO.getTablePriority());
             saveTableNumDAOBean.exec(tableNumDAO);
-        }
+        }*/
 
-        return boothId;
+        /*return boothId;*/
+
+        return null;
 
     }
 }

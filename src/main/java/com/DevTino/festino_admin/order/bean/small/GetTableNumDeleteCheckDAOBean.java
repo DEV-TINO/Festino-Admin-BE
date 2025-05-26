@@ -18,7 +18,7 @@ public class GetTableNumDeleteCheckDAOBean {
         this.tableNumRepositoryJPA = tableNumRepositoryJPA;
     }
 
-    public List<TableNumDAO> exec(UUID boothId) {
+    /*public List<TableNumDAO> exec(UUID boothId) {
         return tableNumRepositoryJPA.findAllByBoothIdAndIsDeletedFalseOrderByTableNumIndexAsc(boothId);
-    }
+    }*/
 }

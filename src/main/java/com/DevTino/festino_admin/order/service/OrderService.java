@@ -141,11 +141,11 @@ public class OrderService {
     }
 
 
-    // 테이블 시각화
+    /*// 테이블 시각화
     public List<ResponseAllTableOrderGetDTO> getAllTableOrder(UUID boothId, Integer date){
 
         return getAllTableOrderBean.exec(boothId, date);
-    }
+    }*/
 
 
     // 주문 취소

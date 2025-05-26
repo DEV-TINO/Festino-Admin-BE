@@ -189,7 +189,7 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    // 테이블 시각화
+    /*// 테이블 시각화
     @GetMapping("/visualization/{date}")
     public ResponseEntity<ApiResponse<Object>> getOrderTableVisualization(@PathVariable("boothId") UUID boothId, @PathVariable("date") Integer date){
 
@@ -201,7 +201,7 @@ public class OrderController {
 
         // status, body 설정해서 응답 리턴
         return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
+    }*/
 
 
 

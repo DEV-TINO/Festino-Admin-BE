@@ -14,7 +14,7 @@ import java.util.*;
 @Component
 public class GetAllTableOrderBean {
 
-    GetTableNumDeleteCheckDAOBean getTableNumDeleteCheckDAOBean;
+    /*GetTableNumDeleteCheckDAOBean getTableNumDeleteCheckDAOBean;
     GetAllTableOrderDAOBean getAllTableOrderDAOBean;
 
     @Autowired
@@ -26,7 +26,7 @@ public class GetAllTableOrderBean {
     // 테이블 시각화에 따른 전체 테이블 주문 조회
     public List<ResponseAllTableOrderGetDTO> exec(UUID boothId, Integer date){
 
-        // 일단 해당 학과에 모든 테이블을 가져와
+*//*        // 일단 해당 학과에 모든 테이블을 가져와
         List<TableNumDAO> tableNumDAOList = getTableNumDeleteCheckDAOBean.exec(boothId);
 
         // 최근 한시간에 주문을 테이블 번호로 정렬해서 가져와
@@ -82,7 +82,9 @@ public class GetAllTableOrderBean {
 
         responseAllTableOrderGetDTOS.sort(Comparator.comparing(ResponseAllTableOrderGetDTO::getTablePriority));
 
-        return responseAllTableOrderGetDTOS;
+        return responseAllTableOrderGetDTOS;*//*
+
+        return null;
 
         // 1. 1번 테이블부터 확인해서 1번 테이블 주문에서 입금대기 상태인 주문이 있으면 해당 주문 보여줌
         // orderDTO에서 isDeposit 필드가 false인 주문이 입금대기 상태
@@ -99,15 +101,15 @@ public class GetAllTableOrderBean {
 
         // 이렇게 List<TableNumDAO>를 반복함
 
-        /*tableInfo : [
+        *//*tableInfo : [
                     {
                         tableNumIndex: 1,
                         order: {
 
                     }
 
-                ]*/
+                ]*//*
         // 이런식으로 표현하고 싶어
 
-    }
+    }*/
 }

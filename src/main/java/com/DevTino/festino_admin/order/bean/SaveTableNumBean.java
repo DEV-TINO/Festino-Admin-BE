@@ -1,9 +1,6 @@
 package com.DevTino.festino_admin.order.bean;
 
 import com.DevTino.festino_admin.DateTimeUtils;
-import com.DevTino.festino_admin.exception.ExceptionEnum;
-import com.DevTino.festino_admin.exception.ServiceException;
-import com.DevTino.festino_admin.order.bean.small.CheckFieldMatchingTableNumBean;
 import com.DevTino.festino_admin.order.bean.small.DeleteTableNumDAOBean;
 import com.DevTino.festino_admin.order.bean.small.GetTableNumDAOBean;
 import com.DevTino.festino_admin.order.bean.small.SaveTableNumDAOBean;
@@ -14,77 +11,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component
 public class SaveTableNumBean {
 
-    GetTableNumDAOBean getTableNumDAOBean;
+    DeleteTableNumDAOBean deleteTableNumDAOBean;
     SaveTableNumDAOBean saveTableNumDAOBean;
 
     @Autowired
-    public SaveTableNumBean(GetTableNumDAOBean getTableNumDAOBean, SaveTableNumDAOBean saveTableNumDAOBean) {
-        this.getTableNumDAOBean = getTableNumDAOBean;
+    public SaveTableNumBean(DeleteTableNumDAOBean deleteTableNumDAOBean, SaveTableNumDAOBean saveTableNumDAOBean) {
+
+        this.deleteTableNumDAOBean = deleteTableNumDAOBean;
         this.saveTableNumDAOBean = saveTableNumDAOBean;
     }
 
-
-    // 커스텀 테이블 번호 저장
     public UUID exec(RequestTableNumSaveDTO requestTableNumSaveDTO) {
 
         UUID boothId = requestTableNumSaveDTO.getBoothId();
+
+        // 싹 다 삭제
+        deleteTableNumDAOBean.exec(boothId);
+
         List<TableNumDTO> tableNumDTOList = requestTableNumSaveDTO.getTableNumList();
 
-        // 1. 기존 테이블 목록 가져오기
-        // boothId로 전부 다 가져와
-        List<TableNumDAO> tableNumDAOList = getTableNumDAOBean.exec(boothId);
-        Map<Integer, TableNumDAO> existingTableNumDAOMap = tableNumDAOList.stream()
-                .collect(Collectors.toMap(TableNumDAO::getTableNumIndex, tableNumDAO -> tableNumDAO));
+        List<TableNumDAO> newTableNumDAOList = new ArrayList<>();
 
-        // 2. dto에 있는 ID들만 수집
-        Set<Integer> newTableNumIndexes = tableNumDTOList.stream()
-                .map(TableNumDTO::getTableNumIndex)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toSet());
-
-        // 3. 삭제 처리: 기존에 있는데 dto에는 없는 것들
-        for (TableNumDAO tableNumDAO : tableNumDAOList) {
-            if (!newTableNumIndexes.contains(tableNumDAO.getTableNumIndex())) {
-                tableNumDAO.setIsDeleted(true);
-                saveTableNumDAOBean.exec(tableNumDAO);
-            }
-        }
-
-        // 4. 추가 or 수정 처리
+        // 전체 저장
         for (TableNumDTO tableNumDTO : tableNumDTOList) {
-            if (tableNumDTO.getTableNumIndex() == null) {
-                // 새로 추가
-                TableNumDAO tableNumDAO = TableNumDAO.builder()
-                        .boothId(boothId)
-                        .customTableNum(tableNumDTO.getCustomTableNum())
-                        .tablePriority(0)
-                        .isDeleted(false)
-                        .createAt(DateTimeUtils.nowZone())
-                        .updateAt(DateTimeUtils.nowZone())
-                        .build();
-                saveTableNumDAOBean.exec(tableNumDAO);
-
-                tableNumDAO.setOrderUrl("https://festino.dev-tino.com/order/" + boothId + "/" + tableNumDAO.getTableNumIndex());
-                saveTableNumDAOBean.exec(tableNumDAO);
-            } else {
-                // 수정
-                TableNumDAO tableNumDAO = existingTableNumDAOMap.get(tableNumDTO.getTableNumIndex());
-
-                if (tableNumDAO != null) {
-                    if (!tableNumDAO.getCustomTableNum().equals(tableNumDTO.getCustomTableNum())){
-                        tableNumDAO.setCustomTableNum(tableNumDTO.getCustomTableNum());
-                        tableNumDAO.setUpdateAt(DateTimeUtils.nowZone());
-                    }
-
-                    saveTableNumDAOBean.exec(tableNumDAO);
-                }
-            }
+            TableNumDAO tableNumDAO = TableNumDAO.builder()
+                    .boothId(boothId)
+                    .tableNumIndex(tableNumDTO.getTableNumIndex())
+                    .customTableNum(tableNumDTO.getCustomTableNum())
+                    .orderUrl("https://festino.dev-tino.com/order/" + boothId + "/" + tableNumDTO.getTableNumIndex())
+                    .createAt(DateTimeUtils.nowZone())
+                    .updateAt(DateTimeUtils.nowZone())
+                    .build();
+            newTableNumDAOList.add(tableNumDAO);
         }
+
+        saveTableNumDAOBean.exec(newTableNumDAOList);
 
         return boothId;
     }

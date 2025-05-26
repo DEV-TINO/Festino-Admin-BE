@@ -36,11 +36,16 @@ public class GetOrderCookingDAOBean {
 
         // Map에서 해당 부스의 Repository 꺼내기
         OrderRepository<?> orderRepository = orderRepositoryMap.get(boothName);
-
+        System.out.println("orderRepository = " + orderRepository);
+        System.out.println("date = " + date);
+        System.out.println("b = " + boothId);
+        System.out.println("orderRepository = " + orderRepository.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(true, OrderType.COOKING, date));
+        System.out.println("orderRepository = " + orderRepository);
         // OrderDAO 리스트 조회
         List<? extends AbstractOrderDAO> orderDAOList = orderRepository.findByIsDepositAndOrderTypeAndDateOrderByCreateAtAsc(true, OrderType.COOKING, date);
         if (orderDAOList.isEmpty()) throw new ServiceException(ExceptionEnum.EMPTY_LIST);
-
+        System.out.println("orderDAOList = " + orderDAOList);
+        
         // OrderDAO 리스트를 OrderDTO 리스트로 변환해 반환
         List<OrderDTO> orderDTOList = new ArrayList<>();
         for (AbstractOrderDAO dao : orderDAOList) { orderDTOList.add(OrderDTO.fromAbstractOrderDAO(dao)); }
